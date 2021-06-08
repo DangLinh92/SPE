@@ -127,6 +127,13 @@ namespace Wisol
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [DXCategory(nameof(XTextEdit))]
+        public bool IsRequire
+        {
+            get;set;
+        }
+
         public string Value
         {
             get
@@ -148,7 +155,15 @@ namespace Wisol
         protected override void OnEditValueChanged()
         {
             base.OnEditValueChanged();
-            SetTimer();
+
+            if (IsRequire)
+            {
+                NullValidation = string.IsNullOrEmpty(Value);
+            }
+            else
+            {
+                SetTimer();
+            }
         }
     }
 
