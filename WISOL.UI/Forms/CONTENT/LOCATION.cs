@@ -251,87 +251,6 @@ namespace Wisol.MES.Forms.CONTENT
         public override void SearchPage()
         {
             base.SearchPage();
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                MsgBox.Show(ex.Message, MsgType.Error);
-            }
-        }
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //if (String.IsNullOrEmpty(txtRackNumber.EditValue.NullString()) == true || string.IsNullOrEmpty(txtsquare.EditValue.NullString()) == true)
-                //{
-                //    MsgBox.Show("MSG_ERR_102".Translation(), MsgType.Warning);
-                //    return;
-                //}
-                //base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION.PUT",
-                //    new string[] { "A_CODE", "A_LOCATION", "A_PARENT", "A_DEPARTMENT", "A_TRANS_USER", "A_FLOOR" },
-                //    new string[] { txtRackNumber.EditValue.NullString(), txtsquare.EditValue.NullString(), stlKho.EditValue.NullString(), sltDepartment.EditValue.NullString(), Consts.USER_INFO.Id, txtPositionNumber.EditValue.NullString() });
-                //if (base.m_ResultDB.ReturnInt == 0)
-                //{
-                //    MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);
-                //    SearchPage();
-                //}
-                //else
-                //{
-                //    MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Warning);
-
-                //}
-            }
-            catch (Exception ex)
-            {
-                MsgBox.Show(ex.Message, MsgType.Error);
-            }
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            SettingDefaultValueControl();
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            //if (txtRackNumber.Text.Trim() == string.Empty)
-            //{
-            //    return;
-            //}
-            //DialogResult dialogResult = MsgBox.Show("MSG_COM_015".Translation(), MsgType.Warning, DialogType.OkCancel);
-            //if (dialogResult == DialogResult.OK)
-            //{
-            //    try
-            //    {
-            //        base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION.DELETE",
-            //            new string[] { "A_CODE", "A_TRANS_USER" },
-            //            new string[] { txtRackNumber.EditValue.NullString(), Consts.USER_INFO.Id });
-
-            //        if (base.m_ResultDB.ReturnInt == 0)
-            //        {
-            //            MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);
-            //            SearchPage();
-            //        }
-            //        else
-            //        {
-            //            MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Warning);
-
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MsgBox.Show(ex.Message, MsgType.Error);
-            //    }
-            //}
-        }
-
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            POP.POP_LOCATION_LABEL popup = new POP.POP_LOCATION_LABEL();
-            popup.ShowDialog();
-            this.SearchPage();
         }
 
         private void radioGroup1_SelectedIndexChanged(object sender, EventArgs e)
@@ -409,6 +328,9 @@ namespace Wisol.MES.Forms.CONTENT
 
                         // reload location in grid
                         ViewLocation();
+
+                        // update location and rack in combobox
+                        GetLocationForCombobox();
                     }
                     else
                     {
@@ -600,6 +522,10 @@ namespace Wisol.MES.Forms.CONTENT
                             }
                         }
                     }
+                    else
+                    {
+                        MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Warning);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -701,7 +627,7 @@ namespace Wisol.MES.Forms.CONTENT
                 foreach (XtraReport report in reports)
                 {
                     ReportPrintTool pts = new ReportPrintTool(report);
-                    //pts.ShowPreview();
+                    pts.ShowPreview();
                     pts.Print();
                 }
             }
@@ -748,7 +674,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             POP.IMPORT_EXCEL popup = new POP.IMPORT_EXCEL();
             popup.stock_code = stlKho.EditValue.NullString();
-            popup.ShowDialog();
+            //popup.ShowDialog();
             ViewLocation();
         }
 

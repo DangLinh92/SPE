@@ -356,6 +356,7 @@ namespace Wisol.MES.Forms.CONTENT
             new DevExpress.XtraEditors.Repository.ClearButton(),
             new DevExpress.XtraEditors.Repository.SearchButton()});
             this.txtSearchNoLocation.Properties.Client = this.gcListNoPosition;
+            this.txtSearchNoLocation.Properties.NullValuePrompt = "Enter location code to search...";
             this.txtSearchNoLocation.Size = new System.Drawing.Size(832, 20);
             this.txtSearchNoLocation.StyleController = this.xLayoutControl1;
             this.txtSearchNoLocation.TabIndex = 64;
@@ -370,6 +371,7 @@ namespace Wisol.MES.Forms.CONTENT
             new DevExpress.XtraEditors.Repository.ClearButton(),
             new DevExpress.XtraEditors.Repository.SearchButton()});
             this.txtSearch.Properties.Client = this.gcList;
+            this.txtSearch.Properties.NullValuePrompt = "Enter location code to search...";
             this.txtSearch.Size = new System.Drawing.Size(214, 20);
             this.txtSearch.StyleController = this.xLayoutControl1;
             this.txtSearch.TabIndex = 63;
