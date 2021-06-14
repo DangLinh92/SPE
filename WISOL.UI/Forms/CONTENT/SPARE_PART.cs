@@ -40,6 +40,11 @@ namespace Wisol.MES.Forms.CONTENT
                     base.m_BindData.BindGridLookEdit(sltCostCtr, base.m_ResultDB.ReturnDataSet.Tables[2], "COST_CTR", "COST_CTR");
                     base.m_BindData.BindGridLookEdit(sltGlaccount, base.m_ResultDB.ReturnDataSet.Tables[3], "GL_ACCOUNT", "GL_ACCOUNT");
                     base.m_BindData.BindGridLookEdit(sltSparePartType, base.m_ResultDB.ReturnDataSet.Tables[4], "CODE", "NAME");
+
+                    base.m_BindData.BindGridLookEdit(sltUnit1, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME");
+                    base.m_BindData.BindGridLookEdit(sltUnit2, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME");
+                    base.m_BindData.BindGridLookEdit(sltUnit3, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME");
+                    base.m_BindData.BindGridLookEdit(sltUnit4, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME");
                 }
             }
             catch (Exception ex)
@@ -69,6 +74,15 @@ namespace Wisol.MES.Forms.CONTENT
                 sltUnit.EditValue = string.Empty;
                 cbGenCode.Checked = false;
                 cbGenCode.Enabled = true;
+                sltUnit1.EditValue = string.Empty;
+                sltUnit2.EditValue = string.Empty;
+                sltUnit3.EditValue = string.Empty;
+                sltUnit4.EditValue = string.Empty;
+
+                txtRate1.EditValue = 1;
+                txtRate2.EditValue = 1;
+                txtRate3.EditValue = 1;
+                txtRate4.EditValue = 1;
 
                 picImage.Image = null;
                 txtCode.Enabled = true;
@@ -111,7 +125,7 @@ namespace Wisol.MES.Forms.CONTENT
                             cbGenCode.Checked = false;
                             cbGenCode.Enabled = false;
 
-                            ShowASparepart(base.m_ResultDB.ReturnDataSet.Tables[0]);
+                            ShowASparepart(base.m_ResultDB.ReturnDataSet.Tables[0], base.m_ResultDB.ReturnDataSet.Tables[1]);
                         }
                     }
                 }
@@ -201,7 +215,15 @@ namespace Wisol.MES.Forms.CONTENT
                         "@A_COST_CTR",
                         "@A_DEPARTMENT",
                         "@A_IMAGE",
-                        "@USER"
+                        "@USER",
+                        "@A_UNIT1",
+                        "@A_UNIT2",
+                        "@A_UNIT3",
+                        "@A_UNIT4",
+                        "@A_RATE1",
+                        "@A_RATE2",
+                        "@A_RATE3",
+                        "@A_RATE4",
                     },
                     new string[]
                     {
@@ -222,7 +244,16 @@ namespace Wisol.MES.Forms.CONTENT
                         sltCostCtr.EditValue.NullString(),
                         Consts.DEPARTMENT,
                         b64,
-                        Consts.USER_INFO.Id
+                        Consts.USER_INFO.Id,
+                        sltUnit1.EditValue.NullString(),
+                        sltUnit2.EditValue.NullString(),
+                        sltUnit3.EditValue.NullString(),
+                        sltUnit4.EditValue.NullString(),
+
+                        txtRate1.EditValue.NullString(),
+                        txtRate2.EditValue.NullString(),
+                        txtRate3.EditValue.NullString(),
+                        txtRate4.EditValue.NullString(),
                     });
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
@@ -297,7 +328,7 @@ namespace Wisol.MES.Forms.CONTENT
             return (byte[])converter.ConvertTo(img, typeof(byte[]));
         }
 
-        private void ShowASparepart(DataTable table)
+        private void ShowASparepart(DataTable table,DataTable unitTable)
         {
             txtCode.EditValue = table.Rows[0]["CODE"].NullString();
             txtNameVi.EditValue = table.Rows[0]["NAME_VI"].NullString();
@@ -327,6 +358,42 @@ namespace Wisol.MES.Forms.CONTENT
                 picImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
                 picImage.Size = picImage.Image.Size;
             }
+
+            // show unit 
+            sltUnit1.EditValue = null;
+            txtRate1.EditValue = 1;
+
+            sltUnit2.EditValue = null;
+            txtRate2.EditValue = 1;
+
+            sltUnit3.EditValue = null;
+            txtRate3.EditValue = 1;
+
+            sltUnit4.EditValue = null;
+            txtRate4.EditValue = 1;
+
+            for (int i = 0; i < unitTable.Rows.Count; i++)
+            {
+                switch(i)
+                {
+                    case 0:
+                        sltUnit1.EditValue = unitTable.Rows[i]["UNIT_CODE"].NullString();
+                        txtRate1.EditValue = unitTable.Rows[i]["RATE"].NullString();
+                        break;
+                    case 1:
+                        sltUnit2.EditValue = unitTable.Rows[i]["UNIT_CODE"].NullString();
+                        txtRate2.EditValue = unitTable.Rows[i]["RATE"].NullString();
+                        break;
+                    case 2:
+                        sltUnit3.EditValue = unitTable.Rows[i]["UNIT_CODE"].NullString();
+                        txtRate3.EditValue = unitTable.Rows[i]["RATE"].NullString();
+                        break;
+                    case 3:
+                        sltUnit4.EditValue = unitTable.Rows[i]["UNIT_CODE"].NullString();
+                        txtRate4.EditValue = unitTable.Rows[i]["RATE"].NullString();
+                        break;
+                }
+            }
         }
 
         private void txtCode_KeyPress(object sender, KeyPressEventArgs e)
@@ -342,12 +409,12 @@ namespace Wisol.MES.Forms.CONTENT
                         return;
                     }
 
-                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.ONLY_SHOW_SPAREPART", new string[] { "A_CODE" }, new string[] { txtCode.EditValue.NullString() });
+                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.ONLY_SHOW_SPAREPART", new string[] { "A_DEPARTMENT", "A_CODE" }, new string[] { Consts.DEPARTMENT, txtCode.EditValue.NullString() });
                     if (base.m_ResultDB.ReturnInt == 0)
                     {
                         if (base.m_ResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
                         {
-                            ShowASparepart(base.m_ResultDB.ReturnDataSet.Tables[0]);
+                            ShowASparepart(base.m_ResultDB.ReturnDataSet.Tables[0], base.m_ResultDB.ReturnDataSet.Tables[1]);
                         }
                         else
                         {

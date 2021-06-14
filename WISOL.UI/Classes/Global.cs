@@ -83,5 +83,6 @@ namespace Wisol.MES
         public static string SPARE_PART_TYPE = "2";
         public static string CONSUMABLE_PART_TYPE = "1";
         public static string OTHER_PART_TYPE = "3";
+        public static string NG = "NG";
     }
 }
