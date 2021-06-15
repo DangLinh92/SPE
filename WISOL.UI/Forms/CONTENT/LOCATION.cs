@@ -543,18 +543,6 @@ namespace Wisol.MES.Forms.CONTENT
             }
         }
 
-        private void cheWaitPosition_condition_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cheWaitPosition_condition.Checked)
-            {
-                gvListNoPosition.ActiveFilterString = "[LOCATION] = '' OR [LOCATION] IS NULL";
-            }
-            else
-            {
-                gvListNoPosition.ActiveFilter.Clear();
-            }
-        }
-
         private PrinterSettings prnSettings;
         private void btnPrintLabel_Click(object sender, EventArgs e)
         {
@@ -627,7 +615,7 @@ namespace Wisol.MES.Forms.CONTENT
                 foreach (XtraReport report in reports)
                 {
                     ReportPrintTool pts = new ReportPrintTool(report);
-                    pts.ShowPreview();
+                    //pts.ShowPreview();
                     pts.Print();
                 }
             }
@@ -674,7 +662,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             POP.IMPORT_EXCEL popup = new POP.IMPORT_EXCEL();
             popup.stock_code = stlKho.EditValue.NullString();
-            //popup.ShowDialog();
+            popup.ShowDialog();
             ViewLocation();
         }
 
@@ -761,6 +749,22 @@ namespace Wisol.MES.Forms.CONTENT
             catch (Exception ex)
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void cboFilterSparepart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cboFilterSparepart.SelectedIndex == 0) // Ton tai vi tri
+            {
+                gvListNoPosition.ActiveFilterString = "[LOCATION] != '' AND [LOCATION] IS NOT NULL";
+            }
+            else if (cboFilterSparepart.SelectedIndex == 1) // Dang cho
+            {
+                gvListNoPosition.ActiveFilterString = "[LOCATION] = '' OR [LOCATION] IS NULL";
+            }
+            else // All
+            {
+                gvListNoPosition.ActiveFilter.Clear();
             }
         }
     }

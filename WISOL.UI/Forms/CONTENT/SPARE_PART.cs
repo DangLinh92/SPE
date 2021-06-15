@@ -46,6 +46,8 @@ namespace Wisol.MES.Forms.CONTENT
                     base.m_BindData.BindGridLookEdit(sltUnit3, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME");
                     base.m_BindData.BindGridLookEdit(sltUnit4, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME");
                 }
+
+                btnUpdate.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -88,6 +90,8 @@ namespace Wisol.MES.Forms.CONTENT
                 txtCode.Enabled = true;
                 txtCode.ResetBackColor();
                 txtCode.Focus();
+
+                btnUpdate.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -495,6 +499,28 @@ namespace Wisol.MES.Forms.CONTENT
             if (number > 99 && number <= 999) return "0" + number;
             if (number > 999 && number <= 9999) return "" + number;
             return "";
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            POP.UPDATE_SPAREPART_CODE popup = new POP.UPDATE_SPAREPART_CODE();
+            popup.SpareCode_Old = txtCode.EditValue.NullString();
+            popup.ShowDialog();
+
+            Init_Control();
+            SearchPage();
+        }
+
+        private void txtCode_EditValueChanged(object sender, EventArgs e)
+        {
+            if(txtCode.EditValue.NullString() != "")
+            {
+                btnUpdate.Enabled = true;
+            }
+            else
+            {
+                btnUpdate.Enabled = false;
+            }
         }
     }
 }
