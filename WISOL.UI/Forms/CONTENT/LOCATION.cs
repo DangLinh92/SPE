@@ -316,7 +316,6 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-
                 DialogResult dialogResult = MsgBox.Show("MSG_COM_015".Translation(), MsgType.Warning, DialogType.OkCancel);
                 if (dialogResult == DialogResult.OK)
                 {

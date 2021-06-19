@@ -84,5 +84,8 @@ namespace Wisol.MES
         public static string CONSUMABLE_PART_TYPE = "1";
         public static string OTHER_PART_TYPE = "3";
         public static string NG = "NG";
+
+        public static string INVENTORY_REPORT = "1";
+        public static string INVENTORY_IN_OUT_REPORT = "2";
     }
 }

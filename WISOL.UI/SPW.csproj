@@ -275,6 +275,12 @@
     <Compile Include="Forms\CONTENT\MAKER.Designer.cs">
       <DependentUpon>MAKER.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\POP\EXPORT_EXCEL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\EXPORT_EXCEL.Designer.cs">
+      <DependentUpon>EXPORT_EXCEL.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\POP\IMPORT_EXCEL.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -334,6 +340,12 @@
     </Compile>
     <Compile Include="Forms\CONTENT\REPRINT_LABEL.Designer.cs">
       <DependentUpon>REPRINT_LABEL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\SPAREPART_INVENTORY.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\SPAREPART_INVENTORY.Designer.cs">
+      <DependentUpon>SPAREPART_INVENTORY.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CONTENT\SPARE_PART.cs">
       <SubType>UserControl</SubType>
@@ -677,6 +689,9 @@
     <EmbeddedResource Include="Forms\CONTENT\MAKER.resx">
       <DependentUpon>MAKER.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\EXPORT_EXCEL.resx">
+      <DependentUpon>EXPORT_EXCEL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\IMPORT_EXCEL.resx">
       <DependentUpon>IMPORT_EXCEL.cs</DependentUpon>
     </EmbeddedResource>
@@ -706,6 +721,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\REPRINT_LABEL.resx">
       <DependentUpon>REPRINT_LABEL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\SPAREPART_INVENTORY.resx">
+      <DependentUpon>SPAREPART_INVENTORY.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\SPARE_PART.resx">
       <DependentUpon>SPARE_PART.cs</DependentUpon>
@@ -897,6 +915,9 @@
     <None Include="Resources\icons8-combo-chart-32.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="answer-tone.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\AboveAverage_32x32.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

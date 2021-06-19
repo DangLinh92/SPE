@@ -73,6 +73,7 @@
             this.tabForm = new DevExpress.XtraTab.XtraTabControl();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.alertControl1 = new DevExpress.XtraBars.Alerter.AlertControl(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_SearchMenuEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
@@ -454,10 +455,10 @@
             this.accordionControlElement2,
             this.accordionControlElement3,
             this.accordionControlElement4});
-            this.accordionControl1.Location = new System.Drawing.Point(0, 35);
+            this.accordionControl1.Location = new System.Drawing.Point(0, 32);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
-            this.accordionControl1.Size = new System.Drawing.Size(48, 695);
+            this.accordionControl1.Size = new System.Drawing.Size(48, 698);
             this.accordionControl1.TabIndex = 10;
             this.accordionControl1.Text = "accordionControl1";
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
@@ -553,9 +554,9 @@
             this.tabForm.HeaderButtons = ((DevExpress.XtraTab.TabButtons)((((DevExpress.XtraTab.TabButtons.Prev | DevExpress.XtraTab.TabButtons.Next) 
             | DevExpress.XtraTab.TabButtons.Close) 
             | DevExpress.XtraTab.TabButtons.Default)));
-            this.tabForm.Location = new System.Drawing.Point(48, 35);
+            this.tabForm.Location = new System.Drawing.Point(48, 32);
             this.tabForm.Name = "tabForm";
-            this.tabForm.Size = new System.Drawing.Size(960, 695);
+            this.tabForm.Size = new System.Drawing.Size(960, 698);
             this.tabForm.TabIndex = 11;
             this.tabForm.TabStop = false;
             this.tabForm.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.tabForm_SelectedPageChanged);
@@ -579,7 +580,7 @@
             this.ribbonControl1.ShowPageHeadersMode = DevExpress.XtraBars.Ribbon.ShowPageHeadersMode.Hide;
             this.ribbonControl1.ShowQatLocationSelector = false;
             this.ribbonControl1.ShowToolbarCustomizeItem = false;
-            this.ribbonControl1.Size = new System.Drawing.Size(1008, 35);
+            this.ribbonControl1.Size = new System.Drawing.Size(1008, 32);
             this.ribbonControl1.Toolbar.ShowCustomizeItem = false;
             this.ribbonControl1.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             this.ribbonControl1.TransparentEditorsMode = DevExpress.Utils.DefaultBoolean.False;
@@ -588,6 +589,10 @@
             // 
             this.ribbonPage2.Name = "ribbonPage2";
             this.ribbonPage2.Text = "ribbonPage2";
+            // 
+            // alertControl1
+            // 
+            this.alertControl1.AlertClick += new DevExpress.XtraBars.Alerter.AlertClickEventHandler(this.alertControl1_AlertClick);
             // 
             // MainForm
             // 
@@ -673,6 +678,7 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement4;
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
+        private DevExpress.XtraBars.Alerter.AlertControl alertControl1;
     }
 }
 
