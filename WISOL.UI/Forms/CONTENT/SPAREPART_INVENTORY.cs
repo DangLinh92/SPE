@@ -328,14 +328,20 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
+                if(txtQuantityByTime.Visible == true && txtQuantityByTime.Enabled == true && string.IsNullOrEmpty(txtQuantityByTime.EditValue.NullString()))
+                {
+                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                    return;
+                }
+
                 DateTime date = (DateTime)dateInputReal.EditValue;
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_BY_TIME.PUT_QUANTITY_REAL",
-                            new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_QUANTITY_REAL", "A_UNIT", "A_DATE", "A_YEAR", "A_MONTH" },
+                            new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_QUANTITY_REAL", "A_UNIT", "A_DATE", "A_YEAR", "A_MONTH","A_QUANTITY" },
                             new string[] {
                                 Consts.DEPARTMENT, stlKho.EditValue.NullString(),
                                 stlSparePartForReal.EditValue.NullString(), txtQuantityRealByTime.EditValue.NullString(),
-                                stlUnitReal.EditValue.NullString(),date.ToString(),date.Year.NullString(),date.Month.NullString() });
+                                stlUnitReal.EditValue.NullString(),date.ToString(),date.Year.NullString(),date.Month.NullString(),txtQuantityByTime.EditValue.NullString() });
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
                     MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);

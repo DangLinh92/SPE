@@ -86,6 +86,8 @@ namespace Wisol.MES.Forms.CONTENT
                 txtRate3.EditValue = 1;
                 txtRate4.EditValue = 1;
 
+                txtMinOrder.EditValue = 0;
+
                 picImage.Image = null;
                 txtCode.Enabled = true;
                 txtCode.ResetBackColor();
@@ -228,6 +230,7 @@ namespace Wisol.MES.Forms.CONTENT
                         "@A_RATE2",
                         "@A_RATE3",
                         "@A_RATE4",
+                        "@A_MIN_ORDER"
                     },
                     new string[]
                     {
@@ -258,6 +261,7 @@ namespace Wisol.MES.Forms.CONTENT
                         txtRate2.EditValue.NullString(),
                         txtRate3.EditValue.NullString(),
                         txtRate4.EditValue.NullString(),
+                        txtMinOrder.EditValue.NullString()
                     });
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
@@ -349,6 +353,7 @@ namespace Wisol.MES.Forms.CONTENT
             sltUnit.EditValue = table.Rows[0]["UNIT_ID"].NullString();
             txtDesc.EditValue = table.Rows[0]["DESCRIPTION"].NullString();
             sltCostCtr.EditValue = table.Rows[0]["COST_CTR"].NullString();
+            txtMinOrder.EditValue = table.Rows[0]["MIN_ORDER"].NullString();
 
             image = table.Rows[0]["IMAGE"].NullString();
 

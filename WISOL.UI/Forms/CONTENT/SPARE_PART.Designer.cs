@@ -119,6 +119,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
             this.memoExEdit1 = new DevExpress.XtraEditors.MemoExEdit();
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtMinOrder = new Wisol.XTextEdit();
+            this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
@@ -198,6 +200,8 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoExEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMinOrder.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -312,6 +316,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // xLayoutControl1
             // 
+            this.xLayoutControl1.Controls.Add(this.txtMinOrder);
             this.xLayoutControl1.Controls.Add(this.sltUnit4);
             this.xLayoutControl1.Controls.Add(this.sltUnit3);
             this.xLayoutControl1.Controls.Add(this.sltUnit2);
@@ -553,9 +558,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // txtSpecification
             // 
-            this.txtSpecification.Location = new System.Drawing.Point(109, 444);
+            this.txtSpecification.Location = new System.Drawing.Point(109, 468);
             this.txtSpecification.Name = "txtSpecification";
-            this.txtSpecification.Size = new System.Drawing.Size(383, 89);
+            this.txtSpecification.Size = new System.Drawing.Size(383, 65);
             this.txtSpecification.StyleController = this.xLayoutControl1;
             this.txtSpecification.TabIndex = 14;
             // 
@@ -826,7 +831,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem18,
             this.layoutControlItem26,
             this.layoutControlItem29,
-            this.layoutControlItem31});
+            this.layoutControlItem31,
+            this.layoutControlItem34});
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(504, 769);
             this.layoutControlGroup1.TextVisible = false;
@@ -945,9 +951,9 @@ namespace Wisol.MES.Forms.CONTENT
             // layoutControlItem27
             // 
             this.layoutControlItem27.Control = this.txtSpecification;
-            this.layoutControlItem27.Location = new System.Drawing.Point(0, 432);
+            this.layoutControlItem27.Location = new System.Drawing.Point(0, 456);
             this.layoutControlItem27.Name = "layoutControlItem27";
-            this.layoutControlItem27.Size = new System.Drawing.Size(484, 93);
+            this.layoutControlItem27.Size = new System.Drawing.Size(484, 69);
             this.layoutControlItem27.Text = "SPECIFICATION";
             this.layoutControlItem27.TextSize = new System.Drawing.Size(94, 13);
             // 
@@ -1188,6 +1194,31 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem25.Size = new System.Drawing.Size(234, 1);
             this.layoutControlItem25.TextSize = new System.Drawing.Size(50, 20);
             // 
+            // txtMinOrder
+            // 
+            this.txtMinOrder.EditValue = "0";
+            this.txtMinOrder.IsRequire = false;
+            this.txtMinOrder.Location = new System.Drawing.Point(109, 444);
+            this.txtMinOrder.Name = "txtMinOrder";
+            this.txtMinOrder.NullBackColor = System.Drawing.Color.Lime;
+            this.txtMinOrder.NullValidation = false;
+            this.txtMinOrder.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtMinOrder.Properties.Appearance.Options.UseBackColor = true;
+            this.txtMinOrder.Properties.Mask.EditMask = "n";
+            this.txtMinOrder.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtMinOrder.Size = new System.Drawing.Size(383, 20);
+            this.txtMinOrder.StyleController = this.xLayoutControl1;
+            this.txtMinOrder.TabIndex = 30;
+            // 
+            // layoutControlItem34
+            // 
+            this.layoutControlItem34.Control = this.txtMinOrder;
+            this.layoutControlItem34.Location = new System.Drawing.Point(0, 432);
+            this.layoutControlItem34.Name = "layoutControlItem34";
+            this.layoutControlItem34.Size = new System.Drawing.Size(484, 24);
+            this.layoutControlItem34.Text = "MIN_ORDER";
+            this.layoutControlItem34.TextSize = new System.Drawing.Size(94, 13);
+            // 
             // SPARE_PART
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1275,6 +1306,8 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoExEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMinOrder.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1364,5 +1397,7 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem31;
         private XSimpleButton btnUpdate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem33;
+        private XTextEdit txtMinOrder;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem34;
     }
 }
