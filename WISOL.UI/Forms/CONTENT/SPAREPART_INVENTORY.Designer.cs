@@ -34,6 +34,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.cboFilter = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnReport = new Wisol.XSimpleButton(this.components);
             this.dateTo = new DevExpress.XtraEditors.DateEdit();
             this.dateFrom = new DevExpress.XtraEditors.DateEdit();
@@ -48,6 +49,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl1 = new Wisol.XLayoutControl();
             this.txtQuantityByTime = new Wisol.XTextEdit();
@@ -106,6 +108,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).BeginInit();
             this.xLayoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboFilter.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTo.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFrom.Properties.CalendarTimeProperties)).BeginInit();
@@ -120,6 +123,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
@@ -199,6 +203,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // xLayoutControl2
             // 
+            this.xLayoutControl2.Controls.Add(this.cboFilter);
             this.xLayoutControl2.Controls.Add(this.btnReport);
             this.xLayoutControl2.Controls.Add(this.dateTo);
             this.xLayoutControl2.Controls.Add(this.dateFrom);
@@ -212,6 +217,23 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl2.Size = new System.Drawing.Size(943, 743);
             this.xLayoutControl2.TabIndex = 0;
             this.xLayoutControl2.Text = "xLayoutControl2";
+            // 
+            // cboFilter
+            // 
+            this.cboFilter.Location = new System.Drawing.Point(75, 36);
+            this.cboFilter.Name = "cboFilter";
+            this.cboFilter.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboFilter.Properties.Items.AddRange(new object[] {
+            "Tất cả",
+            "Dưới định mức tồn",
+            "Vượt định mức tồn",
+            "Còn hàng trong kho",
+            "Hết hàng trong kho"});
+            this.cboFilter.Size = new System.Drawing.Size(340, 20);
+            this.cboFilter.StyleController = this.xLayoutControl2;
+            this.cboFilter.TabIndex = 24;
+            this.cboFilter.SelectedIndexChanged += new System.EventHandler(this.cboFilter_SelectedIndexChanged);
             // 
             // btnReport
             // 
@@ -308,7 +330,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem12,
             this.layoutControlItem15,
             this.layoutControlItem16,
-            this.layoutControlItem11});
+            this.layoutControlItem11,
+            this.layoutControlItem28});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(943, 743);
             this.layoutControlGroup1.TextVisible = false;
@@ -327,7 +350,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem10.Control = this.searchCode;
             this.layoutControlItem10.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(407, 49);
+            this.layoutControlItem10.Size = new System.Drawing.Size(407, 24);
             this.layoutControlItem10.Text = "SEARCH";
             this.layoutControlItem10.TextSize = new System.Drawing.Size(60, 13);
             // 
@@ -366,6 +389,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem11.Size = new System.Drawing.Size(133, 49);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
+            // 
+            // layoutControlItem28
+            // 
+            this.layoutControlItem28.Control = this.cboFilter;
+            this.layoutControlItem28.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem28.Name = "layoutControlItem28";
+            this.layoutControlItem28.Size = new System.Drawing.Size(407, 25);
+            this.layoutControlItem28.Text = "ĐỊNH MỨC";
+            this.layoutControlItem28.TextSize = new System.Drawing.Size(60, 13);
             // 
             // groupControl1
             // 
@@ -1005,6 +1037,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).EndInit();
             this.xLayoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cboFilter.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTo.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFrom.Properties.CalendarTimeProperties)).EndInit();
@@ -1019,6 +1052,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).EndInit();
@@ -1145,5 +1179,7 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem26;
         private XTextEdit txtQuantityByTime;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem27;
+        private DevExpress.XtraEditors.ComboBoxEdit cboFilter;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
     }
 }

@@ -60,6 +60,7 @@ namespace Wisol.MES.Forms.CONTENT
 
                 radioInputType.SelectedIndex = 0;
                 cboReportType.SelectedIndex = 0;
+                cboFilter.SelectedIndex = 0;
                 dateInputReal.EditValue = DateTime.Now;
 
             }
@@ -518,6 +519,30 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 dateFrom.Enabled = true;
                 dateTo.Enabled = true;
+            }
+        }
+
+        private void cboFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cboFilter.SelectedIndex == 0) //show all
+            {
+                gvList.ActiveFilter.Clear();
+            }
+            else if(cboFilter.SelectedIndex == 1) //duoi dinh muc
+            {
+                gvList.ActiveFilterString = "[QUANTITY] <= [MIN_STOCK]";
+            }
+            else if(cboFilter.SelectedIndex == 2) // vuot dinh muc
+            {
+                gvList.ActiveFilterString = "[QUANTITY] > [MIN_STOCK]";
+            }
+            else if(cboFilter.SelectedIndex == 3) // con hang
+            {
+                gvList.ActiveFilterString = "[QUANTITY] > 0 OR [QUANTITY_REAL] > 0";
+            }
+            else if (cboFilter.SelectedIndex == 4) // het hang
+            {
+                gvList.ActiveFilterString = "[QUANTITY] = 0 OR [QUANTITY_REAL] = 0";
             }
         }
     }
