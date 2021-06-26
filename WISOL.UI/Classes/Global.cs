@@ -87,5 +87,16 @@ namespace Wisol.MES
 
         public static string INVENTORY_REPORT = "1";
         public static string INVENTORY_IN_OUT_REPORT = "2";
+
+        public static string MODE_NEW = "NEW";
+        public static string MODE_UPDATE = "UPDATE";
+        public static string MODE_DELETE = "DELETE";
+
+        public static string IN = "IN";
+        public static string OUT = "OUT";
+
+        public static string STATUS_COMPLETE = "COMPLETE";
+        public static string STATUS_NEW = "NEW";
+        public static string STATUS_INPROGRESS = "INPROGRESS";
     }
 }

@@ -72,7 +72,7 @@ namespace Wisol.MES.Forms.CONTENT
                 txtUses.EditValue = string.Empty;
                 txtEquipment.EditValue = string.Empty;
                 txtSpecification.EditValue = string.Empty;
-                txtDesc.EditValue = string.Empty;
+                //txtDesc.EditValue = string.Empty;
                 sltUnit.EditValue = string.Empty;
                 cbGenCode.Checked = false;
                 cbGenCode.Enabled = true;
@@ -247,7 +247,7 @@ namespace Wisol.MES.Forms.CONTENT
                         txtEquipment.EditValue.NullString(),
                         txtSpecification.EditValue.NullString(),
                         sltUnit.EditValue.NullString(),
-                        txtDesc.EditValue.NullString(),
+                        "",
                         sltCostCtr.EditValue.NullString(),
                         Consts.DEPARTMENT,
                         b64,
@@ -351,7 +351,7 @@ namespace Wisol.MES.Forms.CONTENT
             txtEquipment.EditValue = table.Rows[0]["EQUIPMENT_USED"].NullString();
             txtSpecification.EditValue = table.Rows[0]["SPECIFICATION"].NullString();
             sltUnit.EditValue = table.Rows[0]["UNIT_ID"].NullString();
-            txtDesc.EditValue = table.Rows[0]["DESCRIPTION"].NullString();
+            //txtDesc.EditValue = table.Rows[0]["DESCRIPTION"].NullString();
             sltCostCtr.EditValue = table.Rows[0]["COST_CTR"].NullString();
             txtMinOrder.EditValue = table.Rows[0]["MIN_ORDER"].NullString();
 
@@ -366,6 +366,10 @@ namespace Wisol.MES.Forms.CONTENT
                 }
                 picImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
                 picImage.Size = picImage.Image.Size;
+            }
+            else
+            {
+                picImage.Image = null;
             }
 
             // show unit 

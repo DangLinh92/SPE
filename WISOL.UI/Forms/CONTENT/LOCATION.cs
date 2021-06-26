@@ -212,6 +212,7 @@ namespace Wisol.MES.Forms.CONTENT
                         base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
                         gvList.Columns["KHO"].Visible = false;
                         gvList.Columns["LOCATION"].Width = 230;
+                        gvList.MakeRowVisible(gvList.DataRowCount - 1);
                     }
 
                     if (dataLocations[1].Rows.Count > 0)
@@ -457,7 +458,7 @@ namespace Wisol.MES.Forms.CONTENT
                             stlKho.EditValue.NullString(),
                             stlCondition.EditValue.NullString(),
                             stlUnit.EditValue.NullString()
-                        }); ;
+                        });
 
                     if (base.m_ResultDB.ReturnInt == 0)
                     {

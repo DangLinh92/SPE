@@ -281,6 +281,12 @@
     <Compile Include="Forms\CONTENT\POP\EXPORT_EXCEL.Designer.cs">
       <DependentUpon>EXPORT_EXCEL.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\POP\GOODS_RECEIPT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\GOODS_RECEIPT.Designer.cs">
+      <DependentUpon>GOODS_RECEIPT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\POP\IMPORT_EXCEL.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -691,6 +697,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\EXPORT_EXCEL.resx">
       <DependentUpon>EXPORT_EXCEL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\GOODS_RECEIPT.resx">
+      <DependentUpon>GOODS_RECEIPT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\IMPORT_EXCEL.resx">
       <DependentUpon>IMPORT_EXCEL.cs</DependentUpon>

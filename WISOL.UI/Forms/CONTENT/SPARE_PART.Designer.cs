@@ -46,6 +46,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.btnClear = new Wisol.XSimpleButton(this.components);
             this.btnSave = new Wisol.XSimpleButton(this.components);
             this.xLayoutControl1 = new Wisol.XLayoutControl();
+            this.txtMinOrder = new Wisol.XTextEdit();
             this.sltUnit4 = new Wisol.AceGridLookUpEdit(this.components);
             this.aceGridLookUpEdit4View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.sltUnit3 = new Wisol.AceGridLookUpEdit(this.components);
@@ -69,7 +70,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.sltGlaccount = new Wisol.AceGridLookUpEdit(this.components);
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.txtDesc = new DevExpress.XtraEditors.MemoEdit();
             this.sltVender = new Wisol.AceGridLookUpEdit(this.components);
             this.aceGridLookUpEdit3View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.sltUnit = new Wisol.AceGridLookUpEdit(this.components);
@@ -82,7 +82,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtWeight = new Wisol.XTextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -106,6 +105,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -119,8 +119,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
             this.memoExEdit1 = new DevExpress.XtraEditors.MemoExEdit();
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtMinOrder = new Wisol.XTextEdit();
-            this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
@@ -128,6 +126,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMinOrder.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sltUnit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aceGridLookUpEdit4View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sltUnit3.Properties)).BeginInit();
@@ -150,7 +149,6 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sltGlaccount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDesc.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sltVender.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aceGridLookUpEdit3View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sltUnit.Properties)).BeginInit();
@@ -163,7 +161,6 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.txtWeight.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
@@ -187,6 +184,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -200,8 +198,6 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoExEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMinOrder.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -333,7 +329,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl1.Controls.Add(this.sltSparePartType);
             this.xLayoutControl1.Controls.Add(this.sltCostCtr);
             this.xLayoutControl1.Controls.Add(this.sltGlaccount);
-            this.xLayoutControl1.Controls.Add(this.txtDesc);
             this.xLayoutControl1.Controls.Add(this.sltVender);
             this.xLayoutControl1.Controls.Add(this.sltUnit);
             this.xLayoutControl1.Controls.Add(this.txtMaterial);
@@ -349,6 +344,22 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl1.Size = new System.Drawing.Size(504, 769);
             this.xLayoutControl1.TabIndex = 9;
             this.xLayoutControl1.Text = "xLayoutControl1";
+            // 
+            // txtMinOrder
+            // 
+            this.txtMinOrder.EditValue = "0";
+            this.txtMinOrder.IsRequire = false;
+            this.txtMinOrder.Location = new System.Drawing.Point(109, 444);
+            this.txtMinOrder.Name = "txtMinOrder";
+            this.txtMinOrder.NullBackColor = System.Drawing.Color.Lime;
+            this.txtMinOrder.NullValidation = false;
+            this.txtMinOrder.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtMinOrder.Properties.Appearance.Options.UseBackColor = true;
+            this.txtMinOrder.Properties.Mask.EditMask = "n";
+            this.txtMinOrder.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtMinOrder.Size = new System.Drawing.Size(383, 20);
+            this.txtMinOrder.StyleController = this.xLayoutControl1;
+            this.txtMinOrder.TabIndex = 30;
             // 
             // sltUnit4
             // 
@@ -538,11 +549,11 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // picImage
             // 
-            this.picImage.Location = new System.Drawing.Point(109, 612);
+            this.picImage.Location = new System.Drawing.Point(109, 514);
             this.picImage.Name = "picImage";
             this.picImage.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.picImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.picImage.Size = new System.Drawing.Size(383, 145);
+            this.picImage.Size = new System.Drawing.Size(383, 243);
             this.picImage.StyleController = this.xLayoutControl1;
             toolTipTitleItem1.Text = "Upload ảnh";
             toolTipItem1.LeftIndent = 6;
@@ -560,7 +571,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.txtSpecification.Location = new System.Drawing.Point(109, 468);
             this.txtSpecification.Name = "txtSpecification";
-            this.txtSpecification.Size = new System.Drawing.Size(383, 65);
+            this.txtSpecification.Size = new System.Drawing.Size(383, 42);
             this.txtSpecification.StyleController = this.xLayoutControl1;
             this.txtSpecification.TabIndex = 14;
             // 
@@ -661,14 +672,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView1.OptionsView.ShowAutoFilterRow = true;
             this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
-            // txtDesc
-            // 
-            this.txtDesc.Location = new System.Drawing.Point(109, 537);
-            this.txtDesc.Name = "txtDesc";
-            this.txtDesc.Size = new System.Drawing.Size(383, 71);
-            this.txtDesc.StyleController = this.xLayoutControl1;
-            this.txtDesc.TabIndex = 15;
             // 
             // sltVender
             // 
@@ -808,7 +811,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlGroup1.GroupBordersVisible = false;
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem8,
-            this.layoutControlItem17,
             this.layoutControlItem20,
             this.layoutControlItem7,
             this.layoutControlItem9,
@@ -845,15 +847,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem8.Size = new System.Drawing.Size(484, 24);
             this.layoutControlItem8.Text = "SIZE";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(94, 13);
-            // 
-            // layoutControlItem17
-            // 
-            this.layoutControlItem17.Control = this.txtDesc;
-            this.layoutControlItem17.Location = new System.Drawing.Point(0, 525);
-            this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(484, 75);
-            this.layoutControlItem17.Text = "DESC";
-            this.layoutControlItem17.TextSize = new System.Drawing.Size(94, 13);
             // 
             // layoutControlItem20
             // 
@@ -953,7 +946,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem27.Control = this.txtSpecification;
             this.layoutControlItem27.Location = new System.Drawing.Point(0, 456);
             this.layoutControlItem27.Name = "layoutControlItem27";
-            this.layoutControlItem27.Size = new System.Drawing.Size(484, 69);
+            this.layoutControlItem27.Size = new System.Drawing.Size(484, 46);
             this.layoutControlItem27.Text = "SPECIFICATION";
             this.layoutControlItem27.TextSize = new System.Drawing.Size(94, 13);
             // 
@@ -969,9 +962,9 @@ namespace Wisol.MES.Forms.CONTENT
             // layoutControlItem16
             // 
             this.layoutControlItem16.Control = this.picImage;
-            this.layoutControlItem16.Location = new System.Drawing.Point(0, 600);
+            this.layoutControlItem16.Location = new System.Drawing.Point(0, 502);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(484, 149);
+            this.layoutControlItem16.Size = new System.Drawing.Size(484, 247);
             this.layoutControlItem16.Text = "Image";
             this.layoutControlItem16.TextSize = new System.Drawing.Size(94, 13);
             // 
@@ -1072,6 +1065,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem31.Size = new System.Drawing.Size(276, 24);
             this.layoutControlItem31.Text = "UNIT4";
             this.layoutControlItem31.TextSize = new System.Drawing.Size(94, 13);
+            // 
+            // layoutControlItem34
+            // 
+            this.layoutControlItem34.Control = this.txtMinOrder;
+            this.layoutControlItem34.Location = new System.Drawing.Point(0, 432);
+            this.layoutControlItem34.Name = "layoutControlItem34";
+            this.layoutControlItem34.Size = new System.Drawing.Size(484, 24);
+            this.layoutControlItem34.Text = "MIN_ORDER";
+            this.layoutControlItem34.TextSize = new System.Drawing.Size(94, 13);
             // 
             // Root
             // 
@@ -1194,31 +1196,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem25.Size = new System.Drawing.Size(234, 1);
             this.layoutControlItem25.TextSize = new System.Drawing.Size(50, 20);
             // 
-            // txtMinOrder
-            // 
-            this.txtMinOrder.EditValue = "0";
-            this.txtMinOrder.IsRequire = false;
-            this.txtMinOrder.Location = new System.Drawing.Point(109, 444);
-            this.txtMinOrder.Name = "txtMinOrder";
-            this.txtMinOrder.NullBackColor = System.Drawing.Color.Lime;
-            this.txtMinOrder.NullValidation = false;
-            this.txtMinOrder.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtMinOrder.Properties.Appearance.Options.UseBackColor = true;
-            this.txtMinOrder.Properties.Mask.EditMask = "n";
-            this.txtMinOrder.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtMinOrder.Size = new System.Drawing.Size(383, 20);
-            this.txtMinOrder.StyleController = this.xLayoutControl1;
-            this.txtMinOrder.TabIndex = 30;
-            // 
-            // layoutControlItem34
-            // 
-            this.layoutControlItem34.Control = this.txtMinOrder;
-            this.layoutControlItem34.Location = new System.Drawing.Point(0, 432);
-            this.layoutControlItem34.Name = "layoutControlItem34";
-            this.layoutControlItem34.Size = new System.Drawing.Size(484, 24);
-            this.layoutControlItem34.Text = "MIN_ORDER";
-            this.layoutControlItem34.TextSize = new System.Drawing.Size(94, 13);
-            // 
             // SPARE_PART
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1234,6 +1211,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).EndInit();
             this.xLayoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtMinOrder.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sltUnit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aceGridLookUpEdit4View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sltUnit3.Properties)).EndInit();
@@ -1256,7 +1234,6 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sltGlaccount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDesc.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sltVender.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aceGridLookUpEdit3View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sltUnit.Properties)).EndInit();
@@ -1269,7 +1246,6 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.txtWeight.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
@@ -1293,6 +1269,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -1306,8 +1283,6 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoExEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMinOrder.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1336,7 +1311,6 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private AceGridLookUpEdit sltGlaccount;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraEditors.MemoEdit txtDesc;
         private AceGridLookUpEdit sltVender;
         private DevExpress.XtraGrid.Views.Grid.GridView aceGridLookUpEdit3View;
         private AceGridLookUpEdit sltUnit;
@@ -1351,7 +1325,6 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem20;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;

@@ -19,7 +19,15 @@ namespace Wisol.MES.Forms.CONTENT
         public STOCK_IN()
         {
             InitializeComponent();
+            this.Load += STOCK_IN_Load;
         }
+
+        private void STOCK_IN_Load(object sender, EventArgs e)
+        {
+            Init_Control();
+            LoadData();
+        }
+
         public override void Form_Show()
         {
             base.Form_Show();
@@ -27,221 +35,28 @@ namespace Wisol.MES.Forms.CONTENT
         }
         public override void InitializePage()
         {
-            try
-            {
-                if (Consts.USER_INFO.UserRole == "ROLE_ADMIN")
-                {
-                    this.lctDepartment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                }
-                else
-                    this.lctDepartment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_STOCKIN.INIT_PUT", new string[] { "A_DEPARTMENT", "A_ROLE" }, new string[] { Consts.DEPARTMENT, Consts.USER_INFO.UserRole });
-                if (base.m_ResultDB.ReturnInt == 0)
-                {
-                    base.m_BindData.BindGridLookEdit(sltDepartment, base.m_ResultDB.ReturnDataSet.Tables[0], "CODE", "DEPARTMENT");
-                    base.m_BindData.BindGridLookEdit(sltSparePart, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME_VI");
-                    base.m_BindData.BindGridLookEdit(sltLocation, base.m_ResultDB.ReturnDataSet.Tables[2], "CODE", "LOCATION");
-                    base.m_BindData.BindGridLookEdit(sltCtg, base.m_ResultDB.ReturnDataSet.Tables[3], "CODE", "NAME");
-                }
-
-                Init_Control(true);
-            }
-            catch (Exception ex)
-            {
-                MsgBox.Show(ex.Message, MsgType.Error);
-            }
             base.InitializePage();
         }
-        private void Init_Control(bool condFlag)
+        private void Init_Control()
         {
-            try
-            {
-                sltSparePart.EditValue = string.Empty;
-                txtQuantity.EditValue = string.Empty;
-                radioPrint.EditValue = "0";
-                sltDepartment.EditValue = Consts.DEPARTMENT;
-                sltLocation.EditValue = string.Empty;
-                sltCtg.EditValue = "NEW";
-            }
-            catch (Exception ex)
-            {
-                MsgBox.Show(ex.Message, MsgType.Error);
-            }
-        }
-        private void sltSparePart_EditValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                DateTime date = DateTime.Now;
-                var firstDayOfMonth = date.AddDays(-20);
-                var lastDayOfMonth = date.AddDays(1);
-
-                var start = firstDayOfMonth.ToString("yyyyMMddHHmmss");
-                var end = lastDayOfMonth.ToString("yyyyMMddHHmmss");
-
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP_COST.GET", new string[] { "A_DEPARTMENT", "A_ROLE", "A_SP", "A_START", "A_END" },
-                    new string[] { Consts.DEPARTMENT, Consts.USER_INFO.UserRole, sltSparePart.EditValue.NullString(), start, end });
-
-                if (base.m_ResultDB.ReturnInt == 0)
-                {
-                    base.m_BindData.BindGridView(gcListStockin, base.m_ResultDB.ReturnDataSet.Tables[0]);
-                    gvListStockin.Columns["NAME_VI"].OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
-                    gvListStockin.Columns["UNIT"].OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
-                    gvListStockin.Columns["NAME_VI"].OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
-                    gvListStockin.Columns["QUANTITY"].OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
-                    gvListStockin.Columns["MIN_STOCK"].OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
-                    gvListStockin.Columns["VALID_DATE"].OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
-                    gvListStockin.Columns["QUANTITY"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                    gvListStockin.Columns["QUANTITY"].DisplayFormat.FormatString = "n0";
-                    gvListStockin.Columns["MIN_STOCK"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                    gvListStockin.Columns["MIN_STOCK"].DisplayFormat.FormatString = "n0";
-                    gvListStockin.Columns["ID"].Visible = false;
-
-                    base.m_BindData.BindGridView(gcToday, base.m_ResultDB.ReturnDataSet.Tables[2]);
-
-                    gvToday.Columns["COST"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                    gvToday.Columns["COST"].DisplayFormat.FormatString = "n0";
-                    gvToday.Columns["QUANTITY"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                    gvToday.Columns["QUANTITY"].DisplayFormat.FormatString = "n0";
-
-                    dtChart = base.m_ResultDB.ReturnDataSet.Tables[1];
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("VALUE_NAME", typeof(string));
-                    dt.Columns.Add("VALID_DATE", typeof(string));
-                    dt.Columns.Add("VALUE", typeof(double));
-                    
-                    for (int i = 0; i < dtChart.Rows.Count; i++)
-                    {
-                        dt.Rows.Add(new object[] { "STOCK".Translation(), dtChart.Rows[i]["NAME_VI"].ToString(), dtChart.Rows[i]["STOCK"].ToString() });
-                        dt.Rows.Add(new object[] { "MIN_STOCK".Translation(), dtChart.Rows[i]["NAME_VI"].ToString(), dtChart.Rows[i]["MIN_STOCK"].ToString() });
-                    }
-
-                    chartControl1.DataSource = dt;
-
-                    chartControl1.SeriesDataMember = "VALUE_NAME";
-                    chartControl1.SeriesTemplate.ArgumentDataMember = "VALID_DATE";
-                    chartControl1.SeriesTemplate.ValueDataMembers.AddRange(new string[] { "VALUE" });
-                    chartControl1.SeriesTemplate.View = new SideBySideBarSeriesView();
-
-                    for (int i = 0; i < chartControl1.Series.Count; i++)
-                    {
-                        if (i == 0)
-                        {
-                            chartControl1.Series[i].View.Color = Color.FromArgb(91, 155, 213);
-                            chartControl1.Series[i].LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-                            (chartControl1.Series[i].Label as SideBySideBarSeriesLabel).Position = BarSeriesLabelPosition.Top;
-                        }
-                        if (i == 1)
-                        {
-                            chartControl1.Series[i].View.Color = Color.FromArgb(255, 0, 0);
-                            chartControl1.Series[i].LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-                            (chartControl1.Series[i].Label as SideBySideBarSeriesLabel).Position = BarSeriesLabelPosition.Top;
-                        }
-                    }
-                    chartControl1.Legend.AlignmentHorizontal = LegendAlignmentHorizontal.Center;
-                    chartControl1.Legend.AlignmentVertical = LegendAlignmentVertical.BottomOutside;
-                    chartControl1.Legend.Direction = LegendDirection.LeftToRight;
-
-                    XYDiagram diagram = (XYDiagram)chartControl1.Diagram;
-                    diagram.AxisY.WholeRange.Auto = true;
-                    diagram.AxisY.WholeRange.AlwaysShowZeroLevel = true;
-                    diagram.EnableAxisXZooming = true;
-                    diagram.EnableAxisYZooming = true;
-                    chartControl1.Dock = DockStyle.Fill;
-                }
-            }
-            catch (Exception ex)
-            {
-                MsgBox.Show(ex.Message, MsgType.Error);
-            }
+            cboPhieu.SelectedIndex = 0;
+            cboTrangThai.SelectedIndex = 0;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void LoadData()
         {
             try
             {
-                if (string.IsNullOrEmpty(sltDepartment.EditValue.NullString()) == true || string.IsNullOrEmpty(sltSparePart.EditValue.NullString()) == true || string.IsNullOrEmpty(txtQuantity.EditValue.NullString()) == true)
-                {
-                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
-                    return;
-                }
-                DateTime date = DateTime.Now;
-
-                var valid_date = date.ToString("yyyyMMdd");
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_STOCKIN.PUT",
-                    new string[] { "A_QUANTITY", "A_SP", "A_DEPARTMENT", "A_USER", "A_ROLE","A_VALID_DATE", "A_CURRENCY", "A_LOCATION", "A_CTG" },
-                    new string[] { txtQuantity.EditValue.NullString(), sltSparePart.EditValue.NullString(), Consts.DEPARTMENT, Consts.USER_INFO.Id, Consts.USER_INFO.UserRole, valid_date, "", sltLocation.EditValue.NullString(), sltCtg.EditValue.NullString() });
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_DELIVERY_RECEIVING.GET", new string[] { "A_DEPT_CODE" }, new string[] { Consts.DEPARTMENT });
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
-                    lot = base.m_ResultDB.ReturnDataSet.Tables[1];
-                    label = base.m_ResultDB.ReturnDataSet.Tables[2].Rows[0]["LABEL"].ToString();
-                    MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                    //base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
+                    gcList.DataSource = base.m_ResultDB.ReturnDataSet.Tables[0];
                 }
                 else
                 {
                     MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Warning);
                 }
-
-                if (radioPrint.EditValue.ToString() == "0")
-                {
-                    string designFile = string.Empty;
-                    string xml_content_Original = label;
-                    string xml_content = string.Empty;
-
-                    try
-                    {
-                        designFile = "STOCKIN_LABEL.xml";
-
-                        XtraReport reportPrint = new XtraReport();
-                        for (int i = 0; i < lot.Rows.Count; i++)
-                        {
-                            string[] arrListStr = lot.Rows[i]["LOT_NO"].ToString().Split('.');
-
-                            xml_content = xml_content_Original.Replace("$NAME$", (arrListStr[0] + '.'+ arrListStr[1] + arrListStr[2]).ToString().ToUpper());
-                            xml_content = xml_content.Replace("$BARCODE$", lot.Rows[i]["LOT_NO"].ToString().ToUpper());
-                            xml_content = xml_content.Replace("$LOCATION$", lot.Rows[i]["LOCATION"].ToString().ToUpper());
-
-                            xml_content = xml_content.Replace("&", "&amp;");
-                            File.WriteAllText((i + 1).NullString() + designFile, xml_content);
-
-                            XtraReport report = new XtraReport();
-
-                            report.PrintingSystem.ShowPrintStatusDialog = false;
-                            report.PrintingSystem.ShowMarginsWarning = false;
-
-                            report.LoadLayoutFromXml((i + 1).NullString() + designFile);
-                            int leftMargine = report.Margins.Left + 2;
-                            int rightMargine = report.Margins.Right;
-                            int topMargine = report.Margins.Top + 0;
-                            int bottomMargine = report.Margins.Bottom;
-                            if (leftMargine < 0)
-                            {
-                                leftMargine = 0;
-                            }
-                            if (topMargine < 0)
-                            {
-                                topMargine = 0;
-                            }
-                            report.Margins = new System.Drawing.Printing.Margins(leftMargine, rightMargine, topMargine, bottomMargine);
-                            report.CreateDocument();
-                            reportPrint.Pages.AddRange(report.Pages);
-                            File.Delete((i + 1).NullString() + designFile);
-                        }
-                        
-                        reportPrint.PrintingSystem.ShowPrintStatusDialog = false;
-                        reportPrint.PrintingSystem.ShowMarginsWarning = false;
-                        //reportPrint.CreateDocument();
-                        //reportPrint.ShowPreview();
-                        reportPrint.Print();
-                        reportPrint.PrintingSystem.ExecCommand(DevExpress.XtraPrinting.PrintingSystemCommand.Parameters, new object[] { true });
-                    }
-                    catch (Exception ex)
-                    {
-                        MsgBox.Show(ex.Message, MsgType.Error);
-                    }
-                }
-                Init_Control(true);
             }
             catch (Exception ex)
             {
@@ -249,21 +64,275 @@ namespace Wisol.MES.Forms.CONTENT
             }
         }
 
-        private void gvCost_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        private void btnAddNewReceive_Click(object sender, EventArgs e)
+        {
+            POP.GOODS_RECEIPT popup = new POP.GOODS_RECEIPT();
+            popup.Mode = Consts.MODE_NEW;
+            popup.ReceiptCode = "";
+            popup.INOUT = Consts.IN;
+            popup.ShowDialog();
+            LoadData();
+        }
+
+        private void gvList_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            string intOut = gvList.GetRowCellValue(e.RowHandle, "IN_OUT").NullString();
+            string status = gvList.GetRowCellValue(e.RowHandle, "STATUS").NullString();
+
+
+            if (e.Column.FieldName == "IN_OUT")
+            {
+                if (intOut == Consts.IN)
+                {
+                    e.Appearance.ForeColor = Color.Green;
+                }
+                else
+                {
+                    e.Appearance.ForeColor = Color.Red;
+                }
+            }
+
+            if (e.Column.FieldName == "STATUS")
+            {
+                if (status == Consts.STATUS_COMPLETE)
+                {
+                    e.Appearance.BackColor = Color.LightGreen;
+                }
+                else if (status == Consts.STATUS_NEW)
+                {
+                    e.Appearance.BackColor = Color.LightGray;
+                }
+                else
+                {
+                    e.Appearance.BackColor = Color.LightSalmon;
+                }
+            }
+
+            if (e.Column.Name == "col_Edit" || e.Column.Name == "col_delete")
+            {
+                string dateCreate = gvList.GetRowCellValue(e.RowHandle, "CREATE_DATE").NullString();
+
+                if (DateTime.TryParse(dateCreate, out DateTime dateOut))
+                {
+                    if (dateOut.AddMonths(1) < DateTime.Now && status == Consts.STATUS_COMPLETE)
+                    {
+                        e.Appearance.BackColor = Color.LightGray;
+                    }
+                }
+                else
+                {
+                    e.Appearance.BackColor = Color.LightGray;
+                }
+            }
+        }
+
+        private void gvList_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             try
             {
                 if (e.RowHandle < 0)
-                    return;
-                else
                 {
+                    return;
+                }
+                string status = gvList.GetRowCellValue(e.RowHandle, "STATUS").NullString();
+                string dateCreate = gvList.GetDataRow(e.RowHandle)["CREATE_DATE"].NullString();
 
+                if (DateTime.TryParse(dateCreate, out DateTime dateOut))
+                {
+                    if (dateOut.AddMonths(1) >= DateTime.Now)
+                    {
+                        if (e.Column.Name == "col_Edit")
+                        {
+                            POP.GOODS_RECEIPT popup = new POP.GOODS_RECEIPT();
+                            popup.Mode = Consts.MODE_UPDATE;
+                            popup.ReceiptCode = gvList.GetDataRow(e.RowHandle)["STOCK_IN_OUT_CODE"].NullString();
+                            popup.INOUT = gvList.GetDataRow(e.RowHandle)["IN_OUT"].NullString();
+                            popup.StockCode = gvList.GetDataRow(e.RowHandle)["STOCK_CODE"].NullString();
+                            popup.ShowDialog();
+                            LoadData();
+                        }
+                        else if (e.Column.Name == "col_delete")
+                        {
+                            POP.GOODS_RECEIPT popup = new POP.GOODS_RECEIPT();
+                            popup.Mode = Consts.MODE_DELETE;
+                            popup.ReceiptCode = gvList.GetDataRow(e.RowHandle)["STOCK_IN_OUT_CODE"].NullString();
+                            popup.INOUT = gvList.GetDataRow(e.RowHandle)["IN_OUT"].NullString();
+                            popup.StockCode = gvList.GetDataRow(e.RowHandle)["STOCK_CODE"].NullString();
+                            popup.ShowDialog();
+                            LoadData();
+                        }
+                    }
+                    else
+                    {
+                        if(status != Consts.STATUS_COMPLETE && e.Column.Name == "col_delete")
+                        {
+                            POP.GOODS_RECEIPT popup = new POP.GOODS_RECEIPT();
+                            popup.Mode = Consts.MODE_DELETE;
+                            popup.ReceiptCode = gvList.GetDataRow(e.RowHandle)["STOCK_IN_OUT_CODE"].NullString();
+                            popup.INOUT = gvList.GetDataRow(e.RowHandle)["IN_OUT"].NullString();
+                            popup.StockCode = gvList.GetDataRow(e.RowHandle)["STOCK_CODE"].NullString();
+                            popup.ShowDialog();
+                            LoadData();
+                        }
+                        else if (status != Consts.STATUS_COMPLETE && e.Column.Name == "col_Edit")
+                        {
+                            POP.GOODS_RECEIPT popup = new POP.GOODS_RECEIPT();
+                            popup.Mode = Consts.MODE_UPDATE;
+                            popup.ReceiptCode = gvList.GetDataRow(e.RowHandle)["STOCK_IN_OUT_CODE"].NullString();
+                            popup.INOUT = gvList.GetDataRow(e.RowHandle)["IN_OUT"].NullString();
+                            popup.StockCode = gvList.GetDataRow(e.RowHandle)["STOCK_CODE"].NullString();
+                            popup.ShowDialog();
+                            LoadData();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
+        }
+
+        private void gvList_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+
+        }
+
+        private void cboPhieu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(cboPhieu.SelectedIndex == 0) // all
+            {
+                StatusSelectChange("");
+            }
+            else if(cboPhieu.SelectedIndex == 1)
+            {
+                StatusSelectChange("[IN_OUT] = 'IN'");
+            }
+            else if(cboPhieu.SelectedIndex == 2)
+            {
+                StatusSelectChange("[IN_OUT] = 'OUT'");
+            }
+        }
+
+        private void cboTrangThai_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboTrangThai.SelectedIndex == 0) // all
+            {
+                PhieuSelectChange("");
+            }
+            else if (cboTrangThai.SelectedIndex == 1)
+            {
+                PhieuSelectChange("[STATUS] = 'NEW'");
+            }
+            else if (cboTrangThai.SelectedIndex == 2)
+            {
+                PhieuSelectChange("[STATUS] = 'INPROGRESS'");
+            }
+            else if (cboTrangThai.SelectedIndex == 3)
+            {
+                PhieuSelectChange("[STATUS] = 'COMPLETE'");
+            }
+        }
+
+        private void PhieuSelectChange(string condition)
+        {
+            if (cboPhieu.SelectedIndex == 0) // all
+            {
+                if (string.IsNullOrEmpty(condition))
+                    gvList.ActiveFilter.Clear();
+                else
+                {
+                    gvList.ActiveFilterString = condition;
+                }
+            }
+            else if (cboPhieu.SelectedIndex == 1)
+            {
+                gvList.ActiveFilterString = "[IN_OUT] = 'IN'" + (string.IsNullOrEmpty(condition) ? "" : " AND " + condition);
+            }
+            else if (cboPhieu.SelectedIndex == 2)
+            {
+                gvList.ActiveFilterString = "[IN_OUT] = 'OUT'" + (string.IsNullOrEmpty(condition) ? "" : " AND " + condition);
+            }
+        }
+
+        private void StatusSelectChange(string condition)
+        {
+            if (cboTrangThai.SelectedIndex == 0) // all
+            {
+                if(string.IsNullOrEmpty(condition))
+                    gvList.ActiveFilter.Clear();
+                else
+                {
+                    gvList.ActiveFilterString = condition;
+                }
+            }
+            else if (cboTrangThai.SelectedIndex == 1)
+            {
+                gvList.ActiveFilterString = "[STATUS] = 'NEW'" + (string.IsNullOrEmpty(condition) ? "":" AND " + condition);
+            }
+            else if (cboTrangThai.SelectedIndex == 2)
+            {
+                gvList.ActiveFilterString = "[STATUS] = 'INPROGRESS'" + (string.IsNullOrEmpty(condition) ? "" : " AND " + condition);
+            }
+            else if (cboTrangThai.SelectedIndex == 3)
+            {
+                gvList.ActiveFilterString = "[STATUS] = 'COMPLETE'" + (string.IsNullOrEmpty(condition) ? "" : " AND " + condition);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(string.IsNullOrEmpty(dateFrom.EditValue.NullString()))
+                {
+                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+
+                    dateFrom.Focus();
+                    return;
+                }
+                else if (string.IsNullOrEmpty(dateTo.EditValue.NullString()))
+                {
+                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                    dateTo.Focus();
+                    return;
+                }
+
+                string phieu = (cboPhieu.SelectedIndex == 0 ? "'IN','OUT'" : cboPhieu.SelectedIndex == 1 ? "'IN'" : "'OUT'");
+                string status = cboTrangThai.SelectedIndex == 0 ? "'NEW','INPROGRESS','COMPLETE'" : (cboTrangThai.SelectedIndex == 1 ? "'NEW'" : cboTrangThai.SelectedIndex == 2 ? "'INPROGRESS'" : "'COMPLETE'");
+
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_DELIVERY_RECEIVING.GET_BY_TIME", 
+                    new string[] { "A_DEPT_CODE", "A_TIME_FROM", "A_TIME_TO", "A_PHIEU", "A_STATUS" }, 
+                    new string[] { Consts.DEPARTMENT,dateFrom.EditValue.NullString(),dateTo.EditValue.NullString(), phieu,status });
+                if (base.m_ResultDB.ReturnInt == 0)
+                {
+                    //base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
+                    gcList.DataSource = base.m_ResultDB.ReturnDataSet.Tables[0];
+                }
+                else
+                {
+                    MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void dateFrom_EditValueChanged(object sender, EventArgs e)
+        {
+            //gvList.ActiveFilterString = "[CREATE_DATE] >= #" + dateFrom.EditValue.ToString() + "#";
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            dateFrom.EditValue = null;
+            dateTo.EditValue = null;
+            cboPhieu.SelectedIndex = 0;
+            cboTrangThai.SelectedIndex = 0;
+
+            LoadData();
         }
     }
 }
