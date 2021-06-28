@@ -61,6 +61,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 Data.Columns.Add("ORDER_CODE", typeof(string));
                 Data.Columns.Add("STATUS", typeof(string));
                 Data.Columns.Add("TYPE_IN_OUT_CODE", typeof(string));
+                Data.Columns.Add("LOCATION", typeof(string));
 
                 cboStatus.DataSource = Status;
                 dateInput.EditValue = DateTime.Now;
@@ -237,7 +238,79 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 }
                 else // XUAT KHO
                 {
+                    if (string.IsNullOrEmpty(stlSparePartCode.EditValue.NullString()) ||
+                        string.IsNullOrEmpty(txtQuantity.EditValue.NullString()) ||
+                        string.IsNullOrEmpty(stlUnit.EditValue.NullString()) ||
+                        (string.IsNullOrEmpty(txtLocation.EditValue.NullString()) && cbIsWait.Checked== false))
+                    {
+                        MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                        return;
+                    }
 
+                    DataRow checkRow = Data.Rows.Count > 0 ? Data.Select().FirstOrDefault(x => x["SPARE_PART_CODE"].NullString() == stlSparePartCode.EditValue.NullString()) : null;
+
+                    if (checkRow != null)
+                    {
+                        checkRow["CREATE_DATE"] = dateInput.EditValue;
+                        checkRow["STOCK_CODE"] = stlKho.EditValue.NullString();
+                        checkRow["DEPT_CODE"] = Consts.DEPARTMENT;
+                        checkRow["USER_CREATE"] = txtUserCreate.EditValue.NullString();
+                        checkRow["USER_SYS"] = Consts.USER_INFO.Id;
+                        checkRow["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
+                        checkRow["STATUS"] = cboStatus.SelectedItem.NullString();
+
+                        checkRow["SPARE_PART_CODE"] = stlSparePartCode.EditValue.NullString();
+                        checkRow["QUANTITY"] = txtQuantity.EditValue.NullString();
+                        checkRow["UNIT"] = stlUnit.EditValue.NullString();
+                       
+                        checkRow["CAUSE"] = mmCause.EditValue.NullString();
+                        checkRow["NOTE"] = mmNote.EditValue.NullString();
+                        checkRow["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
+
+                        if (cbIsWait.Checked)
+                        {
+                            checkRow["LOCATION"] = "W";
+                        }
+                        else
+                        {
+                            checkRow["LOCATION"] = txtLocation.EditValue.NullString();
+                        }
+                        
+                    }
+                    else
+                    {
+                        DataRow row = Data.NewRow();
+                        row["RECEIPT_ISSUE_CODE"] = Mode == Consts.MODE_NEW ? "N" : ReceiptCode;
+                        row["INT_OUT"] = INOUT;
+                        row["CREATE_DATE"] = dateInput.EditValue;
+                        row["STOCK_CODE"] = stlKho.EditValue.NullString();
+                        row["DEPT_CODE"] = Consts.DEPARTMENT;
+                        row["USER_CREATE"] = txtUserCreate.EditValue.NullString();
+                        row["USER_SYS"] = Consts.USER_INFO.Id;
+                        row["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
+                        row["STATUS"] = cboStatus.SelectedItem.NullString();
+
+                        row["SPARE_PART_CODE"] = stlSparePartCode.EditValue.NullString();
+                        row["QUANTITY"] = txtQuantity.EditValue.NullString();
+                        row["UNIT"] = stlUnit.EditValue.NullString();
+                        row["CAUSE"] = mmCause.EditValue.NullString();
+                        row["NOTE"] = mmNote.EditValue.NullString();
+                        row["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
+
+                        if (cbIsWait.Checked)
+                        {
+                            checkRow["LOCATION"] = "W";
+                        }
+                        else
+                        {
+                            checkRow["LOCATION"] = txtLocation.EditValue.NullString();
+                        }
+
+                        Data.Rows.Add(row);
+                    }
+
+                    base.mBindData.BindGridView(gcList, Data);
+                    FormatGridColumn();
                 }
 
             }
@@ -508,6 +581,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private void cbIsWait_CheckedChanged(object sender, EventArgs e)
         {
             txtLocation.Enabled = !cbIsWait.Checked;
+            if (cbIsWait.Checked)
+            {
+                txtLocation.EditValue = null;
+            }
         }
 
         private void txtScanbarcode_KeyDown(object sender, KeyEventArgs e)
@@ -551,35 +628,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void txtScanbarcode_EditValueChanged(object sender, EventArgs e)
         {
-            //string barcode = txtScanbarcode.EditValue.NullString();
-            //if (!string.IsNullOrEmpty(barcode))
-            //{
-            //    string[] arr = barcode.Split('.');
-
-            //    if (arr.Length > 0)
-            //    {
-            //        stlSparePartCode.EditValue = arr[0];
-            //    }
-
-            //    if (arr.Length == 2)
-            //    {
-            //        if (arr[1] == Consts.NG)
-            //        {
-            //            cbIsWait.Checked = true;
-            //        }
-            //        else
-            //        {
-            //            cbIsWait.Checked = false;
-            //            txtLocation.EditValue = arr[1];
-            //        }
-            //    }
-
-            //    if (arr.Length == 3)
-            //    {
-            //        cbIsWait.Checked = false;
-            //        txtLocation.EditValue = arr[1];
-            //    }
-            //}
+           
         }
     }
 }
