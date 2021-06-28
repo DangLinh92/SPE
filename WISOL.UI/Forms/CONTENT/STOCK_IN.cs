@@ -69,6 +69,7 @@ namespace Wisol.MES.Forms.CONTENT
             POP.GOODS_RECEIPT popup = new POP.GOODS_RECEIPT();
             popup.Mode = Consts.MODE_NEW;
             popup.ReceiptCode = "";
+            popup.StockCode = "";
             popup.INOUT = Consts.IN;
             popup.ShowDialog();
             LoadData();
@@ -332,6 +333,17 @@ namespace Wisol.MES.Forms.CONTENT
             cboPhieu.SelectedIndex = 0;
             cboTrangThai.SelectedIndex = 0;
 
+            LoadData();
+        }
+
+        private void btnAddNewDelivery_Click(object sender, EventArgs e)
+        {
+            POP.GOODS_RECEIPT popup = new POP.GOODS_RECEIPT();
+            popup.Mode = Consts.MODE_NEW;
+            popup.ReceiptCode = "";
+            popup.StockCode = "";
+            popup.INOUT = Consts.OUT;
+            popup.ShowDialog();
             LoadData();
         }
     }

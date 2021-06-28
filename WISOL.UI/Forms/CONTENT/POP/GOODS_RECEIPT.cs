@@ -23,6 +23,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void GOODS_RECEIPT_Load(object sender, EventArgs e)
         {
+            grcontrolGoodReceipt.Text = INOUT == Consts.IN ? "Goods receipt-Nhập kho-입고" : "Goods Issue-Xuất kho-출고";
             InitData();
         }
 
@@ -134,12 +135,32 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 base.mBindData.BindGridView(gcList, Data);
                 FormatGridColumn();
 
-                stlKho.EditValue = righttData.Rows[0]["STOCK_CODE"];
-                stlType.EditValue = righttData.Rows[0]["TYPE_IN_CODE"];
-                stlOrderCode.EditValue = righttData.Rows[0]["ORDER_CODE"];
-                txtUserCreate.EditValue = righttData.Rows[0]["USER_CREATE"];
-                dateInput.EditValue = DateTime.Parse(righttData.Rows[0]["DATE"].NullString());
-                cboStatus.SelectedItem = righttData.Rows[0]["STATUS"];
+                if (righttData.Rows.Count > 0)
+                {
+                    stlKho.EditValue = righttData.Rows[0]["STOCK_CODE"];
+                    stlType.EditValue = righttData.Rows[0]["TYPE_IN_CODE"];
+                    stlOrderCode.EditValue = righttData.Rows[0]["ORDER_CODE"];
+                    txtUserCreate.EditValue = righttData.Rows[0]["USER_CREATE"];
+                    dateInput.EditValue = DateTime.Parse(righttData.Rows[0]["DATE"].NullString());
+                    cboStatus.SelectedItem = righttData.Rows[0]["STATUS"];
+                    txtDelivererAndReceiver.EditValue = righttData.Rows[0]["DELIVERET_RECEIVER"].NullString();
+                }
+
+                if (INOUT == Consts.IN)
+                {
+                    txtLocation.Enabled = false;
+                    cbIsWait.Enabled = false;
+                    txtPriceVN.Enabled = true;
+                    txtScanbarcode.Enabled = false;
+                }
+                else
+                {
+                    txtScanbarcode.Enabled = true;
+                    txtLocation.Enabled = true;
+                    cbIsWait.Enabled = true;
+                    txtPriceVN.Enabled = false;
+                    txtScanbarcode.Focus();
+                }
             }
         }
 
@@ -147,70 +168,78 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
-                if (string.IsNullOrEmpty(stlSparePartCode.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(txtQuantity.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(stlUnit.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(txtPriceVN.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(txtPriceUS.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(txtAmountVN.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(txtAmountUS.EditValue.NullString()))
+                if (INOUT == Consts.IN) // NHAP KHO
                 {
-                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
-                    return;
+                    if (    string.IsNullOrEmpty(stlSparePartCode.EditValue.NullString()) ||
+                            string.IsNullOrEmpty(txtQuantity.EditValue.NullString()) ||
+                            string.IsNullOrEmpty(stlUnit.EditValue.NullString()) ||
+                            string.IsNullOrEmpty(txtPriceVN.EditValue.NullString()) ||
+                            string.IsNullOrEmpty(txtPriceUS.EditValue.NullString()) ||
+                            string.IsNullOrEmpty(txtAmountVN.EditValue.NullString()) ||
+                            string.IsNullOrEmpty(txtAmountUS.EditValue.NullString()))
+                    {
+                        MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                        return;
+                    }
+
+                    DataRow checkRow = Data.Rows.Count > 0 ? Data.Select().FirstOrDefault(x => x["SPARE_PART_CODE"].NullString() == stlSparePartCode.EditValue.NullString()) : null;
+
+                    if (checkRow != null)
+                    {
+                        checkRow["CREATE_DATE"] = dateInput.EditValue;
+                        checkRow["STOCK_CODE"] = stlKho.EditValue.NullString();
+                        checkRow["DEPT_CODE"] = Consts.DEPARTMENT;
+                        checkRow["USER_CREATE"] = txtUserCreate.EditValue.NullString();
+                        checkRow["USER_SYS"] = Consts.USER_INFO.Id;
+                        checkRow["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
+                        checkRow["STATUS"] = cboStatus.SelectedItem.NullString();
+
+                        checkRow["SPARE_PART_CODE"] = stlSparePartCode.EditValue.NullString();
+                        checkRow["QUANTITY"] = txtQuantity.EditValue.NullString();
+                        checkRow["UNIT"] = stlUnit.EditValue.NullString();
+                        checkRow["PRICE_VN"] = txtPriceVN.EditValue.NullString();
+                        checkRow["PRICE_US"] = txtPriceUS.EditValue.NullString();
+                        checkRow["AMOUNT_VN"] = txtAmountVN.EditValue.NullString();
+                        checkRow["AMOUNT_US"] = txtAmountUS.EditValue.NullString();
+                        checkRow["CAUSE"] = mmCause.EditValue.NullString();
+                        checkRow["NOTE"] = mmNote.EditValue.NullString();
+                        checkRow["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
+                    }
+                    else
+                    {
+                        DataRow row = Data.NewRow();
+                        row["RECEIPT_ISSUE_CODE"] = Mode == Consts.MODE_NEW ? "N" : ReceiptCode;
+                        row["INT_OUT"] = INOUT;
+                        row["CREATE_DATE"] = dateInput.EditValue;
+                        row["STOCK_CODE"] = stlKho.EditValue.NullString();
+                        row["DEPT_CODE"] = Consts.DEPARTMENT;
+                        row["USER_CREATE"] = txtUserCreate.EditValue.NullString();
+                        row["USER_SYS"] = Consts.USER_INFO.Id;
+                        row["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
+                        row["STATUS"] = cboStatus.SelectedItem.NullString();
+
+                        row["SPARE_PART_CODE"] = stlSparePartCode.EditValue.NullString();
+                        row["QUANTITY"] = txtQuantity.EditValue.NullString();
+                        row["UNIT"] = stlUnit.EditValue.NullString();
+                        row["PRICE_VN"] = txtPriceVN.EditValue.NullString();
+                        row["PRICE_US"] = txtPriceUS.EditValue.NullString();
+                        row["AMOUNT_VN"] = txtAmountVN.EditValue.NullString();
+                        row["AMOUNT_US"] = txtAmountUS.EditValue.NullString();
+                        row["CAUSE"] = mmCause.EditValue.NullString();
+                        row["NOTE"] = mmNote.EditValue.NullString();
+                        row["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
+
+                        Data.Rows.Add(row);
+                    }
+
+                    base.mBindData.BindGridView(gcList, Data);
+                    FormatGridColumn();
+                }
+                else // XUAT KHO
+                {
+
                 }
 
-                DataRow checkRow = Data.Rows.Count > 0 ? Data.Select().FirstOrDefault(x => x["SPARE_PART_CODE"].NullString() == stlSparePartCode.EditValue.NullString()) : null;
-
-                if (checkRow != null)
-                {
-                    checkRow["CREATE_DATE"] = dateInput.EditValue;
-                    checkRow["STOCK_CODE"] = stlKho.EditValue.NullString();
-                    checkRow["DEPT_CODE"] = Consts.DEPARTMENT;
-                    checkRow["USER_CREATE"] = txtUserCreate.EditValue.NullString();
-                    checkRow["USER_SYS"] = Consts.USER_INFO.Id;
-                    checkRow["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
-                    checkRow["STATUS"] = cboStatus.SelectedItem.NullString();
-
-                    checkRow["SPARE_PART_CODE"] = stlSparePartCode.EditValue.NullString();
-                    checkRow["QUANTITY"] = txtQuantity.EditValue.NullString();
-                    checkRow["UNIT"] = stlUnit.EditValue.NullString();
-                    checkRow["PRICE_VN"] = txtPriceVN.EditValue.NullString();
-                    checkRow["PRICE_US"] = txtPriceUS.EditValue.NullString();
-                    checkRow["AMOUNT_VN"] = txtAmountVN.EditValue.NullString();
-                    checkRow["AMOUNT_US"] = txtAmountUS.EditValue.NullString();
-                    checkRow["CAUSE"] = mmCause.EditValue.NullString();
-                    checkRow["NOTE"] = mmNote.EditValue.NullString();
-                    checkRow["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
-                }
-                else
-                {
-                    DataRow row = Data.NewRow();
-                    row["RECEIPT_ISSUE_CODE"] = Mode == Consts.MODE_NEW ? "N" : ReceiptCode;
-                    row["INT_OUT"] = INOUT;
-                    row["CREATE_DATE"] = dateInput.EditValue;
-                    row["STOCK_CODE"] = stlKho.EditValue.NullString();
-                    row["DEPT_CODE"] = Consts.DEPARTMENT;
-                    row["USER_CREATE"] = txtUserCreate.EditValue.NullString();
-                    row["USER_SYS"] = Consts.USER_INFO.Id;
-                    row["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
-                    row["STATUS"] = cboStatus.SelectedItem.NullString();
-
-                    row["SPARE_PART_CODE"] = stlSparePartCode.EditValue.NullString();
-                    row["QUANTITY"] = txtQuantity.EditValue.NullString();
-                    row["UNIT"] = stlUnit.EditValue.NullString();
-                    row["PRICE_VN"] = txtPriceVN.EditValue.NullString();
-                    row["PRICE_US"] = txtPriceUS.EditValue.NullString();
-                    row["AMOUNT_VN"] = txtAmountVN.EditValue.NullString();
-                    row["AMOUNT_US"] = txtAmountUS.EditValue.NullString();
-                    row["CAUSE"] = mmCause.EditValue.NullString();
-                    row["NOTE"] = mmNote.EditValue.NullString();
-                    row["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
-
-                    Data.Rows.Add(row);
-                }
-
-                base.mBindData.BindGridView(gcList, Data);
-                FormatGridColumn();
             }
             catch (Exception ex)
             {
@@ -404,7 +433,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     item["USER_SYS"] = Consts.USER_INFO.Id;
                 }
 
-                base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_GOODS_RECEIPT_ISSUE.PUT", new string[] { "A_USER" }, "A_DATA", new string[] { Consts.USER_INFO.Id }, Data);
+                base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_GOODS_RECEIPT_ISSUE.PUT",
+                    new string[] { "A_USER", "A_DELIVER_RECEIVER" }, "A_DATA",
+                    new string[] { Consts.USER_INFO.Id, txtDelivererAndReceiver.EditValue.NullString() }, Data);
+
                 if (mResultDB.ReturnInt == 0)
                 {
                     MsgBox.Show(base.mResultDB.ReturnString.Translation(), MsgType.Information);
@@ -429,6 +461,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void ClearRight()
         {
+            txtDelivererAndReceiver.EditValue = null;
             stlType.EditValue = null;
             stlOrderCode.EditValue = null;
             txtUserCreate.EditValue = null;
@@ -465,6 +498,88 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
+        }
+
+        private void stlSparePartCode_Enter(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cbIsWait_CheckedChanged(object sender, EventArgs e)
+        {
+            txtLocation.Enabled = !cbIsWait.Checked;
+        }
+
+        private void txtScanbarcode_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (INOUT == Consts.OUT)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    string barcode = txtScanbarcode.EditValue.NullString().ToUpper();
+                    if (!string.IsNullOrEmpty(barcode))
+                    {
+                        string[] arr = barcode.Split('.');
+
+                        if(arr.Length > 0)
+                        {
+                            stlSparePartCode.EditValue = arr[0];
+                        }
+
+                        if(arr.Length == 2)
+                        {
+                            if (arr[1] == Consts.NG)
+                            {
+                                cbIsWait.Checked = true;
+                            }
+                            else
+                            {
+                                cbIsWait.Checked = false;
+                                txtLocation.EditValue = arr[1];
+                            }
+                        }
+                        
+                        if(arr.Length == 3)
+                        {
+                            cbIsWait.Checked = false;
+                            txtLocation.EditValue = arr[1];
+                        }
+                    }
+                }
+            }
+        }
+
+        private void txtScanbarcode_EditValueChanged(object sender, EventArgs e)
+        {
+            //string barcode = txtScanbarcode.EditValue.NullString();
+            //if (!string.IsNullOrEmpty(barcode))
+            //{
+            //    string[] arr = barcode.Split('.');
+
+            //    if (arr.Length > 0)
+            //    {
+            //        stlSparePartCode.EditValue = arr[0];
+            //    }
+
+            //    if (arr.Length == 2)
+            //    {
+            //        if (arr[1] == Consts.NG)
+            //        {
+            //            cbIsWait.Checked = true;
+            //        }
+            //        else
+            //        {
+            //            cbIsWait.Checked = false;
+            //            txtLocation.EditValue = arr[1];
+            //        }
+            //    }
+
+            //    if (arr.Length == 3)
+            //    {
+            //        cbIsWait.Checked = false;
+            //        txtLocation.EditValue = arr[1];
+            //    }
+            //}
         }
     }
 }

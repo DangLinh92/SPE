@@ -50,12 +50,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.gcList = new Wisol.XGridControl();
             this.gvList = new Wisol.XGridView();
             this.IN_OUT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_Year = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_MONTH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CREATE_DATE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.STOCK_IN_OUT_CODE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.STOCK_CODE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_Type = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ORDER_CODE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.USER_CREATE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_Deliver = new DevExpress.XtraGrid.Columns.GridColumn();
             this.STATUS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_Edit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
@@ -182,6 +185,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.btnAddNewDelivery.StyleController = this.xLayoutControl2;
             this.btnAddNewDelivery.TabIndex = 7;
             this.btnAddNewDelivery.Text = "New Delivery";
+            this.btnAddNewDelivery.Click += new System.EventHandler(this.btnAddNewDelivery_Click);
             // 
             // btnAddNewReceive
             // 
@@ -272,12 +276,15 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.gvList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.IN_OUT,
+            this.col_Year,
+            this.col_MONTH,
             this.CREATE_DATE,
             this.STOCK_IN_OUT_CODE,
             this.STOCK_CODE,
             this.col_Type,
             this.ORDER_CODE,
             this.USER_CREATE,
+            this.col_Deliver,
             this.STATUS,
             this.col_Edit,
             this.col_delete});
@@ -296,13 +303,29 @@ namespace Wisol.MES.Forms.CONTENT
             this.IN_OUT.VisibleIndex = 0;
             this.IN_OUT.Width = 129;
             // 
+            // col_Year
+            // 
+            this.col_Year.Caption = "YEAR";
+            this.col_Year.FieldName = "YEAR";
+            this.col_Year.Name = "col_Year";
+            this.col_Year.Visible = true;
+            this.col_Year.VisibleIndex = 1;
+            // 
+            // col_MONTH
+            // 
+            this.col_MONTH.Caption = "MONTH";
+            this.col_MONTH.FieldName = "MONTH";
+            this.col_MONTH.Name = "col_MONTH";
+            this.col_MONTH.Visible = true;
+            this.col_MONTH.VisibleIndex = 2;
+            // 
             // CREATE_DATE
             // 
             this.CREATE_DATE.Caption = "Ngày tạo";
             this.CREATE_DATE.FieldName = "CREATE_DATE";
             this.CREATE_DATE.Name = "CREATE_DATE";
             this.CREATE_DATE.Visible = true;
-            this.CREATE_DATE.VisibleIndex = 1;
+            this.CREATE_DATE.VisibleIndex = 3;
             this.CREATE_DATE.Width = 129;
             // 
             // STOCK_IN_OUT_CODE
@@ -311,7 +334,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.STOCK_IN_OUT_CODE.FieldName = "STOCK_IN_OUT_CODE";
             this.STOCK_IN_OUT_CODE.Name = "STOCK_IN_OUT_CODE";
             this.STOCK_IN_OUT_CODE.Visible = true;
-            this.STOCK_IN_OUT_CODE.VisibleIndex = 2;
+            this.STOCK_IN_OUT_CODE.VisibleIndex = 4;
             this.STOCK_IN_OUT_CODE.Width = 129;
             // 
             // STOCK_CODE
@@ -320,7 +343,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.STOCK_CODE.FieldName = "STOCK_CODE";
             this.STOCK_CODE.Name = "STOCK_CODE";
             this.STOCK_CODE.Visible = true;
-            this.STOCK_CODE.VisibleIndex = 3;
+            this.STOCK_CODE.VisibleIndex = 5;
             this.STOCK_CODE.Width = 129;
             // 
             // col_Type
@@ -329,7 +352,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_Type.FieldName = "NAME";
             this.col_Type.Name = "col_Type";
             this.col_Type.Visible = true;
-            this.col_Type.VisibleIndex = 4;
+            this.col_Type.VisibleIndex = 6;
             // 
             // ORDER_CODE
             // 
@@ -337,7 +360,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.ORDER_CODE.FieldName = "ORDER_CODE";
             this.ORDER_CODE.Name = "ORDER_CODE";
             this.ORDER_CODE.Visible = true;
-            this.ORDER_CODE.VisibleIndex = 5;
+            this.ORDER_CODE.VisibleIndex = 7;
             this.ORDER_CODE.Width = 129;
             // 
             // USER_CREATE
@@ -346,8 +369,16 @@ namespace Wisol.MES.Forms.CONTENT
             this.USER_CREATE.FieldName = "USER_CREATE";
             this.USER_CREATE.Name = "USER_CREATE";
             this.USER_CREATE.Visible = true;
-            this.USER_CREATE.VisibleIndex = 6;
+            this.USER_CREATE.VisibleIndex = 8;
             this.USER_CREATE.Width = 129;
+            // 
+            // col_Deliver
+            // 
+            this.col_Deliver.Caption = "Giao/Nhận";
+            this.col_Deliver.FieldName = "DELIVERET_RECEIVER";
+            this.col_Deliver.Name = "col_Deliver";
+            this.col_Deliver.Visible = true;
+            this.col_Deliver.VisibleIndex = 9;
             // 
             // STATUS
             // 
@@ -355,7 +386,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.STATUS.FieldName = "STATUS";
             this.STATUS.Name = "STATUS";
             this.STATUS.Visible = true;
-            this.STATUS.VisibleIndex = 7;
+            this.STATUS.VisibleIndex = 10;
             this.STATUS.Width = 50;
             // 
             // col_Edit
@@ -363,7 +394,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_Edit.ColumnEdit = this.repositoryItemButtonEdit2;
             this.col_Edit.Name = "col_Edit";
             this.col_Edit.Visible = true;
-            this.col_Edit.VisibleIndex = 8;
+            this.col_Edit.VisibleIndex = 11;
             this.col_Edit.Width = 25;
             // 
             // repositoryItemButtonEdit2
@@ -381,7 +412,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_delete.ColumnEdit = this.repositoryItemButtonEdit1;
             this.col_delete.Name = "col_delete";
             this.col_delete.Visible = true;
-            this.col_delete.VisibleIndex = 9;
+            this.col_delete.VisibleIndex = 12;
             this.col_delete.Width = 25;
             // 
             // repositoryItemButtonEdit1
@@ -603,5 +634,8 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private XSimpleButton btnSearch;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private DevExpress.XtraGrid.Columns.GridColumn col_Year;
+        private DevExpress.XtraGrid.Columns.GridColumn col_MONTH;
+        private DevExpress.XtraGrid.Columns.GridColumn col_Deliver;
     }
 }
