@@ -728,7 +728,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             string[] arr = barcode.Split('.');
 
                             bool isSuccess = false;
-                            foreach (DataRow row in Data.Rows)
+                            foreach (DataRow row in Data.Rows) // SP-0009.NG    W_10_OK,W_2_NG
                             {
                                 if (arr.Length > 0)
                                 {
@@ -742,45 +742,34 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                     }
                                 }
 
-                                string locationSum  = row["LOCATION"].NullString();
-                                string[] locaitions = locationSum.Split(',');
-                                string condition = locaition.Split('_')[2];
-                                if (arr.Length == 2)
-                                {
-                                    if (arr[1] == Consts.NG)
-                                    {
-                                        if (arr[1] == condition)
-                                        {
-                                            isSuccess = true;
-                                        }
-                                        else
-                                        {
-                                            isSuccess = false;
-                                        }
-                                    }
-                                    else // arr[1] = location
-                                    {
+                                string locationSum  = row["LOCATION"].NullString();//vi tri_soluong_NG,vitri_soluong_OK
+                                string[] locations = locationSum.Split(',');
 
-                                        if (locaition == arr[1])
-                                        {
-                                            isSuccess = true;
-                                        }
-                                        else
-                                        {
-                                            isSuccess = false;
-                                        }
-                                    }
-                                }
-
-                                if (arr.Length == 3)
+                                for (int i = 0; i < locations.Length; i++)
                                 {
-                                    if (locaition == arr[1] && condition == arr[2])
+                                    string condition = locations[i].Split('_')[2];
+                                    string location = locations[i].Split('_')[0];
+                                    if (arr.Length == 2)
                                     {
-                                        isSuccess = true;
+                                        if (arr[1] == Consts.NG)
+                                        {
+                                            isSuccess = arr[1] == condition && location == "W";
+                                        }
+                                        else // arr[1] = location
+                                        {
+
+                                            isSuccess = (location == arr[1] && condition != Consts.NG);
+                                        }
                                     }
-                                    else
+
+                                    if (arr.Length == 3)
                                     {
-                                        isSuccess = false;
+                                        isSuccess = location == arr[1] && condition == arr[2];
+                                    }
+
+                                    if(isSuccess)
+                                    {
+                                        break;
                                     }
                                 }
                             }
