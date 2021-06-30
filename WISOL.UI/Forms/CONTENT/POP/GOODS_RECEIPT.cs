@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors.Repository;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Media;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -63,6 +67,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 Data.Columns.Add("ORDER_CODE", typeof(string));
                 Data.Columns.Add("STATUS", typeof(string));
                 Data.Columns.Add("TYPE_IN_OUT_CODE", typeof(string));
+                Data.Columns.Add("RETURN_TIME", typeof(string));
                 Data.Columns.Add("LOCATION", typeof(string));
 
                 cboStatus.DataSource = Status;
@@ -74,7 +79,35 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     base.mBindData.BindGridLookEdit(stlSparePartCode, base.mResultDB.ReturnDataSet.Tables[1], "CODE", "NAME_VI");
                     base.mBindData.BindGridLookEdit(stlKho, base.mResultDB.ReturnDataSet.Tables[2], "CODE", "NAME");
                     base.mBindData.BindGridLookEdit(stlOrderCode, base.mResultDB.ReturnDataSet.Tables[4], "ORDER_ID", "TITLE");
-                    base.mBindData.BindGridLookEdit(stlType, base.mResultDB.ReturnDataSet.Tables[5], "CODE", "NAME");
+
+                    DataTable tmp = new DataTable();
+                    tmp.Columns.Add("CODE");
+                    tmp.Columns.Add("NAME");
+                    string selectedValueFirt = "";
+                    foreach (DataRow item in base.mResultDB.ReturnDataSet.Tables[5].Rows)
+                    {
+                        if (INOUT == Consts.IN)
+                        {
+                            if (item["CODE"].NullString() == "1" || item["CODE"].NullString() == "2")
+                            {
+                                tmp.Rows.Add(item["CODE"],item["NAME"]);
+                            }
+
+                            selectedValueFirt = "1";
+                        }
+                        else
+                        {
+                            if (item["CODE"].NullString() == "3" || item["CODE"].NullString() == "4")
+                            {
+                                tmp.Rows.Add(item["CODE"], item["NAME"]);
+                            }
+                            selectedValueFirt = "4";
+                        }
+                    }
+                    base.mBindData.BindGridLookEdit(stlType, tmp, "CODE", "NAME");
+
+                    stlType.EditValue = selectedValueFirt; 
+
                     base.mBindData.BindGridLookEdit(stlUnit, base.mResultDB.ReturnDataSet.Tables[3], "CODE", "NAME");
 
                     stlKho.EditValue = base.mResultDB.ReturnDataSet.Tables[2].Rows[0]["CODE"].NullString();
@@ -151,22 +184,19 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                 if (INOUT == Consts.IN)
                 {
-                    //txtLocation.Enabled = false;
-                    //cbIsWait.Enabled = false;
                     txtPriceVN.Enabled = true;
                     txtScanbarcode.Enabled = false;
                 }
                 else
                 {
                     txtScanbarcode.Enabled = true;
-                    //txtLocation.Enabled = true;
-                    //cbIsWait.Enabled = true;
                     txtPriceVN.Enabled = false;
                     txtScanbarcode.Focus();
                 }
             }
         }
 
+        private Dictionary<string, string> LocationDic = new Dictionary<string, string>();
         private void btnAddItem_Click(object sender, EventArgs e)
         {
             try
@@ -244,9 +274,40 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     if (string.IsNullOrEmpty(stlSparePartCode.EditValue.NullString()) ||
                         string.IsNullOrEmpty(txtQuantity.EditValue.NullString()) ||
                         string.IsNullOrEmpty(stlUnit.EditValue.NullString()) ||
-                        (LocationDic.Count == 0))
+                        string.IsNullOrEmpty(stlType.EditValue.NullString()))
                     {
                         MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                        return;
+                    }
+
+                    if (stlType.EditValue.NullString() == "3") // xuat tra lai
+                    {
+                        if (string.IsNullOrEmpty(dateReturnTime.EditValue.NullString()))
+                        {
+                            MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                            return;
+                        }
+                    }
+
+                    // Get location
+                    float quantitySum = 0;
+                    foreach (int i in gvLocation.GetSelectedRows())
+                    {
+                        var location = gvLocation.GetRowCellValue(i, "LOCATION").NullString();
+                        var condition = gvLocation.GetRowCellValue(i, "CONDITION_CODE").NullString();
+                        string quantity = gvLocation.GetRowCellValue(i, "QUANTITY_GET").NullString();
+
+                        if (string.IsNullOrEmpty(location))
+                        {
+                            location = "W";
+                        }
+                        LocationDic.Add(location, quantity + "_" + condition);
+                        quantitySum += float.Parse(quantity);
+                    }
+
+                    if (quantitySum != float.Parse(txtQuantity.EditValue.NullString()) || LocationDic.Count <= 0)
+                    {
+                        MsgBox.Show("MSG_QUANTITY_INVALID".Translation(), MsgType.Warning);
                         return;
                     }
 
@@ -269,16 +330,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         checkRow["CAUSE"] = mmCause.EditValue.NullString();
                         checkRow["NOTE"] = mmNote.EditValue.NullString();
                         checkRow["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
-
+                        checkRow["RETURN_TIME"] = dateReturnTime.EditValue.NullString();
 
                         string location = "";
                         foreach (var item in LocationDic)
                         {
-                            location += item.Key + "." + item.Value + ",";
+                            location += item.Key + "_" + item.Value + ",";
                         }
 
-                        checkRow["LOCATION"] = location.Remove(location.Length - 1, 1);
-
+                        checkRow["LOCATION"] = location.Remove(location.Length - 1, 1); // remove ,
                     }
                     else
                     {
@@ -299,23 +359,25 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         row["CAUSE"] = mmCause.EditValue.NullString();
                         row["NOTE"] = mmNote.EditValue.NullString();
                         row["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
+                        row["RETURN_TIME"] = dateReturnTime.EditValue.NullString();
 
                         string location = "";
                         foreach (var item in LocationDic)
                         {
-                            location += item.Key + "." + item.Value + ",";
+                            location += item.Key + "_" + item.Value + ",";
                         }
 
-                        checkRow["LOCATION"] = location.Remove(location.Length - 1, 1);
-
+                        row["LOCATION"] = location.Remove(location.Length - 1, 1);
 
                         Data.Rows.Add(row);
                     }
 
+
                     base.mBindData.BindGridView(gcList, Data);
-                    FormatGridColumn();
+                    FormatGridColumn(true);
                 }
 
+                ClearInputItemAdd();
             }
             catch (Exception ex)
             {
@@ -323,7 +385,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             }
         }
 
-        private void FormatGridColumn()
+        private void FormatGridColumn(bool isExport = false)
         {
             gvList.Columns["RECEIPT_ISSUE_CODE"].Visible = false;
             gvList.Columns["STOCK_CODE"].Visible = false;
@@ -347,6 +409,14 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
             gvList.Columns["PRICE_US"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             gvList.Columns["PRICE_US"].DisplayFormat.FormatString = "c2";
+
+            if (isExport)
+            {
+                gvList.Columns["PRICE_VN"].Visible = false;
+                gvList.Columns["PRICE_US"].Visible = false;
+                gvList.Columns["AMOUNT_VN"].Visible = false;
+                gvList.Columns["AMOUNT_US"].Visible = false;
+            }
         }
 
         private void txtPriceVN_EditValueChanged(object sender, EventArgs e)
@@ -418,7 +488,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
-                if (e.RowHandle < 0)
+                if (e.RowHandle < 0 || string.IsNullOrEmpty(stlKho.EditValue.NullString()))
                 {
                     return;
                 }
@@ -427,7 +497,36 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     stlSparePartCode.EditValue = gvList.GetDataRow(e.RowHandle)["SPARE_PART_CODE"].NullString();
                     txtQuantity.EditValue = gvList.GetDataRow(e.RowHandle)["QUANTITY"].NullString();
                     stlUnit.EditValue = gvList.GetDataRow(e.RowHandle)["UNIT"].NullString();
-                    txtPriceVN.EditValue = gvList.GetDataRow(e.RowHandle)["PRICE_VN"].NullString();
+
+                    if (INOUT == Consts.IN)
+                    {
+                        txtPriceVN.EditValue = gvList.GetDataRow(e.RowHandle)["PRICE_VN"].NullString();
+                    }
+
+                    stlType.EditValue = gvList.GetDataRow(e.RowHandle)["TYPE_IN_OUT_CODE"].NullString();
+                    if (stlType.EditValue.NullString() == "3") // xuat tra lai
+                    {
+                        dateReturnTime.EditValue = gvList.GetDataRow(e.RowHandle)["RETURN_TIME"].NullString();
+                    }
+
+                    if (INOUT == Consts.OUT)
+                    {
+                        string[] arr = gvList.GetDataRow(e.RowHandle)["LOCATION"].NullString().Split(',');
+
+                        for (int i = 0; i < arr.Length; i++)
+                        {
+                            string[] item = arr[i].Split('_');
+                            for (int j = 0; j < gvLocation.DataRowCount; j++)
+                            {
+                                if (gvLocation.GetRowCellValue(j, "LOCATION").NullString() == item[0])
+                                {
+                                    gvLocation.SetRowCellValue(j, "QUANTITY_GET", item[1]);
+                                    gvLocation.SelectRow(j);
+                                }
+                            }
+                        }
+                    }
+
                     mmCause.EditValue = gvList.GetDataRow(e.RowHandle)["CAUSE"].NullString();
                     mmNote.EditValue = gvList.GetDataRow(e.RowHandle)["NOTE"].NullString();
                 }
@@ -447,7 +546,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 {
                     Data.Rows.Remove(checkRow);
                     base.mBindData.BindGridView(gcList, Data);
-                    ClearItemAdd();
+                    ClearInputItemAdd();
                 }
             }
             catch (Exception ex)
@@ -461,18 +560,54 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ClearItemAdd();
         }
 
+        private void ClearInputItemAdd()
+        {
+            txtScanbarcode.EditValue = null;
+            stlSparePartCode.EditValue = null;
+            txtQuantity.EditValue = 0;
+            stlUnit.EditValue = null;
+            txtPriceVN.EditValue = 0;
+            mmCause.EditValue = null;
+            mmNote.EditValue = null;
+            dateReturnTime.EditValue = null;
+
+            if(INOUT == Consts.IN)
+            {
+                stlType.EditValue = "1";
+            }
+            else
+            {
+                stlType.EditValue = "4";
+            }
+            
+            LocationDic.Clear();
+            base.mBindData.BindGridView(gcLocation, new DataTable());
+        }
+
         private void ClearItemAdd()
         {
             try
             {
+                txtScanbarcode.EditValue = null;
                 stlSparePartCode.EditValue = null;
                 txtQuantity.EditValue = 0;
                 stlUnit.EditValue = null;
                 txtPriceVN.EditValue = 0;
                 mmCause.EditValue = null;
                 mmNote.EditValue = null;
+                dateReturnTime.EditValue = null;
+                if (INOUT == Consts.IN)
+                {
+                    stlType.EditValue = "1";
+                }
+                else
+                {
+                    stlType.EditValue = "4";
+                }
                 Data.Clear();
+                LocationDic.Clear();
                 base.mBindData.BindGridView(gcList, Data);
+                base.mBindData.BindGridView(gcLocation, new DataTable());
 
                 FormatGridColumn();
             }
@@ -537,7 +672,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private void ClearRight()
         {
             txtDelivererAndReceiver.EditValue = null;
-            stlType.EditValue = null;
             stlOrderCode.EditValue = null;
             txtUserCreate.EditValue = null;
             dateInput.EditValue = DateTime.Now;
@@ -582,40 +716,94 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void txtScanbarcode_KeyDown(object sender, KeyEventArgs e)
         {
-            if (INOUT == Consts.OUT)
+            try
             {
-                if (e.KeyCode == Keys.Enter)
+                if (INOUT == Consts.OUT && Mode == Consts.MODE_NEW)
                 {
-                    string barcode = txtScanbarcode.EditValue.NullString().ToUpper();
-                    if (!string.IsNullOrEmpty(barcode))
+                    if (e.KeyCode == Keys.Enter)
                     {
-                        string[] arr = barcode.Split('.');
-
-                        if (arr.Length > 0)
+                        string barcode = txtScanbarcode.EditValue.NullString().ToUpper(); // barcode = ma code + '.' + location + '.' + condition 
+                        if (!string.IsNullOrEmpty(barcode))
                         {
-                            stlSparePartCode.EditValue = arr[0];
-                        }
+                            string[] arr = barcode.Split('.');
 
-                        if (arr.Length == 2)
-                        {
-                            if (arr[1] == Consts.NG)
+                            bool isSuccess = false;
+                            foreach (DataRow row in Data.Rows)
                             {
-                                // cbIsWait.Checked = true;
+                                if (arr.Length > 0)
+                                {
+                                    if (row["SPARE_PART_CODE"].NullString() == arr[0])
+                                    {
+                                        isSuccess = true;
+                                    }
+                                    else
+                                    {
+                                        continue;
+                                    }
+                                }
+
+                                string locationSum  = row["LOCATION"].NullString();
+                                string[] locaitions = locationSum.Split(',');
+                                string condition = locaition.Split('_')[2];
+                                if (arr.Length == 2)
+                                {
+                                    if (arr[1] == Consts.NG)
+                                    {
+                                        if (arr[1] == condition)
+                                        {
+                                            isSuccess = true;
+                                        }
+                                        else
+                                        {
+                                            isSuccess = false;
+                                        }
+                                    }
+                                    else // arr[1] = location
+                                    {
+
+                                        if (locaition == arr[1])
+                                        {
+                                            isSuccess = true;
+                                        }
+                                        else
+                                        {
+                                            isSuccess = false;
+                                        }
+                                    }
+                                }
+
+                                if (arr.Length == 3)
+                                {
+                                    if (locaition == arr[1] && condition == arr[2])
+                                    {
+                                        isSuccess = true;
+                                    }
+                                    else
+                                    {
+                                        isSuccess = false;
+                                    }
+                                }
+                            }
+
+                            if (isSuccess)
+                            {
+                                SoundPlayer soundPlayer = new SoundPlayer(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "OK.wav"));
+                                soundPlayer.Play();
                             }
                             else
                             {
-                                //cbIsWait.Checked = false;
-                                //txtLocation.EditValue = arr[1];
+                                SoundPlayer soundPlayer = new SoundPlayer(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "NG.wav"));
+                                soundPlayer.Play();
                             }
-                        }
 
-                        if (arr.Length == 3)
-                        {
-                            //cbIsWait.Checked = false;
-                            //txtLocation.EditValue = arr[1];
+                            txtScanbarcode.EditValue = null;
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
 
@@ -628,8 +816,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             GetLocationForSparePart();
         }
-
-        public Dictionary<string, string> LocationDic { get; set; }
 
         private void GetLocationForSparePart()
         {
@@ -675,12 +861,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             GetLocationForSparePart();
         }
 
-        private void gvLocation_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
-
-        }
-
-        private void gvLocation_RowCellClick(object sender, RowCellClickEventArgs e)
+        private void gvLocation_CellValueChanged(object sender, CellValueChangedEventArgs e)
         {
             try
             {
@@ -689,37 +870,56 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     return;
                 }
 
-                if (LocationDic == null)
+                if (e.Column.FieldName == "QUANTITY_GET")
                 {
-                    LocationDic = new Dictionary<string, string>();
-                }
+                    var quantity_get = gvLocation.GetDataRow(e.RowHandle)["QUANTITY_GET"].NullString();
+                    var quantity = gvLocation.GetDataRow(e.RowHandle)["QUANTITY"].NullString();
 
-                if (e.Column.ColumnType == typeof(bool) && bool.Parse(e.CellValue.NullString()) == true)
-                {
-                    var location = gvLocation.GetDataRow(e.RowHandle)["LOCATION"].NullString();
-                    var quantity = gvLocation.GetDataRow(e.RowHandle)["QUANTITY_GET"].NullString();
-
-                    if (string.IsNullOrEmpty(location))
+                    if (float.Parse(quantity_get) > float.Parse(quantity))
                     {
-                        location = "W";
+                        MsgBox.Show("MSG_QUANTITY_INVALID".Translation(), MsgType.Warning);
+                        gvLocation.GetDataRow(e.RowHandle)["QUANTITY_GET"] = 0.0;
+                        gvLocation.UnselectRow(e.RowHandle);
+                        return;
                     }
-                    LocationDic.Add(location, quantity);
-                }
-                else if (e.Column.ColumnType == typeof(bool) && bool.Parse(e.CellValue.NullString()) == false)
-                {
-                    var location = gvLocation.GetDataRow(e.RowHandle)["LOCATION"].NullString();
-                    if (string.IsNullOrEmpty(location))
-                    {
-                        location = "W";
-                    }
-                    LocationDic.Remove(location);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MsgBox.Show(ex.Message, MsgType.Error);
             }
+        }
+
+
+        private void gvLocation_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+
+        }
+
+        private void stlType_EditValueChanged(object sender, EventArgs e)
+        {
+            if (stlType.EditValue.NullString() == "3")// xuat tra lai
+            {
+                dateReturnTime.Enabled = true;
+            }
+            else
+            {
+                dateReturnTime.Enabled = false;
+                dateReturnTime.EditValue = null;
+            }
+        }
+
+        private void gvLocation_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            if (e.Column.FieldName == "QUANTITY_GET")
+            {
+                e.Appearance.BackColor = Color.Red;
+            }
+        }
+
+        private void btnClearInput_Click(object sender, EventArgs e)
+        {
+            ClearInputItemAdd();
         }
     }
 }
