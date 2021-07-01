@@ -37,6 +37,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.grcontrolGoodReceipt = new DevExpress.XtraEditors.GroupControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.xLayoutControl1 = new Wisol.XLayoutControl();
+            this.btnClearInput = new Wisol.XSimpleButton(this.components);
             this.dateReturnTime = new Wisol.XDateEdit();
             this.stlType = new Wisol.AceGridLookUpEdit(this.components);
             this.aceGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -80,6 +81,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
             this.txtDelivererAndReceiver = new Wisol.XTextEdit();
             this.cboStatus = new System.Windows.Forms.ComboBox();
@@ -103,8 +105,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnClearInput = new Wisol.XSimpleButton(this.components);
-            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.grcontrolGoodReceipt)).BeginInit();
             this.grcontrolGoodReceipt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -151,6 +151,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).BeginInit();
             this.xLayoutControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDelivererAndReceiver.Properties)).BeginInit();
@@ -172,7 +173,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             this.SuspendLayout();
             // 
             // grcontrolGoodReceipt
@@ -228,6 +228,19 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.xLayoutControl1.Size = new System.Drawing.Size(870, 788);
             this.xLayoutControl1.TabIndex = 0;
             this.xLayoutControl1.Text = "xLayoutControl1";
+            // 
+            // btnClearInput
+            // 
+            this.btnClearInput.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClearInput.ImageOptions.Image")));
+            this.btnClearInput.Location = new System.Drawing.Point(12, 214);
+            this.btnClearInput.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnClearInput.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnClearInput.Name = "btnClearInput";
+            this.btnClearInput.Size = new System.Drawing.Size(129, 30);
+            this.btnClearInput.StyleController = this.xLayoutControl1;
+            this.btnClearInput.TabIndex = 28;
+            this.btnClearInput.Text = "CLEAR";
+            this.btnClearInput.Click += new System.EventHandler(this.btnClearInput_Click);
             // 
             // dateReturnTime
             // 
@@ -725,6 +738,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem11.Text = "RETURN TIME";
             this.layoutControlItem11.TextSize = new System.Drawing.Size(98, 13);
             // 
+            // layoutControlItem25
+            // 
+            this.layoutControlItem25.Control = this.btnClearInput;
+            this.layoutControlItem25.Location = new System.Drawing.Point(0, 202);
+            this.layoutControlItem25.Name = "layoutControlItem25";
+            this.layoutControlItem25.Size = new System.Drawing.Size(850, 34);
+            this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem25.TextVisible = false;
+            // 
             // xLayoutControl2
             // 
             this.xLayoutControl2.Controls.Add(this.txtDelivererAndReceiver);
@@ -988,28 +1010,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem24.Text = "DELIVERER_RECEIVER";
             this.layoutControlItem24.TextSize = new System.Drawing.Size(109, 13);
             // 
-            // btnClearInput
-            // 
-            this.btnClearInput.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClearInput.ImageOptions.Image")));
-            this.btnClearInput.Location = new System.Drawing.Point(12, 214);
-            this.btnClearInput.MaximumSize = new System.Drawing.Size(129, 30);
-            this.btnClearInput.MinimumSize = new System.Drawing.Size(129, 30);
-            this.btnClearInput.Name = "btnClearInput";
-            this.btnClearInput.Size = new System.Drawing.Size(129, 30);
-            this.btnClearInput.StyleController = this.xLayoutControl1;
-            this.btnClearInput.TabIndex = 28;
-            this.btnClearInput.Text = "CLEAR";
-            this.btnClearInput.Click += new System.EventHandler(this.btnClearInput_Click);
-            // 
-            // layoutControlItem25
-            // 
-            this.layoutControlItem25.Control = this.btnClearInput;
-            this.layoutControlItem25.Location = new System.Drawing.Point(0, 202);
-            this.layoutControlItem25.Name = "layoutControlItem25";
-            this.layoutControlItem25.Size = new System.Drawing.Size(850, 34);
-            this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem25.TextVisible = false;
-            // 
             // GOODS_RECEIPT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1067,6 +1067,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).EndInit();
             this.xLayoutControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtDelivererAndReceiver.Properties)).EndInit();
@@ -1088,7 +1089,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
