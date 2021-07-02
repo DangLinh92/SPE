@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
+using Wisol.MES.Forms.REPORT;
+using Wisol.MES.Forms.REPORT.Models;
 using Wisol.MES.Inherit;
 
 namespace Wisol.MES.Forms.CONTENT.POP
@@ -41,6 +44,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private float ExchangeRate;
         public string StockCode { get; set; }
+        public DataTable SparePartData { get; set; }
 
         private void InitData()
         {
@@ -76,6 +80,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_SP_INVENTORY.GET", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
                 if (mResultDB.ReturnInt == 0)
                 {
+                    SparePartData = base.mResultDB.ReturnDataSet.Tables[1];
                     base.mBindData.BindGridLookEdit(stlSparePartCode, base.mResultDB.ReturnDataSet.Tables[1], "CODE", "NAME_VI");
                     base.mBindData.BindGridLookEdit(stlKho, base.mResultDB.ReturnDataSet.Tables[2], "CODE", "NAME");
                     base.mBindData.BindGridLookEdit(stlOrderCode, base.mResultDB.ReturnDataSet.Tables[4], "ORDER_ID", "TITLE");
@@ -933,6 +938,61 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private void btnClearInput_Click(object sender, EventArgs e)
         {
             ClearInputItemAdd();
+        }
+
+        private void btnPrintReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Data.Rows.Count == 0 ||
+                    string.IsNullOrEmpty(stlKho.EditValue.NullString()) ||
+                    string.IsNullOrEmpty(dateInput.EditValue.NullString()) ||
+                    string.IsNullOrEmpty(cboStatus.SelectedItem.NullString()) ||
+                    Data.Rows.Count == 0)
+                {
+                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                    return;
+                }
+
+                STOCK_OUT_DATA_SOURCE source = new STOCK_OUT_DATA_SOURCE();
+                source.lstReport = new List<STOCK_OUT_REPORT>();
+
+               
+
+                foreach (DataRow row in Data.Rows)
+                {
+                    string locations = row["LOCATION"].NullString();
+                    foreach (var item in locations.Split(','))
+                    {
+                        STOCK_OUT_REPORT reportModel = new STOCK_OUT_REPORT();
+                        reportModel.Day = DateTime.Parse(dateInput.EditValue.NullString()).Day.NullString();
+                        reportModel.Month = DateTime.Parse(dateInput.EditValue.NullString()).Month.NullString();
+                        reportModel.Year = DateTime.Parse(dateInput.EditValue.NullString()).Year.NullString();
+                        reportModel.UserReive = txtDelivererAndReceiver.EditValue.NullString();
+                        reportModel.UserCreate = txtUserCreate.EditValue.NullString();
+
+                        reportModel.ID = row["SPARE_PART_CODE"].NullString();
+                        reportModel.Name = SparePartData.Select("CODE = '" + reportModel.ID+"'").FirstOrDefault()["NAME_VI"].NullString();
+                        reportModel.Unit = row["UNIT"].NullString();
+
+                        reportModel.Quantity = item.Split('_')[1].NullString();
+                        reportModel.Location = item.Split('_')[0].NullString();
+                        reportModel.Condition = item.Split('_')[2].NullString();
+
+                        source.lstReport.Add(reportModel);
+                    }
+                }
+
+                StockOutReport report = new StockOutReport();
+                report.DataSource = source.GetReport();
+                ReportPrintTool tool = new ReportPrintTool(report);
+                tool.ShowPreview();
+                tool.Print();
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
         }
     }
 }

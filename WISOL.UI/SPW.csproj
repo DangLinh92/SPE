@@ -120,6 +120,7 @@
     <Reference Include="DevExpress.TreeMap.v19.2.Core, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v19.2, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Utils.v19.2.UI, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v19.2, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraBars.v19.2, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v19.2, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v19.2.UI, Version=19.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -395,6 +396,7 @@
     <Compile Include="Forms\CONTENT\COST_GLACCOUNT.Designer.cs">
       <DependentUpon>COST_GLACCOUNT.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\REPORT\Models\STOCK_OUT_REPORT.cs" />
     <Compile Include="Forms\REPORT\REPORT_STOCK.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -406,6 +408,12 @@
     </Compile>
     <Compile Include="Forms\REPORT\REPORT_STOCKIN.Designer.cs">
       <DependentUpon>REPORT_STOCKIN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\REPORT\StockOutReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\REPORT\StockOutReport.designer.cs">
+      <DependentUpon>StockOutReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\SETTING\POP\POP_CANCEL_STOCKIN.cs">
       <SubType>Form</SubType>
@@ -757,6 +765,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\REPORT\REPORT_STOCKIN.resx">
       <DependentUpon>REPORT_STOCKIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\REPORT\StockOutReport.resx">
+      <DependentUpon>StockOutReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SETTING\POP\POP_CANCEL_STOCKIN.resx">
       <DependentUpon>POP_CANCEL_STOCKIN.cs</DependentUpon>
