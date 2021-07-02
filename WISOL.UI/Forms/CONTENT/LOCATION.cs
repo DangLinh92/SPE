@@ -207,17 +207,17 @@ namespace Wisol.MES.Forms.CONTENT
                 DataTableCollection dataLocations = GetLocations();
                 if (dataLocations != null)
                 {
+                    base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
                     if (dataLocations[0].Rows.Count > 0)
                     {
-                        base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
                         gvList.Columns["KHO"].Visible = false;
                         gvList.Columns["LOCATION"].Width = 230;
                         gvList.MakeRowVisible(gvList.DataRowCount - 1);
                     }
 
+                    base.m_BindData.BindGridView(gcListNoPosition, base.m_ResultDB.ReturnDataSet.Tables[1]);
                     if (dataLocations[1].Rows.Count > 0)
                     {
-                        base.m_BindData.BindGridView(gcListNoPosition, base.m_ResultDB.ReturnDataSet.Tables[1]);
                         gvListNoPosition.Columns["KHO"].Visible = false;
                         gvListNoPosition.Columns["STT"].Visible = false;
                         gvListNoPosition.Columns["BARCODE"].Visible = false;
@@ -225,6 +225,7 @@ namespace Wisol.MES.Forms.CONTENT
                         gvListNoPosition.OptionsSelection.MultiSelect = true;
                         gvListNoPosition.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
                     }
+                   
                 }
             }
             catch (Exception ex)
@@ -397,6 +398,7 @@ namespace Wisol.MES.Forms.CONTENT
                 {
                     MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);
                     ViewLocation();
+                    ClearSparepartLocation();
                 }
                 else
                 {
@@ -410,6 +412,11 @@ namespace Wisol.MES.Forms.CONTENT
         }
 
         private void btnClearSparePartLocation_Click(object sender, EventArgs e)
+        {
+            ClearSparepartLocation();
+        }
+
+        private void ClearSparepartLocation()
         {
             try
             {
@@ -433,7 +440,7 @@ namespace Wisol.MES.Forms.CONTENT
             try
             {
                 if (string.IsNullOrEmpty(stlKho.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(stlPosition.EditValue.NullString()) ||
+                    (string.IsNullOrEmpty(stlPosition.EditValue.NullString()) && !cheIsWait.Checked) ||
                     string.IsNullOrEmpty(stlSparepart.EditValue.NullString()) ||
                     string.IsNullOrEmpty(stlCondition.EditValue.NullString()))
                 {
@@ -466,6 +473,8 @@ namespace Wisol.MES.Forms.CONTENT
 
                         // reload location in grid
                         ViewLocation();
+
+                        ClearSparepartLocation();
                     }
                     else
                     {
@@ -565,36 +574,40 @@ namespace Wisol.MES.Forms.CONTENT
                 {
                     if (gvListNoPosition.IsRowSelected(i))
                     {
-                        xml_content = xml_content.Replace("$BARCODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[8]).NullString());
-
-                        xml_content = xml_content.Replace("&", "&amp;");
-                        File.WriteAllText((i + 1).NullString() + designFile, xml_content);
-
-                        XtraReport report = new XtraReport();
-                        report.PrintingSystem.ShowPrintStatusDialog = false;
-                        report.PrintingSystem.ShowMarginsWarning = false;
-                        report.LoadLayoutFromXml((i + 1).NullString() + designFile);
-
-                        int leftMargine = report.Margins.Left + 0;
-                        int rightMargine = report.Margins.Right;
-                        int topMargine = report.Margins.Top + 0;
-                        int bottomMargine = report.Margins.Bottom;
-                        if (leftMargine < 0)
+                        int numberLabel = int.Parse(Math.Ceiling(decimal.Parse(gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[5]).NullString())).NullString());
+                        for (int j = 0; j < numberLabel; j++)
                         {
-                            leftMargine = 0;
-                        }
-                        if (topMargine < 0)
-                        {
-                            topMargine = 0;
-                        }
-                        report.Margins = new System.Drawing.Printing.Margins(leftMargine, rightMargine, topMargine, bottomMargine);
-                        report.CreateDocument();
+                            xml_content = xml_content.Replace("$BARCODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[8]).NullString()).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[0]).NullString()).Replace("$NG_OK$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[3]).NullString());
 
-                        reports.Add(report);
-                        File.Delete((i + 1).NullString() + designFile);
-                        i++;
+                            xml_content = xml_content.Replace("&", "&amp;");
+                            File.WriteAllText((i + 1).NullString() + designFile, xml_content);
 
-                        check++;
+                            XtraReport report = new XtraReport();
+                            report.PrintingSystem.ShowPrintStatusDialog = false;
+                            report.PrintingSystem.ShowMarginsWarning = false;
+                            report.LoadLayoutFromXml((i + 1).NullString() + designFile);
+
+                            int leftMargine = report.Margins.Left + 0;
+                            int rightMargine = report.Margins.Right;
+                            int topMargine = report.Margins.Top + 0;
+                            int bottomMargine = report.Margins.Bottom;
+                            if (leftMargine < 0)
+                            {
+                                leftMargine = 0;
+                            }
+                            if (topMargine < 0)
+                            {
+                                topMargine = 0;
+                            }
+                            report.Margins = new System.Drawing.Printing.Margins(leftMargine, rightMargine, topMargine, bottomMargine);
+                            report.CreateDocument();
+
+                            reports.Add(report);
+                            File.Delete((i + 1).NullString() + designFile);
+                            i++;
+
+                            check++;
+                        }
                     }
                 }
 
@@ -615,8 +628,8 @@ namespace Wisol.MES.Forms.CONTENT
                 foreach (XtraReport report in reports)
                 {
                     ReportPrintTool pts = new ReportPrintTool(report);
-                    //pts.ShowPreview();
-                    pts.Print();
+                    pts.ShowPreview();
+                    //pts.Print();
                 }
             }
             catch (Exception ex)
@@ -646,7 +659,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LABEL.GET_TEMP", new string[] { "A_CODE_TEMP" }, new string[] { "BARCODE_128" });
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LABEL.GET_TEMP", new string[] { "A_CODE_TEMP" }, new string[] { "QRCODE" });
                 if (m_ResultDB.ReturnInt == 0)
                 {
                     label = base.m_ResultDB.ReturnDataSet.Tables[0].Rows[0]["LABEL"].NullString();

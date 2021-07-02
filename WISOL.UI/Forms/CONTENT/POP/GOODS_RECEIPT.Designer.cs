@@ -83,6 +83,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.btnPrintReport = new Wisol.XSimpleButton(this.components);
             this.txtDelivererAndReceiver = new Wisol.XTextEdit();
             this.cboStatus = new System.Windows.Forms.ComboBox();
             this.btnDelete = new Wisol.XSimpleButton(this.components);
@@ -105,7 +106,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnPrintReport = new Wisol.XSimpleButton(this.components);
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.grcontrolGoodReceipt)).BeginInit();
             this.grcontrolGoodReceipt.SuspendLayout();
@@ -770,6 +770,19 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.xLayoutControl2.TabIndex = 0;
             this.xLayoutControl2.Text = "xLayoutControl2";
             // 
+            // btnPrintReport
+            // 
+            this.btnPrintReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintReport.ImageOptions.Image")));
+            this.btnPrintReport.Location = new System.Drawing.Point(12, 191);
+            this.btnPrintReport.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnPrintReport.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnPrintReport.Name = "btnPrintReport";
+            this.btnPrintReport.Size = new System.Drawing.Size(129, 30);
+            this.btnPrintReport.StyleController = this.xLayoutControl2;
+            this.btnPrintReport.TabIndex = 11;
+            this.btnPrintReport.Text = "Print";
+            this.btnPrintReport.Click += new System.EventHandler(this.btnPrintReport_Click);
+            // 
             // txtDelivererAndReceiver
             // 
             this.txtDelivererAndReceiver.IsRequire = false;
@@ -1014,18 +1027,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem24.Size = new System.Drawing.Size(399, 24);
             this.layoutControlItem24.Text = "DELIVERER_RECEIVER";
             this.layoutControlItem24.TextSize = new System.Drawing.Size(109, 13);
-            // 
-            // btnPrintReport
-            // 
-            this.btnPrintReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintReport.ImageOptions.Image")));
-            this.btnPrintReport.Location = new System.Drawing.Point(12, 191);
-            this.btnPrintReport.MaximumSize = new System.Drawing.Size(129, 30);
-            this.btnPrintReport.MinimumSize = new System.Drawing.Size(129, 30);
-            this.btnPrintReport.Name = "btnPrintReport";
-            this.btnPrintReport.Size = new System.Drawing.Size(129, 30);
-            this.btnPrintReport.TabIndex = 11;
-            this.btnPrintReport.Text = "Print Report";
-            this.btnPrintReport.Click += new System.EventHandler(this.btnPrintReport_Click);
             // 
             // layoutControlItem29
             // 
