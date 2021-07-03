@@ -241,7 +241,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.btnClearInput.Name = "btnClearInput";
             this.btnClearInput.Size = new System.Drawing.Size(129, 30);
             this.btnClearInput.StyleController = this.xLayoutControl1;
-            this.btnClearInput.TabIndex = 28;
+            this.btnClearInput.TabIndex = 9;
             this.btnClearInput.Text = "CLEAR";
             this.btnClearInput.Click += new System.EventHandler(this.btnClearInput_Click);
             // 
@@ -292,7 +292,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.gcLocation.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1});
             this.gcLocation.Size = new System.Drawing.Size(846, 153);
-            this.gcLocation.TabIndex = 24;
+            this.gcLocation.TabIndex = 10;
+            this.gcLocation.TabStop = false;
             this.gcLocation.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvLocation});
             // 
@@ -364,7 +365,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.btnClearRow.Name = "btnClearRow";
             this.btnClearRow.Size = new System.Drawing.Size(129, 30);
             this.btnClearRow.StyleController = this.xLayoutControl1;
-            this.btnClearRow.TabIndex = 10;
+            this.btnClearRow.TabIndex = 12;
             this.btnClearRow.Text = "CLEAR";
             this.btnClearRow.Click += new System.EventHandler(this.btnClearRow_Click);
             // 
@@ -377,7 +378,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.btnDeleteRow.Name = "btnDeleteRow";
             this.btnDeleteRow.Size = new System.Drawing.Size(129, 30);
             this.btnDeleteRow.StyleController = this.xLayoutControl1;
-            this.btnDeleteRow.TabIndex = 11;
+            this.btnDeleteRow.TabIndex = 13;
             this.btnDeleteRow.Text = "DELETE";
             this.btnDeleteRow.Click += new System.EventHandler(this.btnDeleteRow_Click);
             // 
@@ -416,7 +417,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(129, 30);
             this.btnAddItem.StyleController = this.xLayoutControl1;
-            this.btnAddItem.TabIndex = 9;
+            this.btnAddItem.TabIndex = 11;
             this.btnAddItem.Text = "SAVE";
             this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
             // 
@@ -549,6 +550,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.gvList.Name = "gvList";
             this.gvList.OptionsView.AllowCellMerge = true;
             this.gvList.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gvList_RowClick);
+            this.gvList.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gvList_CustomColumnDisplayText);
             // 
             // Root
             // 

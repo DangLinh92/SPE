@@ -149,7 +149,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 btnSave.Enabled = true;
             }
 
-            
+           
+
+
 
             base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_GOODS_RECEIPT_ISSUE.INIT", new string[] { "A_STOCK_INT_OUT_CODE", "A_DEPT_CODE", "A_STOCK_CODE", "A_INOUT" }, new string[] { ReceiptCode, Consts.DEPARTMENT, StockCode, INOUT });
             if (mResultDB.ReturnInt == 0)
@@ -202,12 +204,25 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     txtScanbarcode.Enabled = false;
                     dateReturnTime.Enabled = false;
                     gvLocation.OptionsBehavior.Editable = false;
+                    btnPrintReport.Enabled = false;
+                    gcLocation.Enabled = false;
                 }
                 else
                 {
+                    gcLocation.Enabled = true;
+                    btnPrintReport.Enabled = true;
                     txtScanbarcode.Enabled = true;
                     txtPriceVN.Enabled = false;
                     txtScanbarcode.Focus();
+                }
+
+                if ((Mode == Consts.MODE_UPDATE || Mode == Consts.MODE_DELETE) && cboStatus.SelectedItem.NullString() == Consts.STATUS_COMPLETE)
+                {
+                    cboStatus.Enabled = false;
+                }
+                else
+                {
+                    cboStatus.Enabled = true;
                 }
             }
         }
@@ -281,7 +296,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                         Data.Rows.Add(row);
                     }
-
                     base.mBindData.BindGridView(gcList, Data);
                     FormatGridColumn();
                 }
@@ -416,17 +430,19 @@ namespace Wisol.MES.Forms.CONTENT.POP
             gvList.Columns["STATUS"].Visible = false;
             gvList.Columns["TYPE_IN_OUT_CODE"].Visible = false;
 
-            gvList.Columns["AMOUNT_VN"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            gvList.Columns["AMOUNT_VN"].DisplayFormat.FormatString = "c2";
+            #region format column
+            //gvList.Columns["PRICE_VN"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            //gvList.Columns["PRICE_VN"].DisplayFormat.FormatString = "c2";
 
-            gvList.Columns["AMOUNT_US"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            gvList.Columns["AMOUNT_US"].DisplayFormat.FormatString = "c2";
+            //gvList.Columns["PRICE_US"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            //gvList.Columns["PRICE_US"].DisplayFormat.FormatString = "c2";
 
-            gvList.Columns["PRICE_VN"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            gvList.Columns["PRICE_VN"].DisplayFormat.FormatString = "c2";
+            //gvList.Columns["AMOUNT_VN"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            //gvList.Columns["AMOUNT_VN"].DisplayFormat.FormatString = "c2";
 
-            gvList.Columns["PRICE_US"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            gvList.Columns["PRICE_US"].DisplayFormat.FormatString = "c2";
+            //gvList.Columns["AMOUNT_US"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            //gvList.Columns["AMOUNT_US"].DisplayFormat.FormatString = "c2";
+            #endregion
 
             if (isExport)
             {
@@ -710,6 +726,11 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
+                if(Mode == Consts.MODE_NEW)
+                {
+                    return;
+                }
+
                 DialogResult dialogResult = MsgBox.Show("MSG_COM_015".Translation(), MsgType.Warning, DialogType.OkCancel);
                 if (dialogResult == DialogResult.OK)
                 {
@@ -944,6 +965,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
+                if (INOUT == Consts.IN)
+                    return;
+
                 if (Data.Rows.Count == 0 ||
                     string.IsNullOrEmpty(stlKho.EditValue.NullString()) ||
                     string.IsNullOrEmpty(dateInput.EditValue.NullString()) ||
@@ -957,7 +981,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 STOCK_OUT_DATA_SOURCE source = new STOCK_OUT_DATA_SOURCE();
                 source.lstReport = new List<STOCK_OUT_REPORT>();
 
-               
+
 
                 foreach (DataRow row in Data.Rows)
                 {
@@ -972,7 +996,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         reportModel.UserCreate = txtUserCreate.EditValue.NullString();
 
                         reportModel.ID = row["SPARE_PART_CODE"].NullString();
-                        reportModel.Name = SparePartData.Select("CODE = '" + reportModel.ID+"'").FirstOrDefault()["NAME_VI"].NullString();
+                        reportModel.Name = SparePartData.Select("CODE = '" + reportModel.ID + "'").FirstOrDefault()["NAME_VI"].NullString();
                         reportModel.Unit = row["UNIT"].NullString();
 
                         reportModel.Quantity = item.Split('_')[1].NullString();
@@ -992,6 +1016,37 @@ namespace Wisol.MES.Forms.CONTENT.POP
             catch (Exception ex)
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void gvList_CustomColumnDisplayText(object sender, CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column.FieldName == "PRICE_VN" && e.ListSourceRowIndex != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+            {
+                float price = float.Parse(e.Value.NullString());
+                e.DisplayText = string.Format(new CultureInfo("en-US"), "{0:c}", price);
+
+            }
+            else
+            if (e.Column.FieldName == "PRICE_US" && e.ListSourceRowIndex != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+            {
+                float price = float.Parse(e.Value.NullString());
+                e.DisplayText = string.Format(new CultureInfo("en-US"), "{0:c}", price);
+
+            }
+            else
+            if (e.Column.FieldName == "AMOUNT_VN" && e.ListSourceRowIndex != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+            {
+                float price = float.Parse(e.Value.NullString());
+                e.DisplayText = string.Format(new CultureInfo("en-US"), "{0:c}", price);
+
+            }
+            else
+            if (e.Column.FieldName == "AMOUNT_US" && e.ListSourceRowIndex != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+            {
+                float price = float.Parse(e.Value.NullString());
+                e.DisplayText = string.Format(new CultureInfo("en-US"), "{0:c}", price);
+
             }
         }
     }
