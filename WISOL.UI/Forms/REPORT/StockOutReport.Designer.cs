@@ -33,7 +33,14 @@ namespace Wisol.MES.Forms.REPORT
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
@@ -58,9 +65,6 @@ namespace Wisol.MES.Forms.REPORT
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
-            this.GroupHeader2 = new DevExpress.XtraReports.UI.GroupHeaderBand();
-            this.xrControlStyle2 = new DevExpress.XtraReports.UI.XRControlStyle();
-            this.xrControlStyle3 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -69,22 +73,17 @@ namespace Wisol.MES.Forms.REPORT
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
-            this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
+            this.GroupHeader2 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrControlStyle2 = new DevExpress.XtraReports.UI.XRControlStyle();
+            this.xrControlStyle3 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
             this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.defaultBarAndDockingController1.Controller)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -103,16 +102,91 @@ namespace Wisol.MES.Forms.REPORT
             this.Detail.HeightF = 25F;
             this.Detail.Name = "Detail";
             // 
-            // xrLabel11
+            // xrTable2
             // 
-            this.xrLabel11.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Cause]")});
-            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(146.875F, 73.20838F);
-            this.xrLabel11.Multiline = true;
-            this.xrLabel11.Name = "xrLabel11";
-            this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel11.SizeF = new System.Drawing.SizeF(100F, 23F);
-            this.xrLabel11.Text = "xrLabel11";
+            this.xrTable2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTable2.EvenStyleName = "xrControlStyle1";
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(46.875F, 0F);
+            this.xrTable2.Name = "xrTable2";
+            this.xrTable2.OddStyleName = "xrControlStyle2";
+            this.xrTable2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrTableRow2});
+            this.xrTable2.SizeF = new System.Drawing.SizeF(600F, 25F);
+            this.xrTable2.StyleName = "xrControlStyle2";
+            this.xrTable2.StylePriority.UseBorders = false;
+            this.xrTable2.StylePriority.UseTextAlignment = false;
+            this.xrTable2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // xrTableRow2
+            // 
+            this.xrTableRow2.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell7,
+            this.xrTableCell8,
+            this.xrTableCell9,
+            this.xrTableCell10,
+            this.xrTableCell11,
+            this.xrTableCell12});
+            this.xrTableRow2.Name = "xrTableRow2";
+            this.xrTableRow2.StylePriority.UseBorders = false;
+            this.xrTableRow2.Weight = 1D;
+            // 
+            // xrTableCell7
+            // 
+            this.xrTableCell7.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ID]")});
+            this.xrTableCell7.Multiline = true;
+            this.xrTableCell7.Name = "xrTableCell7";
+            this.xrTableCell7.Text = "xrTableCell7";
+            this.xrTableCell7.Weight = 1D;
+            // 
+            // xrTableCell8
+            // 
+            this.xrTableCell8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Name]")});
+            this.xrTableCell8.Multiline = true;
+            this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.Text = "xrTableCell8";
+            this.xrTableCell8.Weight = 1D;
+            // 
+            // xrTableCell9
+            // 
+            this.xrTableCell9.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Quantity]")});
+            this.xrTableCell9.Multiline = true;
+            this.xrTableCell9.Name = "xrTableCell9";
+            this.xrTableCell9.Text = "xrTableCell9";
+            this.xrTableCell9.Weight = 1D;
+            // 
+            // xrTableCell10
+            // 
+            this.xrTableCell10.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Unit]")});
+            this.xrTableCell10.Multiline = true;
+            this.xrTableCell10.Name = "xrTableCell10";
+            this.xrTableCell10.Text = "xrTableCell10";
+            this.xrTableCell10.Weight = 1D;
+            // 
+            // xrTableCell11
+            // 
+            this.xrTableCell11.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Condition]")});
+            this.xrTableCell11.Multiline = true;
+            this.xrTableCell11.Name = "xrTableCell11";
+            this.xrTableCell11.Text = "xrTableCell11";
+            this.xrTableCell11.Weight = 1D;
+            // 
+            // xrTableCell12
+            // 
+            this.xrTableCell12.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Location]")});
+            this.xrTableCell12.Multiline = true;
+            this.xrTableCell12.Name = "xrTableCell12";
+            this.xrTableCell12.Text = "xrTableCell12";
+            this.xrTableCell12.Weight = 1D;
             // 
             // xrLabel10
             // 
@@ -351,34 +425,6 @@ namespace Wisol.MES.Forms.REPORT
             this.GroupHeader1.HeightF = 25.04177F;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
-            // GroupHeader2
-            // 
-            this.GroupHeader2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel21,
-            this.xrLabel20,
-            this.xrLabel11,
-            this.xrLabel10,
-            this.xrLabel8,
-            this.xrLabel9});
-            this.GroupHeader2.HeightF = 137.5F;
-            this.GroupHeader2.Level = 1;
-            this.GroupHeader2.Name = "GroupHeader2";
-            // 
-            // xrControlStyle2
-            // 
-            this.xrControlStyle2.BackColor = System.Drawing.Color.OldLace;
-            this.xrControlStyle2.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
-            this.xrControlStyle2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right)));
-            this.xrControlStyle2.BorderWidth = 1F;
-            this.xrControlStyle2.Name = "xrControlStyle2";
-            this.xrControlStyle2.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.xrControlStyle2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
-            // xrControlStyle3
-            // 
-            this.xrControlStyle3.Name = "xrControlStyle3";
-            this.xrControlStyle3.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            // 
             // xrTable1
             // 
             this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(46.875F, 0F);
@@ -478,91 +524,26 @@ namespace Wisol.MES.Forms.REPORT
             this.xrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell6.Weight = 1.6238292844918729D;
             // 
-            // xrTable2
+            // GroupHeader2
             // 
-            this.xrTable2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTable2.EvenStyleName = "xrControlStyle1";
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(46.875F, 0F);
-            this.xrTable2.Name = "xrTable2";
-            this.xrTable2.OddStyleName = "xrControlStyle2";
-            this.xrTable2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.xrTableRow2});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(600F, 25F);
-            this.xrTable2.StyleName = "xrControlStyle2";
-            this.xrTable2.StylePriority.UseBorders = false;
-            this.xrTable2.StylePriority.UseTextAlignment = false;
-            this.xrTable2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.GroupHeader2.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel21,
+            this.xrLabel20,
+            this.xrLabel10,
+            this.xrLabel8,
+            this.xrLabel9});
+            this.GroupHeader2.HeightF = 137.5F;
+            this.GroupHeader2.Level = 1;
+            this.GroupHeader2.Name = "GroupHeader2";
             // 
-            // xrTableRow2
+            // xrLabel21
             // 
-            this.xrTableRow2.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell7,
-            this.xrTableCell8,
-            this.xrTableCell9,
-            this.xrTableCell10,
-            this.xrTableCell11,
-            this.xrTableCell12});
-            this.xrTableRow2.Name = "xrTableRow2";
-            this.xrTableRow2.StylePriority.UseBorders = false;
-            this.xrTableRow2.Weight = 1D;
-            // 
-            // xrTableCell7
-            // 
-            this.xrTableCell7.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ID]")});
-            this.xrTableCell7.Multiline = true;
-            this.xrTableCell7.Name = "xrTableCell7";
-            this.xrTableCell7.Text = "xrTableCell7";
-            this.xrTableCell7.Weight = 1D;
-            // 
-            // xrTableCell8
-            // 
-            this.xrTableCell8.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Name]")});
-            this.xrTableCell8.Multiline = true;
-            this.xrTableCell8.Name = "xrTableCell8";
-            this.xrTableCell8.Text = "xrTableCell8";
-            this.xrTableCell8.Weight = 1D;
-            // 
-            // xrTableCell9
-            // 
-            this.xrTableCell9.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Quantity]")});
-            this.xrTableCell9.Multiline = true;
-            this.xrTableCell9.Name = "xrTableCell9";
-            this.xrTableCell9.Text = "xrTableCell9";
-            this.xrTableCell9.Weight = 1D;
-            // 
-            // xrTableCell10
-            // 
-            this.xrTableCell10.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Unit]")});
-            this.xrTableCell10.Multiline = true;
-            this.xrTableCell10.Name = "xrTableCell10";
-            this.xrTableCell10.Text = "xrTableCell10";
-            this.xrTableCell10.Weight = 1D;
-            // 
-            // xrTableCell11
-            // 
-            this.xrTableCell11.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Condition]")});
-            this.xrTableCell11.Multiline = true;
-            this.xrTableCell11.Name = "xrTableCell11";
-            this.xrTableCell11.Text = "xrTableCell11";
-            this.xrTableCell11.Weight = 1D;
-            // 
-            // xrTableCell12
-            // 
-            this.xrTableCell12.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Location]")});
-            this.xrTableCell12.Multiline = true;
-            this.xrTableCell12.Name = "xrTableCell12";
-            this.xrTableCell12.Text = "xrTableCell12";
-            this.xrTableCell12.Weight = 1D;
+            this.xrLabel21.LocationFloat = new DevExpress.Utils.PointFloat(347.6738F, 21.45834F);
+            this.xrLabel21.Multiline = true;
+            this.xrLabel21.Name = "xrLabel21";
+            this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel21.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel21.Text = "Bộ Phận:";
             // 
             // xrLabel20
             // 
@@ -573,14 +554,20 @@ namespace Wisol.MES.Forms.REPORT
             this.xrLabel20.SizeF = new System.Drawing.SizeF(100F, 23F);
             this.xrLabel20.Text = "Kho:";
             // 
-            // xrLabel21
+            // xrControlStyle2
             // 
-            this.xrLabel21.LocationFloat = new DevExpress.Utils.PointFloat(347.6738F, 21.45834F);
-            this.xrLabel21.Multiline = true;
-            this.xrLabel21.Name = "xrLabel21";
-            this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel21.SizeF = new System.Drawing.SizeF(100F, 23F);
-            this.xrLabel21.Text = "Bộ Phận:";
+            this.xrControlStyle2.BackColor = System.Drawing.Color.OldLace;
+            this.xrControlStyle2.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
+            this.xrControlStyle2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right)));
+            this.xrControlStyle2.BorderWidth = 1F;
+            this.xrControlStyle2.Name = "xrControlStyle2";
+            this.xrControlStyle2.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.xrControlStyle2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // xrControlStyle3
+            // 
+            this.xrControlStyle3.Name = "xrControlStyle3";
+            this.xrControlStyle3.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             // 
             // objectDataSource1
             // 
@@ -600,7 +587,7 @@ namespace Wisol.MES.Forms.REPORT
             this.xrLabel22.LocationFloat = new DevExpress.Utils.PointFloat(41.66667F, 0F);
             this.xrLabel22.Multiline = true;
             this.xrLabel22.Name = "xrLabel22";
-            this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel22.SizeF = new System.Drawing.SizeF(598.3332F, 23F);
             this.xrLabel22.StylePriority.UseFont = false;
             this.xrLabel22.StylePriority.UseTextAlignment = false;
@@ -627,9 +614,9 @@ namespace Wisol.MES.Forms.REPORT
             this.xrControlStyle2,
             this.xrControlStyle3});
             this.Version = "21.1";
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.defaultBarAndDockingController1.Controller)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -652,7 +639,6 @@ namespace Wisol.MES.Forms.REPORT
         private DevExpress.XtraReports.UI.XRLabel xrLabel9;
         private DevExpress.XtraReports.UI.XRLabel xrLabel8;
         private DevExpress.XtraReports.UI.XRLabel xrLabel10;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel11;
         private DevExpress.XtraReports.UI.XRControlStyle xrControlStyle1;
         private DevExpress.XtraReports.UI.ReportFooterBand ReportFooter;
         private DevExpress.XtraReports.UI.XRLabel xrLabel12;

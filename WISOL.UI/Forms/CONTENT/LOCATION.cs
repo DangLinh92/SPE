@@ -631,8 +631,8 @@ namespace Wisol.MES.Forms.CONTENT
                 foreach (XtraReport report in reports)
                 {
                     ReportPrintTool pts = new ReportPrintTool(report);
-                    pts.ShowPreview();
-                    //pts.Print();
+                    //pts.ShowPreview();
+                    pts.Print();
                 }
             }
             catch (Exception ex)
