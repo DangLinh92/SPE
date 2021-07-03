@@ -32,15 +32,18 @@ namespace Wisol.MES.Forms.CONTENT
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LOCATION));
             this.xLayoutControl1 = new Wisol.XLayoutControl();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.cboFilterSparepart = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.txtSearchNoLocation = new DevExpress.XtraEditors.SearchControl();
+            this.gcListNoPosition = new Wisol.XGridControl();
+            this.gvListNoPosition = new Wisol.XGridView();
             this.btnSaveFileTemp = new Wisol.XSimpleButton(this.components);
             this.txtSTT = new Wisol.XTextEdit();
             this.btnImport = new Wisol.XSimpleButton(this.components);
             this.btnGetFileTemp = new Wisol.XSimpleButton(this.components);
             this.btnPrintLabel = new Wisol.XSimpleButton(this.components);
             this.separatorControl5 = new DevExpress.XtraEditors.SeparatorControl();
-            this.gcListNoPosition = new Wisol.XGridControl();
-            this.gvListNoPosition = new Wisol.XGridView();
-            this.txtSearchNoLocation = new DevExpress.XtraEditors.SearchControl();
             this.txtSearch = new DevExpress.XtraEditors.SearchControl();
             this.gcList = new Wisol.XGridControl();
             this.gvList = new Wisol.XGridView();
@@ -77,6 +80,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.loSquareNumber = new DevExpress.XtraLayout.LayoutControlItem();
             this.s = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -108,17 +112,16 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.xtraOpenFileDialog1 = new DevExpress.XtraEditors.XtraOpenFileDialog(this.components);
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.cboFilterSparepart = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSTT.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.separatorControl5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboFilterSparepart.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearchNoLocation.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcListNoPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvListNoPosition)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSearchNoLocation.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSTT.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
@@ -149,6 +152,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loSquareNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.s)).BeginInit();
@@ -179,10 +183,6 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.loSTT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboFilterSparepart.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xLayoutControl1
@@ -227,6 +227,75 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl1.Size = new System.Drawing.Size(1611, 850);
             this.xLayoutControl1.TabIndex = 0;
             this.xLayoutControl1.Text = "xLayoutControl1";
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.labelControl1);
+            this.panelControl1.Controls.Add(this.cboFilterSparepart);
+            this.panelControl1.Controls.Add(this.txtSearchNoLocation);
+            this.panelControl1.Location = new System.Drawing.Point(287, 45);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(877, 25);
+            this.panelControl1.TabIndex = 78;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(9, 5);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(40, 13);
+            this.labelControl1.TabIndex = 66;
+            this.labelControl1.Text = "SEARCH";
+            // 
+            // cboFilterSparepart
+            // 
+            this.cboFilterSparepart.Location = new System.Drawing.Point(232, 2);
+            this.cboFilterSparepart.Name = "cboFilterSparepart";
+            this.cboFilterSparepart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboFilterSparepart.Properties.Items.AddRange(new object[] {
+            "Thiết bị đã có vị trí",
+            "Thiết bị đang chờ",
+            "Tất cả thiết bị"});
+            this.cboFilterSparepart.Size = new System.Drawing.Size(166, 20);
+            this.cboFilterSparepart.TabIndex = 65;
+            this.cboFilterSparepart.SelectedIndexChanged += new System.EventHandler(this.cboFilterSparepart_SelectedIndexChanged);
+            // 
+            // txtSearchNoLocation
+            // 
+            this.txtSearchNoLocation.Client = this.gcListNoPosition;
+            this.txtSearchNoLocation.Location = new System.Drawing.Point(55, 3);
+            this.txtSearchNoLocation.Name = "txtSearchNoLocation";
+            this.txtSearchNoLocation.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Repository.ClearButton(),
+            new DevExpress.XtraEditors.Repository.SearchButton()});
+            this.txtSearchNoLocation.Properties.Client = this.gcListNoPosition;
+            this.txtSearchNoLocation.Properties.NullValuePrompt = "Enter location code to search...";
+            this.txtSearchNoLocation.Size = new System.Drawing.Size(160, 20);
+            this.txtSearchNoLocation.TabIndex = 64;
+            this.txtSearchNoLocation.QueryIsSearchColumn += new DevExpress.XtraEditors.QueryIsSearchColumnEventHandler(this.txtSearchNoLocation_QueryIsSearchColumn);
+            // 
+            // gcListNoPosition
+            // 
+            this.gcListNoPosition.Location = new System.Drawing.Point(287, 74);
+            this.gcListNoPosition.MainView = this.gvListNoPosition;
+            this.gcListNoPosition.Name = "gcListNoPosition";
+            this.gcListNoPosition.Size = new System.Drawing.Size(877, 742);
+            this.gcListNoPosition.TabIndex = 65;
+            this.gcListNoPosition.UseEmbeddedNavigator = true;
+            this.gcListNoPosition.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvListNoPosition});
+            // 
+            // gvListNoPosition
+            // 
+            this.gvListNoPosition.GridControl = this.gcListNoPosition;
+            this.gvListNoPosition.Name = "gvListNoPosition";
+            this.gvListNoPosition.OptionsScrollAnnotations.ShowFocusedRow = DevExpress.Utils.DefaultBoolean.True;
+            this.gvListNoPosition.OptionsScrollAnnotations.ShowSelectedRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gvListNoPosition.OptionsSelection.MultiSelect = true;
+            this.gvListNoPosition.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gvListNoPosition.OptionsSelection.ResetSelectionClickOutsideCheckboxSelector = true;
+            this.gvListNoPosition.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
+            this.gvListNoPosition.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gvListNoPosition_RowClick);
             // 
             // btnSaveFileTemp
             // 
@@ -302,43 +371,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.separatorControl5.Name = "separatorControl5";
             this.separatorControl5.Size = new System.Drawing.Size(131, 25);
             this.separatorControl5.TabIndex = 67;
-            // 
-            // gcListNoPosition
-            // 
-            this.gcListNoPosition.Location = new System.Drawing.Point(287, 74);
-            this.gcListNoPosition.MainView = this.gvListNoPosition;
-            this.gcListNoPosition.Name = "gcListNoPosition";
-            this.gcListNoPosition.Size = new System.Drawing.Size(877, 742);
-            this.gcListNoPosition.TabIndex = 65;
-            this.gcListNoPosition.UseEmbeddedNavigator = true;
-            this.gcListNoPosition.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvListNoPosition});
-            // 
-            // gvListNoPosition
-            // 
-            this.gvListNoPosition.GridControl = this.gcListNoPosition;
-            this.gvListNoPosition.Name = "gvListNoPosition";
-            this.gvListNoPosition.OptionsScrollAnnotations.ShowFocusedRow = DevExpress.Utils.DefaultBoolean.True;
-            this.gvListNoPosition.OptionsScrollAnnotations.ShowSelectedRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gvListNoPosition.OptionsSelection.MultiSelect = true;
-            this.gvListNoPosition.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
-            this.gvListNoPosition.OptionsSelection.ResetSelectionClickOutsideCheckboxSelector = true;
-            this.gvListNoPosition.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
-            this.gvListNoPosition.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.gvListNoPosition_RowClick);
-            // 
-            // txtSearchNoLocation
-            // 
-            this.txtSearchNoLocation.Client = this.gcListNoPosition;
-            this.txtSearchNoLocation.Location = new System.Drawing.Point(55, 3);
-            this.txtSearchNoLocation.Name = "txtSearchNoLocation";
-            this.txtSearchNoLocation.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Repository.ClearButton(),
-            new DevExpress.XtraEditors.Repository.SearchButton()});
-            this.txtSearchNoLocation.Properties.Client = this.gcListNoPosition;
-            this.txtSearchNoLocation.Properties.NullValuePrompt = "Enter location code to search...";
-            this.txtSearchNoLocation.Size = new System.Drawing.Size(160, 20);
-            this.txtSearchNoLocation.TabIndex = 64;
-            this.txtSearchNoLocation.QueryIsSearchColumn += new DevExpress.XtraEditors.QueryIsSearchColumnEventHandler(this.txtSearchNoLocation_QueryIsSearchColumn);
             // 
             // txtSearch
             // 
@@ -773,6 +805,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem30.TextSize = new System.Drawing.Size(123, 13);
             this.layoutControlItem30.TextToControlDistance = 5;
             // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.panelControl1;
+            this.layoutControlItem5.Location = new System.Drawing.Point(263, 0);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(881, 29);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
+            // 
             // layoutControlGroup4
             // 
             this.layoutControlGroup4.CustomizationFormText = "INPUT_DATA";
@@ -1081,47 +1122,6 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.xtraOpenFileDialog1.FileName = "xtraOpenFileDialog1";
             // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.labelControl1);
-            this.panelControl1.Controls.Add(this.cboFilterSparepart);
-            this.panelControl1.Controls.Add(this.txtSearchNoLocation);
-            this.panelControl1.Location = new System.Drawing.Point(287, 45);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(877, 25);
-            this.panelControl1.TabIndex = 78;
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.panelControl1;
-            this.layoutControlItem5.Location = new System.Drawing.Point(263, 0);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(881, 29);
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem5.TextVisible = false;
-            // 
-            // cboFilterSparepart
-            // 
-            this.cboFilterSparepart.Location = new System.Drawing.Point(232, 2);
-            this.cboFilterSparepart.Name = "cboFilterSparepart";
-            this.cboFilterSparepart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cboFilterSparepart.Properties.Items.AddRange(new object[] {
-            "Thiết bị đã có vị trí",
-            "Thiết bị đang chờ",
-            "Tất cả thiết bị"});
-            this.cboFilterSparepart.Size = new System.Drawing.Size(166, 20);
-            this.cboFilterSparepart.TabIndex = 65;
-            this.cboFilterSparepart.SelectedIndexChanged += new System.EventHandler(this.cboFilterSparepart_SelectedIndexChanged);
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Location = new System.Drawing.Point(9, 5);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(40, 13);
-            this.labelControl1.TabIndex = 66;
-            this.labelControl1.Text = "SEARCH";
-            // 
             // LOCATION
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1132,11 +1132,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.Controls.SetChildIndex(this.xLayoutControl1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).EndInit();
             this.xLayoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtSTT.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.separatorControl5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboFilterSparepart.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearchNoLocation.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcListNoPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvListNoPosition)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSearchNoLocation.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSTT.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
@@ -1167,6 +1171,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loSquareNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.s)).EndInit();
@@ -1197,11 +1202,6 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.loSTT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cboFilterSparepart.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -225,7 +225,7 @@ namespace Wisol.MES.Forms.CONTENT
                         gvListNoPosition.OptionsSelection.MultiSelect = true;
                         gvListNoPosition.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
                     }
-                   
+
                 }
             }
             catch (Exception ex)
@@ -577,7 +577,10 @@ namespace Wisol.MES.Forms.CONTENT
                         int numberLabel = int.Parse(Math.Ceiling(decimal.Parse(gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[5]).NullString())).NullString());
                         for (int j = 0; j < numberLabel; j++)
                         {
-                            xml_content = xml_content.Replace("$BARCODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[8]).NullString()).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[0]).NullString()).Replace("$NG_OK$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[3]).NullString());
+                            string position = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[0]).NullString();
+                            string condition = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[3]).NullString();
+                            string lblPosition_condition = position + (position == "" ? "" : ".") + (condition == "NG" ? "NG" : "");
+                            xml_content = xml_content.Replace("$BARCODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[8]).NullString()).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition);
 
                             xml_content = xml_content.Replace("&", "&amp;");
                             File.WriteAllText((i + 1).NullString() + designFile, xml_content);
@@ -735,7 +738,7 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 byte[] bytes;
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_FILE_TEMP.GET_FILE", new string[] { "A_FILENAME" }, new string[] { "EWIP_SPAREPART_LOCATION.xlsx" });
-                if(m_ResultDB.ReturnInt == 0)
+                if (m_ResultDB.ReturnInt == 0)
                 {
                     bytes = (byte[])base.m_ResultDB.ReturnDataSet.Tables[0].Rows[0]["Data"];
 
@@ -767,7 +770,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void cboFilterSparepart_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboFilterSparepart.SelectedIndex == 0) // Ton tai vi tri
+            if (cboFilterSparepart.SelectedIndex == 0) // Ton tai vi tri
             {
                 gvListNoPosition.ActiveFilterString = "[LOCATION] != '' AND [LOCATION] IS NOT NULL";
             }
