@@ -147,11 +147,11 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 cboStatus.Enabled = true;
                 btnClear.Enabled = true;
                 btnSave.Enabled = true;
+
+                
             }
 
-           
-
-
+            btnDelete.Enabled = Mode != Consts.MODE_NEW;
 
             base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_GOODS_RECEIPT_ISSUE.INIT", new string[] { "A_STOCK_INT_OUT_CODE", "A_DEPT_CODE", "A_STOCK_CODE", "A_INOUT" }, new string[] { ReceiptCode, Consts.DEPARTMENT, StockCode, INOUT });
             if (mResultDB.ReturnInt == 0)
@@ -590,6 +590,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 {
                     Data.Rows.Remove(checkRow);
                     base.mBindData.BindGridView(gcList, Data);
+                    FormatGridColumn();
                     ClearInputItemAdd();
                 }
             }
@@ -731,7 +732,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     return;
                 }
 
-                DialogResult dialogResult = MsgBox.Show("MSG_COM_015".Translation(), MsgType.Warning, DialogType.OkCancel);
+                DialogResult dialogResult = MsgBox.Show("MSG_COM_015".Translation(), MsgType.Warning, Components.DialogType.OkCancel);
                 if (dialogResult == DialogResult.OK)
                 {
                     if (string.IsNullOrEmpty(ReceiptCode))
@@ -952,7 +953,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             if (e.Column.FieldName == "QUANTITY_GET")
             {
-                e.Appearance.BackColor = Color.Red;
+                e.Appearance.BackColor = Color.LightSalmon;
             }
         }
 
