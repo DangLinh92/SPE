@@ -33,10 +33,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GOODS_RECEIPT));
             this.grcontrolGoodReceipt = new DevExpress.XtraEditors.GroupControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.xLayoutControl1 = new Wisol.XLayoutControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnClearInput = new Wisol.XSimpleButton(this.components);
             this.dateReturnTime = new Wisol.XDateEdit();
             this.stlType = new Wisol.AceGridLookUpEdit(this.components);
@@ -82,6 +85,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
             this.btnPrintReport = new Wisol.XSimpleButton(this.components);
             this.txtDelivererAndReceiver = new Wisol.XTextEdit();
@@ -154,6 +158,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).BeginInit();
             this.xLayoutControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDelivererAndReceiver.Properties)).BeginInit();
@@ -205,6 +210,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // xLayoutControl1
             // 
+            this.xLayoutControl1.Controls.Add(this.labelControl1);
             this.xLayoutControl1.Controls.Add(this.btnClearInput);
             this.xLayoutControl1.Controls.Add(this.dateReturnTime);
             this.xLayoutControl1.Controls.Add(this.stlType);
@@ -231,6 +237,24 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.xLayoutControl1.Size = new System.Drawing.Size(870, 788);
             this.xLayoutControl1.TabIndex = 0;
             this.xLayoutControl1.Text = "xLayoutControl1";
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Italic);
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Appearance.Options.UseForeColor = true;
+            this.labelControl1.Location = new System.Drawing.Point(12, 248);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(267, 13);
+            this.labelControl1.StyleController = this.xLayoutControl1;
+            toolTipItem1.Text = "QUANTITY_GET 상자에 위치별로 가져올 수량을 입력합니다.";
+            superToolTip1.Items.Add(toolTipItem1);
+            this.labelControl1.SuperTip = superToolTip1;
+            this.labelControl1.TabIndex = 28;
+            this.labelControl1.Text = "Nhập số lượng cần lấy theo vị trí vào ô QUANTITY_GET";
+            this.labelControl1.ToolTip = "QUANTITY_GET 상자에 위치별로 가져올 수량을 입력합니다.";
+            this.labelControl1.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             // 
             // btnClearInput
             // 
@@ -286,12 +310,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // gcLocation
             // 
-            this.gcLocation.Location = new System.Drawing.Point(12, 248);
+            this.gcLocation.Location = new System.Drawing.Point(12, 265);
             this.gcLocation.MainView = this.gvLocation;
             this.gcLocation.Name = "gcLocation";
             this.gcLocation.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1});
-            this.gcLocation.Size = new System.Drawing.Size(846, 153);
+            this.gcLocation.Size = new System.Drawing.Size(846, 136);
             this.gcLocation.TabIndex = 10;
             this.gcLocation.TabStop = false;
             this.gcLocation.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -302,8 +326,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.gvLocation.GridControl = this.gcLocation;
             this.gvLocation.Name = "gvLocation";
             this.gvLocation.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Inplace;
-            this.gvLocation.OptionsScrollAnnotations.ShowFocusedRow = DevExpress.Utils.DefaultBoolean.True;
-            this.gvLocation.OptionsScrollAnnotations.ShowSelectedRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gvLocation.OptionsScrollAnnotations.ShowFocusedRow = DevExpress.Utils.DefaultBoolean.False;
+            this.gvLocation.OptionsScrollAnnotations.ShowSelectedRows = DevExpress.Utils.DefaultBoolean.False;
             this.gvLocation.OptionsSelection.MultiSelect = true;
             this.gvLocation.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gvLocation.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
@@ -575,7 +599,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem3,
             this.layoutControlItem26,
             this.layoutControlItem11,
-            this.layoutControlItem25});
+            this.layoutControlItem25,
+            this.layoutControlItem30});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(870, 788);
             this.Root.TextVisible = false;
@@ -719,9 +744,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.gcLocation;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 236);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 253);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(850, 157);
+            this.layoutControlItem3.Size = new System.Drawing.Size(850, 140);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -751,6 +776,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem25.Size = new System.Drawing.Size(850, 34);
             this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem25.TextVisible = false;
+            // 
+            // layoutControlItem30
+            // 
+            this.layoutControlItem30.Control = this.labelControl1;
+            this.layoutControlItem30.Location = new System.Drawing.Point(0, 236);
+            this.layoutControlItem30.Name = "layoutControlItem30";
+            this.layoutControlItem30.Size = new System.Drawing.Size(850, 17);
+            this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem30.TextVisible = false;
             // 
             // xLayoutControl2
             // 
@@ -1097,6 +1131,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).EndInit();
             this.xLayoutControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtDelivererAndReceiver.Properties)).EndInit();
@@ -1200,5 +1235,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
         private XSimpleButton btnPrintReport;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem30;
     }
 }

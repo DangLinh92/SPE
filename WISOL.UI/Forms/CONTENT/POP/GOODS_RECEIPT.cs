@@ -203,7 +203,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     txtPriceVN.Enabled = true;
                     txtScanbarcode.Enabled = false;
                     dateReturnTime.Enabled = false;
-                    gvLocation.OptionsBehavior.Editable = false;
                     btnPrintReport.Enabled = false;
                     gcLocation.Enabled = false;
                 }
@@ -456,6 +455,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 gvList.Columns["RETURN_TIME"].Visible = false;
                 gvList.Columns["LOCATION"].Visible = false;
             }
+
+            this.gvList.OptionsView.ColumnAutoWidth = false;
+            this.gvList.BestFitColumns();
         }
 
         private void txtPriceVN_EditValueChanged(object sender, EventArgs e)
@@ -669,8 +671,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 if (Data.Rows.Count == 0 ||
                     string.IsNullOrEmpty(stlKho.EditValue.NullString()) ||
                     string.IsNullOrEmpty(dateInput.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(cboStatus.SelectedItem.NullString()) ||
-                    Data.Rows.Count == 0)
+                    string.IsNullOrEmpty(cboStatus.SelectedItem.NullString()))
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
@@ -878,6 +879,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         gvLocation.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
 
                         gvLocation.OptionsBehavior.Editable = true;
+                        gvLocation.Columns["LOCATION"].OptionsColumn.AllowEdit = false;
+                        gvLocation.Columns["CONDITION_CODE"].OptionsColumn.AllowEdit = false;
+                        gvLocation.Columns["QUANTITY"].OptionsColumn.AllowEdit = false;
+                        gvLocation.Columns["UNIT"].OptionsColumn.AllowEdit = false;
                     }
                     else
                     {
@@ -951,9 +956,16 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void gvLocation_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
-            if (e.Column.FieldName == "QUANTITY_GET")
+            try
             {
-                e.Appearance.BackColor = Color.LightSalmon;
+                if (e.Column.FieldName != "QUANTITY_GET")
+                {
+                    e.Appearance.BackColor = Color.LightGoldenrodYellow;
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
 
@@ -1012,7 +1024,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 report.DataSource = source.GetReport();
                 ReportPrintTool tool = new ReportPrintTool(report);
                 tool.ShowPreview();
-                tool.Print();
+                //tool.Print();
             }
             catch (Exception ex)
             {

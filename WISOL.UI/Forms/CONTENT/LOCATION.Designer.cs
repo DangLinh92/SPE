@@ -33,6 +33,10 @@ namespace Wisol.MES.Forms.CONTENT
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LOCATION));
             this.xLayoutControl1 = new Wisol.XLayoutControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnClearSearch = new DevExpress.XtraEditors.SimpleButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.stlSparePartSearch = new Wisol.AceGridLookUpEdit(this.components);
+            this.aceGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.cboFilterSparepart = new DevExpress.XtraEditors.ComboBoxEdit();
             this.txtSearchNoLocation = new DevExpress.XtraEditors.SearchControl();
@@ -116,6 +120,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stlSparePartSearch.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aceGridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboFilterSparepart.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchNoLocation.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcListNoPosition)).BeginInit();
@@ -230,6 +236,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnClearSearch);
+            this.panelControl1.Controls.Add(this.label1);
+            this.panelControl1.Controls.Add(this.stlSparePartSearch);
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.cboFilterSparepart);
             this.panelControl1.Controls.Add(this.txtSearchNoLocation);
@@ -237,6 +246,49 @@ namespace Wisol.MES.Forms.CONTENT
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(877, 25);
             this.panelControl1.TabIndex = 78;
+            // 
+            // btnClearSearch
+            // 
+            this.btnClearSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClearSearch.ImageOptions.Image")));
+            this.btnClearSearch.Location = new System.Drawing.Point(762, 2);
+            this.btnClearSearch.Name = "btnClearSearch";
+            this.btnClearSearch.Size = new System.Drawing.Size(110, 23);
+            this.btnClearSearch.TabIndex = 69;
+            this.btnClearSearch.Text = "CLEAR";
+            this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(408, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 13);
+            this.label1.TabIndex = 68;
+            this.label1.Text = "Tìm theo thiết bị";
+            // 
+            // stlSparePartSearch
+            // 
+            this.stlSparePartSearch.EditValue = "";
+            this.stlSparePartSearch.Location = new System.Drawing.Point(498, 3);
+            this.stlSparePartSearch.Name = "stlSparePartSearch";
+            this.stlSparePartSearch.Properties.Appearance.Options.UseTextOptions = true;
+            this.stlSparePartSearch.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.stlSparePartSearch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.stlSparePartSearch.Properties.ImmediatePopup = true;
+            this.stlSparePartSearch.Properties.NullText = "";
+            this.stlSparePartSearch.Properties.PopupView = this.aceGridLookUpEdit1View;
+            this.stlSparePartSearch.Size = new System.Drawing.Size(246, 20);
+            this.stlSparePartSearch.TabIndex = 67;
+            this.stlSparePartSearch.EditValueChanged += new System.EventHandler(this.stlSparePartSearch_EditValueChanged);
+            // 
+            // aceGridLookUpEdit1View
+            // 
+            this.aceGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.aceGridLookUpEdit1View.Name = "aceGridLookUpEdit1View";
+            this.aceGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.aceGridLookUpEdit1View.OptionsView.ShowAutoFilterRow = true;
+            this.aceGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
             // labelControl1
             // 
@@ -248,7 +300,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // cboFilterSparepart
             // 
-            this.cboFilterSparepart.Location = new System.Drawing.Point(232, 2);
+            this.cboFilterSparepart.Location = new System.Drawing.Point(226, 2);
             this.cboFilterSparepart.Name = "cboFilterSparepart";
             this.cboFilterSparepart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -284,6 +336,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.gcListNoPosition.UseEmbeddedNavigator = true;
             this.gcListNoPosition.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvListNoPosition});
+            this.gcListNoPosition.Click += new System.EventHandler(this.btnClearSearch_Click);
             // 
             // gvListNoPosition
             // 
@@ -362,7 +415,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.btnPrintLabel.Size = new System.Drawing.Size(129, 30);
             this.btnPrintLabel.StyleController = this.xLayoutControl1;
             this.btnPrintLabel.TabIndex = 20;
-            this.btnPrintLabel.Text = "PRINT";
+            this.btnPrintLabel.Text = "PRINT LABEL";
             this.btnPrintLabel.Click += new System.EventHandler(this.btnPrintLabel_Click);
             // 
             // separatorControl5
@@ -1135,6 +1188,8 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stlSparePartSearch.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aceGridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboFilterSparepart.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchNoLocation.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcListNoPosition)).EndInit();
@@ -1290,5 +1345,9 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraEditors.ComboBoxEdit cboFilterSparepart;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private System.Windows.Forms.Label label1;
+        private AceGridLookUpEdit stlSparePartSearch;
+        private DevExpress.XtraGrid.Views.Grid.GridView aceGridLookUpEdit1View;
+        private DevExpress.XtraEditors.SimpleButton btnClearSearch;
     }
 }

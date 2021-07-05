@@ -55,6 +55,7 @@ namespace Wisol.MES.Forms.CONTENT
                     base.m_BindData.BindGridLookEdit(stlCondition, base.m_ResultDB.ReturnDataSet.Tables[2], "CODE", "NAME");
                     base.m_BindData.BindGridLookEdit(stlUnit, base.m_ResultDB.ReturnDataSet.Tables[3], "CODE", "NAME");
                     base.m_BindData.BindGridLookEdit(stlSparepart, base.m_ResultDB.ReturnDataSet.Tables[4], "CODE", "NAME_VI");
+                    base.m_BindData.BindGridLookEdit(stlSparePartSearch, base.m_ResultDB.ReturnDataSet.Tables[4], "CODE", "NAME_VI");
 
                     string firstValue = base.m_ResultDB.ReturnDataSet.Tables[1].Rows[0]["CODE"].NullString();
                     stlKho.EditValue = firstValue;
@@ -782,6 +783,50 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 gvListNoPosition.ActiveFilter.Clear();
             }
+        }
+
+        private void stlSparePartSearch_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(stlSparePartSearch.EditValue.NullString()))
+                {
+                    txtSearchNoLocation.EditValue = null;
+                    cboFilterSparepart.EditValue = null;
+                    stlSparePartSearch.EditValue = null;
+                    ViewLocation();
+                    return;
+                }
+
+                txtSearchNoLocation.EditValue = null;
+                cboFilterSparepart.EditValue = null;
+
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.GET_LOCATION_BY_SPAREPART",
+                      new string[] { "A_STOCK_CODE", "A_DEPT_CODE", "A_SPARE_PART_CODE", "A_UNIT" },
+                      new string[] { stlKho.EditValue.NullString(), Consts.DEPARTMENT, stlSparePartSearch.EditValue.NullString(), "PACK" });
+
+                if (m_ResultDB.ReturnInt == 0)
+                {
+                    base.m_BindData.BindGridView(gcListNoPosition, base.m_ResultDB.ReturnDataSet.Tables[0]);
+                    gvListNoPosition.Columns["QUANTITY_GET"].Visible = false;
+                }
+                else
+                {
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            txtSearchNoLocation.EditValue = null;
+            cboFilterSparepart.EditValue = null;
+            stlSparePartSearch.EditValue = null;
+            ViewLocation();
         }
     }
 }

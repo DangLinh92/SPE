@@ -82,14 +82,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.loQuantity = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.loQuantityReal = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -154,14 +154,14 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loQuantityReal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
@@ -519,6 +519,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.dateInputReal.EditValue = null;
             this.dateInputReal.Location = new System.Drawing.Point(97, 448);
             this.dateInputReal.Name = "dateInputReal";
+            this.dateInputReal.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+            this.dateInputReal.Properties.Appearance.Options.UseForeColor = true;
             this.dateInputReal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateInputReal.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -594,6 +596,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // separatorControl1
             // 
+            this.separatorControl1.BackColor = System.Drawing.Color.Transparent;
             this.separatorControl1.Location = new System.Drawing.Point(175, 352);
             this.separatorControl1.Name = "separatorControl1";
             this.separatorControl1.Size = new System.Drawing.Size(232, 20);
@@ -799,14 +802,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.emptySpaceItem1,
-            this.layoutControlItem2,
+            this.loQuantity,
             this.layoutControlItem3,
             this.layoutControlItem4,
             this.layoutControlItem6,
             this.layoutControlItem7,
             this.layoutControlItem8,
             this.layoutControlItem13,
-            this.layoutControlItem14,
+            this.loQuantityReal,
             this.layoutControlItem17,
             this.layoutControlItem18,
             this.layoutControlItem19,
@@ -840,14 +843,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.emptySpaceItem1.Size = new System.Drawing.Size(399, 188);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // layoutControlItem2
+            // loQuantity
             // 
-            this.layoutControlItem2.Control = this.txtQuantity;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 86);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(399, 24);
-            this.layoutControlItem2.Text = "QUANTITY";
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(82, 13);
+            this.loQuantity.Control = this.txtQuantity;
+            this.loQuantity.Location = new System.Drawing.Point(0, 86);
+            this.loQuantity.Name = "loQuantity";
+            this.loQuantity.Size = new System.Drawing.Size(399, 24);
+            this.loQuantity.Text = "QUANTITY";
+            this.loQuantity.TextSize = new System.Drawing.Size(82, 13);
             // 
             // layoutControlItem3
             // 
@@ -903,14 +906,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem13.Text = "Image";
             this.layoutControlItem13.TextSize = new System.Drawing.Size(82, 13);
             // 
-            // layoutControlItem14
+            // loQuantityReal
             // 
-            this.layoutControlItem14.Control = this.txtQuantityReal;
-            this.layoutControlItem14.Location = new System.Drawing.Point(0, 110);
-            this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(399, 24);
-            this.layoutControlItem14.Text = "QUANTITY_REAL";
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(82, 13);
+            this.loQuantityReal.Control = this.txtQuantityReal;
+            this.loQuantityReal.Location = new System.Drawing.Point(0, 110);
+            this.loQuantityReal.Name = "loQuantityReal";
+            this.loQuantityReal.Size = new System.Drawing.Size(399, 24);
+            this.loQuantityReal.Text = "QUANTITY_REAL";
+            this.loQuantityReal.TextSize = new System.Drawing.Size(82, 13);
             // 
             // layoutControlItem17
             // 
@@ -974,7 +977,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem22.Location = new System.Drawing.Point(0, 436);
             this.layoutControlItem22.Name = "layoutControlItem22";
             this.layoutControlItem22.Size = new System.Drawing.Size(399, 24);
-            this.layoutControlItem22.Text = "DATE";
+            this.layoutControlItem22.Text = "DAY-MONTH";
             this.layoutControlItem22.TextSize = new System.Drawing.Size(82, 13);
             // 
             // layoutControlItem23
@@ -1083,14 +1086,14 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loQuantityReal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
@@ -1124,7 +1127,7 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraGrid.Views.Grid.GridView aceGridLookUpEdit1View;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraLayout.LayoutControlItem loQuantity;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private XTextEdit txtMinStock;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
@@ -1148,7 +1151,7 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraEditors.PictureEdit img;
         private XTextEdit txtQuantityReal;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
+        private DevExpress.XtraLayout.LayoutControlItem loQuantityReal;
         private DevExpress.XtraEditors.DateEdit dateTo;
         private DevExpress.XtraEditors.DateEdit dateFrom;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;

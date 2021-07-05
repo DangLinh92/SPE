@@ -58,10 +58,12 @@ namespace Wisol.MES.Forms.CONTENT
                     gvList.Columns["RATE_ALARM"].Visible = false;
                 }
 
-                radioInputType.SelectedIndex = 0;
+                radioInputType.SelectedIndex = 1;
                 cboReportType.SelectedIndex = 0;
                 cboFilter.SelectedIndex = 0;
                 dateInputReal.EditValue = DateTime.Now;
+                radioInputType.Enabled = false;
+                txtRateAlarm.EditValue = 20;
 
             }
             catch (Exception ex)
@@ -109,6 +111,11 @@ namespace Wisol.MES.Forms.CONTENT
                 txtQuantityReal.EditValue = null;
                 txtQuantity.Enabled = false;
                 txtQuantityReal.Enabled = false;
+                txtQuantity.Visible = false;
+                txtQuantityReal.Visible = false;
+                loQuantityReal.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                loQuantity.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
                 txtMinStock.Enabled = true;
                 txtRateAlarm.Enabled = true;
             }
@@ -127,13 +134,13 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void ClearData()
         {
-            radioInputType.SelectedIndex = 0;
+            radioInputType.SelectedIndex = 1;
             stlSpare.EditValue = null;
             txtQuantity.EditValue = null;
             txtQuantityReal.EditValue = null;
             stlUnit.EditValue = null;
             txtMinStock.EditValue = null;
-            txtRateAlarm.EditValue = null;
+            txtRateAlarm.EditValue = 20;
             img.EditValue = null;
         }
 
