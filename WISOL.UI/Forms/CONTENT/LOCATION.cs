@@ -798,22 +798,8 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-                txtSearchNoLocation.EditValue = null;
-                cboFilterSparepart.EditValue = null;
-
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.GET_LOCATION_BY_SPAREPART",
-                      new string[] { "A_STOCK_CODE", "A_DEPT_CODE", "A_SPARE_PART_CODE", "A_UNIT" },
-                      new string[] { stlKho.EditValue.NullString(), Consts.DEPARTMENT, stlSparePartSearch.EditValue.NullString(), "PACK" });
-
-                if (m_ResultDB.ReturnInt == 0)
-                {
-                    base.m_BindData.BindGridView(gcListNoPosition, base.m_ResultDB.ReturnDataSet.Tables[0]);
-                    gvListNoPosition.Columns["QUANTITY_GET"].Visible = false;
-                }
-                else
-                {
-                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
-                }
+                gvListNoPosition.ActiveFilter.Clear();
+                gvListNoPosition.ActiveFilterString = "[SPARE_PART_CODE] = '" + stlSparePartSearch.EditValue.NullString()+"'";
             }
             catch (Exception ex)
             {

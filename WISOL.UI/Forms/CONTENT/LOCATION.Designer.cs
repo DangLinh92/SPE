@@ -336,7 +336,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.gcListNoPosition.UseEmbeddedNavigator = true;
             this.gcListNoPosition.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvListNoPosition});
-            this.gcListNoPosition.Click += new System.EventHandler(this.btnClearSearch_Click);
             // 
             // gvListNoPosition
             // 
