@@ -519,7 +519,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.dateInputReal.EditValue = null;
             this.dateInputReal.Location = new System.Drawing.Point(97, 448);
             this.dateInputReal.Name = "dateInputReal";
-            this.dateInputReal.Properties.Appearance.ForeColor = System.Drawing.Color.White;
+            this.dateInputReal.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
             this.dateInputReal.Properties.Appearance.Options.UseForeColor = true;
             this.dateInputReal.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -1019,7 +1019,6 @@ namespace Wisol.MES.Forms.CONTENT
             // layoutControlItem27
             // 
             this.layoutControlItem27.Control = this.txtQuantityByTime;
-            this.layoutControlItem27.Enabled = false;
             this.layoutControlItem27.Location = new System.Drawing.Point(0, 460);
             this.layoutControlItem27.Name = "layoutControlItem27";
             this.layoutControlItem27.Size = new System.Drawing.Size(399, 24);

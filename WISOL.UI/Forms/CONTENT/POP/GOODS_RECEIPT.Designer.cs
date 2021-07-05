@@ -33,13 +33,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GOODS_RECEIPT));
             this.grcontrolGoodReceipt = new DevExpress.XtraEditors.GroupControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.xLayoutControl1 = new Wisol.XLayoutControl();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.lblRedNote = new DevExpress.XtraEditors.LabelControl();
             this.btnClearInput = new Wisol.XSimpleButton(this.components);
             this.dateReturnTime = new Wisol.XDateEdit();
             this.stlType = new Wisol.AceGridLookUpEdit(this.components);
@@ -85,7 +85,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.loRedNote = new DevExpress.XtraLayout.LayoutControlItem();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
             this.btnPrintReport = new Wisol.XSimpleButton(this.components);
             this.txtDelivererAndReceiver = new Wisol.XTextEdit();
@@ -158,7 +158,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loRedNote)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).BeginInit();
             this.xLayoutControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDelivererAndReceiver.Properties)).BeginInit();
@@ -210,7 +210,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // xLayoutControl1
             // 
-            this.xLayoutControl1.Controls.Add(this.labelControl1);
+            this.xLayoutControl1.Controls.Add(this.lblRedNote);
             this.xLayoutControl1.Controls.Add(this.btnClearInput);
             this.xLayoutControl1.Controls.Add(this.dateReturnTime);
             this.xLayoutControl1.Controls.Add(this.stlType);
@@ -238,23 +238,23 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.xLayoutControl1.TabIndex = 0;
             this.xLayoutControl1.Text = "xLayoutControl1";
             // 
-            // labelControl1
+            // lblRedNote
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Italic);
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(12, 248);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(267, 13);
-            this.labelControl1.StyleController = this.xLayoutControl1;
-            toolTipItem1.Text = "QUANTITY_GET 상자에 위치별로 가져올 수량을 입력합니다.";
-            superToolTip1.Items.Add(toolTipItem1);
-            this.labelControl1.SuperTip = superToolTip1;
-            this.labelControl1.TabIndex = 28;
-            this.labelControl1.Text = "Nhập số lượng cần lấy theo vị trí vào ô QUANTITY_GET";
-            this.labelControl1.ToolTip = "QUANTITY_GET 상자에 위치별로 가져올 수량을 입력합니다.";
-            this.labelControl1.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
+            this.lblRedNote.Appearance.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Italic);
+            this.lblRedNote.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblRedNote.Appearance.Options.UseFont = true;
+            this.lblRedNote.Appearance.Options.UseForeColor = true;
+            this.lblRedNote.Location = new System.Drawing.Point(12, 248);
+            this.lblRedNote.Name = "lblRedNote";
+            this.lblRedNote.Size = new System.Drawing.Size(267, 13);
+            this.lblRedNote.StyleController = this.xLayoutControl1;
+            toolTipItem2.Text = "QUANTITY_GET 상자에 위치별로 가져올 수량을 입력합니다.";
+            superToolTip2.Items.Add(toolTipItem2);
+            this.lblRedNote.SuperTip = superToolTip2;
+            this.lblRedNote.TabIndex = 28;
+            this.lblRedNote.Text = "Nhập số lượng cần lấy theo vị trí vào ô QUANTITY_GET";
+            this.lblRedNote.ToolTip = "QUANTITY_GET 상자에 위치별로 가져올 수량을 입력합니다.";
+            this.lblRedNote.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             // 
             // btnClearInput
             // 
@@ -600,7 +600,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem26,
             this.layoutControlItem11,
             this.layoutControlItem25,
-            this.layoutControlItem30});
+            this.loRedNote});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(870, 788);
             this.Root.TextVisible = false;
@@ -777,14 +777,14 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem25.TextVisible = false;
             // 
-            // layoutControlItem30
+            // loRedNote
             // 
-            this.layoutControlItem30.Control = this.labelControl1;
-            this.layoutControlItem30.Location = new System.Drawing.Point(0, 236);
-            this.layoutControlItem30.Name = "layoutControlItem30";
-            this.layoutControlItem30.Size = new System.Drawing.Size(850, 17);
-            this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem30.TextVisible = false;
+            this.loRedNote.Control = this.lblRedNote;
+            this.loRedNote.Location = new System.Drawing.Point(0, 236);
+            this.loRedNote.Name = "loRedNote";
+            this.loRedNote.Size = new System.Drawing.Size(850, 17);
+            this.loRedNote.TextSize = new System.Drawing.Size(0, 0);
+            this.loRedNote.TextVisible = false;
             // 
             // xLayoutControl2
             // 
@@ -1131,7 +1131,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loRedNote)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).EndInit();
             this.xLayoutControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtDelivererAndReceiver.Properties)).EndInit();
@@ -1235,7 +1235,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
         private XSimpleButton btnPrintReport;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
-        private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem30;
+        private DevExpress.XtraEditors.LabelControl lblRedNote;
+        private DevExpress.XtraLayout.LayoutControlItem loRedNote;
     }
 }

@@ -248,6 +248,12 @@ namespace Wisol.MES.Forms.CONTENT
                             string image = base.m_ResultDB.ReturnDataSet.Tables[1].Rows[0]["IMAGE"].NullString();
                             ShowImge(image);
                         }
+                        else
+                        {
+                            txtMinStock.EditValue = null;
+                            stlUnit.EditValue = null;
+                            txtRateAlarm.EditValue = 20;
+                        }
                     }
                 }
             }

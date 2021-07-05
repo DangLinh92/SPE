@@ -101,6 +101,7 @@ namespace Wisol.MES.Forms.CONTENT
             stlSparepart.EditValue = string.Empty;
             txtQuantity.EditValue = "0";
             stlUnit.EditValue = string.Empty;
+            txtQuantityNewAdd.EditValue = "0";
             stlCondition.EditValue = string.Empty;
         }
 
@@ -225,6 +226,16 @@ namespace Wisol.MES.Forms.CONTENT
 
                         gvListNoPosition.OptionsSelection.MultiSelect = true;
                         gvListNoPosition.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
+
+
+                        gvListNoPosition.OptionsBehavior.Editable = true;
+                        gvListNoPosition.Columns["LOCATION"].OptionsColumn.AllowEdit = false;
+                        gvListNoPosition.Columns["SPARE_PART_CODE"].OptionsColumn.AllowEdit = false;
+                        gvListNoPosition.Columns["NAME_VI"].OptionsColumn.AllowEdit = false;
+                        gvListNoPosition.Columns["CONDITION_NAME"].OptionsColumn.AllowEdit = false;
+                        gvListNoPosition.Columns["UNIT"].OptionsColumn.AllowEdit = false;
+                        gvListNoPosition.Columns["QUANTITY"].OptionsColumn.AllowEdit = false;
+                        gvListNoPosition.Columns["QUANTITY_PRINT_LABEL"].OptionsColumn.AllowEdit = true;
                     }
 
                 }
@@ -370,7 +381,7 @@ namespace Wisol.MES.Forms.CONTENT
                 if (string.IsNullOrEmpty(stlKho.EditValue.NullString()) ||
                     string.IsNullOrEmpty(stlPosition.EditValue.NullString()) && cheIsWait.Checked == false
                     || string.IsNullOrEmpty(stlSparepart.EditValue.NullString())
-                    || string.IsNullOrEmpty(txtQuantity.EditValue.NullString())
+                    || (string.IsNullOrEmpty(txtQuantity.EditValue.NullString()) && string.IsNullOrEmpty(txtQuantityNewAdd.EditValue.NullString()))
                     || string.IsNullOrEmpty(stlUnit.EditValue.NullString())
                     || string.IsNullOrEmpty(stlCondition.EditValue.NullString()))
                 {
@@ -378,6 +389,7 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
+                float quantity = float.Parse(txtQuantity.EditValue.NullString()) + float.Parse(txtQuantityNewAdd.EditValue.NullString());
                 string barcode = stlSparepart.EditValue.NullString() + (stlPosition.EditValue.NullString() == string.Empty ? "" : "." + stlPosition.EditValue.NullString()) + (stlCondition.EditValue.NullString() == Consts.NG ? "." + stlCondition.EditValue.NullString() : "");
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.INSERT_SPAREPART",
                     new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION", "A_CONDITION", "A_ISWATE", "A_QUANTITY", "A_DEPART_MENT", "A_STOCK", "A_BARCODE", "A_UNIT" },
@@ -388,7 +400,7 @@ namespace Wisol.MES.Forms.CONTENT
                         stlPosition.EditValue.NullString() ,
                         stlCondition.EditValue.NullString() ,
                         cheIsWait.Checked.NullString(),
-                        txtQuantity.EditValue.NullString() ,
+                        quantity.NullString() ,
                         Consts.DEPARTMENT,
                         stlKho.EditValue.NullString(),
                         barcode,
@@ -429,6 +441,7 @@ namespace Wisol.MES.Forms.CONTENT
                 stlCondition.EditValue = null;
                 stlPosition.Enabled = true;
                 txtSTT.EditValue = null;
+                txtQuantityNewAdd.EditValue = null;
             }
             catch (Exception ex)
             {
@@ -575,7 +588,7 @@ namespace Wisol.MES.Forms.CONTENT
                 {
                     if (gvListNoPosition.IsRowSelected(i))
                     {
-                        int numberLabel = int.Parse(Math.Ceiling(decimal.Parse(gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[5]).NullString())).NullString());
+                        int numberLabel = int.Parse(Math.Ceiling(decimal.Parse(gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[9]).NullString())).NullString());
                         for (int j = 0; j < numberLabel; j++)
                         {
                             string position = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[0]).NullString();

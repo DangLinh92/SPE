@@ -205,6 +205,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     dateReturnTime.Enabled = false;
                     btnPrintReport.Enabled = false;
                     gcLocation.Enabled = false;
+                    lblRedNote.Visible = false;
+                    loRedNote.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 }
                 else
                 {
@@ -213,6 +215,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     txtScanbarcode.Enabled = true;
                     txtPriceVN.Enabled = false;
                     txtScanbarcode.Focus();
+                    lblRedNote.Visible = true;
+                    loRedNote.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 }
 
                 if ((Mode == Consts.MODE_UPDATE || Mode == Consts.MODE_DELETE) && cboStatus.SelectedItem.NullString() == Consts.STATUS_COMPLETE)
@@ -559,7 +563,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             string[] item = arr[i].Split('_');
                             for (int j = 0; j < gvLocation.DataRowCount; j++)
                             {
-                                if (gvLocation.GetRowCellValue(j, "LOCATION").NullString() == item[0])
+                                if ((gvLocation.GetRowCellValue(j, "LOCATION").NullString() == item[0]) ||
+                                    item[0] == "W" && string.IsNullOrEmpty(gvLocation.GetRowCellValue(j, "LOCATION").NullString()))
                                 {
                                     gvLocation.SetRowCellValue(j, "QUANTITY_GET", item[1]);
                                     gvLocation.SelectRow(j);
@@ -770,7 +775,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
-                if (INOUT == Consts.OUT && Mode == Consts.MODE_NEW)
+                if (INOUT == Consts.OUT)
                 {
                     if (e.KeyCode == Keys.Enter)
                     {

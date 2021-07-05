@@ -115,7 +115,13 @@ namespace Wisol.MES.Forms.CONTENT
 
                 if (DateTime.TryParse(dateCreate, out DateTime dateOut))
                 {
+                    
                     if (dateOut.AddMonths(1) < DateTime.Now && status == Consts.STATUS_COMPLETE)
+                    {
+                        e.Appearance.BackColor = Color.LightGray;
+                    }
+
+                    if (status == Consts.STATUS_COMPLETE && intOut == Consts.OUT && e.Column.Name == "col_Edit")
                     {
                         e.Appearance.BackColor = Color.LightGray;
                     }
@@ -137,6 +143,11 @@ namespace Wisol.MES.Forms.CONTENT
                 }
                 string status = gvList.GetRowCellValue(e.RowHandle, "STATUS").NullString();
                 string dateCreate = gvList.GetDataRow(e.RowHandle)["CREATE_DATE"].NullString();
+
+                if (status == Consts.STATUS_COMPLETE && gvList.GetDataRow(e.RowHandle)["IN_OUT"].NullString() == Consts.OUT && e.Column.Name == "col_Edit")
+                {
+                    return;
+                }
 
                 if (DateTime.TryParse(dateCreate, out DateTime dateOut))
                 {
