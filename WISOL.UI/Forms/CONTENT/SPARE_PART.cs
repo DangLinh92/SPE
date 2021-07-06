@@ -475,7 +475,7 @@ namespace Wisol.MES.Forms.CONTENT
                 }
                 else
                 {
-                    return "";
+                    s = "OP-";
                 }
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.GET_MAX_AUTO_CODE", new string[] { "A_TYPE" }, new string[] { s });
