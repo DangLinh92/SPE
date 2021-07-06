@@ -389,7 +389,18 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
+                if (string.IsNullOrEmpty(txtQuantity.EditValue.NullString()))
+                {
+                    txtQuantity.EditValue = "0";
+                }
+
+                if (string.IsNullOrEmpty(txtQuantityNewAdd.EditValue.NullString()))
+                {
+                    txtQuantity.EditValue = "0";
+                }
+
                 float quantity = float.Parse(txtQuantity.EditValue.NullString()) + float.Parse(txtQuantityNewAdd.EditValue.NullString());
+
                 string barcode = stlSparepart.EditValue.NullString() + (stlPosition.EditValue.NullString() == string.Empty ? "" : "." + stlPosition.EditValue.NullString()) + (stlCondition.EditValue.NullString() == Consts.NG ? "." + stlCondition.EditValue.NullString() : "");
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.INSERT_SPAREPART",
                     new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION", "A_CONDITION", "A_ISWATE", "A_QUANTITY", "A_DEPART_MENT", "A_STOCK", "A_BARCODE", "A_UNIT" },
