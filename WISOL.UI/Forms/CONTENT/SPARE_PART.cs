@@ -268,6 +268,16 @@ namespace Wisol.MES.Forms.CONTENT
                     MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);
                     SearchPage();
                     Init_Control();
+
+                    for (int i = 0; i < gvList.DataRowCount; i++)
+                    {
+                        string sparePartCode = gvList.GetRowCellValue(i, gvList.Columns[0]).NullString();
+                        if(sparePartCode == code)
+                        {
+                            gvList.MakeRowVisible(i);
+                            break;
+                        }
+                    }
                 }
                 else
                 {
