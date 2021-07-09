@@ -638,10 +638,13 @@ namespace Wisol.MES.Forms.CONTENT
                         int numberLabel = int.Parse(Math.Ceiling(decimal.Parse(gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[9]).NullString())).NullString());
                         for (int j = 0; j < numberLabel; j++)
                         {
+                            xml_content = label;
+
                             string position = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[0]).NullString();
                             string condition = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[3]).NullString();
                             string lblPosition_condition = position + (position == "" ? "" : ".") + (condition == "NG" ? "NG" : "");
-                            xml_content = xml_content.Replace("$BARCODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[8]).NullString()).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition);
+                            string barcode = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[8]).NullString();
+                            xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition);
 
                             xml_content = xml_content.Replace("&", "&amp;");
                             File.WriteAllText((i + 1).NullString() + designFile, xml_content);
@@ -668,10 +671,12 @@ namespace Wisol.MES.Forms.CONTENT
 
                             reports.Add(report);
                             File.Delete((i + 1).NullString() + designFile);
-                            i++;
+                            //i++;
+                            //check++;
 
-                            check++;
                         }
+
+                        check++;
                     }
                 }
 
@@ -911,10 +916,17 @@ namespace Wisol.MES.Forms.CONTENT
                         int numberLabel = int.Parse(Math.Ceiling(decimal.Parse(gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[9]).NullString())).NullString());
                         for (int j = 0; j < numberLabel; j++)
                         {
+                            xml_content = label;
+
                             string position = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[0]).NullString();
                             string condition = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[3]).NullString();
                             string lblPosition_condition = position + (position == "" ? "" : ".") + (condition == "NG" ? "NG" : "");
-                            xml_content = xml_content.Replace("$BARCODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[10]).NullString()).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition);
+                            string strDate = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[10]).NullString();
+                            if(!DateTime.TryParse(strDate,out DateTime ExpriDate))
+                            {
+                                continue;
+                            }
+                            xml_content = xml_content.Replace("$BARCODE$", ExpriDate.ToString("yyyy-MM-dd")).Replace("$CODE$", ExpriDate.ToString("yyyy-MM-dd")).Replace("$POSITION$", "");
 
                             xml_content = xml_content.Replace("&", "&amp;");
                             File.WriteAllText((i + 1).NullString() + designFile, xml_content);
@@ -941,10 +953,12 @@ namespace Wisol.MES.Forms.CONTENT
 
                             reports.Add(report);
                             File.Delete((i + 1).NullString() + designFile);
-                            i++;
+                            //i++;
 
-                            check++;
+                            //check++;
                         }
+
+                        check++;
                     }
                 }
 
