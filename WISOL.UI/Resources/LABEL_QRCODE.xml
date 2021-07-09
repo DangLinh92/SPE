@@ -4,14 +4,14 @@
     <Item1 Ref="1" ControlType="TopMarginBand" Name="TopMargin" HeightF="2" />
     <Item2 Ref="2" ControlType="DetailBand" Name="Detail" HeightF="146.250015">
       <Controls>
-        <Item1 Ref="3" ControlType="XRLabel" Name="label2" Multiline="true" Text="$POSITION$" TextAlignment="TopCenter" SizeF="143.75,23" LocationFloat="80.6249, 33.0000076" Font="Courier New, 11.75pt, style=Bold" Padding="2,2,0,0,100">
+        <Item1 Ref="3" ControlType="XRLabel" Name="label2" Multiline="true" Text="$POSITION$" TextAlignment="TopCenter" SizeF="143.75,23" LocationFloat="1.62490082, 24.0000076" Font="Courier New, 11.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="4" UseFont="false" UseTextAlignment="false" />
         </Item1>
-        <Item2 Ref="5" ControlType="XRBarCode" Name="barCode1" Text="$BARCODE$" SizeF="90.625,61.5000076" LocationFloat="224.375, 10.0000067" Font="Times New Roman, 0.75pt" Padding="10,10,0,0,100">
+        <Item2 Ref="5" ControlType="XRBarCode" Name="barCode1" Text="$BARCODE$" SizeF="90.625,61.5000076" LocationFloat="145.375, 1.00000668" Font="Times New Roman, 0.75pt" Padding="10,10,0,0,100">
           <Symbology Ref="6" Name="QRCode" />
           <StylePriority Ref="7" UseFont="false" />
         </Item2>
-        <Item3 Ref="8" ControlType="XRLabel" Name="label1" Multiline="true" Text="$CODE$" TextAlignment="TopCenter" SizeF="143.75,23.0000019" LocationFloat="80.6249, 10.0000067" Font="Courier New, 11.75pt, style=Bold" Padding="2,2,0,0,100">
+        <Item3 Ref="8" ControlType="XRLabel" Name="label1" Multiline="true" Text="$CODE$" TextAlignment="TopCenter" SizeF="143.75,23.0000019" LocationFloat="1.62490082, 1.00000668" Font="Courier New, 11.75pt, style=Bold" Padding="2,2,0,0,100">
           <StylePriority Ref="9" UseFont="false" UseTextAlignment="false" />
         </Item3>
       </Controls>
