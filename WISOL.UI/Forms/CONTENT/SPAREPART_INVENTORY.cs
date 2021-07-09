@@ -322,9 +322,12 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 string KHO = gvList.GetDataRow(e.RowHandle)["KHO"].NullString();
                 string sparepart = gvList.GetDataRow(e.RowHandle)["CODE"].NullString();
+                string UnitId = gvList.GetDataRow(e.RowHandle)["UNIT"].NullString();
 
                 stlKho.EditValue = KHO;
                 stlSpare.EditValue = sparepart;
+                stlSparePartForReal.EditValue = sparepart;
+                stlUnitReal.EditValue = UnitId;
             }
         }
 
@@ -351,11 +354,11 @@ namespace Wisol.MES.Forms.CONTENT
                 DateTime date = (DateTime)dateInputReal.EditValue;
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_BY_TIME.PUT_QUANTITY_REAL",
-                            new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_QUANTITY_REAL", "A_UNIT", "A_DATE", "A_YEAR", "A_MONTH","A_QUANTITY" },
+                            new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_QUANTITY_REAL", "A_UNIT", "A_DATE", "A_YEAR", "A_MONTH","A_QUANTITY", "A_USER" },
                             new string[] {
                                 Consts.DEPARTMENT, stlKho.EditValue.NullString(),
                                 stlSparePartForReal.EditValue.NullString(), txtQuantityRealByTime.EditValue.NullString(),
-                                stlUnitReal.EditValue.NullString(),date.ToString(),date.Year.NullString(),date.Month.NullString(),txtQuantityByTime.EditValue.NullString() });
+                                stlUnitReal.EditValue.NullString(),date.ToString(),date.Year.NullString(),date.Month.NullString(),txtQuantityByTime.EditValue.NullString(),Consts.USER_INFO.Id });
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
                     MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);

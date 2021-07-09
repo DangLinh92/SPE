@@ -148,7 +148,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 btnClear.Enabled = true;
                 btnSave.Enabled = true;
 
-                
+
             }
 
             btnDelete.Enabled = Mode != Consts.MODE_NEW;
@@ -331,12 +331,33 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         var location = gvLocation.GetRowCellValue(i, "LOCATION").NullString();
                         var condition = gvLocation.GetRowCellValue(i, "CONDITION_CODE").NullString();
                         string quantity = gvLocation.GetRowCellValue(i, "QUANTITY_GET").NullString();
+                        string expiredDate = gvLocation.GetRowCellValue(i, "EXPIRED_DATE").NullString();
 
                         if (string.IsNullOrEmpty(location))
                         {
                             location = "W";
                         }
-                        LocationDic.Add(location, quantity + "_" + condition);
+
+                        DateTime exDate;
+                        string valueDicItem;
+                        if (expiredDate.Contains("2199") || expiredDate == "" || !DateTime.TryParse(expiredDate, out exDate)) // no expired date
+                        {
+                            valueDicItem = quantity + "_" + condition + "_" + "2199-01-01";
+                        }
+                        else
+                        {
+                            valueDicItem = quantity + "_" + condition + "_" + exDate.ToString("yyyy-MM-dd");
+                        }
+
+                        if (LocationDic.ContainsKey(location))
+                        {
+                            LocationDic[location] += "," + location +"_"+ valueDicItem;
+                        }
+                        else
+                        {
+                            LocationDic.Add(location, valueDicItem);
+                        }
+
                         quantitySum += float.Parse(quantity);
                     }
 
@@ -563,8 +584,21 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             string[] item = arr[i].Split('_');
                             for (int j = 0; j < gvLocation.DataRowCount; j++)
                             {
-                                if ((gvLocation.GetRowCellValue(j, "LOCATION").NullString() == item[0]) ||
-                                    item[0] == "W" && string.IsNullOrEmpty(gvLocation.GetRowCellValue(j, "LOCATION").NullString()))
+                                string expiredDate = gvLocation.GetRowCellValue(j, "EXPIRED_DATE").NullString();
+                                DateTime exDate;
+                                
+                                if (DateTime.TryParse(expiredDate, out exDate) && 
+                                      (
+                                        gvLocation.GetRowCellValue(j, "LOCATION").NullString() == item[0] && 
+                                        gvLocation.GetRowCellValue(j, "CONDITION_CODE").NullString() == item[2] &&
+                                        exDate.ToString("yyyy-MM-dd") == item[3]
+                                      ) ||
+                                      (
+                                        item[0] == "W" && 
+                                        string.IsNullOrEmpty(gvLocation.GetRowCellValue(j, "LOCATION").NullString()) && 
+                                        gvLocation.GetRowCellValue(j, "CONDITION_CODE").NullString() == item[2] &&
+                                        exDate.ToString("yyyy-MM-dd") == item[3])
+                                    )
                                 {
                                     gvLocation.SetRowCellValue(j, "QUANTITY_GET", item[1]);
                                     gvLocation.SelectRow(j);
@@ -733,7 +767,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
-                if(Mode == Consts.MODE_NEW)
+                if (Mode == Consts.MODE_NEW)
                 {
                     return;
                 }
@@ -888,6 +922,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         gvLocation.Columns["CONDITION_CODE"].OptionsColumn.AllowEdit = false;
                         gvLocation.Columns["QUANTITY"].OptionsColumn.AllowEdit = false;
                         gvLocation.Columns["UNIT"].OptionsColumn.AllowEdit = false;
+                        gvLocation.Columns["EXPIRED_DATE"].OptionsColumn.AllowEdit = false;
                     }
                     else
                     {
