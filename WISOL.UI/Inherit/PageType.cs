@@ -1566,5 +1566,7 @@ namespace Wisol.MES.Inherit
             }
             catch { throw; }
         }
+
+        public virtual void ReloadData() { }
     }
 }

@@ -19,6 +19,7 @@ namespace Wisol.MES.Forms.CONTENT
 {
     public partial class LOCATION : PageType
     {
+        private bool firstLoad = true;
         public LOCATION()
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             base.Form_Show();
             this.InitializePage();
+            firstLoad = false;
         }
 
         public override void InitializePage()
@@ -42,6 +44,16 @@ namespace Wisol.MES.Forms.CONTENT
             }
             base.InitializePage();
         }
+
+        public override void ReloadData()
+        {
+            if (firstLoad)
+            {
+                InitializePage();
+            }
+            firstLoad = true;
+        }
+
         private void Init_Control()
         {
             try
@@ -50,14 +62,15 @@ namespace Wisol.MES.Forms.CONTENT
 
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
-                    base.m_BindData.BindGridLookEdit(stlPosition, base.m_ResultDB.ReturnDataSet.Tables[0], "CODE", "CODE");
-                    base.m_BindData.BindGridLookEdit(stlKho, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(stlCondition, base.m_ResultDB.ReturnDataSet.Tables[2], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(stlUnit, base.m_ResultDB.ReturnDataSet.Tables[3], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(stlSparepart, base.m_ResultDB.ReturnDataSet.Tables[4], "CODE", "NAME_VI");
-                    base.m_BindData.BindGridLookEdit(stlSparePartSearch, base.m_ResultDB.ReturnDataSet.Tables[4], "CODE", "NAME_VI");
+                    DataTableCollection data = base.m_ResultDB.ReturnDataSet.Tables;
+                    base.m_BindData.BindGridLookEdit(stlPosition, data[0], "CODE", "CODE");
+                    base.m_BindData.BindGridLookEdit(stlKho, data[1], "CODE", "NAME");
+                    base.m_BindData.BindGridLookEdit(stlCondition, data[2], "CODE", "NAME");
+                    base.m_BindData.BindGridLookEdit(stlUnit, data[3], "CODE", "NAME");
+                    base.m_BindData.BindGridLookEdit(stlSparepart, data[4], "CODE", "NAME_VI");
+                    base.m_BindData.BindGridLookEdit(stlSparePartSearch, data[4], "CODE", "NAME_VI");
 
-                    string firstValue = base.m_ResultDB.ReturnDataSet.Tables[1].Rows[0]["CODE"].NullString();
+                    string firstValue = data[1].Rows[0]["CODE"].NullString();
                     stlKho.EditValue = firstValue;
                 }
 
@@ -236,6 +249,7 @@ namespace Wisol.MES.Forms.CONTENT
                         gvListNoPosition.Columns["QUANTITY"].OptionsColumn.AllowEdit = false;
                         gvListNoPosition.Columns["EXPIRED_DATE"].OptionsColumn.AllowEdit = false;
                         gvListNoPosition.Columns["QUANTITY_PRINT_LABEL"].OptionsColumn.AllowEdit = true;
+                        gvListNoPosition.OptionsView.ColumnAutoWidth = true;
                     }
 
                 }
@@ -596,6 +610,7 @@ namespace Wisol.MES.Forms.CONTENT
                     {
                         MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Warning);
                     }
+                    txtQuantityNewAdd.EditValue = "0";
                 }
                 catch (Exception ex)
                 {
@@ -926,7 +941,7 @@ namespace Wisol.MES.Forms.CONTENT
                             {
                                 continue;
                             }
-                            xml_content = xml_content.Replace("$BARCODE$", ExpriDate.ToString("yyyy-MM-dd")).Replace("$CODE$", ExpriDate.ToString("yyyy-MM-dd")).Replace("$POSITION$", "");
+                            xml_content = xml_content.Replace("$BARCODE$", ExpriDate.ToString("yyyy-MM-dd")).Replace("$CODE$", ExpriDate.ToString("yyyy-MM-dd")).Replace("$POSITION$", "HẠN SỬ DỤNG");
 
                             xml_content = xml_content.Replace("&", "&amp;");
                             File.WriteAllText((i + 1).NullString() + designFile, xml_content);
@@ -987,6 +1002,109 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
+        }
+
+        private void stlSparepart_EditValueChanged(object sender, EventArgs e)
+        {
+            GetUnitBySparePart();
+        }
+
+        private void GetUnitBySparePart()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(stlSparepart.EditValue.NullString()))
+                {
+                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_UNIT_SPAREPART.GET_UNIT_BY_SPAREPART",
+                        new string[] { "A_DEPT_CODE", "A_SPARE_PART_CODE" },
+                        new string[] { Consts.DEPARTMENT, stlSparepart.EditValue.NullString() });
+
+                    if (m_ResultDB.ReturnInt == 0)
+                    {
+                        base.m_BindData.BindGridLookEdit(stlUnit, base.m_ResultDB.ReturnDataSet.Tables[0], "CODE", "NAME");
+
+                        if (base.m_ResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            stlUnit.EditValue = base.m_ResultDB.ReturnDataSet.Tables[0].Rows[0]["CODE"].NullString();
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show("NOT FOUND UNIT FOR SPAREPART", MsgType.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void txtQuantity_EditValueChanged(object sender, EventArgs e)
+        {
+            CheckRemainQuantity();
+        }
+
+        private void CheckRemainQuantity()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(stlSparepart.EditValue.NullString()) &&
+                    !string.IsNullOrEmpty(stlKho.EditValue.NullString()) &&
+                    !string.IsNullOrEmpty(stlUnit.EditValue.NullString()))
+                {
+                    //string quantity1 = txtQuantity.EditValue.NullString();
+                    string quantity2 = txtQuantityNewAdd.EditValue.NullString();
+                    float quantityInput = 0;
+
+                    //if (quantity1 != "")
+                    //{
+                    //    quantityInput += float.Parse(quantity1);
+                    //}
+
+                    if (quantity2 != "")
+                    {
+                        quantityInput += float.Parse(quantity2);
+                    }
+
+                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.CACULAR_REMAIN_QUANTITY",
+                        new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_UNIT", "A_QUANTITY_INPUT" },
+                        new string[] { Consts.DEPARTMENT, stlKho.EditValue.NullString(), stlSparepart.EditValue.NullString(), stlUnit.EditValue.NullString(), quantityInput.NullString() });
+
+                    if (m_ResultDB.ReturnInt == 0)
+                    {
+                        if (base.m_ResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            string quantityRemain = base.m_ResultDB.ReturnDataSet.Tables[0].Rows[0]["QUANTITY"].NullString();
+
+                            if (float.Parse(quantityRemain) >= 0)
+                            {
+                                txtQuantityRemain.EditValue = quantityRemain;
+                                btnSaveLocation_Sparepart.Enabled = true ;
+                            }
+                            else
+                            {
+                                stlUnit.Focus();
+                                btnSaveLocation_Sparepart.Enabled = false;
+                                MsgBox.Show("QUANTITY IS < 0", MsgType.Error);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show("NOT FOUND UNIT FOR SPAREPART", MsgType.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void txtQuantityNewAdd_EditValueChanged(object sender, EventArgs e)
+        {
+            CheckRemainQuantity();
         }
     }
 }

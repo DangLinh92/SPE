@@ -1068,6 +1068,7 @@ namespace Wisol.MES
             }
             this.tabForm.BringToFront();
             m_PageType = ((PageType)tabForm.TabPages[tabForm.SelectedTabPageIndex].Controls[0]);
+            m_PageType.ReloadData();
         }
 
         private void accordionControl1_MouseHover(object sender, EventArgs e)

@@ -15,6 +15,7 @@ namespace Wisol.MES.Forms.CONTENT
         public string code = string.Empty;
         public string image = string.Empty;
         private string b64 = string.Empty;
+        private bool firstLoad = true;
         public SPARE_PART()
         {
             InitializeComponent();
@@ -23,7 +24,18 @@ namespace Wisol.MES.Forms.CONTENT
         {
             base.Form_Show();
             this.InitializePage();
+            firstLoad = false;
         }
+
+        public override void ReloadData()
+        {
+            if (firstLoad)
+            {
+                InitializePage();
+            }
+            firstLoad = true;
+        }
+
         public override void InitializePage()
         {
             try
@@ -35,16 +47,17 @@ namespace Wisol.MES.Forms.CONTENT
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.INIT_PUT", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
-                    base.m_BindData.BindGridLookEdit(sltVender, base.m_ResultDB.ReturnDataSet.Tables[0], "VENDER_ID", "NAME");
-                    base.m_BindData.BindGridLookEdit(sltUnit, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(sltCostCtr, base.m_ResultDB.ReturnDataSet.Tables[2], "COST_CTR", "COST_CTR");
-                    base.m_BindData.BindGridLookEdit(sltGlaccount, base.m_ResultDB.ReturnDataSet.Tables[3], "GL_ACCOUNT", "GL_ACCOUNT");
-                    base.m_BindData.BindGridLookEdit(sltSparePartType, base.m_ResultDB.ReturnDataSet.Tables[4], "CODE", "NAME");
+                    DataTableCollection data = base.m_ResultDB.ReturnDataSet.Tables;
+                    base.m_BindData.BindGridLookEdit(sltVender, data[0], "VENDER_ID", "NAME");
+                    base.m_BindData.BindGridLookEdit(sltUnit, data[1], "CODE", "NAME");
+                    base.m_BindData.BindGridLookEdit(sltCostCtr, data[2], "COST_CTR", "COST_CTR");
+                    base.m_BindData.BindGridLookEdit(sltGlaccount, data[3], "GL_ACCOUNT", "GL_ACCOUNT");
+                    base.m_BindData.BindGridLookEdit(sltSparePartType, data[4], "CODE", "NAME");
 
-                    base.m_BindData.BindGridLookEdit(sltUnit1, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(sltUnit2, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(sltUnit3, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(sltUnit4, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME");
+                    base.m_BindData.BindGridLookEdit(sltUnit1, data[1], "CODE", "NAME");
+                    base.m_BindData.BindGridLookEdit(sltUnit2, data[1], "CODE", "NAME");
+                    base.m_BindData.BindGridLookEdit(sltUnit3, data[1], "CODE", "NAME");
+                    base.m_BindData.BindGridLookEdit(sltUnit4, data[1], "CODE", "NAME");
                 }
 
                 btnUpdate.Enabled = false;
@@ -272,7 +285,7 @@ namespace Wisol.MES.Forms.CONTENT
                     for (int i = 0; i < gvList.DataRowCount; i++)
                     {
                         string sparePartCode = gvList.GetRowCellValue(i, gvList.Columns[0]).NullString();
-                        if(sparePartCode == code)
+                        if (sparePartCode == code)
                         {
                             gvList.MakeRowVisible(i);
                             break;
@@ -346,7 +359,7 @@ namespace Wisol.MES.Forms.CONTENT
             return (byte[])converter.ConvertTo(img, typeof(byte[]));
         }
 
-        private void ShowASparepart(DataTable table,DataTable unitTable)
+        private void ShowASparepart(DataTable table, DataTable unitTable)
         {
             txtCode.EditValue = table.Rows[0]["CODE"].NullString();
             txtNameVi.EditValue = table.Rows[0]["NAME_VI"].NullString();
@@ -397,7 +410,7 @@ namespace Wisol.MES.Forms.CONTENT
 
             for (int i = 0; i < unitTable.Rows.Count; i++)
             {
-                switch(i)
+                switch (i)
                 {
                     case 0:
                         sltUnit1.EditValue = unitTable.Rows[i]["UNIT_CODE"].NullString();
@@ -513,7 +526,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private string CreateNumberCode(int number)
         {
-            if (number <= 9) return  "000" + number;
+            if (number <= 9) return "000" + number;
             if (number > 9 && number <= 99) return "00" + number;
             if (number > 99 && number <= 999) return "0" + number;
             if (number > 999 && number <= 9999) return "" + number;
@@ -532,7 +545,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void txtCode_EditValueChanged(object sender, EventArgs e)
         {
-            if(txtCode.EditValue.NullString() != "")
+            if (txtCode.EditValue.NullString() != "")
             {
                 btnUpdate.Enabled = true;
             }

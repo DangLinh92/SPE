@@ -23,17 +23,28 @@ namespace Wisol.MES.Forms.CONTENT
             this.Load += SPAREPART_INVENTORY_Load;
         }
 
+        private bool firstLoad = true;
         private void SPAREPART_INVENTORY_Load(object sender, EventArgs e)
         {
             try
             {
                 Init_Control();
+                firstLoad = false;
             }
             catch (Exception)
             {
 
                 throw;
             }
+        }
+        public override void ReloadData()
+        {
+            if (firstLoad)
+            {
+                Init_Control();
+            }
+
+            firstLoad = true;
         }
 
         private void Init_Control()
@@ -45,14 +56,15 @@ namespace Wisol.MES.Forms.CONTENT
 
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
-                    base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
-                    base.m_BindData.BindGridLookEdit(stlSpare, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME_VI");
-                    base.m_BindData.BindGridLookEdit(stlKho, base.m_ResultDB.ReturnDataSet.Tables[2], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(stlUnit, base.m_ResultDB.ReturnDataSet.Tables[3], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(stlSparePartForReal, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME_VI");
-                    base.m_BindData.BindGridLookEdit(stlUnitReal, base.m_ResultDB.ReturnDataSet.Tables[3], "CODE", "NAME");
+                    DataTableCollection data = base.m_ResultDB.ReturnDataSet.Tables;
+                    base.m_BindData.BindGridView(gcList, data[0]);
+                    base.m_BindData.BindGridLookEdit(stlSpare, data[1], "CODE", "NAME_VI");
+                    base.m_BindData.BindGridLookEdit(stlKho, data[2], "CODE", "NAME");
+                    base.m_BindData.BindGridLookEdit(stlUnit, data[3], "CODE", "NAME");
+                    base.m_BindData.BindGridLookEdit(stlSparePartForReal, data[1], "CODE", "NAME_VI");
+                    base.m_BindData.BindGridLookEdit(stlUnitReal, data[3], "CODE", "NAME");
 
-                    string firstValue = base.m_ResultDB.ReturnDataSet.Tables[2].Rows[0]["CODE"].NullString();
+                    string firstValue = data[2].Rows[0]["CODE"].NullString();
                     stlKho.EditValue = firstValue;
                     gvList.Columns["ID"].Visible = false;
                     gvList.Columns["RATE_ALARM"].Visible = false;

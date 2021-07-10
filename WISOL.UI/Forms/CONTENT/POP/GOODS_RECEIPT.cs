@@ -32,12 +32,19 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private void GOODS_RECEIPT_Load(object sender, EventArgs e)
         {
             grcontrolGoodReceipt.Text = INOUT == Consts.IN ? "Goods receipt-Nhập kho-입고" : "Goods Issue-Xuất kho-출고";
+            STATUS.Columns.Add("CODE");
+            STATUS.Columns.Add("NAME");
+            STATUS.Rows.Add("NEW", "TẠO MỚI");
+            STATUS.Rows.Add("INPROGRESS", "ĐANG XỬ LÝ");
+            STATUS.Rows.Add("COMPLETE", "HOÀN THÀNH");
             InitData();
 
         }
 
         public DataTable Data { get; set; }
         private List<string> Status = new List<string>() { "NEW", "INPROGRESS", "COMPLETE" };
+        private DataTable STATUS = new DataTable();
+
         public string Mode { get; set; }
         public string ReceiptCode { get; set; }
         public string INOUT { get; set; }
@@ -53,6 +60,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 Data = new DataTable();
                 Data.Columns.Add("RECEIPT_ISSUE_CODE", typeof(string));
                 Data.Columns.Add("SPARE_PART_CODE", typeof(string));
+                Data.Columns.Add("NAME", typeof(string));
                 Data.Columns.Add("QUANTITY", typeof(string));
                 Data.Columns.Add("UNIT", typeof(string));
                 Data.Columns.Add("PRICE_VN", typeof(string));
@@ -74,7 +82,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 Data.Columns.Add("RETURN_TIME", typeof(string));
                 Data.Columns.Add("LOCATION", typeof(string));
 
-                cboStatus.DataSource = Status;
+                base.mBindData.BindGridLookEdit(cboStatus, STATUS, "CODE", "NAME");
+
                 dateInput.EditValue = DateTime.Now;
 
                 base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_SP_INVENTORY.GET", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
@@ -148,7 +157,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 btnClear.Enabled = true;
                 btnSave.Enabled = true;
 
-
+                if(Mode == Consts.MODE_NEW)
+                {
+                    cboStatus.EditValue = Consts.STATUS_NEW;
+                }
             }
 
             btnDelete.Enabled = Mode != Consts.MODE_NEW;
@@ -167,6 +179,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         (
                             item["RECEIPT_ISSUE_CODE"].NullString(),
                             item["SPARE_PART_CODE"].NullString(),
+                            item["NAME_VI"].NullString(),
                             item["QUANTITY"].NullString(),
                             item["UNIT"].NullString(),
                             item["PRICE_VN"].NullString(),
@@ -194,7 +207,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     stlOrderCode.EditValue = righttData.Rows[0]["ORDER_CODE"];
                     txtUserCreate.EditValue = righttData.Rows[0]["USER_CREATE"];
                     dateInput.EditValue = DateTime.Parse(righttData.Rows[0]["DATE"].NullString());
-                    cboStatus.SelectedItem = righttData.Rows[0]["STATUS"];
+                    cboStatus.EditValue = righttData.Rows[0]["STATUS"];
                     txtDelivererAndReceiver.EditValue = righttData.Rows[0]["DELIVERET_RECEIVER"].NullString();
                 }
 
@@ -219,7 +232,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     loRedNote.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 }
 
-                if ((Mode == Consts.MODE_UPDATE || Mode == Consts.MODE_DELETE) && cboStatus.SelectedItem.NullString() == Consts.STATUS_COMPLETE)
+                if ((Mode == Consts.MODE_UPDATE || Mode == Consts.MODE_DELETE) && cboStatus.EditValue.NullString() == Consts.STATUS_COMPLETE)
                 {
                     cboStatus.Enabled = false;
                 }
@@ -260,7 +273,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         checkRow["USER_CREATE"] = txtUserCreate.EditValue.NullString();
                         checkRow["USER_SYS"] = Consts.USER_INFO.Id;
                         checkRow["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
-                        checkRow["STATUS"] = cboStatus.SelectedItem.NullString();
+                        checkRow["STATUS"] = cboStatus.EditValue.NullString();
 
                         checkRow["SPARE_PART_CODE"] = stlSparePartCode.EditValue.NullString();
                         checkRow["QUANTITY"] = txtQuantity.EditValue.NullString();
@@ -272,6 +285,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         checkRow["CAUSE"] = mmCause.EditValue.NullString();
                         checkRow["NOTE"] = mmNote.EditValue.NullString();
                         checkRow["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
+                        checkRow["NAME"] = stlSparePartCode.SelectedText;
                     }
                     else
                     {
@@ -284,7 +298,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         row["USER_CREATE"] = txtUserCreate.EditValue.NullString();
                         row["USER_SYS"] = Consts.USER_INFO.Id;
                         row["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
-                        row["STATUS"] = cboStatus.SelectedItem.NullString();
+                        row["STATUS"] = cboStatus.EditValue.NullString();
 
                         row["SPARE_PART_CODE"] = stlSparePartCode.EditValue.NullString();
                         row["QUANTITY"] = txtQuantity.EditValue.NullString();
@@ -296,6 +310,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         row["CAUSE"] = mmCause.EditValue.NullString();
                         row["NOTE"] = mmNote.EditValue.NullString();
                         row["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
+                        row["NAME"] = stlSparePartCode.SelectedText;
 
                         Data.Rows.Add(row);
                     }
@@ -351,7 +366,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                         if (LocationDic.ContainsKey(location))
                         {
-                            LocationDic[location] += "," + location +"_"+ valueDicItem;
+                            LocationDic[location] += "," + location + "_" + valueDicItem;
                         }
                         else
                         {
@@ -377,7 +392,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         checkRow["USER_CREATE"] = txtUserCreate.EditValue.NullString();
                         checkRow["USER_SYS"] = Consts.USER_INFO.Id;
                         checkRow["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
-                        checkRow["STATUS"] = cboStatus.SelectedItem.NullString();
+                        checkRow["STATUS"] = cboStatus.EditValue.NullString();
 
                         checkRow["SPARE_PART_CODE"] = stlSparePartCode.EditValue.NullString();
                         checkRow["QUANTITY"] = txtQuantity.EditValue.NullString();
@@ -395,6 +410,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         }
 
                         checkRow["LOCATION"] = location.Remove(location.Length - 1, 1); // remove ,
+
+                        checkRow["NAME"] = stlSparePartCode.SelectedText;
                     }
                     else
                     {
@@ -407,7 +424,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         row["USER_CREATE"] = txtUserCreate.EditValue.NullString();
                         row["USER_SYS"] = Consts.USER_INFO.Id;
                         row["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
-                        row["STATUS"] = cboStatus.SelectedItem.NullString();
+                        row["STATUS"] = cboStatus.EditValue.NullString();
 
                         row["SPARE_PART_CODE"] = stlSparePartCode.EditValue.NullString();
                         row["QUANTITY"] = txtQuantity.EditValue.NullString();
@@ -424,6 +441,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         }
 
                         row["LOCATION"] = location.Remove(location.Length - 1, 1);
+
+                        row["NAME"] = stlSparePartCode.SelectedText;
 
                         Data.Rows.Add(row);
                     }
@@ -481,8 +500,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 gvList.Columns["LOCATION"].Visible = false;
             }
 
-            this.gvList.OptionsView.ColumnAutoWidth = false;
-            this.gvList.BestFitColumns();
+            this.gvList.OptionsView.ColumnAutoWidth = true;
+            //this.gvList.BestFitColumns();
         }
 
         private void txtPriceVN_EditValueChanged(object sender, EventArgs e)
@@ -586,16 +605,16 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             {
                                 string expiredDate = gvLocation.GetRowCellValue(j, "EXPIRED_DATE").NullString();
                                 DateTime exDate;
-                                
-                                if (DateTime.TryParse(expiredDate, out exDate) && 
+
+                                if (DateTime.TryParse(expiredDate, out exDate) &&
                                       (
-                                        gvLocation.GetRowCellValue(j, "LOCATION").NullString() == item[0] && 
+                                        gvLocation.GetRowCellValue(j, "LOCATION").NullString() == item[0] &&
                                         gvLocation.GetRowCellValue(j, "CONDITION_CODE").NullString() == item[2] &&
                                         exDate.ToString("yyyy-MM-dd") == item[3]
                                       ) ||
                                       (
-                                        item[0] == "W" && 
-                                        string.IsNullOrEmpty(gvLocation.GetRowCellValue(j, "LOCATION").NullString()) && 
+                                        item[0] == "W" &&
+                                        string.IsNullOrEmpty(gvLocation.GetRowCellValue(j, "LOCATION").NullString()) &&
                                         gvLocation.GetRowCellValue(j, "CONDITION_CODE").NullString() == item[2] &&
                                         exDate.ToString("yyyy-MM-dd") == item[3])
                                     )
@@ -610,7 +629,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     mmCause.EditValue = gvList.GetDataRow(e.RowHandle)["CAUSE"].NullString();
                     mmNote.EditValue = gvList.GetDataRow(e.RowHandle)["NOTE"].NullString();
 
-                    if ((Mode == Consts.MODE_UPDATE || Mode == Consts.MODE_DELETE) && cboStatus.SelectedItem.NullString() == Consts.STATUS_COMPLETE)
+                    if ((Mode == Consts.MODE_UPDATE || Mode == Consts.MODE_DELETE) && cboStatus.EditValue.NullString() == Consts.STATUS_COMPLETE)
                     {
                         gcLocation.Enabled = false;
                     }
@@ -710,7 +729,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 if (Data.Rows.Count == 0 ||
                     string.IsNullOrEmpty(stlKho.EditValue.NullString()) ||
                     string.IsNullOrEmpty(dateInput.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(cboStatus.SelectedItem.NullString()))
+                    string.IsNullOrEmpty(cboStatus.EditValue.NullString()))
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
@@ -724,7 +743,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     item["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
                     item["USER_CREATE"] = txtUserCreate.EditValue.NullString();
                     item["CREATE_DATE"] = dateInput.EditValue.NullString();
-                    item["STATUS"] = cboStatus.SelectedItem.NullString();
+                    item["STATUS"] = cboStatus.EditValue.NullString();
                     item["USER_SYS"] = Consts.USER_INFO.Id;
                 }
 
@@ -760,7 +779,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             stlOrderCode.EditValue = null;
             txtUserCreate.EditValue = null;
             dateInput.EditValue = DateTime.Now;
-            cboStatus.SelectedIndex = 0;
+            cboStatus.EditValue = Consts.STATUS_NEW;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -780,7 +799,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         return;
                     }
 
-                    base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_GOODS_RECEIPT_ISSUE.DELETE", new string[] { "A_RECEIPT_ISSUE_CODE", "A_INOUT", "A_USER", "A_STATUS" }, new string[] { ReceiptCode, INOUT, Consts.USER_INFO.Id, cboStatus.SelectedItem.NullString() });
+                    base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_GOODS_RECEIPT_ISSUE.DELETE", new string[] { "A_RECEIPT_ISSUE_CODE", "A_INOUT", "A_USER", "A_STATUS" }, new string[] { ReceiptCode, INOUT, Consts.USER_INFO.Id, cboStatus.EditValue.NullString() });
                     if (mResultDB.ReturnInt == 0)
                     {
                         MsgBox.Show(base.mResultDB.ReturnString.Translation(), MsgType.Information);
@@ -894,7 +913,39 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void stlSparePartCode_EditValueChanged(object sender, EventArgs e)
         {
+            GetUnitBySparePart();
             GetLocationForSparePart();
+        }
+
+        private void GetUnitBySparePart()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(stlSparePartCode.EditValue.NullString()))
+                {
+                    base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_UNIT_SPAREPART.GET_UNIT_BY_SPAREPART",
+                        new string[] { "A_DEPT_CODE", "A_SPARE_PART_CODE" },
+                        new string[] { Consts.DEPARTMENT, stlSparePartCode.EditValue.NullString() });
+
+                    if (mResultDB.ReturnInt == 0)
+                    {
+                        base.mBindData.BindGridLookEdit(stlUnit, base.mResultDB.ReturnDataSet.Tables[0], "CODE", "NAME");
+
+                        if (base.mResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                        {
+                            stlUnit.EditValue = base.mResultDB.ReturnDataSet.Tables[0].Rows[0]["CODE"].NullString();
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show("NOT FOUND UNIT FOR SPAREPART", MsgType.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
         }
 
         private void GetLocationForSparePart()
@@ -911,8 +962,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                     if (mResultDB.ReturnInt == 0)
                     {
-                        gcLocation.DataSource = mResultDB.ReturnDataSet.Tables[0];
-                        //base.mBindData.BindGridView(gcLocation, mResultDB.ReturnDataSet.Tables[0]);
+                        //gcLocation.DataSource = mResultDB.ReturnDataSet.Tables[0];
+                        base.mBindData.BindGridView(gcLocation, mResultDB.ReturnDataSet.Tables[0]);
 
                         gvLocation.OptionsSelection.MultiSelect = true;
                         gvLocation.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
@@ -923,6 +974,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         gvLocation.Columns["QUANTITY"].OptionsColumn.AllowEdit = false;
                         gvLocation.Columns["UNIT"].OptionsColumn.AllowEdit = false;
                         gvLocation.Columns["EXPIRED_DATE"].OptionsColumn.AllowEdit = false;
+                        gvLocation.Columns["QUANTITY_GET"].OptionsColumn.AllowEdit = true;
+                        //gvLocation.AutoFillColumn = gvLocation.Columns["QUANTITY_GET"];
+                        gvLocation.OptionsView.ColumnAutoWidth = true;
                     }
                     else
                     {
@@ -1024,7 +1078,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 if (Data.Rows.Count == 0 ||
                     string.IsNullOrEmpty(stlKho.EditValue.NullString()) ||
                     string.IsNullOrEmpty(dateInput.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(cboStatus.SelectedItem.NullString()) ||
+                    string.IsNullOrEmpty(cboStatus.EditValue.NullString()) ||
                     Data.Rows.Count == 0)
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);

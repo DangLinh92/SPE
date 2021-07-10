@@ -33,8 +33,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GOODS_RECEIPT));
             this.grcontrolGoodReceipt = new DevExpress.XtraEditors.GroupControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
@@ -87,9 +87,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             this.loRedNote = new DevExpress.XtraLayout.LayoutControlItem();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.cboStatus = new Wisol.AceGridLookUpEdit(this.components);
+            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnPrintReport = new Wisol.XSimpleButton(this.components);
             this.txtDelivererAndReceiver = new Wisol.XTextEdit();
-            this.cboStatus = new System.Windows.Forms.ComboBox();
             this.btnDelete = new Wisol.XSimpleButton(this.components);
             this.btnClear = new Wisol.XSimpleButton(this.components);
             this.btnSave = new Wisol.XSimpleButton(this.components);
@@ -108,9 +109,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.loStatus = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.grcontrolGoodReceipt)).BeginInit();
             this.grcontrolGoodReceipt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -161,6 +162,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.loRedNote)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).BeginInit();
             this.xLayoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboStatus.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDelivererAndReceiver.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateInput.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateInput.Properties)).BeginInit();
@@ -178,9 +181,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loStatus)).BeginInit();
             this.SuspendLayout();
             // 
             // grcontrolGoodReceipt
@@ -246,13 +249,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.lblRedNote.Appearance.Options.UseForeColor = true;
             this.lblRedNote.Location = new System.Drawing.Point(12, 248);
             this.lblRedNote.Name = "lblRedNote";
-            this.lblRedNote.Size = new System.Drawing.Size(267, 13);
+            this.lblRedNote.Size = new System.Drawing.Size(157, 13);
             this.lblRedNote.StyleController = this.xLayoutControl1;
-            toolTipItem2.Text = "QUANTITY_GET 상자에 위치별로 가져올 수량을 입력합니다.";
-            superToolTip2.Items.Add(toolTipItem2);
-            this.lblRedNote.SuperTip = superToolTip2;
+            toolTipItem1.Text = "QUANTITY_GET 상자에 위치별로 가져올 수량을 입력합니다.";
+            superToolTip1.Items.Add(toolTipItem1);
+            this.lblRedNote.SuperTip = superToolTip1;
             this.lblRedNote.TabIndex = 28;
-            this.lblRedNote.Text = "Nhập số lượng cần lấy theo vị trí vào ô QUANTITY_GET";
+            this.lblRedNote.Text = "Nhập số lượng cần lấy theo vị trí";
             this.lblRedNote.ToolTip = "QUANTITY_GET 상자에 위치별로 가져올 수량을 입력합니다.";
             this.lblRedNote.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             // 
@@ -693,7 +696,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 55);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(387, 24);
-            this.layoutControlItem4.Text = "QUANTITY";
+            this.layoutControlItem4.Text = "QUANTITY_GET";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(98, 13);
             // 
             // layoutControlItem9
@@ -788,9 +791,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // xLayoutControl2
             // 
+            this.xLayoutControl2.Controls.Add(this.cboStatus);
             this.xLayoutControl2.Controls.Add(this.btnPrintReport);
             this.xLayoutControl2.Controls.Add(this.txtDelivererAndReceiver);
-            this.xLayoutControl2.Controls.Add(this.cboStatus);
             this.xLayoutControl2.Controls.Add(this.btnDelete);
             this.xLayoutControl2.Controls.Add(this.btnClear);
             this.xLayoutControl2.Controls.Add(this.btnSave);
@@ -806,10 +809,34 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.xLayoutControl2.TabIndex = 0;
             this.xLayoutControl2.Text = "xLayoutControl2";
             // 
+            // cboStatus
+            // 
+            this.cboStatus.EditValue = "";
+            this.cboStatus.Location = new System.Drawing.Point(124, 132);
+            this.cboStatus.Name = "cboStatus";
+            this.cboStatus.Properties.Appearance.Options.UseTextOptions = true;
+            this.cboStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.cboStatus.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cboStatus.Properties.ImmediatePopup = true;
+            this.cboStatus.Properties.NullText = "";
+            this.cboStatus.Properties.PopupView = this.gridView3;
+            this.cboStatus.Size = new System.Drawing.Size(283, 20);
+            this.cboStatus.StyleController = this.xLayoutControl2;
+            this.cboStatus.TabIndex = 12;
+            // 
+            // gridView3
+            // 
+            this.gridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView3.OptionsView.ShowAutoFilterRow = true;
+            this.gridView3.OptionsView.ShowGroupPanel = false;
+            // 
             // btnPrintReport
             // 
             this.btnPrintReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintReport.ImageOptions.Image")));
-            this.btnPrintReport.Location = new System.Drawing.Point(12, 191);
+            this.btnPrintReport.Location = new System.Drawing.Point(12, 190);
             this.btnPrintReport.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnPrintReport.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnPrintReport.Name = "btnPrintReport";
@@ -832,18 +859,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.txtDelivererAndReceiver.StyleController = this.xLayoutControl2;
             this.txtDelivererAndReceiver.TabIndex = 10;
             // 
-            // cboStatus
-            // 
-            this.cboStatus.FormattingEnabled = true;
-            this.cboStatus.Location = new System.Drawing.Point(124, 132);
-            this.cboStatus.Name = "cboStatus";
-            this.cboStatus.Size = new System.Drawing.Size(283, 21);
-            this.cboStatus.TabIndex = 6;
-            // 
             // btnDelete
             // 
             this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(145, 157);
+            this.btnDelete.Location = new System.Drawing.Point(145, 156);
             this.btnDelete.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnDelete.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnDelete.Name = "btnDelete";
@@ -856,7 +875,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // btnClear
             // 
             this.btnClear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.ImageOptions.Image")));
-            this.btnClear.Location = new System.Drawing.Point(278, 157);
+            this.btnClear.Location = new System.Drawing.Point(278, 156);
             this.btnClear.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClear.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnClear.Name = "btnClear";
@@ -870,7 +889,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(12, 157);
+            this.btnSave.Location = new System.Drawing.Point(12, 156);
             this.btnSave.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSave.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnSave.Name = "btnSave";
@@ -968,9 +987,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem10,
             this.layoutControlItem12,
             this.layoutControlItem13,
-            this.layoutControlItem15,
             this.layoutControlItem24,
-            this.layoutControlItem29});
+            this.layoutControlItem29,
+            this.loStatus});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(419, 771);
             this.layoutControlGroup1.TextVisible = false;
@@ -987,9 +1006,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 213);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 212);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(399, 538);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(399, 539);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem6
@@ -1022,7 +1041,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.btnSave;
-            this.layoutControlItem10.Location = new System.Drawing.Point(0, 145);
+            this.layoutControlItem10.Location = new System.Drawing.Point(0, 144);
             this.layoutControlItem10.Name = "layoutControlItem10";
             this.layoutControlItem10.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
@@ -1031,7 +1050,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.btnClear;
-            this.layoutControlItem12.Location = new System.Drawing.Point(266, 145);
+            this.layoutControlItem12.Location = new System.Drawing.Point(266, 144);
             this.layoutControlItem12.Name = "layoutControlItem12";
             this.layoutControlItem12.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
@@ -1040,20 +1059,11 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.btnDelete;
-            this.layoutControlItem13.Location = new System.Drawing.Point(133, 145);
+            this.layoutControlItem13.Location = new System.Drawing.Point(133, 144);
             this.layoutControlItem13.Name = "layoutControlItem13";
             this.layoutControlItem13.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
-            // 
-            // layoutControlItem15
-            // 
-            this.layoutControlItem15.Control = this.cboStatus;
-            this.layoutControlItem15.Location = new System.Drawing.Point(0, 120);
-            this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(399, 25);
-            this.layoutControlItem15.Text = "STATUS";
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(109, 13);
             // 
             // layoutControlItem24
             // 
@@ -1067,11 +1077,20 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // layoutControlItem29
             // 
             this.layoutControlItem29.Control = this.btnPrintReport;
-            this.layoutControlItem29.Location = new System.Drawing.Point(0, 179);
+            this.layoutControlItem29.Location = new System.Drawing.Point(0, 178);
             this.layoutControlItem29.Name = "layoutControlItem29";
             this.layoutControlItem29.Size = new System.Drawing.Size(399, 34);
             this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem29.TextVisible = false;
+            // 
+            // loStatus
+            // 
+            this.loStatus.Control = this.cboStatus;
+            this.loStatus.Location = new System.Drawing.Point(0, 120);
+            this.loStatus.Name = "loStatus";
+            this.loStatus.Size = new System.Drawing.Size(399, 24);
+            this.loStatus.Text = "STATUS";
+            this.loStatus.TextSize = new System.Drawing.Size(109, 13);
             // 
             // GOODS_RECEIPT
             // 
@@ -1134,6 +1153,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.loRedNote)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).EndInit();
             this.xLayoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cboStatus.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDelivererAndReceiver.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateInput.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateInput.Properties)).EndInit();
@@ -1151,9 +1172,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loStatus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1207,8 +1228,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
         private XTextEdit txtQuantity;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
-        private System.Windows.Forms.ComboBox cboStatus;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
         private System.Windows.Forms.Label lbRate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private XSimpleButton btnDeleteRow;
@@ -1237,5 +1256,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
         private DevExpress.XtraEditors.LabelControl lblRedNote;
         private DevExpress.XtraLayout.LayoutControlItem loRedNote;
+        private AceGridLookUpEdit cboStatus;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
+        private DevExpress.XtraLayout.LayoutControlItem loStatus;
     }
 }

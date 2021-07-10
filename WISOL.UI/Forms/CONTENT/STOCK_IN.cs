@@ -16,6 +16,7 @@ namespace Wisol.MES.Forms.CONTENT
         DataTable dtChart = new DataTable();
         DataTable lot = new DataTable();
         string label = string.Empty;
+        private bool firstLoad = true;
         public STOCK_IN()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             Init_Control();
             LoadData();
+            firstLoad = false;
         }
 
         public override void Form_Show()
@@ -37,6 +39,17 @@ namespace Wisol.MES.Forms.CONTENT
         {
             base.InitializePage();
         }
+
+        public override void ReloadData()
+        {
+            if (firstLoad)
+            {
+                Init_Control();
+                LoadData();
+            }
+            firstLoad = true;
+        }
+
         private void Init_Control()
         {
             cboPhieu.SelectedIndex = 0;
