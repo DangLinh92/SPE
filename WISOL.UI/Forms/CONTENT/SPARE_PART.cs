@@ -212,7 +212,7 @@ namespace Wisol.MES.Forms.CONTENT
                 }
 
                 b64 = image;
-                string code = cbGenCode.Checked ? GencodeAuto(sltSparePartType.EditValue.NullString()) : txtCode.EditValue.NullString();
+                string code = cbGenCode.Checked ? GencodeAuto(sltSparePartType.EditValue.NullString()) : txtCode.EditValue.NullString().ToUpper();
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.PUT",
                     new string[]

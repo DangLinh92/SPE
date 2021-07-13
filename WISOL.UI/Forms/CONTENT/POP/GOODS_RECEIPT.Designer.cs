@@ -89,6 +89,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.loRedNote = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.picImg = new DevExpress.XtraEditors.PictureEdit();
             this.cboStatus = new Wisol.AceGridLookUpEdit(this.components);
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnPrintReport = new Wisol.XSimpleButton(this.components);
@@ -114,6 +115,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             this.loStatus = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.grcontrolGoodReceipt)).BeginInit();
             this.grcontrolGoodReceipt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -166,6 +168,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).BeginInit();
             this.xLayoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picImg.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboStatus.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDelivererAndReceiver.Properties)).BeginInit();
@@ -188,6 +191,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
             this.SuspendLayout();
             // 
             // grcontrolGoodReceipt
@@ -442,7 +446,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.txtQuantity.NullValidation = false;
             this.txtQuantity.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtQuantity.Properties.Appearance.Options.UseBackColor = true;
-            this.txtQuantity.Properties.Mask.EditMask = "n";
+            this.txtQuantity.Properties.Mask.EditMask = "n3";
             this.txtQuantity.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtQuantity.Size = new System.Drawing.Size(282, 20);
             this.txtQuantity.StyleController = this.xLayoutControl1;
@@ -817,6 +821,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // xLayoutControl2
             // 
+            this.xLayoutControl2.Controls.Add(this.picImg);
             this.xLayoutControl2.Controls.Add(this.cboStatus);
             this.xLayoutControl2.Controls.Add(this.btnPrintReport);
             this.xLayoutControl2.Controls.Add(this.txtDelivererAndReceiver);
@@ -834,6 +839,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.xLayoutControl2.Size = new System.Drawing.Size(415, 788);
             this.xLayoutControl2.TabIndex = 0;
             this.xLayoutControl2.Text = "xLayoutControl2";
+            // 
+            // picImg
+            // 
+            this.picImg.Location = new System.Drawing.Point(12, 224);
+            this.picImg.Name = "picImg";
+            this.picImg.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.picImg.Size = new System.Drawing.Size(395, 265);
+            this.picImg.StyleController = this.xLayoutControl2;
+            this.picImg.TabIndex = 13;
             // 
             // cboStatus
             // 
@@ -1015,7 +1029,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem13,
             this.layoutControlItem24,
             this.layoutControlItem29,
-            this.loStatus});
+            this.loStatus,
+            this.layoutControlItem30});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(419, 771);
             this.layoutControlGroup1.TextVisible = false;
@@ -1032,9 +1047,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 212);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 481);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(399, 539);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(399, 270);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem6
@@ -1118,6 +1133,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.loStatus.Text = "STATUS";
             this.loStatus.TextSize = new System.Drawing.Size(109, 13);
             // 
+            // layoutControlItem30
+            // 
+            this.layoutControlItem30.Control = this.picImg;
+            this.layoutControlItem30.Location = new System.Drawing.Point(0, 212);
+            this.layoutControlItem30.Name = "layoutControlItem30";
+            this.layoutControlItem30.Size = new System.Drawing.Size(399, 269);
+            this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem30.TextVisible = false;
+            // 
             // GOODS_RECEIPT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1181,6 +1205,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).EndInit();
             this.xLayoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picImg.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboStatus.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDelivererAndReceiver.Properties)).EndInit();
@@ -1203,6 +1228,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1289,5 +1315,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private DevExpress.XtraLayout.LayoutControlItem loStatus;
         private DevExpress.XtraEditors.CheckEdit cheMoreLoaction;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
+        private DevExpress.XtraEditors.PictureEdit picImg;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem30;
     }
 }

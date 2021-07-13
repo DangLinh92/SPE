@@ -211,7 +211,7 @@ namespace Wisol.MES.Forms.CONTENT
                 }
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP_MIN_STOCK.PUT",
-                                   new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_UNIT", "A_MIN_STOCK","A_RATE_ALARM" },
+                                   new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_UNIT", "A_MIN_STOCK", "A_RATE_ALARM" },
                                    new string[] { Consts.DEPARTMENT, stlKho.EditValue.NullString(), stlSpare.EditValue.NullString(), stlUnit.EditValue.NullString(), txtMinStock.EditValue.NullString(), txtRateAlarm.EditValue.NullString() });
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
@@ -294,25 +294,29 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-                if (string.IsNullOrEmpty(stlSpare.EditValue.NullString()))
+                DialogResult dialogResult = MsgBox.Show("MSG_COM_015".Translation(), MsgType.Warning, DialogType.OkCancel);
+                if (dialogResult == DialogResult.OK)
                 {
-                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
-                    return;
-                }
+                    if (string.IsNullOrEmpty(stlSpare.EditValue.NullString()))
+                    {
+                        MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                        return;
+                    }
 
-                string IsInventory = "1".Equals(radioInputType.EditValue.NullString()) ? "1" : "0";
+                    string IsInventory = "1".Equals(radioInputType.EditValue.NullString()) ? "1" : "0";
 
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP_INVENTORY.DELETE",
-                               new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_IS_INVENTORY" },
-                               new string[] { Consts.DEPARTMENT, stlKho.EditValue.NullString(), stlSpare.EditValue.NullString(), IsInventory });
-                if (base.m_ResultDB.ReturnInt == 0)
-                {
-                    MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);
-                    GetData();
-                }
-                else
-                {
-                    MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP_INVENTORY.DELETE",
+                                   new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_IS_INVENTORY" },
+                                   new string[] { Consts.DEPARTMENT, stlKho.EditValue.NullString(), stlSpare.EditValue.NullString(), IsInventory });
+                    if (base.m_ResultDB.ReturnInt == 0)
+                    {
+                        MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                        GetData();
+                    }
+                    else
+                    {
+                        MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                    }
                 }
             }
             catch (Exception ex)
@@ -358,7 +362,7 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-                if(txtQuantityByTime.Visible == true && txtQuantityByTime.Enabled == true && string.IsNullOrEmpty(txtQuantityByTime.EditValue.NullString()))
+                if (txtQuantityByTime.Visible == true && txtQuantityByTime.Enabled == true && string.IsNullOrEmpty(txtQuantityByTime.EditValue.NullString()))
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
@@ -367,7 +371,7 @@ namespace Wisol.MES.Forms.CONTENT
                 DateTime date = (DateTime)dateInputReal.EditValue;
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_BY_TIME.PUT_QUANTITY_REAL",
-                            new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_QUANTITY_REAL", "A_UNIT", "A_DATE", "A_YEAR", "A_MONTH","A_QUANTITY", "A_USER" },
+                            new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_QUANTITY_REAL", "A_UNIT", "A_DATE", "A_YEAR", "A_MONTH", "A_QUANTITY", "A_USER" },
                             new string[] {
                                 Consts.DEPARTMENT, stlKho.EditValue.NullString(),
                                 stlSparePartForReal.EditValue.NullString(), txtQuantityRealByTime.EditValue.NullString(),
@@ -392,32 +396,38 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-                if (string.IsNullOrEmpty(stlKho.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(stlSparePartForReal.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(dateInputReal.EditValue.NullString()))
+
+                DialogResult dialogResult = MsgBox.Show("MSG_COM_015".Translation(), MsgType.Warning, DialogType.OkCancel);
+                if (dialogResult == DialogResult.OK)
                 {
-                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
-                    return;
-                }
+                    if (string.IsNullOrEmpty(stlKho.EditValue.NullString()) ||
+                        string.IsNullOrEmpty(stlSparePartForReal.EditValue.NullString()) ||
+                        string.IsNullOrEmpty(dateInputReal.EditValue.NullString()))
+                    {
+                        MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                        return;
+                    }
 
-                DateTime date = (DateTime)dateInputReal.EditValue;
+                    DateTime date = (DateTime)dateInputReal.EditValue;
 
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_BY_TIME.DELETE_QUANTITY_REAL",
-                           new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_YEAR", "A_MONTH" },
-                           new string[] {
+                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_BY_TIME.DELETE_QUANTITY_REAL",
+                               new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_YEAR", "A_MONTH" },
+                               new string[] {
                                 Consts.DEPARTMENT, stlKho.EditValue.NullString(),
                                 stlSparePartForReal.EditValue.NullString(),
                                date.Year.NullString(),date.Month.NullString() });
 
-                if (base.m_ResultDB.ReturnInt == 0)
-                {
-                    MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);
-                    GetData();
+                    if (base.m_ResultDB.ReturnInt == 0)
+                    {
+                        MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                        GetData();
+                    }
+                    else
+                    {
+                        MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                    }
                 }
-                else
-                {
-                    MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Error);
-                }
+
             }
             catch (Exception ex)
             {
@@ -466,6 +476,25 @@ namespace Wisol.MES.Forms.CONTENT
                 string sQuantity = gvList.GetRowCellValue(e.RowHandle, "QUANTITY").NullString();
                 string sMinStock = gvList.GetRowCellValue(e.RowHandle, "MIN_STOCK").NullString();
                 string rateAlarm = gvList.GetRowCellValue(e.RowHandle, "RATE_ALARM").NullString();
+                string sQuantityDiff = gvList.GetRowCellValue(e.RowHandle, "DIFFERENCE_QUANTITY").NullString();
+
+                if (e.Column.FieldName == "DIFFERENCE_QUANTITY")
+                {
+                    if (sQuantityDiff == "") sQuantityDiff = "0";
+
+                    if (float.Parse(sQuantityDiff) < 0)
+                    {
+                        e.Appearance.BackColor = Color.LightSalmon;
+                    }
+                    else if (float.Parse(sQuantityDiff) == 0)
+                    {
+                        e.Appearance.BackColor = Color.LightGreen;
+                    }
+                    else
+                    {
+                        e.Appearance.BackColor = Color.Yellow;
+                    }
+                }
 
                 if (string.IsNullOrEmpty(sQuantity) || string.IsNullOrEmpty(sMinStock))
                 {
@@ -483,11 +512,11 @@ namespace Wisol.MES.Forms.CONTENT
 
                 if (e.Column.FieldName == "QUANTITY")
                 {
-                    if(quantity <= minStock)
+                    if (quantity <= minStock)
                     {
                         e.Appearance.BackColor = Color.LightSalmon;
                     }
-                    else if (quantity <= minStock*(rate/100 + 1) && quantity > minStock)
+                    else if (quantity <= minStock * (rate / 100 + 1) && quantity > minStock)
                     {
                         e.Appearance.BackColor = Color.Yellow;
                     }
@@ -511,9 +540,9 @@ namespace Wisol.MES.Forms.CONTENT
                 popup.ReportType = cboReportType.SelectedIndex == 0 ? "1" : "2";
                 popup.ReportTitle = cboReportType.Text;
 
-                if(cboReportType.SelectedIndex == 1)
+                if (cboReportType.SelectedIndex == 1)
                 {
-                    if(string.IsNullOrEmpty(dateFrom.EditValue.NullString()) || string.IsNullOrEmpty(dateTo.EditValue.NullString()))
+                    if (string.IsNullOrEmpty(dateFrom.EditValue.NullString()) || string.IsNullOrEmpty(dateTo.EditValue.NullString()))
                     {
                         MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                         dateFrom.Focus();
@@ -524,7 +553,7 @@ namespace Wisol.MES.Forms.CONTENT
                     popup.TimeFrom = datefrom.ToString();
                     popup.TimeTo = dateto.ToString();
                 }
-                 
+
                 popup.ShowDialog();
             }
             else
@@ -537,7 +566,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void cboReportType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboReportType.SelectedIndex == 0)
+            if (cboReportType.SelectedIndex == 0)
             {
                 dateFrom.Enabled = false;
                 dateTo.Enabled = false;
@@ -553,25 +582,53 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void cboFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cboFilter.SelectedIndex == 0) //show all
+            if (cboFilter.SelectedIndex == 0) //show all
             {
                 gvList.ActiveFilter.Clear();
             }
-            else if(cboFilter.SelectedIndex == 1) //duoi dinh muc
+            else if (cboFilter.SelectedIndex == 1) //duoi dinh muc
             {
                 gvList.ActiveFilterString = "[QUANTITY] <= [MIN_STOCK]";
             }
-            else if(cboFilter.SelectedIndex == 2) // vuot dinh muc
+            else if (cboFilter.SelectedIndex == 2) // vuot dinh muc
             {
                 gvList.ActiveFilterString = "[QUANTITY] > [MIN_STOCK]";
             }
-            else if(cboFilter.SelectedIndex == 3) // con hang
+            else if (cboFilter.SelectedIndex == 3) // con hang
             {
                 gvList.ActiveFilterString = "[QUANTITY] > 0 OR [QUANTITY_REAL] > 0";
             }
             else if (cboFilter.SelectedIndex == 4) // het hang
             {
                 gvList.ActiveFilterString = "[QUANTITY] = 0 OR [QUANTITY_REAL] = 0";
+            }
+        }
+
+        private void btnBalance_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MsgBox.Show("MSG_COM_015".Translation(), MsgType.Warning, DialogType.OkCancel);
+
+                if (dialogResult == DialogResult.OK)
+                {
+                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP_INVENTORY.CREATE_BALANCE_WAREHOUSE",
+                       new string[] { "A_DEPARTMENT", "A_USER" },
+                       new string[] { Consts.DEPARTMENT, Consts.USER_INFO.Id });
+
+                    if (base.m_ResultDB.ReturnInt == 0)
+                    {
+                        MsgBox.Show(m_ResultDB.ReturnString, MsgType.Information);
+                    }
+                    else
+                    {
+                        MsgBox.Show(m_ResultDB.ReturnString, MsgType.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
     }

@@ -941,6 +941,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
+                picImg.EditValue = null;
+
                 if (!string.IsNullOrEmpty(stlSparePartCode.EditValue.NullString()))
                 {
                     base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_UNIT_SPAREPART.GET_UNIT_BY_SPAREPART",
@@ -949,11 +951,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                     if (mResultDB.ReturnInt == 0)
                     {
-                        base.mBindData.BindGridLookEdit(stlUnit, base.mResultDB.ReturnDataSet.Tables[0], "CODE", "NAME");
+                        DataTable data = base.mResultDB.ReturnDataSet.Tables[0];
+                        base.mBindData.BindGridLookEdit(stlUnit, data, "CODE", "NAME");
 
-                        if (base.mResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                        if (data.Rows.Count > 0)
                         {
-                            stlUnit.EditValue = base.mResultDB.ReturnDataSet.Tables[0].Rows[0]["CODE"].NullString();
+                            stlUnit.EditValue = data.Rows[0]["CODE"].NullString();
+
+                            string image = data.Rows[0]["IMAGE"].NullString();
+                            ShowImge(image);
                         }
                     }
                     else
@@ -972,14 +978,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
-                if (!float.TryParse(txtQuantity.EditValue.NullString(),out _) || float.Parse(txtQuantity.EditValue.NullString()) <= 0)
-                {
-                    return;
-                }
-
                 for (int i = 0; i < gvLocation.RowCount; i++)
                 {
                     gvLocation.UnselectRow(i);
+                    gvLocation.SetRowCellValue(i, gvLocation.Columns["QUANTITY_GET"], 0);
+                }
+
+                if (!float.TryParse(txtQuantity.EditValue.NullString(), out _) || float.Parse(txtQuantity.EditValue.NullString()) <= 0)
+                {
+                    return;
                 }
 
                 float quantityInput = float.Parse(txtQuantity.EditValue.NullString());
@@ -1048,6 +1055,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     {
                         base.mBindData.BindGridView(gcLocation, new DataTable());
                     }
+
+
+                    if (INOUT == Consts.OUT && (Mode == Consts.MODE_NEW || ((Mode == Consts.MODE_UPDATE || Mode == Consts.MODE_DELETE) && CurrentStatus != Consts.STATUS_COMPLETE)))
+                    {
+                        AutoFillQuantityByLocationSparepart();
+                    }
+
                 }
             }
             catch (Exception ex)
@@ -1229,6 +1243,20 @@ namespace Wisol.MES.Forms.CONTENT.POP
             if (!cheMoreLoaction.Checked) // LOAD LESS DATA
             {
                 gvLocation.ActiveFilterString = "[QUANTITY_GET] > 0";
+            }
+        }
+
+        private void ShowImge(string image)
+        {
+            if (!string.IsNullOrWhiteSpace(image))
+            {
+                byte[] imagebytes = Convert.FromBase64String(image);
+                using (var ms = new MemoryStream(imagebytes, 0, imagebytes.Length))
+                {
+                    picImg.Image = Image.FromStream(ms, true);
+                }
+                picImg.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                picImg.Size = picImg.Image.Size;
             }
         }
     }

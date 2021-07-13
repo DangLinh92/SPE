@@ -277,6 +277,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnPrintLabelExpiredDate
             // 
+            this.btnPrintLabelExpiredDate.Enabled = false;
             this.btnPrintLabelExpiredDate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintLabelExpiredDate.ImageOptions.Image")));
             this.btnPrintLabelExpiredDate.Location = new System.Drawing.Point(1192, 595);
             this.btnPrintLabelExpiredDate.MaximumSize = new System.Drawing.Size(129, 30);

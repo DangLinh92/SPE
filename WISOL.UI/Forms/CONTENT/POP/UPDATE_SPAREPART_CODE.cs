@@ -33,7 +33,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 }
                 base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_SP.UPDATE_CODE", 
                     new string[] { "A_DEPARTMENT", "A_CODE_OLD", "A_CODE_NEW" }, 
-                    new string[] { Consts.DEPARTMENT,txtCodeOld.EditValue.NullString(),txtCodeNew.EditValue.NullString() });
+                    new string[] { Consts.DEPARTMENT,txtCodeOld.EditValue.NullString().ToUpper(),txtCodeNew.EditValue.NullString().ToUpper() });
 
                 if (mResultDB.ReturnInt == 0)
                 {

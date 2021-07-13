@@ -591,7 +591,7 @@ namespace Wisol.MES.Forms.CONTENT
                             }
 
                             string dateExpired = data.Rows[0]["EXPIRED_DATE"].NullString();
-                            if(dateExpired != "" && !dateExpired.Contains("2199")) // 2199-01-01
+                            if (dateExpired != "" && !dateExpired.Contains("2199")) // 2199-01-01
                             {
                                 cheHasDateExpired.Checked = true;
                                 dateExpiredTime.EditValue = dateExpired;
@@ -657,9 +657,26 @@ namespace Wisol.MES.Forms.CONTENT
 
                             string position = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[0]).NullString();
                             string condition = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[3]).NullString();
-                            string lblPosition_condition = position + (position == "" ? "" : ".") + (condition == "NG" ? "NG" : "");
+                            string lblPosition_condition = position + (position == "" ? (condition == "NG" ? "NG" : "") : (condition == "NG" ? ".NG" : ""));
                             string barcode = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[8]).NullString();
-                            xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition);
+                            string strDate = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[10]).NullString();
+
+
+                            if (strDate == "2199-01-01")
+                            {
+                                xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$","EXP: - ");
+                            }
+                            else
+                            {
+                                if (DateTime.TryParse(strDate, out DateTime ExpriDate))
+                                {
+                                    xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$","EXP:"+ ExpriDate.ToString("yyyy-MM-dd"));
+                                }
+                                else
+                                {
+                                    xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "EXP: - ");
+                                }
+                            }
 
                             xml_content = xml_content.Replace("&", "&amp;");
                             File.WriteAllText((i + 1).NullString() + designFile, xml_content);
@@ -743,7 +760,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LABEL.GET_TEMP", new string[] { "A_CODE_TEMP" }, new string[] { "QRCODE" });
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LABEL.GET_TEMP", new string[] { "A_CODE_TEMP" }, new string[] { "QRCODE_UPDATE" });//QRCODE
                 if (m_ResultDB.ReturnInt == 0)
                 {
                     label = base.m_ResultDB.ReturnDataSet.Tables[0].Rows[0]["LABEL"].NullString();
@@ -879,7 +896,7 @@ namespace Wisol.MES.Forms.CONTENT
                 }
 
                 gvListNoPosition.ActiveFilter.Clear();
-                gvListNoPosition.ActiveFilterString = "[SPARE_PART_CODE] = '" + stlSparePartSearch.EditValue.NullString()+"'";
+                gvListNoPosition.ActiveFilterString = "[SPARE_PART_CODE] = '" + stlSparePartSearch.EditValue.NullString() + "'";
             }
             catch (Exception ex)
             {
@@ -937,7 +954,7 @@ namespace Wisol.MES.Forms.CONTENT
                             string condition = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[3]).NullString();
                             string lblPosition_condition = position + (position == "" ? "" : ".") + (condition == "NG" ? "NG" : "");
                             string strDate = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[10]).NullString();
-                            if(!DateTime.TryParse(strDate,out DateTime ExpriDate))
+                            if (!DateTime.TryParse(strDate, out DateTime ExpriDate))
                             {
                                 continue;
                             }
@@ -1080,7 +1097,7 @@ namespace Wisol.MES.Forms.CONTENT
                             if (float.Parse(quantityRemain) >= 0)
                             {
                                 txtQuantityRemain.EditValue = quantityRemain;
-                                btnSaveLocation_Sparepart.Enabled = true ;
+                                btnSaveLocation_Sparepart.Enabled = true;
                             }
                             else
                             {
