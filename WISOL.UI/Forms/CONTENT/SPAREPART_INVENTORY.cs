@@ -76,6 +76,7 @@ namespace Wisol.MES.Forms.CONTENT
                 dateInputReal.EditValue = DateTime.Now;
                 radioInputType.Enabled = false;
                 txtRateAlarm.EditValue = 20;
+                gvList.OptionsView.ColumnAutoWidth = true;
 
             }
             catch (Exception ex)

@@ -39,6 +39,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.grcontrolGoodReceipt = new DevExpress.XtraEditors.GroupControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.xLayoutControl1 = new Wisol.XLayoutControl();
+            this.cheMoreLoaction = new DevExpress.XtraEditors.CheckEdit();
             this.lblRedNote = new DevExpress.XtraEditors.LabelControl();
             this.btnClearInput = new Wisol.XSimpleButton(this.components);
             this.dateReturnTime = new Wisol.XDateEdit();
@@ -86,6 +87,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             this.loRedNote = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
             this.cboStatus = new Wisol.AceGridLookUpEdit(this.components);
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -118,6 +120,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cheMoreLoaction.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateReturnTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateReturnTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stlType.Properties)).BeginInit();
@@ -160,6 +163,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loRedNote)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).BeginInit();
             this.xLayoutControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cboStatus.Properties)).BeginInit();
@@ -213,6 +217,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // xLayoutControl1
             // 
+            this.xLayoutControl1.Controls.Add(this.cheMoreLoaction);
             this.xLayoutControl1.Controls.Add(this.lblRedNote);
             this.xLayoutControl1.Controls.Add(this.btnClearInput);
             this.xLayoutControl1.Controls.Add(this.dateReturnTime);
@@ -240,6 +245,17 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.xLayoutControl1.Size = new System.Drawing.Size(870, 788);
             this.xLayoutControl1.TabIndex = 0;
             this.xLayoutControl1.Text = "xLayoutControl1";
+            // 
+            // cheMoreLoaction
+            // 
+            this.cheMoreLoaction.EditValue = true;
+            this.cheMoreLoaction.Location = new System.Drawing.Point(12, 265);
+            this.cheMoreLoaction.Name = "cheMoreLoaction";
+            this.cheMoreLoaction.Properties.Caption = "LOAD_FULL_LOCATION";
+            this.cheMoreLoaction.Size = new System.Drawing.Size(846, 20);
+            this.cheMoreLoaction.StyleController = this.xLayoutControl1;
+            this.cheMoreLoaction.TabIndex = 29;
+            this.cheMoreLoaction.CheckedChanged += new System.EventHandler(this.cheMoreLoaction_CheckedChanged);
             // 
             // lblRedNote
             // 
@@ -313,12 +329,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // gcLocation
             // 
-            this.gcLocation.Location = new System.Drawing.Point(12, 265);
+            this.gcLocation.Location = new System.Drawing.Point(12, 289);
             this.gcLocation.MainView = this.gvLocation;
             this.gcLocation.Name = "gcLocation";
             this.gcLocation.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemTextEdit1});
-            this.gcLocation.Size = new System.Drawing.Size(846, 136);
+            this.gcLocation.Size = new System.Drawing.Size(846, 189);
             this.gcLocation.TabIndex = 10;
             this.gcLocation.TabStop = false;
             this.gcLocation.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -386,7 +402,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // btnClearRow
             // 
             this.btnClearRow.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClearRow.ImageOptions.Image")));
-            this.btnClearRow.Location = new System.Drawing.Point(145, 405);
+            this.btnClearRow.Location = new System.Drawing.Point(145, 482);
             this.btnClearRow.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClearRow.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnClearRow.Name = "btnClearRow";
@@ -399,7 +415,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // btnDeleteRow
             // 
             this.btnDeleteRow.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteRow.ImageOptions.Image")));
-            this.btnDeleteRow.Location = new System.Drawing.Point(278, 405);
+            this.btnDeleteRow.Location = new System.Drawing.Point(278, 482);
             this.btnDeleteRow.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnDeleteRow.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnDeleteRow.Name = "btnDeleteRow";
@@ -437,7 +453,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             this.btnAddItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddItem.ImageOptions.Image")));
-            this.btnAddItem.Location = new System.Drawing.Point(12, 405);
+            this.btnAddItem.Location = new System.Drawing.Point(12, 482);
             this.btnAddItem.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.btnAddItem.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnAddItem.MinimumSize = new System.Drawing.Size(129, 30);
@@ -562,10 +578,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // gcList
             // 
-            this.gcList.Location = new System.Drawing.Point(12, 439);
+            this.gcList.Location = new System.Drawing.Point(12, 516);
             this.gcList.MainView = this.gvList;
             this.gcList.Name = "gcList";
-            this.gcList.Size = new System.Drawing.Size(846, 337);
+            this.gcList.Size = new System.Drawing.Size(846, 260);
             this.gcList.TabIndex = 4;
             this.gcList.UseEmbeddedNavigator = true;
             this.gcList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -603,7 +619,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem26,
             this.layoutControlItem11,
             this.layoutControlItem25,
-            this.loRedNote});
+            this.loRedNote,
+            this.layoutControlItem15});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(870, 788);
             this.Root.TextVisible = false;
@@ -611,9 +628,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.gcList;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 427);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 504);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(850, 341);
+            this.layoutControlItem1.Size = new System.Drawing.Size(850, 264);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -684,7 +701,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             this.layoutControlItem21.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.layoutControlItem21.Control = this.btnAddItem;
-            this.layoutControlItem21.Location = new System.Drawing.Point(0, 393);
+            this.layoutControlItem21.Location = new System.Drawing.Point(0, 470);
             this.layoutControlItem21.Name = "layoutControlItem21";
             this.layoutControlItem21.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
@@ -711,7 +728,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // layoutControlItem22
             // 
             this.layoutControlItem22.Control = this.btnDeleteRow;
-            this.layoutControlItem22.Location = new System.Drawing.Point(266, 393);
+            this.layoutControlItem22.Location = new System.Drawing.Point(266, 470);
             this.layoutControlItem22.Name = "layoutControlItem22";
             this.layoutControlItem22.Size = new System.Drawing.Size(584, 34);
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
@@ -720,7 +737,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // layoutControlItem23
             // 
             this.layoutControlItem23.Control = this.btnClearRow;
-            this.layoutControlItem23.Location = new System.Drawing.Point(133, 393);
+            this.layoutControlItem23.Location = new System.Drawing.Point(133, 470);
             this.layoutControlItem23.Name = "layoutControlItem23";
             this.layoutControlItem23.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem23.TextSize = new System.Drawing.Size(0, 0);
@@ -747,9 +764,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.gcLocation;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 253);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 277);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(850, 140);
+            this.layoutControlItem3.Size = new System.Drawing.Size(850, 193);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
@@ -788,6 +805,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.loRedNote.Size = new System.Drawing.Size(850, 17);
             this.loRedNote.TextSize = new System.Drawing.Size(0, 0);
             this.loRedNote.TextVisible = false;
+            // 
+            // layoutControlItem15
+            // 
+            this.layoutControlItem15.Control = this.cheMoreLoaction;
+            this.layoutControlItem15.Location = new System.Drawing.Point(0, 253);
+            this.layoutControlItem15.Name = "layoutControlItem15";
+            this.layoutControlItem15.Size = new System.Drawing.Size(850, 24);
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem15.TextVisible = false;
             // 
             // xLayoutControl2
             // 
@@ -1109,6 +1135,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).EndInit();
             this.xLayoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cheMoreLoaction.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateReturnTime.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateReturnTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stlType.Properties)).EndInit();
@@ -1151,6 +1178,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.loRedNote)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).EndInit();
             this.xLayoutControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cboStatus.Properties)).EndInit();
@@ -1259,5 +1287,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private AceGridLookUpEdit cboStatus;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraLayout.LayoutControlItem loStatus;
+        private DevExpress.XtraEditors.CheckEdit cheMoreLoaction;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
     }
 }

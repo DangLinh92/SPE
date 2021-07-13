@@ -84,6 +84,7 @@ namespace Wisol.MES.Forms.CONTENT
             popup.ReceiptCode = "";
             popup.StockCode = "";
             popup.INOUT = Consts.IN;
+            popup.CurrentStatus = "";
             popup.ShowDialog();
             LoadData();
         }
@@ -173,6 +174,7 @@ namespace Wisol.MES.Forms.CONTENT
                             popup.ReceiptCode = gvList.GetDataRow(e.RowHandle)["STOCK_IN_OUT_CODE"].NullString();
                             popup.INOUT = gvList.GetDataRow(e.RowHandle)["IN_OUT"].NullString();
                             popup.StockCode = gvList.GetDataRow(e.RowHandle)["STOCK_CODE"].NullString();
+                            popup.CurrentStatus = gvList.GetDataRow(e.RowHandle)["STATUS"].NullString();
                             popup.ShowDialog();
                             LoadData();
                         }
@@ -183,6 +185,7 @@ namespace Wisol.MES.Forms.CONTENT
                             popup.ReceiptCode = gvList.GetDataRow(e.RowHandle)["STOCK_IN_OUT_CODE"].NullString();
                             popup.INOUT = gvList.GetDataRow(e.RowHandle)["IN_OUT"].NullString();
                             popup.StockCode = gvList.GetDataRow(e.RowHandle)["STOCK_CODE"].NullString();
+                            popup.CurrentStatus = gvList.GetDataRow(e.RowHandle)["STATUS"].NullString();
                             popup.ShowDialog();
                             LoadData();
                         }
@@ -196,6 +199,7 @@ namespace Wisol.MES.Forms.CONTENT
                             popup.ReceiptCode = gvList.GetDataRow(e.RowHandle)["STOCK_IN_OUT_CODE"].NullString();
                             popup.INOUT = gvList.GetDataRow(e.RowHandle)["IN_OUT"].NullString();
                             popup.StockCode = gvList.GetDataRow(e.RowHandle)["STOCK_CODE"].NullString();
+                            popup.CurrentStatus = gvList.GetDataRow(e.RowHandle)["STATUS"].NullString();
                             popup.ShowDialog();
                             LoadData();
                         }
@@ -206,6 +210,7 @@ namespace Wisol.MES.Forms.CONTENT
                             popup.ReceiptCode = gvList.GetDataRow(e.RowHandle)["STOCK_IN_OUT_CODE"].NullString();
                             popup.INOUT = gvList.GetDataRow(e.RowHandle)["IN_OUT"].NullString();
                             popup.StockCode = gvList.GetDataRow(e.RowHandle)["STOCK_CODE"].NullString();
+                            popup.CurrentStatus = gvList.GetDataRow(e.RowHandle)["STATUS"].NullString();
                             popup.ShowDialog();
                             LoadData();
                         }
@@ -367,6 +372,7 @@ namespace Wisol.MES.Forms.CONTENT
             popup.ReceiptCode = "";
             popup.StockCode = "";
             popup.INOUT = Consts.OUT;
+            popup.CurrentStatus = "";
             popup.ShowDialog();
             LoadData();
         }

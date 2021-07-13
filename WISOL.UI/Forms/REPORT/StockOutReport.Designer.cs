@@ -78,9 +78,9 @@ namespace Wisol.MES.Forms.REPORT
             this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrControlStyle2 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.xrControlStyle3 = new DevExpress.XtraReports.UI.XRControlStyle();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
             this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.defaultBarAndDockingController1.Controller)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -353,16 +353,16 @@ namespace Wisol.MES.Forms.REPORT
             // 
             this.xrLabel18.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Month]")});
-            this.xrLabel18.LocationFloat = new DevExpress.Utils.PointFloat(508.3333F, 10.00004F);
+            this.xrLabel18.LocationFloat = new DevExpress.Utils.PointFloat(496.125F, 10.00004F);
             this.xrLabel18.Multiline = true;
             this.xrLabel18.Name = "xrLabel18";
             this.xrLabel18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel18.SizeF = new System.Drawing.SizeF(27.08334F, 23F);
+            this.xrLabel18.SizeF = new System.Drawing.SizeF(39.29166F, 23F);
             this.xrLabel18.Text = "xrLabel5";
             // 
             // xrLabel14
             // 
-            this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(404.1667F, 9.999974F);
+            this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(382.5833F, 9.999974F);
             this.xrLabel14.Multiline = true;
             this.xrLabel14.Name = "xrLabel14";
             this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -373,11 +373,11 @@ namespace Wisol.MES.Forms.REPORT
             // 
             this.xrLabel16.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Day]")});
-            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(441.6667F, 9.999974F);
+            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(420.0834F, 10.00004F);
             this.xrLabel16.Multiline = true;
             this.xrLabel16.Name = "xrLabel16";
             this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel16.SizeF = new System.Drawing.SizeF(18.75F, 23F);
+            this.xrLabel16.SizeF = new System.Drawing.SizeF(28.125F, 23F);
             this.xrLabel16.Text = "xrLabel2";
             // 
             // xrLabel15
@@ -393,7 +393,7 @@ namespace Wisol.MES.Forms.REPORT
             // 
             // xrLabel17
             // 
-            this.xrLabel17.LocationFloat = new DevExpress.Utils.PointFloat(460.4167F, 10.00004F);
+            this.xrLabel17.LocationFloat = new DevExpress.Utils.PointFloat(448.2084F, 10.00004F);
             this.xrLabel17.Multiline = true;
             this.xrLabel17.Name = "xrLabel17";
             this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -569,12 +569,6 @@ namespace Wisol.MES.Forms.REPORT
             this.xrControlStyle3.Name = "xrControlStyle3";
             this.xrControlStyle3.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataMember = "GetReport";
-            this.objectDataSource1.DataSource = typeof(Wisol.MES.Forms.REPORT.Models.STOCK_OUT_DATA_SOURCE);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // PageFooter
             // 
             this.PageFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -593,6 +587,12 @@ namespace Wisol.MES.Forms.REPORT
             this.xrLabel22.StylePriority.UseTextAlignment = false;
             this.xrLabel22.Text = "© Copyright Wisol Ha Noi";
             this.xrLabel22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataMember = "GetReport";
+            this.objectDataSource1.DataSource = typeof(Wisol.MES.Forms.REPORT.Models.STOCK_OUT_DATA_SOURCE);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // StockOutReport
             // 

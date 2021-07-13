@@ -52,6 +52,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private float ExchangeRate;
         public string StockCode { get; set; }
         public DataTable SparePartData { get; set; }
+        public string CurrentStatus { get; set; }
 
         private void InitData()
         {
@@ -527,7 +528,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
-                if (!string.IsNullOrEmpty(txtQuantity.EditValue.NullString()) && !string.IsNullOrEmpty(txtPriceVN.EditValue.NullString()))
+                if (INOUT == Consts.OUT && (Mode == Consts.MODE_NEW || ((Mode == Consts.MODE_UPDATE || Mode == Consts.MODE_DELETE) && CurrentStatus != Consts.STATUS_COMPLETE)))
+                {
+                    if (!string.IsNullOrEmpty(txtQuantity.EditValue.NullString()))
+                    {
+                        AutoFillQuantityByLocationSparepart();
+                    }
+                }
+
+                if (INOUT == Consts.IN && !string.IsNullOrEmpty(txtQuantity.EditValue.NullString()) && !string.IsNullOrEmpty(txtPriceVN.EditValue.NullString()))
                 {
                     float priceVN = float.Parse(txtPriceVN.EditValue.NullString());
 
@@ -624,6 +633,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                 }
                             }
                         }
+
+                        cheMoreLoaction.Checked = true;
                     }
 
                     mmCause.EditValue = gvList.GetDataRow(e.RowHandle)["CAUSE"].NullString();
@@ -914,7 +925,16 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private void stlSparePartCode_EditValueChanged(object sender, EventArgs e)
         {
             GetUnitBySparePart();
-            GetLocationForSparePart();
+
+            if(INOUT == Consts.OUT && (Mode == Consts.MODE_NEW || ((Mode== Consts.MODE_UPDATE || Mode == Consts.MODE_DELETE) && CurrentStatus != Consts.STATUS_COMPLETE)))
+            {
+                GetLocationForSparePart();
+
+                if (!string.IsNullOrEmpty(txtQuantity.EditValue.NullString()))
+                {
+                    AutoFillQuantityByLocationSparepart();
+                }
+            }
         }
 
         private void GetUnitBySparePart()
@@ -941,6 +961,52 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         MsgBox.Show("NOT FOUND UNIT FOR SPAREPART", MsgType.Error);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+        
+        private void AutoFillQuantityByLocationSparepart()
+        {
+            try
+            {
+                if (!float.TryParse(txtQuantity.EditValue.NullString(),out _) || float.Parse(txtQuantity.EditValue.NullString()) <= 0)
+                {
+                    return;
+                }
+
+                for (int i = 0; i < gvLocation.RowCount; i++)
+                {
+                    gvLocation.UnselectRow(i);
+                }
+
+                float quantityInput = float.Parse(txtQuantity.EditValue.NullString());
+                float tmpQuantity = 0;
+                for (int i = 0; i < gvLocation.RowCount; i++)
+                {
+                    float quantity = float.Parse(gvLocation.GetRowCellValue(i, gvLocation.Columns["QUANTITY"]).NullString());
+                    if (tmpQuantity < quantityInput)
+                    {
+                        if(tmpQuantity + quantity <= quantityInput)
+                        {
+                            tmpQuantity += quantity;
+
+                            gvLocation.SetRowCellValue(i, gvLocation.Columns["QUANTITY_GET"], quantity);
+                            gvLocation.SelectRow(i);
+                        }
+                        else
+                        {
+                            gvLocation.SetRowCellValue(i, gvLocation.Columns["QUANTITY_GET"], (quantityInput - tmpQuantity));
+                            tmpQuantity += (quantityInput - tmpQuantity);
+                            gvLocation.SelectRow(i);
+                            break;
+                        }
+                    }
+                }
+
+               
             }
             catch (Exception ex)
             {
@@ -1009,7 +1075,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     return;
                 }
 
-                if (e.Column.FieldName == "QUANTITY_GET")
+                if (e.Column.FieldName == "QUANTITY_GET" && CurrentStatus != Consts.STATUS_COMPLETE)
                 {
                     var quantity_get = gvLocation.GetDataRow(e.RowHandle)["QUANTITY_GET"].NullString();
                     var quantity = gvLocation.GetDataRow(e.RowHandle)["QUANTITY"].NullString();
@@ -1154,6 +1220,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 float price = float.Parse(e.Value.NullString());
                 e.DisplayText = string.Format(new CultureInfo("en-US"), "{0:c}", price);
 
+            }
+        }
+
+        private void cheMoreLoaction_CheckedChanged(object sender, EventArgs e)
+        {
+            gvLocation.ActiveFilter.Clear();
+            if (!cheMoreLoaction.Checked) // LOAD LESS DATA
+            {
+                gvLocation.ActiveFilterString = "[QUANTITY_GET] > 0";
             }
         }
     }
