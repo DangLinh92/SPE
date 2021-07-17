@@ -95,6 +95,11 @@ namespace Wisol.MES.Forms.CONTENT
             string status = gvList.GetRowCellValue(e.RowHandle, "STATUS").NullString();
 
 
+            if(e.Column.Name == "col_View")
+            {
+                e.Appearance.BackColor = Color.CornflowerBlue;
+            }
+
             if (e.Column.FieldName == "IN_OUT")
             {
                 if (intOut == Consts.IN)
@@ -160,6 +165,19 @@ namespace Wisol.MES.Forms.CONTENT
 
                 if (status == Consts.STATUS_COMPLETE && gvList.GetDataRow(e.RowHandle)["IN_OUT"].NullString() == Consts.OUT && e.Column.Name == "col_Edit")
                 {
+                    return;
+                }
+
+                if(e.Column.Name == "col_View")
+                {
+                    POP.GOODS_RECEIPT popup = new POP.GOODS_RECEIPT();
+                    popup.Mode = Consts.MODE_VIEW;
+                    popup.ReceiptCode = gvList.GetDataRow(e.RowHandle)["STOCK_IN_OUT_CODE"].NullString();
+                    popup.INOUT = gvList.GetDataRow(e.RowHandle)["IN_OUT"].NullString();
+                    popup.StockCode = gvList.GetDataRow(e.RowHandle)["STOCK_CODE"].NullString();
+                    popup.CurrentStatus = gvList.GetDataRow(e.RowHandle)["STATUS"].NullString();
+                    popup.ShowDialog();
+                    LoadData();
                     return;
                 }
 

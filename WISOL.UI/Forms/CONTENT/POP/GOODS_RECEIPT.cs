@@ -158,7 +158,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 btnClear.Enabled = true;
                 btnSave.Enabled = true;
 
-                if(Mode == Consts.MODE_NEW)
+                if (Mode == Consts.MODE_NEW)
                 {
                     cboStatus.EditValue = Consts.STATUS_NEW;
                 }
@@ -240,6 +240,21 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 else
                 {
                     cboStatus.Enabled = true;
+                }
+            }
+
+
+            if (Mode == Consts.MODE_VIEW)
+            {
+                btnClear.Enabled = false;
+                btnSave.Enabled = false;
+                btnDelete.Enabled = false;
+                cheMoreLoaction.Checked = false;
+
+                if (INOUT == Consts.OUT)
+                {
+                    Print();
+                    this.Close();
                 }
             }
         }
@@ -644,6 +659,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     {
                         gcLocation.Enabled = false;
                     }
+
+                    if (Mode == Consts.MODE_VIEW)
+                    {
+                        cheMoreLoaction.Checked = false;
+                        cheMoreLoaction.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -752,7 +773,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     item["DEPT_CODE"] = Consts.DEPARTMENT;
                     item["INT_OUT"] = INOUT;
                     item["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
-                    item["USER_CREATE"] = txtUserCreate.EditValue.NullString();
+                    item["USER_CREATE"] = txtUserCreate.EditValue.NullString() =="" ? Consts.USER_INFO.Id : txtUserCreate.EditValue.NullString();
                     item["CREATE_DATE"] = dateInput.EditValue.NullString();
                     item["STATUS"] = cboStatus.EditValue.NullString();
                     item["USER_SYS"] = Consts.USER_INFO.Id;
@@ -767,6 +788,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     MsgBox.Show(base.mResultDB.ReturnString.Translation(), MsgType.Information);
                     ClearRight();
                     ClearItemAdd();
+
                 }
                 else
                 {
@@ -926,7 +948,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             GetUnitBySparePart();
 
-            if(INOUT == Consts.OUT && (Mode == Consts.MODE_NEW || ((Mode== Consts.MODE_UPDATE || Mode == Consts.MODE_DELETE) && CurrentStatus != Consts.STATUS_COMPLETE)))
+            if (INOUT == Consts.OUT && (Mode == Consts.MODE_NEW || ((Mode == Consts.MODE_UPDATE || Mode == Consts.MODE_DELETE) && CurrentStatus != Consts.STATUS_COMPLETE)))
             {
                 GetLocationForSparePart();
 
@@ -973,7 +995,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
-        
+
         private void AutoFillQuantityByLocationSparepart()
         {
             try
@@ -996,7 +1018,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     float quantity = float.Parse(gvLocation.GetRowCellValue(i, gvLocation.Columns["QUANTITY"]).NullString());
                     if (tmpQuantity < quantityInput)
                     {
-                        if(tmpQuantity + quantity <= quantityInput)
+                        if (tmpQuantity + quantity <= quantityInput)
                         {
                             tmpQuantity += quantity;
 
@@ -1013,7 +1035,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     }
                 }
 
-               
+
             }
             catch (Exception ex)
             {
@@ -1150,6 +1172,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void btnPrintReport_Click(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Minimized;
+            Print();
+        }
+
+        private void Print()
+        {
             try
             {
                 if (INOUT == Consts.IN)
@@ -1167,8 +1195,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                 STOCK_OUT_DATA_SOURCE source = new STOCK_OUT_DATA_SOURCE();
                 source.lstReport = new List<STOCK_OUT_REPORT>();
-
-
 
                 foreach (DataRow row in Data.Rows)
                 {

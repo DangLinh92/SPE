@@ -270,6 +270,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtSearch.StyleController = this.layoutControl1;
             this.txtSearch.TabIndex = 20;
             this.txtSearch.QueryIsSearchColumn += new DevExpress.XtraEditors.QueryIsSearchColumnEventHandler(this.txtSearch_QueryIsSearchColumn);
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // btnDelete
             // 
@@ -789,6 +790,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtCode.ToolTipAnchor = DevExpress.Utils.ToolTipAnchor.Cursor;
             this.txtCode.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information;
             this.txtCode.EditValueChanged += new System.EventHandler(this.txtCode_EditValueChanged);
+            this.txtCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCode_KeyDown);
             this.txtCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCode_KeyPress);
             // 
             // txtWeight

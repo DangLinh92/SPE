@@ -15,7 +15,7 @@ namespace Wisol.MES.Forms.CONTENT
         public string code = string.Empty;
         public string image = string.Empty;
         private string b64 = string.Empty;
-        private bool firstLoad = true;
+        //private bool firstLoad = true;
         public SPARE_PART()
         {
             InitializeComponent();
@@ -24,16 +24,16 @@ namespace Wisol.MES.Forms.CONTENT
         {
             base.Form_Show();
             this.InitializePage();
-            firstLoad = false;
+            //firstLoad = false;
         }
 
         public override void ReloadData()
         {
-            if (firstLoad)
-            {
-                InitializePage();
-            }
-            firstLoad = true;
+            //if (firstLoad)
+            //{
+            //    InitializePage();
+            //}
+            //firstLoad = true;
         }
 
         public override void InitializePage()
@@ -135,18 +135,7 @@ namespace Wisol.MES.Forms.CONTENT
                 }
                 else
                 {
-                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.SHOW", new string[] { "A_DEPARTMENT", "A_CODE" }, new string[] { Consts.DEPARTMENT, gvList.GetDataRow(e.RowHandle)["CODE"].NullString() });
-                    if (base.m_ResultDB.ReturnInt == 0)
-                    {
-                        if (base.m_ResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
-                        {
-                            txtCode.Enabled = false;
-                            cbGenCode.Checked = false;
-                            cbGenCode.Enabled = false;
-
-                            ShowASparepart(base.m_ResultDB.ReturnDataSet.Tables[0], base.m_ResultDB.ReturnDataSet.Tables[1]);
-                        }
-                    }
+                    ShowSparepart(gvList.GetDataRow(e.RowHandle)["CODE"].NullString());
                 }
             }
             catch (Exception ex)
@@ -208,6 +197,12 @@ namespace Wisol.MES.Forms.CONTENT
                 if (string.IsNullOrEmpty(sltSparePartType.EditValue.NullString()) && cbGenCode.Checked)
                 {
                     MsgBox.Show("MSG_ERR_SPARE_TYPE".Translation(), MsgType.Warning);
+                    return;
+                }
+
+                if (txtCode.EditValue.NullString().Contains(".") || txtCode.EditValue.NullString().Contains("_"))
+                {
+                    MsgBox.Show("MSG_ERR_SPARE_CODE_CONTAIN_DOT".Translation(), MsgType.Warning);
                     return;
                 }
 
@@ -491,7 +486,7 @@ namespace Wisol.MES.Forms.CONTENT
                     s = "OP-";
                 }
 
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.GET_MAX_AUTO_CODE", new string[] { "A_TYPE" }, new string[] { s });
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.GET_MAX_AUTO_CODE", new string[] { "A_TYPE", "A_DEPARTMENT" }, new string[] { s,Consts.DEPARTMENT });
 
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
@@ -552,6 +547,59 @@ namespace Wisol.MES.Forms.CONTENT
             else
             {
                 btnUpdate.Enabled = false;
+            }
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    ShowSparepart(txtSearch.EditValue.NullString());
+                    txtSearch.EditValue = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+
+        }
+
+        private void ShowSparepart(string code)
+        {
+            if(!string.IsNullOrEmpty(code) && code.Contains("."))
+            {
+                code = code.Split('.')[0];
+            }
+
+            base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.SHOW", new string[] { "A_DEPARTMENT", "A_CODE" }, new string[] { Consts.DEPARTMENT, code });
+            if (base.m_ResultDB.ReturnInt == 0)
+            {
+                if (base.m_ResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                {
+                    txtCode.Enabled = false;
+                    cbGenCode.Checked = false;
+                    cbGenCode.Enabled = false;
+
+                    ShowASparepart(base.m_ResultDB.ReturnDataSet.Tables[0], base.m_ResultDB.ReturnDataSet.Tables[1]);
+                }
+            }
+        }
+
+        private void txtCode_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    ShowSparepart(txtCode.EditValue.NullString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
     }

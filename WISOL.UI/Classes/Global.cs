@@ -91,6 +91,7 @@ namespace Wisol.MES
         public static string MODE_NEW = "NEW";
         public static string MODE_UPDATE = "UPDATE";
         public static string MODE_DELETE = "DELETE";
+        public static string MODE_VIEW = "VIEW";
 
         public static string IN = "IN";
         public static string OUT = "OUT";
