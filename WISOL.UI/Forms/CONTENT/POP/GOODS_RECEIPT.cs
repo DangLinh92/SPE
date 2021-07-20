@@ -808,7 +808,16 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                     if (INOUT == Consts.OUT)
                     {
-                        conditionFindLocation = gvList.GetDataRow(e.RowHandle)["LOCATION"].NullString();
+                        conditionFindLocation = "";
+
+                        string[] arrLocation = gvList.GetDataRow(e.RowHandle)["LOCATION"].NullString().Split(',');
+                        for (int i = 0; i < arrLocation.Length; i++)
+                        {
+                            conditionFindLocation += GetConditionFromLocation(stlSparePartCode.EditValue.NullString(), arrLocation[i]) + ",";
+                        }
+
+                        conditionFindLocation = conditionFindLocation.Remove(conditionFindLocation.Length - 1, 1);
+
                         string[] arr = gvList.GetDataRow(e.RowHandle)["LOCATION"].NullString().Split(',');
 
                         for (int i = 0; i < arr.Length; i++)
@@ -1159,6 +1168,16 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                     dateInWarehouse + Consts.STR_SPILIT_ON_BARCODE +
                                     dateExpiried;
 
+                                DataRow findRow = Data.Select().FirstOrDefault(x => x["SPARE_PART_CODE"].NullString() == sparepartCode);
+                                if (findRow != null)
+                                {
+                                    string[] arr = findRow["LOCATION"].NullString().Split(',');
+                                    for (int i = 0; i < arr.Length; i++)
+                                    {
+                                        conditionFindLocation += "," + GetConditionFromLocation(sparepartCode, arr[i]);
+                                    }
+                                }
+
                                 stlSparePartCode.EditValue = sparepartCode;
                                 stlUnit.EditValue = unit; stlUnit.EditValue = unit;
                                 txtQuantity.EditValue = quantity;
@@ -1178,6 +1197,21 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
+        }
+
+        private string GetConditionFromLocation(string sparepartCode, string location)
+        {
+            if (location != "")
+            {
+                string[] arr = location.Split('_'); //location_quantity_condition_expired date_in time_unit
+
+                return sparepartCode + Consts.STR_SPILIT_ON_BARCODE +
+                                    arr[0] + Consts.STR_SPILIT_ON_BARCODE +
+                                    arr[2] + Consts.STR_SPILIT_ON_BARCODE +
+                                    arr[4] + Consts.STR_SPILIT_ON_BARCODE +
+                                    arr[3];
+            }
+            return "";
         }
 
         private void txtScanbarcode_EditValueChanged(object sender, EventArgs e)
@@ -1250,6 +1284,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                 if (cheIsScanbarcode.Checked)
                 {
+                    for (int i = 0; i < gvLocation.RowCount; i++)
+                    {
+                        gvLocation.UnselectRow(i);
+                        gvLocation.SetRowCellValue(i, gvLocation.Columns["QUANTITY_GET"], 0);
+                    }
+
                     bool checkExist = false;
                     float quantityInWareCheck = 0;
                     string[] arr = conditionFindLocation.Split(',');
@@ -1273,14 +1313,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                 dateInWarehouse = "";
                             }
 
-                            if (dateExpiried.NullString() == "")
-                            {
-                                dateExpiried = "2199-01-01";
-                            }
-                            else
-                            {
-                                dateExpiried = DateTime.Parse(dateExpiried).ToString("yyyy-MM-dd");
-                            }
+                            dateExpiried = dateExpiried.NullString() == "" ? "2199-01-01" : DateTime.Parse(dateExpiried).ToString("yyyy-MM-dd");
 
                             string str =
                                   stlSparePartCode.EditValue + Consts.STR_SPILIT_ON_BARCODE +
@@ -1637,9 +1670,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
                       new string[] { "A_UNIT_FROM", "A_UNIT_TO", "A_SPARE_PART_CODE", "A_DEPT_CODE" },
                       new string[] { unitFrom, unitTo, spareCode, Consts.DEPARTMENT });
 
-                if (mResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                if (mResultDB.ReturnInt == 0)
                 {
-                    return float.Parse(mResultDB.ReturnDataSet.Tables[0].Rows[0]["RESULT"].NullString());
+                    if (mResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                    {
+                        return float.Parse(mResultDB.ReturnDataSet.Tables[0].Rows[0]["RESULT"].NullString());
+                    }
                 }
             }
             catch (Exception ex)
