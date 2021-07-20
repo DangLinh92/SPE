@@ -99,5 +99,8 @@ namespace Wisol.MES
         public static string STATUS_COMPLETE = "COMPLETE";
         public static string STATUS_NEW = "NEW";
         public static string STATUS_INPROGRESS = "INPROGRESS";
+
+        public static char CHARACTER_SPILIT_ON_BARCODE = '$';
+        public static string STR_SPILIT_ON_BARCODE = "$";
     }
 }

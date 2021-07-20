@@ -402,7 +402,8 @@ namespace Wisol.MES.Forms.CONTENT
                     || string.IsNullOrEmpty(stlSparepart.EditValue.NullString())
                     || (string.IsNullOrEmpty(txtQuantity.EditValue.NullString()) && string.IsNullOrEmpty(txtQuantityNewAdd.EditValue.NullString()))
                     || string.IsNullOrEmpty(stlUnit.EditValue.NullString())
-                    || string.IsNullOrEmpty(stlCondition.EditValue.NullString()))
+                    || string.IsNullOrEmpty(stlCondition.EditValue.NullString())
+                    || string.IsNullOrEmpty(dateInputTime.EditValue.NullString()))
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
@@ -1129,7 +1130,7 @@ namespace Wisol.MES.Forms.CONTENT
                 {
                     float quantityInput = 0;
 
-                    if (quantity != "" && float.Parse(quantity) > 0)
+                    if (quantity != "" && float.TryParse(quantity,out _))
                     {
                         quantityInput += float.Parse(quantity);
                     }
