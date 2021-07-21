@@ -102,5 +102,7 @@ namespace Wisol.MES
 
         public static char CHARACTER_SPILIT_ON_BARCODE = '$';
         public static string STR_SPILIT_ON_BARCODE = "$";
+        public static string STR_SPILIT_WITH_QUANTITY = ":";
+        public static string ZERO = "0";
     }
 }
