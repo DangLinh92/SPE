@@ -282,6 +282,12 @@
     <Compile Include="Forms\CONTENT\POP\EXPORT_EXCEL.Designer.cs">
       <DependentUpon>EXPORT_EXCEL.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\POP\GOODS_ISSUE_QRcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\GOODS_ISSUE_QRcs.Designer.cs">
+      <DependentUpon>GOODS_ISSUE_QRcs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\POP\GOODS_RECEIPT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -329,6 +335,12 @@
     </Compile>
     <Compile Include="Forms\CONTENT\POP\POP_SP_UPDATE.Designer.cs">
       <DependentUpon>POP_SP_UPDATE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\PRINT_LABEL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\PRINT_LABEL.Designer.cs">
+      <DependentUpon>PRINT_LABEL.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CONTENT\POP\UPDATE_SPAREPART_CODE.cs">
       <SubType>Form</SubType>
@@ -706,6 +718,9 @@
     <EmbeddedResource Include="Forms\CONTENT\POP\EXPORT_EXCEL.resx">
       <DependentUpon>EXPORT_EXCEL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\GOODS_ISSUE_QRcs.resx">
+      <DependentUpon>GOODS_ISSUE_QRcs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\GOODS_RECEIPT.resx">
       <DependentUpon>GOODS_RECEIPT.cs</DependentUpon>
     </EmbeddedResource>
@@ -729,6 +744,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\POP_SP_UPDATE.resx">
       <DependentUpon>POP_SP_UPDATE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\PRINT_LABEL.resx">
+      <DependentUpon>PRINT_LABEL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\UPDATE_SPAREPART_CODE.resx">
       <DependentUpon>UPDATE_SPAREPART_CODE.cs</DependentUpon>

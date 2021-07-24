@@ -58,30 +58,38 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_INIT.GET", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_KHO.GET", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
 
-                if (base.m_ResultDB.ReturnInt == 0)
+                if (m_ResultDB.ReturnInt == 0)
                 {
-                    DataTableCollection data = base.m_ResultDB.ReturnDataSet.Tables;
-                    base.m_BindData.BindGridLookEdit(stlPosition, data[0], "CODE", "CODE");
-                    base.m_BindData.BindGridLookEdit(stlKho, data[1], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(stlCondition, data[2], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(stlConditionMove, data[2], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(stlUnit, data[3], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(stlUnitMove, data[3], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(stlSparepart, data[4], "CODE", "NAME_VI");
-                    base.m_BindData.BindGridLookEdit(stlSparepartCode_Move, data[4], "CODE", "NAME_VI");
-                    base.m_BindData.BindGridLookEdit(stlSparePartSearch, data[4], "CODE", "NAME_VI");
-
-                    string firstValue = data[1].Rows[0]["CODE"].NullString();
+                    DataTableCollection dataKho = base.m_ResultDB.ReturnDataSet.Tables;
+                    base.m_BindData.BindGridLookEdit(stlKho, dataKho[0], "CODE", "NAME");
+                    string firstValue = dataKho[0].Rows[0]["CODE"].NullString();
                     stlKho.EditValue = firstValue;
+
+                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_INIT.GET", new string[] { "A_DEPARTMENT", "A_STOCK_CODE" }, new string[] { Consts.DEPARTMENT, stlKho.EditValue.NullString() });
+                    if (base.m_ResultDB.ReturnInt == 0)
+                    {
+                        DataTableCollection data = base.m_ResultDB.ReturnDataSet.Tables;
+                        base.m_BindData.BindGridLookEdit(stlPosition, data[0], "CODE", "CODE");
+                        base.m_BindData.BindGridLookEdit(stlNew_Location, data[0], "CODE", "CODE");
+                        base.m_BindData.BindGridLookEdit(stlCondition, data[2], "CODE", "NAME");
+                        base.m_BindData.BindGridLookEdit(stlConditionMove, data[2], "CODE", "NAME");
+                        base.m_BindData.BindGridLookEdit(stlUnit, data[3], "CODE", "NAME");
+                        base.m_BindData.BindGridLookEdit(stlUnitMove, data[3], "CODE", "NAME");
+                        base.m_BindData.BindGridLookEdit(stlSparepart, data[4], "CODE", "NAME_VI");
+                        base.m_BindData.BindGridLookEdit(stlSparepartCode_Move, data[4], "CODE", "NAME_VI");
+                        base.m_BindData.BindGridLookEdit(stlSparePartSearch, data[4], "CODE", "NAME_VI");
+                    }
+
+                    m_BindData.BindGridLookEdit(stlMemoryData, Consts.GetDataMemory(), "CODE", "NAME_VI");
+
+                    SettingDefaultValueControl();
+
+                    ViewLocation();
+
+                    GetLabelTemplate();
                 }
-
-                SettingDefaultValueControl();
-
-                ViewLocation();
-
-                GetLabelTemplate();
             }
             catch (Exception ex)
             {
@@ -118,7 +126,7 @@ namespace Wisol.MES.Forms.CONTENT
             txtQuantity.EditValue = "0";
             stlUnit.EditValue = string.Empty;
             txtQuantityNewAdd.EditValue = "0";
-            stlCondition.EditValue = string.Empty;
+            stlCondition.EditValue = Consts.CONDITION_DEFAULT;
             dateInputTime.EditValue = DateTime.Now;
             txtQuantity.Enabled = false;
         }
@@ -205,12 +213,20 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-                string codeLocation = txtposition1.EditValue.NullString(); ;
+                if (txtposition1.EditValue.NullString().Contains(Consts.STR_SPILIT_ON_BARCODE) || txtposition1.EditValue.NullString().Contains("_"))
+                {
+                    MsgBox.Show("MSG_ERR_SPARE_CODE_CONTAIN_DOT".Translation(), MsgType.Warning);
+                    return;
+                }
+
+                string codeLocation = txtposition1.EditValue.NullString();
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION.INSERT_SINGLE", new string[] { "A_CODE", "A_STOCK_CODE", "A_DEPT_CODE" }, new string[] { codeLocation, stlKho.EditValue.NullString(), Consts.DEPARTMENT });
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
                     MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                    txtposition1.EditValue = null;
+                    ViewLocation();
                 }
                 else
                 {
@@ -240,6 +256,7 @@ namespace Wisol.MES.Forms.CONTENT
                         gvListNoPosition.Columns["KHO"].Visible = false;
                         gvListNoPosition.Columns["STT"].Visible = false;
                         gvListNoPosition.Columns["BARCODE"].Visible = false;
+                        gvListNoPosition.Columns["QUANTITY_PRINT_LABEL"].Visible = false;
 
                         gvListNoPosition.OptionsSelection.MultiSelect = true;
                         gvListNoPosition.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
@@ -252,7 +269,7 @@ namespace Wisol.MES.Forms.CONTENT
                         gvListNoPosition.Columns["UNIT"].OptionsColumn.AllowEdit = false;
                         gvListNoPosition.Columns["QUANTITY"].OptionsColumn.AllowEdit = false;
                         gvListNoPosition.Columns["EXPIRED_DATE"].OptionsColumn.AllowEdit = false;
-                        gvListNoPosition.Columns["QUANTITY_PRINT_LABEL"].OptionsColumn.AllowEdit = true;
+                        gvListNoPosition.Columns["QUANTITY_PRINT_LABEL"].OptionsColumn.AllowEdit = false;
                         gvListNoPosition.OptionsView.ColumnAutoWidth = true;
                     }
 
@@ -326,7 +343,6 @@ namespace Wisol.MES.Forms.CONTENT
             txtsquare.EditValue = null;
             txtPositionNumber.EditValue = null;
             txtposition1.EditValue = null;
-            //txtPosition2.EditValue = null;
             txtStartPosition.EditValue = null;
         }
 
@@ -356,6 +372,8 @@ namespace Wisol.MES.Forms.CONTENT
                     if (base.m_ResultDB.ReturnInt == 0)
                     {
                         MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);
+
+                        txtposition1.EditValue = null;
 
                         // reload location in grid
                         ViewLocation();
@@ -392,7 +410,6 @@ namespace Wisol.MES.Forms.CONTENT
             }
         }
 
-        private string quantityOld = "0";
         private void btnSaveLocation_Sparepart_Click(object sender, EventArgs e)
         {
             try
@@ -429,10 +446,7 @@ namespace Wisol.MES.Forms.CONTENT
                     DateExpired = dateExpiredTime.EditValue.NullString();
                 }
 
-                bool checkRemain = true;
-                float qOld = float.Parse(quantityOld);
-
-                checkRemain = CheckRemainQuantity((quantity - qOld).ToString());
+                bool checkRemain = CheckRemainQuantity();
 
                 if (checkRemain == false)
                     return;
@@ -486,7 +500,7 @@ namespace Wisol.MES.Forms.CONTENT
                 stlSparepart.EditValue = null;
                 txtQuantity.EditValue = null;
                 stlUnit.EditValue = null;
-                stlCondition.EditValue = null;
+                stlCondition.EditValue = Consts.CONDITION_DEFAULT;
                 stlPosition.Enabled = true;
                 txtSTT.EditValue = null;
                 txtQuantityNewAdd.EditValue = null;
@@ -592,10 +606,9 @@ namespace Wisol.MES.Forms.CONTENT
                         {
                             DataTable data = base.m_ResultDB.ReturnDataSet.Tables[0];
 
-                            stlPosition.EditValue = data.Rows[0]["LOCATION"].NullString();
-
-                            stlSparepart.EditValue = data.Rows[0]["SPARE_PART_CODE"].NullString();
                             txtQuantity.EditValue = data.Rows[0]["QUANTITY"].NullString();
+                            stlSparepart.EditValue = data.Rows[0]["SPARE_PART_CODE"].NullString();
+                            stlPosition.EditValue = data.Rows[0]["LOCATION"].NullString();
                             stlUnit.EditValue = data.Rows[0]["UNIT"].NullString();
                             stlCondition.EditValue = data.Rows[0]["CONDITION_CODE"].NullString();
                             txtSTT.EditValue = gvListNoPosition.GetDataRow(e.RowHandle)["STT"].NullString();
@@ -626,8 +639,8 @@ namespace Wisol.MES.Forms.CONTENT
 
                             stlSparepart.Enabled = false;
                             stlCondition.Enabled = false;
+                            txtQuantityNewAdd.EditValue = 0;
 
-                            quantityOld = txtQuantity.EditValue.NullString();
                             dateInputTime.EditValue = data.Rows[0]["TIME_IN"].NullString();
                             dateTimeIn_Move.EditValue = data.Rows[0]["TIME_IN"].NullString();
 
@@ -643,15 +656,10 @@ namespace Wisol.MES.Forms.CONTENT
                             stlSparepartCode_Move.Enabled = false;
                             txtOld_Location.Enabled = false;
                         }
-                        else
-                        {
-                            quantityOld = "0";
-                        }
                     }
                     else
                     {
                         MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Warning);
-                        quantityOld = "0";
                     }
                     txtQuantityNewAdd.EditValue = "0";
                     cheEditQuantity.Checked = false;
@@ -659,7 +667,6 @@ namespace Wisol.MES.Forms.CONTENT
                 catch (Exception ex)
                 {
                     MsgBox.Show(ex.Message, MsgType.Error);
-                    quantityOld = "0";
                 }
             }
         }
@@ -671,126 +678,138 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 cheIsWait.Checked = false;
             }
+
+            if (stlSparepart.Enabled == false) // mode edit
+            {
+                txtQuantityRemain.EditValue = 0;
+                CheckRemainQuantity();
+            }
         }
 
         private PrinterSettings prnSettings;
         private void btnPrintLabel_Click(object sender, EventArgs e)
         {
-            string designFile = string.Empty;
-            string xml_content_Original = string.Empty;
-            string xml_content = label;
+            POP.PRINT_LABEL popup = new POP.PRINT_LABEL();
+            popup.Kho = stlKho.EditValue.NullString();
+            popup.ShowDialog();
 
-            try
-            {
-                designFile = "STOCK_LABEL.xml";
+            #region print
+            //string designFile = string.Empty;
+            //string xml_content_Original = string.Empty;
+            //string xml_content = label;
 
-                XtraReport reportPrint = new XtraReport();
+            //try
+            //{
+            //    designFile = "STOCK_LABEL.xml";
 
-                ReportPrintTool pt1 = new ReportPrintTool(reportPrint);
-                pt1.PrintingSystem.StartPrint += new PrintDocumentEventHandler(PrintingSystem_StartPrint);
+            //    XtraReport reportPrint = new XtraReport();
 
-                List<XtraReport> reports = new List<XtraReport>();
-                int check = 0;
-                for (int i = 0; i < gvListNoPosition.DataRowCount; i++)
-                {
-                    if (gvListNoPosition.IsRowSelected(i))
-                    {
-                        int numberLabel = int.Parse(Math.Ceiling(decimal.Parse(gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[9]).NullString())).NullString());
-                        for (int j = 0; j < numberLabel; j++)
-                        {
-                            xml_content = label;
+            //    ReportPrintTool pt1 = new ReportPrintTool(reportPrint);
+            //    pt1.PrintingSystem.StartPrint += new PrintDocumentEventHandler(PrintingSystem_StartPrint);
 
-                            string position = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[0]).NullString();
-                            string condition = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[3]).NullString();
-                            string lblPosition_condition = position + (position == "" ? (condition == "NG" ? "NG" : "") : (condition == "NG" ? ".NG" : ""));
-                            string barcode = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[8]).NullString();
-                            string strDate = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[10]).NullString();
-                            string timeIn = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[11]).NullString();
-                            DateTime dTimeIn;
-                            if (DateTime.TryParse(timeIn, out dTimeIn))
-                            {
-                                timeIn = dTimeIn.ToString("yyyy-MM-dd");
-                            }
-                            else
-                            {
-                                timeIn = "-";
-                            }
+            //    List<XtraReport> reports = new List<XtraReport>();
+            //    int check = 0;
+            //    for (int i = 0; i < gvListNoPosition.DataRowCount; i++)
+            //    {
+            //        if (gvListNoPosition.IsRowSelected(i))
+            //        {
+            //            int numberLabel = int.Parse(Math.Ceiling(decimal.Parse(gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[9]).NullString())).NullString());
+            //            for (int j = 0; j < numberLabel; j++)
+            //            {
+            //                xml_content = label;
 
-                            if (strDate == "2199-01-01")
-                            {
-                                xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "IN TIME:" + timeIn);
-                            }
-                            else
-                            {
-                                if (DateTime.TryParse(strDate, out DateTime ExpriDate))
-                                {
-                                    xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "EXP:" + ExpriDate.ToString("yyyy-MM-dd"));
-                                }
-                                else
-                                {
-                                    xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "IN TIME:" + timeIn);
-                                }
-                            }
+            //                string position = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[0]).NullString();
+            //                string condition = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[3]).NullString();
+            //                string lblPosition_condition = position + (position == "" ? (condition == "NG" ? "NG" : "") : (condition == "NG" ? ".NG" : ""));
+            //                string barcode = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[8]).NullString();
+            //                string strDate = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[10]).NullString();
+            //                string timeIn = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[11]).NullString();
+            //                DateTime dTimeIn;
+            //                if (DateTime.TryParse(timeIn, out dTimeIn))
+            //                {
+            //                    timeIn = dTimeIn.ToString("yyyy-MM-dd");
+            //                }
+            //                else
+            //                {
+            //                    timeIn = "-";
+            //                }
 
-                            xml_content = xml_content.Replace("&", "&amp;");
-                            File.WriteAllText((i + 1).NullString() + designFile, xml_content);
+            //                if (strDate == "2199-01-01")
+            //                {
+            //                    xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "IN TIME:" + timeIn);
+            //                }
+            //                else
+            //                {
+            //                    if (DateTime.TryParse(strDate, out DateTime ExpriDate))
+            //                    {
+            //                        xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "EXP:" + ExpriDate.ToString("yyyy-MM-dd"));
+            //                    }
+            //                    else
+            //                    {
+            //                        xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "IN TIME:" + timeIn);
+            //                    }
+            //                }
 
-                            XtraReport report = new XtraReport();
-                            report.PrintingSystem.ShowPrintStatusDialog = false;
-                            report.PrintingSystem.ShowMarginsWarning = false;
-                            report.LoadLayoutFromXml((i + 1).NullString() + designFile);
+            //                xml_content = xml_content.Replace("&", "&amp;");
+            //                File.WriteAllText((i + 1).NullString() + designFile, xml_content);
 
-                            int leftMargine = report.Margins.Left + 0;
-                            int rightMargine = report.Margins.Right;
-                            int topMargine = report.Margins.Top + 0;
-                            int bottomMargine = report.Margins.Bottom;
-                            if (leftMargine < 0)
-                            {
-                                leftMargine = 0;
-                            }
-                            if (topMargine < 0)
-                            {
-                                topMargine = 0;
-                            }
-                            report.Margins = new System.Drawing.Printing.Margins(leftMargine, rightMargine, topMargine, bottomMargine);
-                            report.CreateDocument();
+            //                XtraReport report = new XtraReport();
+            //                report.PrintingSystem.ShowPrintStatusDialog = false;
+            //                report.PrintingSystem.ShowMarginsWarning = false;
+            //                report.LoadLayoutFromXml((i + 1).NullString() + designFile);
 
-                            reports.Add(report);
-                            File.Delete((i + 1).NullString() + designFile);
-                            //i++;
-                            //check++;
+            //                int leftMargine = report.Margins.Left + 0;
+            //                int rightMargine = report.Margins.Right;
+            //                int topMargine = report.Margins.Top + 0;
+            //                int bottomMargine = report.Margins.Bottom;
+            //                if (leftMargine < 0)
+            //                {
+            //                    leftMargine = 0;
+            //                }
+            //                if (topMargine < 0)
+            //                {
+            //                    topMargine = 0;
+            //                }
+            //                report.Margins = new System.Drawing.Printing.Margins(leftMargine, rightMargine, topMargine, bottomMargine);
+            //                report.CreateDocument();
 
-                        }
+            //                reports.Add(report);
+            //                File.Delete((i + 1).NullString() + designFile);
+            //                //i++;
+            //                //check++;
 
-                        check++;
-                    }
-                }
+            //            }
 
-                if (check == 0)
-                {
-                    MsgBox.Show("MSG_NOT_HAVE_LOCATION".Translation(), MsgType.Warning);
-                    return;
-                }
+            //            check++;
+            //        }
+            //    }
 
-                foreach (XtraReport report in reports)
-                {
-                    ReportPrintTool pts = new ReportPrintTool(report);
-                    pts.PrintingSystem.StartPrint +=
-                        new PrintDocumentEventHandler(reportsStartPrintEventHandler);
-                }
+            //    if (check == 0)
+            //    {
+            //        MsgBox.Show("MSG_NOT_HAVE_LOCATION".Translation(), MsgType.Warning);
+            //        return;
+            //    }
 
-                pt1.PrintDialog();
-                foreach (XtraReport report in reports)
-                {
-                    ReportPrintTool pts = new ReportPrintTool(report);
-                    //pts.ShowPreview();
-                    pts.Print();
-                }
-            }
-            catch (Exception ex)
-            {
-                MsgBox.Show(ex.Message, MsgType.Error);
-            }
+            //    foreach (XtraReport report in reports)
+            //    {
+            //        ReportPrintTool pts = new ReportPrintTool(report);
+            //        pts.PrintingSystem.StartPrint +=
+            //            new PrintDocumentEventHandler(reportsStartPrintEventHandler);
+            //    }
+
+            //    pt1.PrintDialog();
+            //    foreach (XtraReport report in reports)
+            //    {
+            //        ReportPrintTool pts = new ReportPrintTool(report);
+            //        //pts.ShowPreview();
+            //        pts.Print();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MsgBox.Show(ex.Message, MsgType.Error);
+            //}
+            #endregion
         }
 
         private void reportsStartPrintEventHandler(object sender, PrintDocumentEventArgs e)
@@ -1078,6 +1097,13 @@ namespace Wisol.MES.Forms.CONTENT
         private void stlSparepart_EditValueChanged(object sender, EventArgs e)
         {
             GetUnitBySparePart(stlSparepart.EditValue.NullString(), stlUnit);
+
+            if (stlSparepart.Enabled == true) // mode new
+            {
+                txtQuantity.EditValue = 0;
+                txtQuantityRemain.EditValue = 0;
+                CheckRemainQuantity();
+            }
         }
 
         private void GetUnitBySparePart(string sparepartCode, AceGridLookUpEdit unitControl)
@@ -1120,7 +1146,7 @@ namespace Wisol.MES.Forms.CONTENT
             //}
         }
 
-        private bool CheckRemainQuantity(string quantity)
+        private bool CheckRemainQuantity()
         {
             try
             {
@@ -1128,16 +1154,11 @@ namespace Wisol.MES.Forms.CONTENT
                     !string.IsNullOrEmpty(stlKho.EditValue.NullString()) &&
                     !string.IsNullOrEmpty(stlUnit.EditValue.NullString()))
                 {
-                    float quantityInput = 0;
-
-                    if (quantity != "" && float.TryParse(quantity,out _))
-                    {
-                        quantityInput += float.Parse(quantity);
-                    }
+                    txtQuantityRemain.EditValue = 0;
 
                     base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.CACULAR_REMAIN_QUANTITY",
-                        new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_UNIT", "A_QUANTITY_INPUT" },
-                        new string[] { Consts.DEPARTMENT, stlKho.EditValue.NullString(), stlSparepart.EditValue.NullString(), stlUnit.EditValue.NullString(), quantityInput.NullString() });
+                        new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_UNIT" },
+                        new string[] { Consts.DEPARTMENT, stlKho.EditValue.NullString(), stlSparepart.EditValue.NullString(), stlUnit.EditValue.NullString() });
 
                     if (m_ResultDB.ReturnInt == 0)
                     {
@@ -1200,7 +1221,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             stlSparepartCode_Move.EditValue = null;
             txtOld_Location.EditValue = null;
-            txtNew_Location.EditValue = null;
+            stlNew_Location.EditValue = null;
             stlUnitMove.EditValue = null;
             txtQuantityMove.EditValue = null;
             stlConditionMove.EditValue = null;
@@ -1209,7 +1230,7 @@ namespace Wisol.MES.Forms.CONTENT
 
             stlSparepartCode_Move.Enabled = false;
             txtOld_Location.Enabled = false;
-            txtNew_Location.Enabled = true;
+            stlNew_Location.Enabled = true;
             stlUnitMove.Enabled = true;
             txtQuantityMove.Enabled = true;
             stlConditionMove.Enabled = false;
@@ -1237,7 +1258,7 @@ namespace Wisol.MES.Forms.CONTENT
                 {
                     DateExpired = dateExpired_Move.EditValue.NullString();
                 }
-                string barcode = stlSparepartCode_Move.EditValue.NullString() + (txtNew_Location.EditValue.NullString() == string.Empty ? "" : "." + txtNew_Location.EditValue.NullString()) + (stlCondition.EditValue.NullString() == Consts.NG ? "." + stlCondition.EditValue.NullString() : "");
+                string barcode = "";//stlSparepartCode_Move.EditValue.NullString() + (stlNew_Location.EditValue.NullString() == string.Empty ? "" : "." + stlNew_Location.EditValue.NullString()) + (stlCondition.EditValue.NullString() == Consts.NG ? "." + stlCondition.EditValue.NullString() : "");
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.MOVE_SPARE_PART_TO_LOCATION",
                       new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION_OLD", "A_LOCATION_NEW", "A_CONDITION", "A_QUANTITY", "A_DEPART_MENT", "A_STOCK", "A_BARCODE", "A_UNIT", "A_EXPIRED_DATE", "A_TIME_IN" },
@@ -1246,7 +1267,7 @@ namespace Wisol.MES.Forms.CONTENT
                         txtSTT.EditValue.NullString(),
                         stlSparepartCode_Move.EditValue.NullString() ,
                         txtOld_Location.EditValue.NullString() ,
-                        txtNew_Location.EditValue.NullString() ,
+                        stlNew_Location.EditValue.NullString() ,
                         stlConditionMove.EditValue.NullString() ,
                         txtQuantityMove.EditValue.NullString(),
                         Consts.DEPARTMENT,
@@ -1277,6 +1298,20 @@ namespace Wisol.MES.Forms.CONTENT
         private void stlSparepartCode_Move_EditValueChanged(object sender, EventArgs e)
         {
             GetUnitBySparePart(stlSparepartCode_Move.EditValue.NullString(), stlUnitMove);
+        }
+
+        private void bntClearMemory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Consts.GetDataMemory().Rows.Clear();
+                m_BindData.BindGridLookEdit(stlMemoryData, Consts.GetDataMemory(), "CODE", "NAME_VI");
+                MsgBox.Show("MSG_COM_004".Translation(), MsgType.Information);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
         }
     }
 }

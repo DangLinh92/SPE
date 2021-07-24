@@ -38,6 +38,10 @@ namespace Wisol.MES.Forms.CONTENT
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.bntClearMemory = new Wisol.XSimpleButton(this.components);
+            this.btnMemoryData = new Wisol.XSimpleButton(this.components);
+            this.stlMemoryData = new Wisol.AceGridLookUpEdit(this.components);
+            this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnUpdate = new Wisol.XSimpleButton(this.components);
             this.gcList = new Wisol.XGridControl();
             this.gvList = new Wisol.XGridView();
@@ -117,10 +121,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem36 = new DevExpress.XtraLayout.LayoutControlItem();
             this.memoExEdit1 = new DevExpress.XtraEditors.MemoExEdit();
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stlMemoryData.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).BeginInit();
@@ -196,12 +205,18 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoExEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.bntClearMemory);
+            this.layoutControl1.Controls.Add(this.btnMemoryData);
+            this.layoutControl1.Controls.Add(this.stlMemoryData);
             this.layoutControl1.Controls.Add(this.btnUpdate);
             this.layoutControl1.Controls.Add(this.gcList);
             this.layoutControl1.Controls.Add(this.txtSearch);
@@ -217,6 +232,56 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControl1.Size = new System.Drawing.Size(1594, 872);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // bntClearMemory
+            // 
+            this.bntClearMemory.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bntClearMemory.ImageOptions.Image")));
+            this.bntClearMemory.Location = new System.Drawing.Point(788, 830);
+            this.bntClearMemory.MaximumSize = new System.Drawing.Size(129, 30);
+            this.bntClearMemory.MinimumSize = new System.Drawing.Size(129, 30);
+            this.bntClearMemory.Name = "bntClearMemory";
+            this.bntClearMemory.Size = new System.Drawing.Size(129, 30);
+            this.bntClearMemory.StyleController = this.layoutControl1;
+            this.bntClearMemory.TabIndex = 25;
+            this.bntClearMemory.Text = "CLEAR MEMORY";
+            this.bntClearMemory.Click += new System.EventHandler(this.bntClearMemory_Click);
+            // 
+            // btnMemoryData
+            // 
+            this.btnMemoryData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnMemoryData.ImageOptions.Image")));
+            this.btnMemoryData.Location = new System.Drawing.Point(921, 830);
+            this.btnMemoryData.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnMemoryData.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnMemoryData.Name = "btnMemoryData";
+            this.btnMemoryData.Size = new System.Drawing.Size(129, 30);
+            this.btnMemoryData.StyleController = this.layoutControl1;
+            this.btnMemoryData.TabIndex = 24;
+            this.btnMemoryData.Text = "SAVE MEMORY DATA";
+            this.btnMemoryData.Click += new System.EventHandler(this.btnMemoryData_Click);
+            // 
+            // stlMemoryData
+            // 
+            this.stlMemoryData.EditValue = "";
+            this.stlMemoryData.Location = new System.Drawing.Point(609, 12);
+            this.stlMemoryData.Name = "stlMemoryData";
+            this.stlMemoryData.Properties.Appearance.Options.UseTextOptions = true;
+            this.stlMemoryData.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.stlMemoryData.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.stlMemoryData.Properties.ImmediatePopup = true;
+            this.stlMemoryData.Properties.NullText = "";
+            this.stlMemoryData.Properties.PopupView = this.gridView6;
+            this.stlMemoryData.Size = new System.Drawing.Size(441, 20);
+            this.stlMemoryData.StyleController = this.layoutControl1;
+            this.stlMemoryData.TabIndex = 23;
+            // 
+            // gridView6
+            // 
+            this.gridView6.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView6.Name = "gridView6";
+            this.gridView6.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView6.OptionsView.ShowAutoFilterRow = true;
+            this.gridView6.OptionsView.ShowGroupPanel = false;
             // 
             // btnUpdate
             // 
@@ -247,18 +312,16 @@ namespace Wisol.MES.Forms.CONTENT
             this.gvList.GridControl = this.gcList;
             this.gvList.Name = "gvList";
             this.gvList.NewItemRowText = "Them moi";
-            this.gvList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gvList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gvList.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditFormInplace;
-            this.gvList.OptionsScrollAnnotations.ShowSelectedRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gvList.OptionsView.AllowCellMerge = true;
-            this.gvList.OptionsView.EnableAppearanceEvenRow = true;
+            this.gvList.OptionsSelection.MultiSelect = true;
+            this.gvList.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gvList.OptionsSelection.ResetSelectionClickOutsideCheckboxSelector = true;
+            this.gvList.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
             this.gvList.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gvList_RowCellClick);
             // 
             // txtSearch
             // 
             this.txtSearch.Client = this.gcList;
-            this.txtSearch.Location = new System.Drawing.Point(55, 12);
+            this.txtSearch.Location = new System.Drawing.Point(88, 12);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Repository.ClearButton(),
@@ -266,7 +329,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtSearch.Properties.Client = this.gcList;
             this.txtSearch.Properties.NullValuePrompt = "Enter code to search...";
             this.txtSearch.Properties.ShowNullValuePrompt = ((DevExpress.XtraEditors.ShowNullValuePromptOptions)((DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorFocused | DevExpress.XtraEditors.ShowNullValuePromptOptions.EditorReadOnly)));
-            this.txtSearch.Size = new System.Drawing.Size(995, 20);
+            this.txtSearch.Size = new System.Drawing.Size(441, 20);
             this.txtSearch.StyleController = this.layoutControl1;
             this.txtSearch.TabIndex = 20;
             this.txtSearch.QueryIsSearchColumn += new DevExpress.XtraEditors.QueryIsSearchColumnEventHandler(this.txtSearch_QueryIsSearchColumn);
@@ -1089,7 +1152,10 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem4,
             this.emptySpaceItem1,
             this.layoutControlItem24,
-            this.layoutControlItem33});
+            this.layoutControlItem33,
+            this.layoutControlItem17,
+            this.layoutControlItem35,
+            this.layoutControlItem36});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1594, 872);
             this.Root.TextVisible = false;
@@ -1162,7 +1228,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 818);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(1042, 34);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(776, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem24
@@ -1170,9 +1236,9 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem24.Control = this.txtSearch;
             this.layoutControlItem24.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem24.Name = "layoutControlItem24";
-            this.layoutControlItem24.Size = new System.Drawing.Size(1042, 24);
+            this.layoutControlItem24.Size = new System.Drawing.Size(521, 24);
             this.layoutControlItem24.Text = "SEARCH";
-            this.layoutControlItem24.TextSize = new System.Drawing.Size(40, 13);
+            this.layoutControlItem24.TextSize = new System.Drawing.Size(73, 13);
             // 
             // layoutControlItem33
             // 
@@ -1182,6 +1248,33 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem33.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem33.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem33.TextVisible = false;
+            // 
+            // layoutControlItem17
+            // 
+            this.layoutControlItem17.Control = this.stlMemoryData;
+            this.layoutControlItem17.Location = new System.Drawing.Point(521, 0);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Size = new System.Drawing.Size(521, 24);
+            this.layoutControlItem17.Text = "MEMORY DATA";
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(73, 13);
+            // 
+            // layoutControlItem35
+            // 
+            this.layoutControlItem35.Control = this.btnMemoryData;
+            this.layoutControlItem35.Location = new System.Drawing.Point(909, 818);
+            this.layoutControlItem35.Name = "layoutControlItem35";
+            this.layoutControlItem35.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem35.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem35.TextVisible = false;
+            // 
+            // layoutControlItem36
+            // 
+            this.layoutControlItem36.Control = this.bntClearMemory;
+            this.layoutControlItem36.Location = new System.Drawing.Point(776, 818);
+            this.layoutControlItem36.Name = "layoutControlItem36";
+            this.layoutControlItem36.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem36.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem36.TextVisible = false;
             // 
             // memoExEdit1
             // 
@@ -1208,6 +1301,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.Controls.SetChildIndex(this.layoutControl1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.stlMemoryData.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).EndInit();
@@ -1283,6 +1378,9 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoExEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             this.ResumeLayout(false);
@@ -1374,5 +1472,12 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem33;
         private XTextEdit txtMinOrder;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem34;
+        private AceGridLookUpEdit stlMemoryData;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView6;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
+        private XSimpleButton btnMemoryData;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem35;
+        private XSimpleButton bntClearMemory;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem36;
     }
 }

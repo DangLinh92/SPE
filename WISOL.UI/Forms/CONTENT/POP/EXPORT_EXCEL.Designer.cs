@@ -102,6 +102,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             this.gvList.GridControl = this.gcList;
             this.gvList.Name = "gvList";
+            this.gvList.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gvList_CellMerge);
             this.gvList.CustomDrawColumnHeader += new DevExpress.XtraGrid.Views.Grid.ColumnHeaderCustomDrawEventHandler(this.gvList_CustomDrawColumnHeader);
             // 
             // Root

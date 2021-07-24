@@ -95,6 +95,7 @@ namespace Wisol.MES.Forms.CONTENT
                     base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
                     gvList.Columns["ID"].Visible = false;
                     gvList.Columns["RATE_ALARM"].Visible = false;
+                    gvList.OptionsView.ColumnAutoWidth = true;
                 }
             }
             catch (Exception ex)
@@ -137,7 +138,7 @@ namespace Wisol.MES.Forms.CONTENT
         private void searchCode_QueryIsSearchColumn(object sender, DevExpress.XtraEditors.QueryIsSearchColumnEventArgs args)
         {
             string s = sender.ToString();
-            if (s != "Mã") args.IsSearchColumn = false;
+            if (s != "Mã" && s != "Tên tiếng việt") args.IsSearchColumn = false;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -396,7 +397,6 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-
                 DialogResult dialogResult = MsgBox.Show("MSG_COM_015".Translation(), MsgType.Warning, DialogType.OkCancel);
                 if (dialogResult == DialogResult.OK)
                 {
@@ -411,11 +411,11 @@ namespace Wisol.MES.Forms.CONTENT
                     DateTime date = (DateTime)dateInputReal.EditValue;
 
                     base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_BY_TIME.DELETE_QUANTITY_REAL",
-                               new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_YEAR", "A_MONTH" },
+                               new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_YEAR", "A_MONTH", "A_USER" },
                                new string[] {
                                 Consts.DEPARTMENT, stlKho.EditValue.NullString(),
                                 stlSparePartForReal.EditValue.NullString(),
-                               date.Year.NullString(),date.Month.NullString() });
+                               date.Year.NullString(),date.Month.NullString(),Consts.USER_INFO.Id });
 
                     if (base.m_ResultDB.ReturnInt == 0)
                     {
@@ -539,6 +539,7 @@ namespace Wisol.MES.Forms.CONTENT
                 POP.EXPORT_EXCEL popup = new POP.EXPORT_EXCEL();
                 popup.ReportType = cboReportType.SelectedIndex == 0 ? "1" : "2";
                 popup.ReportTitle = cboReportType.Text;
+                popup.Kho = stlKho.EditValue.NullString();
 
                 if (cboReportType.SelectedIndex == 1)
                 {
@@ -550,6 +551,14 @@ namespace Wisol.MES.Forms.CONTENT
                     }
                     DateTime datefrom = (DateTime)dateFrom.EditValue;
                     DateTime dateto = (DateTime)dateTo.EditValue;
+
+                    if(datefrom > dateto)
+                    {
+                        MsgBox.Show("MSG_ERR_TIME_INVALID".Translation(), MsgType.Warning);
+                        dateFrom.Focus();
+                        return;
+                    }
+
                     popup.TimeFrom = datefrom.ToString();
                     popup.TimeTo = dateto.ToString();
                 }
@@ -608,23 +617,55 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-                DialogResult dialogResult = MsgBox.Show("MSG_COM_015".Translation(), MsgType.Warning, DialogType.OkCancel);
+                DialogResult dialogResult = MsgBox.Show("BALANCE_WAREHOUSE_MSG".Translation(), MsgType.Warning, DialogType.OkCancel);
 
                 if (dialogResult == DialogResult.OK)
                 {
                     base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP_INVENTORY.CREATE_BALANCE_WAREHOUSE",
-                       new string[] { "A_DEPARTMENT", "A_USER" },
-                       new string[] { Consts.DEPARTMENT, Consts.USER_INFO.Id });
+                       new string[] { "A_DEPARTMENT", "A_USER", "A_STOCK_CODE" },
+                       new string[] { Consts.DEPARTMENT, Consts.USER_INFO.Id, stlKho.EditValue.NullString() });
 
                     if (base.m_ResultDB.ReturnInt == 0)
                     {
-                        MsgBox.Show(m_ResultDB.ReturnString, MsgType.Information);
+                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                        GetData();
                     }
                     else
                     {
-                        MsgBox.Show(m_ResultDB.ReturnString, MsgType.Error);
+                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+        private void btnInventoryOfAssets_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                POP.EXPORT_EXCEL popup = new POP.EXPORT_EXCEL();
+                popup.ReportType = "0";
+                popup.ReportTitle = "Inventory of assets-Kiểm kê thiết bị";
+                popup.Kho = stlKho.EditValue.NullString();
+                popup.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                POP.IMPORT_EXCEL popup = new POP.IMPORT_EXCEL();
+                popup.stock_code = stlKho.EditValue.NullString();
+                popup.ImpportType = Consts.IMPORT_TYPE_INVENTORY_REAL;
+                popup.ShowDialog();
+                GetData();
             }
             catch (Exception ex)
             {

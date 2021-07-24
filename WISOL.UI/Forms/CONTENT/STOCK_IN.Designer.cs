@@ -31,19 +31,11 @@ namespace Wisol.MES.Forms.CONTENT
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(STOCK_IN));
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions5 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions6 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
             this.xLayoutControl1 = new Wisol.XLayoutControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.stlKho = new Wisol.AceGridLookUpEdit(this.components);
+            this.aceGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnSearch = new Wisol.XSimpleButton(this.components);
             this.btnClear = new Wisol.XSimpleButton(this.components);
             this.btnAddNewDelivery = new Wisol.XSimpleButton(this.components);
@@ -58,6 +50,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_Year = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_MONTH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CREATE_DATE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_TIME_INPUT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.STOCK_IN_OUT_CODE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.STOCK_CODE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_Type = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -81,6 +74,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -90,6 +84,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).BeginInit();
             this.xLayoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.stlKho.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aceGridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPhieu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFrom.Properties.CalendarTimeProperties)).BeginInit();
@@ -111,6 +107,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
@@ -139,6 +136,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // xLayoutControl2
             // 
+            this.xLayoutControl2.Controls.Add(this.stlKho);
             this.xLayoutControl2.Controls.Add(this.btnSearch);
             this.xLayoutControl2.Controls.Add(this.btnClear);
             this.xLayoutControl2.Controls.Add(this.btnAddNewDelivery);
@@ -155,6 +153,31 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl2.Size = new System.Drawing.Size(1095, 632);
             this.xLayoutControl2.TabIndex = 0;
             this.xLayoutControl2.Text = "xLayoutControl2";
+            // 
+            // stlKho
+            // 
+            this.stlKho.EditValue = "";
+            this.stlKho.Location = new System.Drawing.Point(828, 36);
+            this.stlKho.Name = "stlKho";
+            this.stlKho.Properties.Appearance.Options.UseTextOptions = true;
+            this.stlKho.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.stlKho.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.stlKho.Properties.ImmediatePopup = true;
+            this.stlKho.Properties.NullText = "";
+            this.stlKho.Properties.PopupView = this.aceGridLookUpEdit1View;
+            this.stlKho.Size = new System.Drawing.Size(255, 20);
+            this.stlKho.StyleController = this.xLayoutControl2;
+            this.stlKho.TabIndex = 9;
+            this.stlKho.EditValueChanged += new System.EventHandler(this.stlKho_EditValueChanged);
+            // 
+            // aceGridLookUpEdit1View
+            // 
+            this.aceGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.aceGridLookUpEdit1View.Name = "aceGridLookUpEdit1View";
+            this.aceGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.aceGridLookUpEdit1View.OptionsView.ShowAutoFilterRow = true;
+            this.aceGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
             // 
             // btnSearch
             // 
@@ -234,7 +257,7 @@ namespace Wisol.MES.Forms.CONTENT
             "NEW",
             "INPROGRESS",
             "COMPLETE"});
-            this.cboTrangThai.Size = new System.Drawing.Size(565, 20);
+            this.cboTrangThai.Size = new System.Drawing.Size(254, 20);
             this.cboTrangThai.StyleController = this.xLayoutControl2;
             this.cboTrangThai.TabIndex = 4;
             this.cboTrangThai.SelectedIndexChanged += new System.EventHandler(this.cboTrangThai_SelectedIndexChanged);
@@ -288,6 +311,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_Year,
             this.col_MONTH,
             this.CREATE_DATE,
+            this.col_TIME_INPUT,
             this.STOCK_IN_OUT_CODE,
             this.STOCK_CODE,
             this.col_Type,
@@ -306,7 +330,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // IN_OUT
             // 
-            this.IN_OUT.Caption = "Phiếu";
+            this.IN_OUT.Caption = "Phiếu";
             this.IN_OUT.FieldName = "IN_OUT";
             this.IN_OUT.Name = "IN_OUT";
             this.IN_OUT.Visible = true;
@@ -315,7 +339,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // col_Year
             // 
-            this.col_Year.Caption = "YEAR";
+            this.col_Year.Caption = "Năm";
             this.col_Year.FieldName = "YEAR";
             this.col_Year.Name = "col_Year";
             this.col_Year.Visible = true;
@@ -323,7 +347,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // col_MONTH
             // 
-            this.col_MONTH.Caption = "MONTH";
+            this.col_MONTH.Caption = "Tháng";
             this.col_MONTH.FieldName = "MONTH";
             this.col_MONTH.Name = "col_MONTH";
             this.col_MONTH.Visible = true;
@@ -331,20 +355,28 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // CREATE_DATE
             // 
-            this.CREATE_DATE.Caption = "Ngày tạo";
+            this.CREATE_DATE.Caption = "Ngày tạo";
             this.CREATE_DATE.FieldName = "CREATE_DATE";
             this.CREATE_DATE.Name = "CREATE_DATE";
             this.CREATE_DATE.Visible = true;
             this.CREATE_DATE.VisibleIndex = 3;
             this.CREATE_DATE.Width = 129;
             // 
+            // col_TIME_INPUT
+            // 
+            this.col_TIME_INPUT.Caption = "Thời gian";
+            this.col_TIME_INPUT.FieldName = "TIME_INPUT";
+            this.col_TIME_INPUT.Name = "col_TIME_INPUT";
+            this.col_TIME_INPUT.Visible = true;
+            this.col_TIME_INPUT.VisibleIndex = 4;
+            // 
             // STOCK_IN_OUT_CODE
             // 
-            this.STOCK_IN_OUT_CODE.Caption = "Mã Phiếu";
+            this.STOCK_IN_OUT_CODE.Caption = "Mã phiếu";
             this.STOCK_IN_OUT_CODE.FieldName = "STOCK_IN_OUT_CODE";
             this.STOCK_IN_OUT_CODE.Name = "STOCK_IN_OUT_CODE";
             this.STOCK_IN_OUT_CODE.Visible = true;
-            this.STOCK_IN_OUT_CODE.VisibleIndex = 4;
+            this.STOCK_IN_OUT_CODE.VisibleIndex = 5;
             this.STOCK_IN_OUT_CODE.Width = 129;
             // 
             // STOCK_CODE
@@ -353,50 +385,50 @@ namespace Wisol.MES.Forms.CONTENT
             this.STOCK_CODE.FieldName = "STOCK_CODE";
             this.STOCK_CODE.Name = "STOCK_CODE";
             this.STOCK_CODE.Visible = true;
-            this.STOCK_CODE.VisibleIndex = 5;
+            this.STOCK_CODE.VisibleIndex = 6;
             this.STOCK_CODE.Width = 129;
             // 
             // col_Type
             // 
-            this.col_Type.Caption = "Loại";
+            this.col_Type.Caption = "Loại";
             this.col_Type.FieldName = "NAME";
             this.col_Type.Name = "col_Type";
             this.col_Type.Visible = true;
-            this.col_Type.VisibleIndex = 6;
+            this.col_Type.VisibleIndex = 7;
             // 
             // ORDER_CODE
             // 
-            this.ORDER_CODE.Caption = "Mã đặt hàng";
+            this.ORDER_CODE.Caption = "Mã đặt hàng";
             this.ORDER_CODE.FieldName = "ORDER_CODE";
             this.ORDER_CODE.Name = "ORDER_CODE";
             this.ORDER_CODE.Visible = true;
-            this.ORDER_CODE.VisibleIndex = 7;
+            this.ORDER_CODE.VisibleIndex = 8;
             this.ORDER_CODE.Width = 129;
             // 
             // USER_CREATE
             // 
-            this.USER_CREATE.Caption = "Người tạo";
+            this.USER_CREATE.Caption = "Người tạo";
             this.USER_CREATE.FieldName = "USER_CREATE";
             this.USER_CREATE.Name = "USER_CREATE";
             this.USER_CREATE.Visible = true;
-            this.USER_CREATE.VisibleIndex = 8;
+            this.USER_CREATE.VisibleIndex = 9;
             this.USER_CREATE.Width = 129;
             // 
             // col_Deliver
             // 
-            this.col_Deliver.Caption = "Giao/Nhận";
+            this.col_Deliver.Caption = "Giao/Nhận";
             this.col_Deliver.FieldName = "DELIVERET_RECEIVER";
             this.col_Deliver.Name = "col_Deliver";
             this.col_Deliver.Visible = true;
-            this.col_Deliver.VisibleIndex = 9;
+            this.col_Deliver.VisibleIndex = 10;
             // 
             // STATUS
             // 
-            this.STATUS.Caption = "Trạng thái";
+            this.STATUS.Caption = "Trạng thái";
             this.STATUS.FieldName = "STATUS";
             this.STATUS.Name = "STATUS";
             this.STATUS.Visible = true;
-            this.STATUS.VisibleIndex = 10;
+            this.STATUS.VisibleIndex = 11;
             this.STATUS.Width = 50;
             // 
             // col_View
@@ -407,15 +439,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_View.ColumnEdit = this.repositoryItemButtonEdit3;
             this.col_View.Name = "col_View";
             this.col_View.Visible = true;
-            this.col_View.VisibleIndex = 11;
+            this.col_View.VisibleIndex = 12;
             this.col_View.Width = 25;
             // 
             // repositoryItemButtonEdit3
             // 
             this.repositoryItemButtonEdit3.AutoHeight = false;
-            editorButtonImageOptions5.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions5.Image")));
             this.repositoryItemButtonEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton()});
             this.repositoryItemButtonEdit3.ContextImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit3.ContextImageOptions.Image")));
             this.repositoryItemButtonEdit3.Name = "repositoryItemButtonEdit3";
             // 
@@ -424,7 +455,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_Edit.ColumnEdit = this.repositoryItemButtonEdit2;
             this.col_Edit.Name = "col_Edit";
             this.col_Edit.Visible = true;
-            this.col_Edit.VisibleIndex = 12;
+            this.col_Edit.VisibleIndex = 13;
             this.col_Edit.Width = 25;
             // 
             // repositoryItemButtonEdit2
@@ -442,15 +473,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_delete.ColumnEdit = this.repositoryItemButtonEdit1;
             this.col_delete.Name = "col_delete";
             this.col_delete.Visible = true;
-            this.col_delete.VisibleIndex = 13;
+            this.col_delete.VisibleIndex = 14;
             this.col_delete.Width = 25;
             // 
             // repositoryItemButtonEdit1
             // 
             this.repositoryItemButtonEdit1.AutoHeight = false;
-            editorButtonImageOptions6.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions6.Image")));
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Ellipsis, "", -1, true, true, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton()});
             this.repositoryItemButtonEdit1.ContextImageOptions.Alignment = DevExpress.XtraEditors.ContextImageAlignment.Far;
             this.repositoryItemButtonEdit1.ContextImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit1.ContextImageOptions.Image")));
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
@@ -468,7 +498,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem12,
             this.layoutControlItem7,
             this.layoutControlItem11,
-            this.layoutControlItem9});
+            this.layoutControlItem9,
+            this.layoutControlItem8});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1095, 632);
             this.layoutControlGroup1.TextVisible = false;
@@ -505,7 +536,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem5.Control = this.cboTrangThai;
             this.layoutControlItem5.Location = new System.Drawing.Point(454, 24);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(621, 24);
+            this.layoutControlItem5.Size = new System.Drawing.Size(310, 24);
             this.layoutControlItem5.Text = "Trạng thái";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(49, 13);
             // 
@@ -554,6 +585,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.stlKho;
+            this.layoutControlItem8.Location = new System.Drawing.Point(764, 24);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(311, 24);
+            this.layoutControlItem8.Text = "KHO";
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(49, 13);
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -596,6 +636,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).EndInit();
             this.xLayoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.stlKho.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aceGridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPhieu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboTrangThai.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFrom.Properties.CalendarTimeProperties)).EndInit();
@@ -617,6 +659,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
@@ -670,5 +713,9 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraGrid.Columns.GridColumn col_Deliver;
         private DevExpress.XtraGrid.Columns.GridColumn col_View;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit3;
+        private AceGridLookUpEdit stlKho;
+        private DevExpress.XtraGrid.Views.Grid.GridView aceGridLookUpEdit1View;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
+        private DevExpress.XtraGrid.Columns.GridColumn col_TIME_INPUT;
     }
 }

@@ -104,5 +104,23 @@ namespace Wisol.MES
         public static string STR_SPILIT_ON_BARCODE = "$";
         public static string STR_SPILIT_WITH_QUANTITY = ":";
         public static string ZERO = "0";
+        public static string SHEET_NAME_EWIP_SPAREPART_LOCATION = "EWIP_SPAREPART_LOCATION$";
+        public static string IMPORT_TYPE_INVENTORY_REAL = "0";
+        public static string CONDITION_DEFAULT = "OK";
+        public static string PACK_UNIT = "PACK";
+
+        private static DataTable DataMemory;
+
+        public static DataTable GetDataMemory()
+        {
+            if (DataMemory == null)
+            {
+                DataMemory = new DataTable();
+                DataMemory.Clear();
+                DataMemory.Columns.Add("CODE");
+                DataMemory.Columns.Add("NAME_VI");
+            }
+            return DataMemory;
+        }
     }
 }

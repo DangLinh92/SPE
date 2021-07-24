@@ -22,6 +22,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         }
 
         public string stock_code { get; set; }
+        public string ImpportType { get; set; }
         DataTable Data;
 
         private void IMPORT_EXCEL_Load(object sender, EventArgs e)
@@ -31,12 +32,24 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void btnImport_Click(object sender, EventArgs e)
         {
+            Import();
+        }
+
+        private void Import()
+        {
             try
             {
                 DialogResult dialogResult = MsgBox.Show("MSG_IMPORT_EXCEL".Translation(), MsgType.Information, DialogType.OkCancel);
                 if (dialogResult == DialogResult.OK)
                 {
-                    base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_LOCATION_SPAREPART.INSERT_ BATCH", new string[] { "A_DEPARTMENT_CODE", "A_STOCK" }, "A_DATA", new string[] { Consts.DEPARTMENT, stock_code }, Data);
+                    if(ImpportType == Consts.IMPORT_TYPE_INVENTORY_REAL)
+                    {
+                        base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_LOCATION.INSERT_BATCH_INVENTORY_REAL", new string[] { "A_DEPARTMENT_CODE", "A_STOCK", "A_USER" }, "A_DATA", new string[] { Consts.DEPARTMENT, stock_code,Consts.USER_INFO.Id }, Data);
+                    }
+                    else
+                    {
+                        base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_LOCATION_SPAREPART.INSERT_ BATCH", new string[] { "A_DEPARTMENT_CODE", "A_STOCK" }, "A_DATA", new string[] { Consts.DEPARTMENT, stock_code }, Data);
+                    }
                     if (mResultDB.ReturnInt == 0)
                     {
                         MsgBox.Show(mResultDB.ReturnString.Translation(), MsgType.Information);

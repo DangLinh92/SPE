@@ -123,13 +123,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                     base.mBindData.BindGridLookEdit(stlUnit, base.mResultDB.ReturnDataSet.Tables[3], "CODE", "NAME");
 
-                    stlKho.EditValue = base.mResultDB.ReturnDataSet.Tables[2].Rows[0]["CODE"].NullString();
-
-                    if (float.TryParse(base.mResultDB.ReturnDataSet.Tables[6].Rows[0]["RATE"].NullString(), out float rate))
-                    {
-                        //lbRate.Text = "Exchange Rate (USD/VN): " + rate.ToString("C2", CultureInfo.CurrentCulture);
-                        ExchangeRate = rate;
-                    }
+                    stlKho.EditValue = StockCode;
                 }
 
                 InitByMode();
@@ -142,6 +136,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void InitByMode()
         {
+            mBindData.BindGridLookEdit(stlMemoryData, Consts.GetDataMemory(), "CODE", "NAME_VI");
             if (INOUT == Consts.OUT)
             {
                 cheIsScanbarcode.Checked = true;
@@ -563,7 +558,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             location = "W";
                         }
 
-                        if(quantity == Consts.ZERO)
+                        if (quantity == Consts.ZERO)
                         {
                             MsgBox.Show("MSG_QUANTITY_INVALID".Translation(), MsgType.Warning);
                             return false;
@@ -1045,15 +1040,14 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 }
 
                 base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_GOODS_RECEIPT_ISSUE.PUT",
-                    new string[] { "A_USER", "A_DELIVER_RECEIVER", "A_MODE" }, "A_DATA",
-                    new string[] { Consts.USER_INFO.Id, txtDelivererAndReceiver.EditValue.NullString(), Mode }, Data);
+                    new string[] { "A_USER", "A_DELIVER_RECEIVER" }, "A_DATA",
+                    new string[] { Consts.USER_INFO.Id, txtDelivererAndReceiver.EditValue.NullString() }, Data);
 
                 if (mResultDB.ReturnInt == 0)
                 {
                     MsgBox.Show(base.mResultDB.ReturnString.Translation(), MsgType.Information);
                     ClearRight();
                     ClearItemAdd();
-
                 }
                 else
                 {
@@ -1748,6 +1742,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             txtScanbarcode.Enabled = cheIsScanbarcode.Checked;
             stlSparePartCode.Enabled = !cheIsScanbarcode.Checked;
+            stlMemoryData.Enabled = !cheIsScanbarcode.Checked;
 
             if (!cheIsScanbarcode.Checked)
             {
@@ -1777,6 +1772,25 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
             return 1;
+        }
+
+        private void btnClearMemory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Consts.GetDataMemory().Rows.Clear();
+                mBindData.BindGridLookEdit(stlMemoryData, Consts.GetDataMemory(), "CODE", "NAME_VI");
+                MsgBox.Show("MSG_COM_004".Translation(), MsgType.Information);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void stlMemoryData_EditValueChanged(object sender, EventArgs e)
+        {
+            stlSparePartCode.EditValue = stlMemoryData.EditValue;
         }
     }
 }

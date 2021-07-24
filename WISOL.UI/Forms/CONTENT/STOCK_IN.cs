@@ -52,15 +52,33 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void Init_Control()
         {
-            cboPhieu.SelectedIndex = 0;
-            cboTrangThai.SelectedIndex = 0;
+            try
+            {
+                cboPhieu.SelectedIndex = 0;
+                cboTrangThai.SelectedIndex = 0;
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_KHO.GET", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
+                if (base.m_ResultDB.ReturnInt == 0)
+                {
+                    DataTable kho = m_ResultDB.ReturnDataSet.Tables[0];
+                    m_BindData.BindGridLookEdit(stlKho, kho, "CODE", "NAME");
+                    stlKho.EditValue = kho.Rows[0]["CODE"].NullString();
+                }
+                else
+                {
+                    MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
         }
 
         private void LoadData()
         {
             try
             {
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_DELIVERY_RECEIVING.GET", new string[] { "A_DEPT_CODE" }, new string[] { Consts.DEPARTMENT });
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_DELIVERY_RECEIVING.GET", new string[] { "A_DEPT_CODE", "A_STOCK_CODE" }, new string[] { Consts.DEPARTMENT,stlKho.EditValue.NullString() });
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
                     //base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
@@ -82,7 +100,7 @@ namespace Wisol.MES.Forms.CONTENT
             POP.GOODS_RECEIPT popup = new POP.GOODS_RECEIPT();
             popup.Mode = Consts.MODE_NEW;
             popup.ReceiptCode = "";
-            popup.StockCode = "";
+            popup.StockCode = stlKho.EditValue.NullString();
             popup.INOUT = Consts.IN;
             popup.CurrentStatus = "";
             popup.ShowDialog();
@@ -346,12 +364,19 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
+                if(DateTime.Parse(dateFrom.EditValue.NullString()) > DateTime.Parse(dateTo.EditValue.NullString()))
+                {
+                    MsgBox.Show("MSG_ERR_TIME_INVALID".Translation(), MsgType.Warning);
+                    dateFrom.Focus();
+                    return;
+                }
+
                 string phieu = (cboPhieu.SelectedIndex == 0 ? "'IN','OUT'" : cboPhieu.SelectedIndex == 1 ? "'IN'" : "'OUT'");
                 string status = cboTrangThai.SelectedIndex == 0 ? "'NEW','INPROGRESS','COMPLETE'" : (cboTrangThai.SelectedIndex == 1 ? "'NEW'" : cboTrangThai.SelectedIndex == 2 ? "'INPROGRESS'" : "'COMPLETE'");
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_DELIVERY_RECEIVING.GET_BY_TIME", 
-                    new string[] { "A_DEPT_CODE", "A_TIME_FROM", "A_TIME_TO", "A_PHIEU", "A_STATUS" }, 
-                    new string[] { Consts.DEPARTMENT,dateFrom.EditValue.NullString(),dateTo.EditValue.NullString(), phieu,status });
+                    new string[] { "A_DEPT_CODE", "A_TIME_FROM", "A_TIME_TO", "A_PHIEU", "A_STATUS", "A_STOCK_CODE" }, 
+                    new string[] { Consts.DEPARTMENT,dateFrom.EditValue.NullString(),dateTo.EditValue.NullString(), phieu,status,stlKho.EditValue.NullString() });
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
                     //base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
@@ -388,10 +413,15 @@ namespace Wisol.MES.Forms.CONTENT
             POP.GOODS_RECEIPT popup = new POP.GOODS_RECEIPT();
             popup.Mode = Consts.MODE_NEW;
             popup.ReceiptCode = "";
-            popup.StockCode = "";
+            popup.StockCode = stlKho.EditValue.NullString();
             popup.INOUT = Consts.OUT;
             popup.CurrentStatus = "";
             popup.ShowDialog();
+            LoadData();
+        }
+
+        private void stlKho_EditValueChanged(object sender, EventArgs e)
+        {
             LoadData();
         }
     }

@@ -28,18 +28,30 @@ namespace Wisol.MES.Forms.CONTENT.POP
         public string TimeTo { get; set; }
         public string ConditionOther { get; set; }
         public string ReportTitle { get; set; }
+        public string Kho { get; set; }
 
         private void EXPORT_EXCEL_Load(object sender, EventArgs e)
         {
+
+
             if (Consts.INVENTORY_REPORT.Equals(ReportType))
             {
                 groupControl1.Text = ReportTitle;
-                GetData("PKG_BUSINESS_SP_INVENTORY.REPORT_BY_SPAREPART", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
+                GetData("PKG_BUSINESS_SP_INVENTORY.REPORT_BY_SPAREPART", new string[] { "A_DEPARTMENT", "A_STOCK_CODE" }, new string[] { Consts.DEPARTMENT, Kho });
             }
             else if (Consts.INVENTORY_IN_OUT_REPORT.Equals(ReportType))
             {
                 groupControl1.Text = ReportTitle;
-                GetData("PKG_BUSINESS_SP_INVENTORY.REPORT_BY_SPAREPART_IN_OUT", new string[] { "A_DEPARTMENT", "A_TIME_FROM", "A_TIME_TO" }, new string[] { Consts.DEPARTMENT,TimeFrom,TimeTo });
+                GetData("PKG_BUSINESS_SP_INVENTORY.REPORT_BY_SPAREPART_IN_OUT", new string[] { "A_DEPARTMENT", "A_TIME_FROM", "A_TIME_TO" }, new string[] { Consts.DEPARTMENT, TimeFrom, TimeTo });
+            }
+            else if (ReportType == Consts.ZERO) // Kiem ke
+            {
+                groupControl1.Text = ReportTitle;
+                GetData("PKG_BUSINESS_SP_INVENTORY.REPORT_BY_SPAREPART_LOCATION", new string[] { "A_DEPARTMENT", "A_STOCK_CODE" }, new string[] { Consts.DEPARTMENT, Kho });
+                gvList.Columns["SPARE_PART_CODE"].OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
+                gvList.Columns["NAME_VI"].OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.True;
+                gvList.OptionsView.AllowCellMerge = true;
+                gvList.OptionsView.ColumnAutoWidth = true;
             }
         }
 
@@ -54,8 +66,11 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     {
                         base.mBindData.BindGridView(gcList, mResultDB.ReturnDataSet.Tables[0]);
 
-                        gvList.Columns["STT"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                        gvList.Columns["STT"].DisplayFormat.FormatString = "n0";
+                        if (ReportType == Consts.INVENTORY_REPORT || ReportType == Consts.INVENTORY_IN_OUT_REPORT)
+                        {
+                            gvList.Columns["STT"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                            gvList.Columns["STT"].DisplayFormat.FormatString = "n0";
+                        }
                     }
                 }
             }
@@ -81,8 +96,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 gvList.AppearancePrint.HeaderPanel.BackColor = Color.Orange;
 
                 XlsxExportOptionsEx advOptions = new XlsxExportOptionsEx();
-                advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.True;
-                advOptions.SheetName = "LIST";
+                advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
+                advOptions.SheetName = ReportType == Consts.ZERO ? "EWIP_SPAREPART_LOCATION" : "LIST";
 
                 gvList.ExportToXlsx(path, advOptions);
                 // Open the created XLSX file with the default application.
@@ -99,6 +114,27 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 e.Column.AppearanceHeader.BackColor = Color.Orange;
                 e.Info.AllowColoring = true;
+            }
+        }
+
+        private void gvList_CellMerge(object sender, DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs e)
+        {
+            try
+            {
+                if (ReportType == Consts.ZERO) // Kiem ke
+                {
+                    if (e.Column.FieldName == "SPARE_PART_CODE" || e.Column.FieldName == "NAME_VI")
+                    {
+                        string text1 = gvList.GetRowCellDisplayText(e.RowHandle1, "SPARE_PART_CODE");
+                        string text2 = gvList.GetRowCellDisplayText(e.RowHandle2, "SPARE_PART_CODE");
+                        e.Merge = (text1 == text2);
+                        e.Handled = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
     }

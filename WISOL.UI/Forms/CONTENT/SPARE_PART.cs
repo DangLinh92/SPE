@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Data;
 using System.Drawing;
@@ -89,7 +90,7 @@ namespace Wisol.MES.Forms.CONTENT
                 sltUnit.EditValue = string.Empty;
                 cbGenCode.Checked = false;
                 cbGenCode.Enabled = true;
-                sltUnit1.EditValue = string.Empty;
+                sltUnit1.EditValue = Consts.PACK_UNIT;
                 sltUnit2.EditValue = string.Empty;
                 sltUnit3.EditValue = string.Empty;
                 sltUnit4.EditValue = string.Empty;
@@ -200,9 +201,16 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-                if (txtCode.EditValue.NullString().Contains(".") || txtCode.EditValue.NullString().Contains("_"))
+                if (txtCode.EditValue.NullString().Contains(Consts.STR_SPILIT_ON_BARCODE) || txtCode.EditValue.NullString().Contains("_"))
                 {
                     MsgBox.Show("MSG_ERR_SPARE_CODE_CONTAIN_DOT".Translation(), MsgType.Warning);
+                    return;
+                }
+
+                if(string.IsNullOrEmpty(sltUnit1.EditValue.NullString()))
+                {
+                    MsgBox.Show("MSG_ERR_MISS_PACK_UNIT".Translation(), MsgType.Warning);
+                    sltUnit1.Focus();
                     return;
                 }
 
@@ -326,13 +334,15 @@ namespace Wisol.MES.Forms.CONTENT
             if (base.m_ResultDB.ReturnInt == 0)
             {
                 base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
+                gvList.OptionsSelection.MultiSelect = true;
+                gvList.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
             }
         }
 
         private void txtSearch_QueryIsSearchColumn(object sender, DevExpress.XtraEditors.QueryIsSearchColumnEventArgs args)
         {
             string s = sender.ToString();
-            if (s != "Mã") args.IsSearchColumn = false;
+            if (s != "Mã" && s!= "Tên tiếng việt") args.IsSearchColumn = false;
         }
 
         private void picImage_ImageChanged(object sender, EventArgs e)
@@ -569,9 +579,9 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void ShowSparepart(string code)
         {
-            if(!string.IsNullOrEmpty(code) && code.Contains("."))
+            if(!string.IsNullOrEmpty(code) && code.Contains(Consts.STR_SPILIT_ON_BARCODE))
             {
-                code = code.Split('.')[0];
+                code = code.Split(Consts.CHARACTER_SPILIT_ON_BARCODE)[0];
             }
 
             base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.SHOW", new string[] { "A_DEPARTMENT", "A_CODE" }, new string[] { Consts.DEPARTMENT, code });
@@ -596,6 +606,43 @@ namespace Wisol.MES.Forms.CONTENT
                 {
                     ShowSparepart(txtCode.EditValue.NullString());
                 }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void btnMemoryData_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataRow row; 
+                foreach (int i in gvList.GetSelectedRows())
+                {
+                    row = Consts.GetDataMemory().NewRow();
+                    row["CODE"] = gvList.GetRowCellValue(i, "CODE");
+                    row["NAME_VI"] = gvList.GetRowCellValue(i, "NAME_VI");
+                    Consts.GetDataMemory().Rows.Add(row);
+                }
+                m_BindData.BindGridLookEdit(stlMemoryData, Consts.GetDataMemory(), "CODE", "NAME_VI");
+                MsgBox.Show("MSG_COM_004".Translation(), MsgType.Information);
+                gvList.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void bntClearMemory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Consts.GetDataMemory().Rows.Clear();
+                m_BindData.BindGridLookEdit(stlMemoryData, Consts.GetDataMemory(), "CODE", "NAME_VI");
+                gvList.ClearSelection();
+                MsgBox.Show("MSG_COM_004".Translation(), MsgType.Information);
             }
             catch (Exception ex)
             {
