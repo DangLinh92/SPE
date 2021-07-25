@@ -207,7 +207,7 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-                if(string.IsNullOrEmpty(sltUnit1.EditValue.NullString()))
+                if(string.IsNullOrEmpty(sltUnit1.EditValue.NullString()) && sltUnit.EditValue.NullString() != Consts.PACK_UNIT)
                 {
                     MsgBox.Show("MSG_ERR_MISS_PACK_UNIT".Translation(), MsgType.Warning);
                     sltUnit1.Focus();
@@ -617,13 +617,19 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-                DataRow row; 
+                DataRow row;
+                string code = "";
                 foreach (int i in gvList.GetSelectedRows())
                 {
-                    row = Consts.GetDataMemory().NewRow();
-                    row["CODE"] = gvList.GetRowCellValue(i, "CODE");
-                    row["NAME_VI"] = gvList.GetRowCellValue(i, "NAME_VI");
-                    Consts.GetDataMemory().Rows.Add(row);
+                    code = gvList.GetRowCellValue(i, "CODE").NullString();
+
+                    if (Consts.GetDataMemory().Select("[CODE] = '"+code+"'").Length == 0)
+                    {
+                        row = Consts.GetDataMemory().NewRow();
+                        row["CODE"] = gvList.GetRowCellValue(i, "CODE");
+                        row["NAME_VI"] = gvList.GetRowCellValue(i, "NAME_VI");
+                        Consts.GetDataMemory().Rows.Add(row);
+                    }
                 }
                 m_BindData.BindGridLookEdit(stlMemoryData, Consts.GetDataMemory(), "CODE", "NAME_VI");
                 MsgBox.Show("MSG_COM_004".Translation(), MsgType.Information);

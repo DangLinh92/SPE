@@ -585,7 +585,7 @@ namespace Wisol.MES.Forms.CONTENT
         private void txtSearchNoLocation_QueryIsSearchColumn(object sender, DevExpress.XtraEditors.QueryIsSearchColumnEventArgs args)
         {
             string s = sender.ToString();
-            if (s != "Vị trí") args.IsSearchColumn = false;
+            if (s != "Vị trí" && s != "Mã" && s != "Tên tiếng việt") args.IsSearchColumn = false;
         }
 
         private void gvListNoPosition_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
@@ -604,12 +604,17 @@ namespace Wisol.MES.Forms.CONTENT
                     {
                         if (base.m_ResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
                         {
+                            stlSparepart.Enabled = false;
+                            stlCondition.Enabled = false;
+                            txtQuantityNewAdd.EditValue = 0;
+
                             DataTable data = base.m_ResultDB.ReturnDataSet.Tables[0];
 
+                            stlUnit.EditValue = data.Rows[0]["UNIT"].NullString();
                             txtQuantity.EditValue = data.Rows[0]["QUANTITY"].NullString();
                             stlSparepart.EditValue = data.Rows[0]["SPARE_PART_CODE"].NullString();
                             stlPosition.EditValue = data.Rows[0]["LOCATION"].NullString();
-                            stlUnit.EditValue = data.Rows[0]["UNIT"].NullString();
+                           
                             stlCondition.EditValue = data.Rows[0]["CONDITION_CODE"].NullString();
                             txtSTT.EditValue = gvListNoPosition.GetDataRow(e.RowHandle)["STT"].NullString();
 
@@ -637,10 +642,6 @@ namespace Wisol.MES.Forms.CONTENT
                                 dateExpired_Move.EditValue = "2199-01-01";
                             }
 
-                            stlSparepart.Enabled = false;
-                            stlCondition.Enabled = false;
-                            txtQuantityNewAdd.EditValue = 0;
-
                             dateInputTime.EditValue = data.Rows[0]["TIME_IN"].NullString();
                             dateTimeIn_Move.EditValue = data.Rows[0]["TIME_IN"].NullString();
 
@@ -659,9 +660,9 @@ namespace Wisol.MES.Forms.CONTENT
                     }
                     else
                     {
+                        txtQuantityNewAdd.EditValue = 0;
                         MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Warning);
                     }
-                    txtQuantityNewAdd.EditValue = "0";
                     cheEditQuantity.Checked = false;
                 }
                 catch (Exception ex)
@@ -1140,10 +1141,6 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void txtQuantity_EditValueChanged(object sender, EventArgs e)
         {
-            //if (stlSparepart.Enabled == true) // mode new
-            //{
-            //    CheckRemainQuantity(txtQuantity.EditValue.NullString());
-            //}
         }
 
         private bool CheckRemainQuantity()
@@ -1169,6 +1166,21 @@ namespace Wisol.MES.Forms.CONTENT
                             if (float.Parse(quantityRemain) >= 0)
                             {
                                 txtQuantityRemain.EditValue = quantityRemain;
+                                if (stlSparepart.Enabled == true)// create new
+                                {
+                                    string q1 = txtQuantity.EditValue.NullString();
+                                    string q2 = txtQuantityNewAdd.EditValue.NullString();
+
+                                    if (q1 == "") q1 = "0";
+                                    if (q2 == "") q2 = "0";
+
+                                    if(float.Parse(q1)+float.Parse(q2) > float.Parse(quantityRemain))
+                                    {
+                                        MsgBox.Show("MSG_QUANTITY_INVALID".Translation(), MsgType.Error);
+                                        txtQuantityNewAdd.Focus();
+                                        return false;
+                                    }
+                                }
                                 return true;
                             }
                             else
@@ -1311,6 +1323,19 @@ namespace Wisol.MES.Forms.CONTENT
             catch (Exception ex)
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void stlUnit_EditValueChanged(object sender, EventArgs e)
+        {
+            CheckRemainQuantity();
+        }
+
+        private void stlMemoryData_EditValueChanged(object sender, EventArgs e)
+        {
+            if (stlSparepart.Enabled && stlMemoryData.EditValue.NullString() != "")
+            {
+                stlSparepart.EditValue = stlMemoryData.EditValue;
             }
         }
     }
