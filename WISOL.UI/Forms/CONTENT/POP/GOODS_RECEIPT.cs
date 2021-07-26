@@ -1211,7 +1211,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                             if (items.Length > 0)
                             {
-                                string sparepartCode = items[0];
+                                string sparepartCode = Classes.Common.GetSparepartCodeWithEncript(items[0].NullString());
                                 string location = items[1];
                                 string condition = items[2];
                                 string dateInWarehouse = items[3];

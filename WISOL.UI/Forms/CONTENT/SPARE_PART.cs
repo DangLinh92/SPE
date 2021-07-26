@@ -162,6 +162,7 @@ namespace Wisol.MES.Forms.CONTENT
                     if (base.m_ResultDB.ReturnInt == 0)
                     {
                         MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                        Wisol.MES.Classes.Common.GetEncriptCode();
                     }
                     else
                     {
@@ -295,6 +296,8 @@ namespace Wisol.MES.Forms.CONTENT
                             break;
                         }
                     }
+
+                    Wisol.MES.Classes.Common.GetEncriptCode();
                 }
                 else
                 {
@@ -547,6 +550,7 @@ namespace Wisol.MES.Forms.CONTENT
 
             Init_Control();
             SearchPage();
+            Wisol.MES.Classes.Common.GetEncriptCode();
         }
 
         private void txtCode_EditValueChanged(object sender, EventArgs e)

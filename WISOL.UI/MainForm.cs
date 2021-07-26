@@ -173,6 +173,8 @@ namespace Wisol.MES
 
                 //DialogueNoticeMinChemical di = new DialogueNoticeMinChemical();
                 //di.ShowDialog();
+
+                Wisol.MES.Classes.Common.GetEncriptCode();
             }
             catch (Exception ex)
             {

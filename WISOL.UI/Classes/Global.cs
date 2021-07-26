@@ -122,5 +122,7 @@ namespace Wisol.MES
             }
             return DataMemory;
         }
+
+        public static DataTable SPAREPART_TO_ID;
     }
 }

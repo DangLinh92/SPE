@@ -180,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\AutoClosingMessagebox.cs" />
+    <Compile Include="Classes\Common.cs" />
     <Compile Include="Classes\DBHelper.cs" />
     <Compile Include="Classes\NetDrive.cs" />
     <Compile Include="Classes\ExtendClass.cs" />
