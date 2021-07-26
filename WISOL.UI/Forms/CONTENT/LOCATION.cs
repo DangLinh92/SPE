@@ -438,7 +438,7 @@ namespace Wisol.MES.Forms.CONTENT
 
                 float quantity = float.Parse(txtQuantity.EditValue.NullString()) + float.Parse(txtQuantityNewAdd.EditValue.NullString());
 
-                string barcode = stlSparepart.EditValue.NullString() + (stlPosition.EditValue.NullString() == string.Empty ? "" : "." + stlPosition.EditValue.NullString()) + (stlCondition.EditValue.NullString() == Consts.NG ? "." + stlCondition.EditValue.NullString() : "");
+                string barcode = "";//stlSparepart.EditValue.NullString() + (stlPosition.EditValue.NullString() == string.Empty ? "" : "." + stlPosition.EditValue.NullString()) + (stlCondition.EditValue.NullString() == Consts.NG ? "." + stlCondition.EditValue.NullString() : "");
 
                 string DateExpired = "2199-01-01";
                 if (cheHasDateExpired.Checked)
@@ -446,7 +446,7 @@ namespace Wisol.MES.Forms.CONTENT
                     DateExpired = dateExpiredTime.EditValue.NullString();
                 }
 
-                if(!(cheEditQuantity.Checked && cheEditQuantity.Enabled))
+                if(!(cheEditQuantity.Checked && txtQuantity.Enabled))
                 {
                     string message;
                     bool checkRemain = CheckRemainQuantity(out message);
