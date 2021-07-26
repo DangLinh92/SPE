@@ -33,6 +33,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PRINT_LABEL));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl1 = new Wisol.XLayoutControl();
+            this.checkShowAllData = new DevExpress.XtraEditors.CheckEdit();
+            this.stlMemoryData = new Wisol.AceGridLookUpEdit(this.components);
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.txtQuantityLabel = new Wisol.XTextEdit();
             this.txtHandleRow = new Wisol.XTextEdit();
             this.btnUpdate = new Wisol.XSimpleButton(this.components);
@@ -51,6 +54,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_KHO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_STT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_BARCODE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_QUANTITY_A_UNIT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_QUANTITY_PRINT_LABEL = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_EXPIRED_DATE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_TIME_IN = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -64,11 +68,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.col_QUANTITY_A_UNIT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkShowAllData.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stlMemoryData.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantityLabel.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHandleRow.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).BeginInit();
@@ -86,6 +94,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -100,6 +110,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // xLayoutControl1
             // 
+            this.xLayoutControl1.Controls.Add(this.checkShowAllData);
+            this.xLayoutControl1.Controls.Add(this.stlMemoryData);
             this.xLayoutControl1.Controls.Add(this.txtQuantityLabel);
             this.xLayoutControl1.Controls.Add(this.txtHandleRow);
             this.xLayoutControl1.Controls.Add(this.btnUpdate);
@@ -114,6 +126,40 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.xLayoutControl1.Size = new System.Drawing.Size(896, 425);
             this.xLayoutControl1.TabIndex = 0;
             this.xLayoutControl1.Text = "xLayoutControl1";
+            // 
+            // checkShowAllData
+            // 
+            this.checkShowAllData.Location = new System.Drawing.Point(450, 46);
+            this.checkShowAllData.Name = "checkShowAllData";
+            this.checkShowAllData.Properties.Caption = "Hiển thị tất cả thiết bị";
+            this.checkShowAllData.Size = new System.Drawing.Size(434, 20);
+            this.checkShowAllData.StyleController = this.xLayoutControl1;
+            this.checkShowAllData.TabIndex = 0;
+            this.checkShowAllData.CheckedChanged += new System.EventHandler(this.checkShowAllData_CheckedChanged);
+            // 
+            // stlMemoryData
+            // 
+            this.stlMemoryData.EditValue = "";
+            this.stlMemoryData.Location = new System.Drawing.Point(137, 46);
+            this.stlMemoryData.Name = "stlMemoryData";
+            this.stlMemoryData.Properties.Appearance.Options.UseTextOptions = true;
+            this.stlMemoryData.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.stlMemoryData.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.stlMemoryData.Properties.ImmediatePopup = true;
+            this.stlMemoryData.Properties.NullText = "";
+            this.stlMemoryData.Properties.PopupView = this.gridView1;
+            this.stlMemoryData.Size = new System.Drawing.Size(309, 20);
+            this.stlMemoryData.StyleController = this.xLayoutControl1;
+            this.stlMemoryData.TabIndex = 1;
+            // 
+            // gridView1
+            // 
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowAutoFilterRow = true;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // txtQuantityLabel
             // 
@@ -209,13 +255,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // gcList
             // 
-            this.gcList.Location = new System.Drawing.Point(12, 46);
+            this.gcList.Location = new System.Drawing.Point(12, 70);
             this.gcList.MainView = this.gvList;
             this.gcList.Name = "gcList";
             this.gcList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemCheckEdit1,
             this.repositoryItemComboBox1});
-            this.gcList.Size = new System.Drawing.Size(872, 367);
+            this.gcList.Size = new System.Drawing.Size(872, 343);
             this.gcList.TabIndex = 0;
             this.gcList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvList});
@@ -316,6 +362,14 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_BARCODE.Visible = true;
             this.col_BARCODE.VisibleIndex = 8;
             // 
+            // col_QUANTITY_A_UNIT
+            // 
+            this.col_QUANTITY_A_UNIT.Caption = "QUANTITY_A_UNIT";
+            this.col_QUANTITY_A_UNIT.FieldName = "QUANTITY_A_UNIT";
+            this.col_QUANTITY_A_UNIT.Name = "col_QUANTITY_A_UNIT";
+            this.col_QUANTITY_A_UNIT.Visible = true;
+            this.col_QUANTITY_A_UNIT.VisibleIndex = 9;
+            // 
             // col_QUANTITY_PRINT_LABEL
             // 
             this.col_QUANTITY_PRINT_LABEL.Caption = "QUANTITY_PRINT_LABEL";
@@ -376,7 +430,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem4,
             this.layoutControlItem5,
             this.layoutControlItem6,
-            this.layoutControlItem7});
+            this.layoutControlItem7,
+            this.layoutControlItem9,
+            this.layoutControlItem10});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(896, 425);
             this.Root.TextVisible = false;
@@ -384,9 +440,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // layoutControlItem1
             // 
             this.layoutControlItem1.Control = this.gcList;
-            this.layoutControlItem1.Location = new System.Drawing.Point(0, 34);
+            this.layoutControlItem1.Location = new System.Drawing.Point(0, 58);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(876, 371);
+            this.layoutControlItem1.Size = new System.Drawing.Size(876, 347);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -445,13 +501,23 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem7.Text = "QUANTITY_PRINT_LABEL";
             this.layoutControlItem7.TextSize = new System.Drawing.Size(122, 13);
             // 
-            // col_QUANTITY_A_UNIT
+            // layoutControlItem9
             // 
-            this.col_QUANTITY_A_UNIT.Caption = "QUANTITY_A_UNIT";
-            this.col_QUANTITY_A_UNIT.FieldName = "QUANTITY_A_UNIT";
-            this.col_QUANTITY_A_UNIT.Name = "col_QUANTITY_A_UNIT";
-            this.col_QUANTITY_A_UNIT.Visible = true;
-            this.col_QUANTITY_A_UNIT.VisibleIndex = 9;
+            this.layoutControlItem9.Control = this.stlMemoryData;
+            this.layoutControlItem9.Location = new System.Drawing.Point(0, 34);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(438, 24);
+            this.layoutControlItem9.Text = "Thiết bị đã chọn";
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(122, 13);
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.checkShowAllData;
+            this.layoutControlItem10.Location = new System.Drawing.Point(438, 34);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(438, 24);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem10.TextVisible = false;
             // 
             // PRINT_LABEL
             // 
@@ -468,6 +534,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).EndInit();
             this.xLayoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.checkShowAllData.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.stlMemoryData.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantityLabel.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHandleRow.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).EndInit();
@@ -485,6 +554,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -526,5 +597,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private XTextEdit txtQuantityLabel;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraGrid.Columns.GridColumn col_QUANTITY_A_UNIT;
+        private DevExpress.XtraEditors.CheckEdit checkShowAllData;
+        private AceGridLookUpEdit stlMemoryData;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
     }
 }

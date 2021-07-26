@@ -63,6 +63,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtRate = new Wisol.XTextEdit();
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAlineWithPack.Properties)).BeginInit();
@@ -93,10 +95,13 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             this.SuspendLayout();
             // 
             // xLayoutControl1
             // 
+            this.xLayoutControl1.Controls.Add(this.txtRate);
             this.xLayoutControl1.Controls.Add(this.btnClear);
             this.xLayoutControl1.Controls.Add(this.btnDelete);
             this.xLayoutControl1.Controls.Add(this.btnCreate);
@@ -364,7 +369,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem9,
             this.layoutControlItem10,
             this.layoutControlItem11,
-            this.layoutControlItem12});
+            this.layoutControlItem12,
+            this.layoutControlItem13});
             this.layoutControlGroup4.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup4.Name = "layoutControlGroup4";
             this.layoutControlGroup4.Size = new System.Drawing.Size(1485, 103);
@@ -375,7 +381,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(0, 24);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(1062, 34);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(886, 34);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem1
@@ -493,6 +499,30 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
+            // txtRate
+            // 
+            this.txtRate.IsRequire = false;
+            this.txtRate.Location = new System.Drawing.Point(939, 69);
+            this.txtRate.Name = "txtRate";
+            this.txtRate.NullBackColor = System.Drawing.Color.Lime;
+            this.txtRate.NullValidation = false;
+            this.txtRate.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtRate.Properties.Appearance.Options.UseBackColor = true;
+            this.txtRate.Properties.Mask.EditMask = "p";
+            this.txtRate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtRate.Size = new System.Drawing.Size(143, 20);
+            this.txtRate.StyleController = this.xLayoutControl1;
+            this.txtRate.TabIndex = 28;
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.txtRate;
+            this.layoutControlItem13.Location = new System.Drawing.Point(886, 24);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(176, 34);
+            this.layoutControlItem13.Text = "RATE";
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(26, 13);
+            // 
             // BOM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -531,6 +561,8 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -570,5 +602,7 @@ namespace Wisol.MES.Forms.CONTENT
         private XSimpleButton btnDelete;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
+        private XTextEdit txtRate;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
     }
 }

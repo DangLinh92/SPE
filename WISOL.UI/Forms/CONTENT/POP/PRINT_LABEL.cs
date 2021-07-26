@@ -30,11 +30,40 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private DataTableCollection GetLocations()
         {
-            base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LOCATION.GET", new string[] { "A_DEPARTMENT", "A_STOCK" }, new string[] { Consts.DEPARTMENT, Kho });
-            if (base.mResultDB.ReturnInt == 0)
+            if (checkShowAllData.Checked)
             {
-                return base.mResultDB.ReturnDataSet.Tables;
+                base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LOCATION.GET", new string[] { "A_DEPARTMENT", "A_STOCK" }, new string[] { Consts.DEPARTMENT, Kho });
+                if (base.mResultDB.ReturnInt == 0)
+                {
+                    return base.mResultDB.ReturnDataSet.Tables;
+                }
             }
+            else
+            {
+                if (Consts.GetDataMemory().Rows.Count > 0)
+                {
+                    string spareparts = "";
+                    foreach (DataRow item in Consts.GetDataMemory().Rows)
+                    {
+                        spareparts += item["CODE"].NullString() + ",";
+                    }
+                    spareparts = spareparts.Remove(spareparts.Length - 1);
+                    base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LOCATION.GETBYSPAREPART", new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPAREPARTS" }, new string[] { Consts.DEPARTMENT, Kho, spareparts });
+                    if (base.mResultDB.ReturnInt == 0)
+                    {
+                        return base.mResultDB.ReturnDataSet.Tables;
+                    }
+                }
+                else
+                {
+                    base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LOCATION.GET", new string[] { "A_DEPARTMENT", "A_STOCK" }, new string[] { Consts.DEPARTMENT, Kho });
+                    if (base.mResultDB.ReturnInt == 0)
+                    {
+                        return base.mResultDB.ReturnDataSet.Tables;
+                    }
+                }
+            }
+
             return null;
         }
 
@@ -48,40 +77,36 @@ namespace Wisol.MES.Forms.CONTENT.POP
             return null;
         }
 
-        DataTable DataLocation;
-        private void ViewLocation()
+
+        private void ViewLocation(DataTable data)
         {
             try
             {
-                DataTableCollection dataLocations = GetLocations();
-                if (dataLocations != null)
+                base.mBindData.BindGridView(gcList, data);
+                if (data.Rows.Count > 0)
                 {
-                    DataLocation = dataLocations[2];
-                    base.mBindData.BindGridView(gcList, DataLocation);
-                    if (DataLocation.Rows.Count > 0)
-                    {
-                        gvList.Columns["KHO"].Visible = false;
-                        gvList.Columns["STT"].Visible = false;
-                        gvList.Columns["BARCODE"].Visible = false;
-                        gvList.Columns["QUANTITY"].Visible = true;
+                    gvList.Columns["KHO"].Visible = false;
+                    gvList.Columns["STT"].Visible = false;
+                    gvList.Columns["BARCODE"].Visible = false;
+                    gvList.Columns["QUANTITY"].Visible = true;
 
-                        gvList.OptionsSelection.MultiSelect = true;
-                        gvList.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
+                    gvList.OptionsSelection.MultiSelect = true;
+                    gvList.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
 
-                        gvList.OptionsBehavior.Editable = true;
-                        gvList.Columns["LOCATION"].OptionsColumn.AllowEdit = false;
-                        gvList.Columns["SPARE_PART_CODE"].OptionsColumn.AllowEdit = false;
-                        gvList.Columns["NAME_VI"].OptionsColumn.AllowEdit = false;
-                        gvList.Columns["CONDITION_NAME"].OptionsColumn.AllowEdit = false;
-                        gvList.Columns["UNIT"].OptionsColumn.AllowEdit = false;
-                        gvList.Columns["QUANTITY"].OptionsColumn.AllowEdit = false;
-                        gvList.Columns["EXPIRED_DATE"].OptionsColumn.AllowEdit = false;
-                        gvList.Columns["QUANTITY_PRINT_LABEL"].OptionsColumn.AllowEdit = true;
-                        gvList.Columns["TIME_IN"].OptionsColumn.AllowEdit = false;
-                        gvList.Columns["QUANTITY_A_UNIT"].OptionsColumn.AllowEdit = true;
-                        gvList.OptionsView.ColumnAutoWidth = true;
-                    }
+                    gvList.OptionsBehavior.Editable = true;
+                    gvList.Columns["LOCATION"].OptionsColumn.AllowEdit = false;
+                    gvList.Columns["SPARE_PART_CODE"].OptionsColumn.AllowEdit = false;
+                    gvList.Columns["NAME_VI"].OptionsColumn.AllowEdit = false;
+                    gvList.Columns["CONDITION_NAME"].OptionsColumn.AllowEdit = false;
+                    gvList.Columns["UNIT"].OptionsColumn.AllowEdit = false;
+                    gvList.Columns["QUANTITY"].OptionsColumn.AllowEdit = false;
+                    gvList.Columns["EXPIRED_DATE"].OptionsColumn.AllowEdit = false;
+                    gvList.Columns["QUANTITY_PRINT_LABEL"].OptionsColumn.AllowEdit = true;
+                    gvList.Columns["TIME_IN"].OptionsColumn.AllowEdit = false;
+                    gvList.Columns["QUANTITY_A_UNIT"].OptionsColumn.AllowEdit = true;
+                    gvList.OptionsView.ColumnAutoWidth = true;
                 }
+
             }
             catch (Exception ex)
             {
@@ -91,8 +116,26 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void PRINT_LABEL_Load(object sender, EventArgs e)
         {
-            ViewLocation();
+            LoadData();
             GetLabelTemplate();
+        }
+
+        private void LoadData()
+        {
+            mBindData.BindGridLookEdit(stlMemoryData, Consts.GetDataMemory(), "CODE", "NAME_VI");
+
+            DataTableCollection dataLocations = GetLocations();
+            if (dataLocations != null)
+            {
+                if (dataLocations.Count > 1)
+                {
+                    ViewLocation(dataLocations[2]);
+                }
+                else
+                {
+                    ViewLocation(dataLocations[0]);
+                }
+            }
         }
 
         private void gvList_CustomRowCellEdit(object sender, CustomRowCellEditEventArgs e)
@@ -203,7 +246,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             strDate + Consts.STR_SPILIT_ON_BARCODE +
                             quantity + Consts.STR_SPILIT_ON_BARCODE +
                             unit;
-                        
+
                         if (strDate == "2199-01-01")
                         {
                             xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvList.GetRowCellValue(i, gvList.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "IN TIME:" + timeIn);
@@ -312,6 +355,11 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
+        }
+
+        private void checkShowAllData_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

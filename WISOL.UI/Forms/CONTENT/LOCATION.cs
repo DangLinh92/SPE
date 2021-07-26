@@ -446,10 +446,20 @@ namespace Wisol.MES.Forms.CONTENT
                     DateExpired = dateExpiredTime.EditValue.NullString();
                 }
 
-                bool checkRemain = CheckRemainQuantity();
+                if(!(cheEditQuantity.Checked && cheEditQuantity.Enabled))
+                {
+                    string message;
+                    bool checkRemain = CheckRemainQuantity(out message);
 
-                if (checkRemain == false)
-                    return;
+                    if (checkRemain == false)
+                    {
+                        if (!string.IsNullOrEmpty(message))
+                        {
+                            MsgBox.Show(message.Translation(), MsgType.Information);
+                        }
+                        return;
+                    }
+                }
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.INSERT_SPAREPART_EXPIRED",
                     new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION", "A_CONDITION", "A_ISWATE", "A_QUANTITY", "A_DEPART_MENT", "A_STOCK", "A_BARCODE", "A_UNIT", "A_EXPIRED_DATE", "A_TIME_IN" },
@@ -610,9 +620,9 @@ namespace Wisol.MES.Forms.CONTENT
 
                             DataTable data = base.m_ResultDB.ReturnDataSet.Tables[0];
 
-                            stlUnit.EditValue = data.Rows[0]["UNIT"].NullString();
                             txtQuantity.EditValue = data.Rows[0]["QUANTITY"].NullString();
                             stlSparepart.EditValue = data.Rows[0]["SPARE_PART_CODE"].NullString();
+                            stlUnit.EditValue = data.Rows[0]["UNIT"].NullString();
                             stlPosition.EditValue = data.Rows[0]["LOCATION"].NullString();
                            
                             stlCondition.EditValue = data.Rows[0]["CONDITION_CODE"].NullString();
@@ -683,7 +693,7 @@ namespace Wisol.MES.Forms.CONTENT
             if (stlSparepart.Enabled == false) // mode edit
             {
                 txtQuantityRemain.EditValue = 0;
-                CheckRemainQuantity();
+                CheckRemainQuantity(out _);
             }
         }
 
@@ -1103,7 +1113,7 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 txtQuantity.EditValue = 0;
                 txtQuantityRemain.EditValue = 0;
-                CheckRemainQuantity();
+                CheckRemainQuantity(out _);
             }
         }
 
@@ -1143,7 +1153,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
         }
 
-        private bool CheckRemainQuantity()
+        private bool CheckRemainQuantity(out string message)
         {
             try
             {
@@ -1154,8 +1164,8 @@ namespace Wisol.MES.Forms.CONTENT
                     txtQuantityRemain.EditValue = 0;
 
                     base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.CACULAR_REMAIN_QUANTITY",
-                        new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE", "A_UNIT" },
-                        new string[] { Consts.DEPARTMENT, stlKho.EditValue.NullString(), stlSparepart.EditValue.NullString(), stlUnit.EditValue.NullString() });
+                        new string[] { "A_DEPARTMENT", "A_STOCK", "A_SPARE_PART_CODE","A_UNIT"},
+                        new string[] { Consts.DEPARTMENT, stlKho.EditValue.NullString(), stlSparepart.EditValue.NullString(),stlUnit.EditValue.NullString() });
 
                     if (m_ResultDB.ReturnInt == 0)
                     {
@@ -1176,36 +1186,36 @@ namespace Wisol.MES.Forms.CONTENT
 
                                     if(float.Parse(q1)+float.Parse(q2) > float.Parse(quantityRemain))
                                     {
-                                        MsgBox.Show("MSG_QUANTITY_INVALID".Translation(), MsgType.Error);
-                                        txtQuantityNewAdd.Focus();
+                                        message = "MSG_QUANTITY_INVALID";
                                         return false;
                                     }
                                 }
+                                message = "";
                                 return true;
                             }
                             else
                             {
-                                stlUnit.Focus();
-                                MsgBox.Show("QUANTITY IS < 0", MsgType.Error);
+                                message = "QUANTITY_ZERO";
                                 return false;
                             }
                         }
                     }
                     else
                     {
-                        MsgBox.Show(m_ResultDB.ReturnString, MsgType.Error);
+                        message = m_ResultDB.ReturnString;
                         return false;
                     }
-
+                    message = "";
                     return false;
                 }
-
+                message = "";
                 return false;
             }
             catch (Exception ex)
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
+            message = "";
             return false;
         }
 
@@ -1328,7 +1338,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void stlUnit_EditValueChanged(object sender, EventArgs e)
         {
-            CheckRemainQuantity();
+            CheckRemainQuantity(out _);
         }
 
         private void stlMemoryData_EditValueChanged(object sender, EventArgs e)
@@ -1337,6 +1347,29 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 stlSparepart.EditValue = stlMemoryData.EditValue;
             }
+        }
+
+        private float ConvertUnit(string unitFrom, string unitTo, string spareCode)
+        {
+            try
+            {
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_ALL.CONVERT_UNIT",
+                      new string[] { "A_UNIT_FROM", "A_UNIT_TO", "A_SPARE_PART_CODE", "A_DEPT_CODE" },
+                      new string[] { unitFrom, unitTo, spareCode, Consts.DEPARTMENT });
+
+                if (m_ResultDB.ReturnInt == 0)
+                {
+                    if (m_ResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                    {
+                        return float.Parse(m_ResultDB.ReturnDataSet.Tables[0].Rows[0]["RESULT"].NullString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+            return 1;
         }
     }
 }

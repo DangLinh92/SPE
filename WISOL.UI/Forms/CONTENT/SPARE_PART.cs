@@ -62,6 +62,7 @@ namespace Wisol.MES.Forms.CONTENT
                 }
 
                 btnUpdate.Enabled = false;
+                sltUnit1.EditValue = Consts.PACK_UNIT;
             }
             catch (Exception ex)
             {

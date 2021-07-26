@@ -94,6 +94,7 @@ namespace Wisol.MES.Forms.CONTENT
                             txtAlineWithEa.EditValue = table[0].Rows[0]["WORKING_A_LINE"].NullString();
                             txtMonthlyUsing.EditValue = table[0].Rows[0]["WORKING_A_MONTH"].NullString();
                             txtAlineWithPack.EditValue = table[0].Rows[0]["WORKING_A_LINE_PACK"].NullString();
+                            txtRate.EditValue = table[0].Rows[0]["RATE"].NullString();
                         }
                     }
                 }
@@ -136,7 +137,8 @@ namespace Wisol.MES.Forms.CONTENT
                     "A_LINE",
                     "A_WORKING_A_LINE",
                     "A_WORKING_A_LINE_PACK",
-                    "A_MONTHLY_USING"
+                    "A_MONTHLY_USING",
+                    "A_RATE"
                 },
                 new string[] {
                     Consts.DEPARTMENT,
@@ -147,7 +149,8 @@ namespace Wisol.MES.Forms.CONTENT
                     txtLine.EditValue.NullString(),
                     txtAlineWithEa.EditValue.NullString(),
                     txtAlineWithPack.EditValue.NullString(),
-                    txtMonthlyUsing.EditValue.NullString()
+                    txtMonthlyUsing.EditValue.NullString(),
+                    txtRate.EditValue.NullString()
                 });
 
                 if (m_ResultDB.ReturnInt == 0)
@@ -248,6 +251,7 @@ namespace Wisol.MES.Forms.CONTENT
             txtAlineWithEa.EditValue = 0;
             txtAlineWithPack.EditValue = 0;
             txtMonthlyUsing.EditValue = 0;
+            txtRate.EditValue = 1;
         }
 
         private void stlSparepart_EditValueChanged(object sender, EventArgs e)
@@ -277,6 +281,7 @@ namespace Wisol.MES.Forms.CONTENT
                             txtAlineWithEa.EditValue = table[0].Rows[0]["WORKING_A_LINE"].NullString();
                             txtMonthlyUsing.EditValue = table[0].Rows[0]["WORKING_A_MONTH"].NullString();
                             txtAlineWithPack.EditValue = table[0].Rows[0]["WORKING_A_LINE_PACK"].NullString();
+                            txtRate.EditValue = table[0].Rows[0]["RATE"].NullString();
                         }
                     }
                 }
