@@ -94,7 +94,21 @@ namespace Wisol.MES.Forms.CONTENT
                             txtAlineWithEa.EditValue = table[0].Rows[0]["WORKING_A_LINE"].NullString();
                             txtMonthlyUsing.EditValue = table[0].Rows[0]["WORKING_A_MONTH"].NullString();
                             txtAlineWithPack.EditValue = table[0].Rows[0]["WORKING_A_LINE_PACK"].NullString();
-                            txtRate.EditValue = table[0].Rows[0]["RATE"].NullString();
+
+                            if(table[0].Rows[0]["RATE"].NullString() != "")
+                            {
+                                txtRate.EditValue = table[0].Rows[0]["RATE"].NullString();
+                            }
+
+                            if(table[0].Rows[0]["FROM_TIME"].NullString() != "")
+                            {
+                                dateFrom.EditValue = table[0].Rows[0]["FROM_TIME"].NullString();
+                            }
+                           
+                            if (table[0].Rows[0]["TO_TIME"].NullString() != "")
+                            {
+                                dateTo.EditValue = table[0].Rows[0]["TO_TIME"].NullString();
+                            }
                         }
                     }
                 }
@@ -138,7 +152,7 @@ namespace Wisol.MES.Forms.CONTENT
                     "A_WORKING_A_LINE",
                     "A_WORKING_A_LINE_PACK",
                     "A_MONTHLY_USING",
-                    "A_RATE"
+                    "A_RATE","A_TIME_FROM","A_TIME_TO"
                 },
                 new string[] {
                     Consts.DEPARTMENT,
@@ -150,7 +164,9 @@ namespace Wisol.MES.Forms.CONTENT
                     txtAlineWithEa.EditValue.NullString(),
                     txtAlineWithPack.EditValue.NullString(),
                     txtMonthlyUsing.EditValue.NullString(),
-                    txtRate.EditValue.NullString()
+                    txtRate.EditValue.NullString(),
+                    dateFrom.EditValue.NullString(),
+                    dateTo.EditValue.NullString()
                 });
 
                 if (m_ResultDB.ReturnInt == 0)
@@ -281,7 +297,21 @@ namespace Wisol.MES.Forms.CONTENT
                             txtAlineWithEa.EditValue = table[0].Rows[0]["WORKING_A_LINE"].NullString();
                             txtMonthlyUsing.EditValue = table[0].Rows[0]["WORKING_A_MONTH"].NullString();
                             txtAlineWithPack.EditValue = table[0].Rows[0]["WORKING_A_LINE_PACK"].NullString();
-                            txtRate.EditValue = table[0].Rows[0]["RATE"].NullString();
+
+                            if (table[0].Rows[0]["RATE"].NullString() != "")
+                            {
+                                txtRate.EditValue = table[0].Rows[0]["RATE"].NullString();
+                            }
+
+                            if (table[0].Rows[0]["FROM_TIME"].NullString() != "")
+                            {
+                                dateFrom.EditValue = table[0].Rows[0]["FROM_TIME"].NullString();
+                            }
+
+                            if (table[0].Rows[0]["TO_TIME"].NullString() != "")
+                            {
+                                dateTo.EditValue = table[0].Rows[0]["TO_TIME"].NullString();
+                            }
                         }
                     }
                 }
