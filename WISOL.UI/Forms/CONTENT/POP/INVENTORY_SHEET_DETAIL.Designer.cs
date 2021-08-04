@@ -34,6 +34,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.xLayoutControl1 = new Wisol.XLayoutControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.dateMonthSheetDetail = new DevExpress.XtraEditors.DateEdit();
             this.lblCountPosition = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnClearSelected = new Wisol.XSimpleButton(this.components);
@@ -58,14 +59,18 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dateTimeChartRangeControlClient1 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).BeginInit();
             this.xLayoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateMonthSheetDetail.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateMonthSheetDetail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScanbarcode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTo.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTo.Properties)).BeginInit();
@@ -87,8 +92,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).BeginInit();
             this.SuspendLayout();
             // 
             // xLayoutControl1
@@ -113,6 +120,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // xLayoutControl2
             // 
+            this.xLayoutControl2.Controls.Add(this.dateMonthSheetDetail);
             this.xLayoutControl2.Controls.Add(this.lblCountPosition);
             this.xLayoutControl2.Controls.Add(this.label1);
             this.xLayoutControl2.Controls.Add(this.btnClearSelected);
@@ -131,6 +139,24 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.xLayoutControl2.Size = new System.Drawing.Size(1257, 723);
             this.xLayoutControl2.TabIndex = 0;
             this.xLayoutControl2.Text = "xLayoutControl2";
+            // 
+            // dateMonthSheetDetail
+            // 
+            this.dateMonthSheetDetail.EditValue = null;
+            this.dateMonthSheetDetail.Location = new System.Drawing.Point(720, 38);
+            this.dateMonthSheetDetail.Name = "dateMonthSheetDetail";
+            this.dateMonthSheetDetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateMonthSheetDetail.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateMonthSheetDetail.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
+            this.dateMonthSheetDetail.Properties.Mask.EditMask = "y";
+            this.dateMonthSheetDetail.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearView;
+            this.dateMonthSheetDetail.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView;
+            this.dateMonthSheetDetail.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
+            this.dateMonthSheetDetail.Size = new System.Drawing.Size(525, 20);
+            this.dateMonthSheetDetail.StyleController = this.xLayoutControl2;
+            this.dateMonthSheetDetail.TabIndex = 16;
             // 
             // lblCountPosition
             // 
@@ -181,13 +207,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // txtScanbarcode
             // 
             this.txtScanbarcode.IsRequire = false;
-            this.txtScanbarcode.Location = new System.Drawing.Point(91, 62);
+            this.txtScanbarcode.Location = new System.Drawing.Point(102, 62);
             this.txtScanbarcode.Name = "txtScanbarcode";
             this.txtScanbarcode.NullBackColor = System.Drawing.Color.Lime;
             this.txtScanbarcode.NullValidation = false;
             this.txtScanbarcode.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtScanbarcode.Properties.Appearance.Options.UseBackColor = true;
-            this.txtScanbarcode.Size = new System.Drawing.Size(1154, 20);
+            this.txtScanbarcode.Size = new System.Drawing.Size(1143, 20);
             this.txtScanbarcode.StyleController = this.xLayoutControl2;
             this.txtScanbarcode.TabIndex = 10;
             this.txtScanbarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.xTextEdit1_KeyDown);
@@ -195,26 +221,26 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // dateTo
             // 
             this.dateTo.EditValue = null;
-            this.dateTo.Location = new System.Drawing.Point(492, 12);
+            this.dateTo.Location = new System.Drawing.Point(503, 12);
             this.dateTo.Name = "dateTo";
             this.dateTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateTo.Size = new System.Drawing.Size(303, 20);
+            this.dateTo.Size = new System.Drawing.Size(292, 20);
             this.dateTo.StyleController = this.xLayoutControl2;
             this.dateTo.TabIndex = 9;
             // 
             // dateFrom
             // 
             this.dateFrom.EditValue = null;
-            this.dateFrom.Location = new System.Drawing.Point(91, 12);
+            this.dateFrom.Location = new System.Drawing.Point(102, 12);
             this.dateFrom.Name = "dateFrom";
             this.dateFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateFrom.Size = new System.Drawing.Size(318, 20);
+            this.dateFrom.Size = new System.Drawing.Size(307, 20);
             this.dateFrom.StyleController = this.xLayoutControl2;
             this.dateFrom.TabIndex = 8;
             // 
@@ -232,13 +258,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // txtTitle
             // 
             this.txtTitle.IsRequire = false;
-            this.txtTitle.Location = new System.Drawing.Point(91, 38);
+            this.txtTitle.Location = new System.Drawing.Point(102, 38);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.NullBackColor = System.Drawing.Color.Lime;
             this.txtTitle.NullValidation = false;
             this.txtTitle.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtTitle.Properties.Appearance.Options.UseBackColor = true;
-            this.txtTitle.Size = new System.Drawing.Size(1154, 20);
+            this.txtTitle.Size = new System.Drawing.Size(524, 20);
             this.txtTitle.StyleController = this.xLayoutControl2;
             this.txtTitle.TabIndex = 6;
             // 
@@ -246,13 +272,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             this.txtSheetId.Enabled = false;
             this.txtSheetId.IsRequire = false;
-            this.txtSheetId.Location = new System.Drawing.Point(878, 12);
+            this.txtSheetId.Location = new System.Drawing.Point(889, 12);
             this.txtSheetId.Name = "txtSheetId";
             this.txtSheetId.NullBackColor = System.Drawing.Color.Lime;
             this.txtSheetId.NullValidation = false;
             this.txtSheetId.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtSheetId.Properties.Appearance.Options.UseBackColor = true;
-            this.txtSheetId.Size = new System.Drawing.Size(206, 20);
+            this.txtSheetId.Size = new System.Drawing.Size(195, 20);
             this.txtSheetId.StyleController = this.xLayoutControl2;
             this.txtSheetId.TabIndex = 5;
             // 
@@ -293,7 +319,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem9,
             this.layoutControlItem10,
             this.layoutControlItem11,
-            this.layoutControlItem13});
+            this.layoutControlItem13,
+            this.layoutControlItem12});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1257, 723);
             this.layoutControlGroup1.TextVisible = false;
@@ -323,7 +350,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(401, 26);
             this.layoutControlItem6.Text = "FROM_TIME";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(76, 13);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem7
             // 
@@ -332,7 +359,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(386, 26);
             this.layoutControlItem7.Text = "TO_TIME";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(76, 13);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem3
             // 
@@ -341,16 +368,16 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(289, 26);
             this.layoutControlItem3.Text = "SHEET_ID";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(76, 13);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtTitle;
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 26);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(1237, 24);
+            this.layoutControlItem4.Size = new System.Drawing.Size(618, 24);
             this.layoutControlItem4.Text = "TITLE";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(76, 13);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem8
             // 
@@ -359,7 +386,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(1237, 24);
             this.layoutControlItem8.Text = "SCAN QR CODE";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(76, 13);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(87, 13);
             // 
             // layoutControlItem9
             // 
@@ -398,6 +425,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.Control = this.dateMonthSheetDetail;
+            this.layoutControlItem12.Location = new System.Drawing.Point(618, 26);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Size = new System.Drawing.Size(619, 24);
+            this.layoutControlItem12.Text = "Kiểm kê cho tháng";
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(87, 13);
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -434,6 +470,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).EndInit();
             this.xLayoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dateMonthSheetDetail.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateMonthSheetDetail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScanbarcode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTo.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTo.Properties)).EndInit();
@@ -455,8 +493,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -493,5 +533,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private System.Windows.Forms.Label lblCountPosition;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
+        private DevExpress.XtraEditors.DateEdit dateMonthSheetDetail;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
+        private DevExpress.XtraEditors.DateTimeChartRangeControlClient dateTimeChartRangeControlClient1;
     }
 }

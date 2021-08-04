@@ -32,7 +32,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             if (Mode == Consts.MODE_NEW)
             {
-                GetData("PKG_BUSINESS_SP_INVENTORY.REPORT_BY_SPAREPART_LOCATION", new string[] { "A_DEPARTMENT", "A_STOCK_CODE" }, new string[] { Consts.DEPARTMENT, Kho });
+                GetData("PKG_BUSINESS_SP_INVENTORY.REPORT_BY_SPAREPART_LOCATION_SHEET_DETAIL", new string[] { "A_DEPARTMENT", "A_STOCK_CODE" }, new string[] { Consts.DEPARTMENT, Kho });
             }
             else
             {
@@ -170,7 +170,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                     if (unit == gvList.GetRowCellValue(i, "UNIT").NullString())
                                     {
                                         string oldQuantity = gvList.GetRowCellValue(i, "QUANTITY_REAL").NullString();
-                                        if(oldQuantity == "")
+                                        if (oldQuantity == "")
                                         {
                                             oldQuantity = "0";
                                         }
@@ -181,6 +181,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                         }
                                         float newQuantity = float.Parse(quantity) + float.Parse(oldQuantity);
                                         gvList.SetRowCellValue(i, "QUANTITY_REAL", newQuantity.NullString());
+
+                                        if (!gvList.IsRowSelected(i))
+                                        {
+                                            ++CountPosition;
+                                        }
+
                                         gvList.SelectRow(i);
                                     }
                                     else
@@ -194,11 +200,17 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                         float newQuantity = Wisol.MES.Classes.Common.ConvertUnit(unit, gvList.GetRowCellValue(i, "UNIT").NullString(), sparepartCode) * float.Parse(quantity);
                                         float newQ = newQuantity + float.Parse(oldQuantity);
                                         gvList.SetRowCellValue(i, "QUANTITY_REAL", newQ.NullString());
+                                        if (!gvList.IsRowSelected(i))
+                                        {
+                                            ++CountPosition;
+                                        }
                                         gvList.SelectRow(i);
                                     }
                                     gvList.MakeRowVisible(i);
                                     cellChecked.Add("QUANTITY" + ";" + i);
-                                    lblCountPosition.Text = (++CountPosition).NullString() + "/" + gvList.RowCount;
+
+
+                                    lblCountPosition.Text = (CountPosition).NullString() + "/" + gvList.RowCount;
                                     break;
                                 }
                             }
@@ -228,6 +240,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     if (!cells.Contains(key))
                         cells.Add(key);
                 }
+                else
+                {
+                    string key = "QUANTITY" + ";" + e.RowHandle.ToString();
+                    if (cells.Contains(key))
+                        cells.Remove(key);
+                }
             }
         }
 
@@ -246,7 +264,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
             }
 
             if (cells.Contains(key))
+            {
                 e.Appearance.BackColor = Color.FromArgb(255, 204, 204);
+            }
+            else
+            {
+                e.Appearance.BackColor = Color.FromArgb(229, 255, 204);
+            }
 
             if (Mode == Consts.MODE_UPDATE)
             {
@@ -280,7 +304,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 {
                     base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_INVENTORY_SHEET.INSERT_BATCH_INVENTORY_REAL",
                         new string[] { "A_DEPARTMENT_CODE", "A_STOCK", "A_USER", "A_TIME", "A_FROM_TIME", "A_TO_TIME", "A_TITLE", "A_SHEET_ID" }, "A_DATA",
-                        new string[] { Consts.DEPARTMENT, Kho, Consts.USER_INFO.Id, dateFrom.EditValue.NullString(), dateFrom.EditValue.NullString(), dateTo.EditValue.NullString(), txtTitle.EditValue.NullString(), txtSheetId.EditValue.NullString() }, data);
+                        new string[] { Consts.DEPARTMENT, Kho, Consts.USER_INFO.Id, dateMonthSheetDetail.EditValue.NullString(), dateFrom.EditValue.NullString(), dateTo.EditValue.NullString(), txtTitle.EditValue.NullString(), txtSheetId.EditValue.NullString() }, data);
 
                     if (mResultDB.ReturnInt == 0)
                     {
