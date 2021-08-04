@@ -37,6 +37,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             STATUS.Rows.Add("NEW", "TẠO MỚI");
             STATUS.Rows.Add("INPROGRESS", "ĐANG XỬ LÝ");
             STATUS.Rows.Add("COMPLETE", "HOÀN THÀNH");
+            Wisol.MES.Classes.Common.GetEncriptCode();
             InitData();
 
         }

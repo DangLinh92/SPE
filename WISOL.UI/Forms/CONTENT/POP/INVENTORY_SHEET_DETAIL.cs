@@ -88,6 +88,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void INVENTORY_SHEET_DETAIL_Load(object sender, EventArgs e)
         {
+            Wisol.MES.Classes.Common.GetEncriptCode();
             ShowData();
         }
 
