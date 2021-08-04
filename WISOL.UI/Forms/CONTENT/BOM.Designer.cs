@@ -140,33 +140,33 @@ namespace Wisol.MES.Forms.CONTENT
             // dateFrom
             // 
             this.dateFrom.EditValue = null;
-            this.dateFrom.Location = new System.Drawing.Point(627, 69);
+            this.dateFrom.Location = new System.Drawing.Point(657, 69);
             this.dateFrom.Name = "dateFrom";
             this.dateFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateFrom.Size = new System.Drawing.Size(230, 20);
+            this.dateFrom.Size = new System.Drawing.Size(200, 20);
             this.dateFrom.StyleController = this.xLayoutControl1;
             this.dateFrom.TabIndex = 30;
             // 
             // dateTo
             // 
             this.dateTo.EditValue = null;
-            this.dateTo.Location = new System.Drawing.Point(893, 69);
+            this.dateTo.Location = new System.Drawing.Point(923, 69);
             this.dateTo.Name = "dateTo";
             this.dateTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateTo.Size = new System.Drawing.Size(189, 20);
+            this.dateTo.Size = new System.Drawing.Size(159, 20);
             this.dateTo.StyleController = this.xLayoutControl1;
             this.dateTo.TabIndex = 29;
             // 
             // txtRate
             // 
             this.txtRate.IsRequire = false;
-            this.txtRate.Location = new System.Drawing.Point(348, 69);
+            this.txtRate.Location = new System.Drawing.Point(378, 69);
             this.txtRate.Name = "txtRate";
             this.txtRate.NullBackColor = System.Drawing.Color.Lime;
             this.txtRate.NullValidation = false;
@@ -174,7 +174,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtRate.Properties.Appearance.Options.UseBackColor = true;
             this.txtRate.Properties.Mask.EditMask = "p";
             this.txtRate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtRate.Size = new System.Drawing.Size(243, 20);
+            this.txtRate.Size = new System.Drawing.Size(213, 20);
             this.txtRate.StyleController = this.xLayoutControl1;
             this.txtRate.TabIndex = 28;
             // 
@@ -563,7 +563,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem13.Name = "layoutControlItem13";
             this.layoutControlItem13.Size = new System.Drawing.Size(279, 34);
             this.layoutControlItem13.Text = "RATE";
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(29, 13);
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(59, 13);
             // 
             // layoutControlItem14
             // 
@@ -571,8 +571,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem14.Location = new System.Drawing.Point(837, 24);
             this.layoutControlItem14.Name = "layoutControlItem14";
             this.layoutControlItem14.Size = new System.Drawing.Size(225, 34);
-            this.layoutControlItem14.Text = "TO";
-            this.layoutControlItem14.TextSize = new System.Drawing.Size(29, 13);
+            this.layoutControlItem14.Text = "TO_TIME";
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(59, 13);
             // 
             // layoutControlItem15
             // 
@@ -580,8 +580,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem15.Location = new System.Drawing.Point(571, 24);
             this.layoutControlItem15.Name = "layoutControlItem15";
             this.layoutControlItem15.Size = new System.Drawing.Size(266, 34);
-            this.layoutControlItem15.Text = "FROM";
-            this.layoutControlItem15.TextSize = new System.Drawing.Size(29, 13);
+            this.layoutControlItem15.Text = "FROM_TIME";
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(59, 13);
             // 
             // BOM
             // 

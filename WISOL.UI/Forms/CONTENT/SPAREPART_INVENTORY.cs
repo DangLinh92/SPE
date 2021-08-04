@@ -23,28 +23,27 @@ namespace Wisol.MES.Forms.CONTENT
             this.Load += SPAREPART_INVENTORY_Load;
         }
 
-        private bool firstLoad = true;
+        //private bool firstLoad = true;
         private void SPAREPART_INVENTORY_Load(object sender, EventArgs e)
         {
             try
             {
                 Init_Control();
-                firstLoad = false;
+                //firstLoad = false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
         public override void ReloadData()
         {
-            if (firstLoad)
-            {
-                Init_Control();
-            }
+            //if (firstLoad)
+            //{
+            //    Init_Control();
+            //}
 
-            firstLoad = true;
+            //firstLoad = true;
         }
 
         private void Init_Control()
@@ -613,33 +612,42 @@ namespace Wisol.MES.Forms.CONTENT
             }
         }
 
+        /// <summary>
+        /// Reload data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnBalance_Click(object sender, EventArgs e)
         {
-            try
-            {
-                DialogResult dialogResult = MsgBox.Show("BALANCE_WAREHOUSE_MSG".Translation(), MsgType.Warning, DialogType.OkCancel);
+            #region
+            //try
+            //{
+            //    DialogResult dialogResult = MsgBox.Show("BALANCE_WAREHOUSE_MSG".Translation(), MsgType.Warning, DialogType.OkCancel);
 
-                if (dialogResult == DialogResult.OK)
-                {
-                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP_INVENTORY.CREATE_BALANCE_WAREHOUSE",
-                       new string[] { "A_DEPARTMENT", "A_USER", "A_STOCK_CODE" },
-                       new string[] { Consts.DEPARTMENT, Consts.USER_INFO.Id, stlKho.EditValue.NullString() });
+            //    if (dialogResult == DialogResult.OK)
+            //    {
+            //        base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP_INVENTORY.CREATE_BALANCE_WAREHOUSE",
+            //           new string[] { "A_DEPARTMENT", "A_USER", "A_STOCK_CODE" },
+            //           new string[] { Consts.DEPARTMENT, Consts.USER_INFO.Id, stlKho.EditValue.NullString() });
 
-                    if (base.m_ResultDB.ReturnInt == 0)
-                    {
-                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
-                        GetData();
-                    }
-                    else
-                    {
-                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MsgBox.Show(ex.Message, MsgType.Error);
-            }
+            //        if (base.m_ResultDB.ReturnInt == 0)
+            //        {
+            //            MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
+            //            GetData();
+            //        }
+            //        else
+            //        {
+            //            MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MsgBox.Show(ex.Message, MsgType.Error);
+            //}
+            #endregion
+
+            GetData();
         }
         private void btnInventoryOfAssets_Click(object sender, EventArgs e)
         {

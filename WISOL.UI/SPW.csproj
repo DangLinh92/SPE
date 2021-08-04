@@ -186,6 +186,7 @@
     <Compile Include="Classes\ExtendClass.cs" />
     <Compile Include="Classes\Global.cs" />
     <Compile Include="Classes\IdleTimeCheck.cs" />
+    <Compile Include="Classes\PrinterClass.cs" />
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Dialogue\DialogueNoticeMinChemical.cs">
       <SubType>Form</SubType>
@@ -259,6 +260,12 @@
     <Compile Include="Forms\CONTENT\INPUT_COST.Designer.cs">
       <DependentUpon>INPUT_COST.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\INVENTORY_SHEET.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\INVENTORY_SHEET.Designer.cs">
+      <DependentUpon>INVENTORY_SHEET.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\LABEL.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -276,6 +283,18 @@
     </Compile>
     <Compile Include="Forms\CONTENT\MAKER.Designer.cs">
       <DependentUpon>MAKER.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\MRP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\MRP.Designer.cs">
+      <DependentUpon>MRP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\CREATE_MRP_CODE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\CREATE_MRP_CODE.Designer.cs">
+      <DependentUpon>CREATE_MRP_CODE.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CONTENT\POP\EXPORT_EXCEL.cs">
       <SubType>Form</SubType>
@@ -295,11 +314,29 @@
     <Compile Include="Forms\CONTENT\POP\GOODS_RECEIPT.Designer.cs">
       <DependentUpon>GOODS_RECEIPT.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\POP\HISTORY_GOOD_RE_ISS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\HISTORY_GOOD_RE_ISS.Designer.cs">
+      <DependentUpon>HISTORY_GOOD_RE_ISS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\POP\IMPORT_EXCEL.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\CONTENT\POP\IMPORT_EXCEL.Designer.cs">
       <DependentUpon>IMPORT_EXCEL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\INVENTORY_SHEET_DETAIL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\INVENTORY_SHEET_DETAIL.Designer.cs">
+      <DependentUpon>INVENTORY_SHEET_DETAIL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\MRP_LIST.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\MRP_LIST.Designer.cs">
+      <DependentUpon>MRP_LIST.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CONTENT\POP\POP_DESIGN.cs">
       <SubType>Form</SubType>
@@ -707,6 +744,9 @@
     <EmbeddedResource Include="Forms\CONTENT\INPUT_COST.resx">
       <DependentUpon>INPUT_COST.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\INVENTORY_SHEET.resx">
+      <DependentUpon>INVENTORY_SHEET.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\LABEL.resx">
       <DependentUpon>LABEL.cs</DependentUpon>
     </EmbeddedResource>
@@ -715,6 +755,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\MAKER.resx">
       <DependentUpon>MAKER.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\MRP.resx">
+      <DependentUpon>MRP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\CREATE_MRP_CODE.resx">
+      <DependentUpon>CREATE_MRP_CODE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\EXPORT_EXCEL.resx">
       <DependentUpon>EXPORT_EXCEL.cs</DependentUpon>
@@ -725,8 +771,17 @@
     <EmbeddedResource Include="Forms\CONTENT\POP\GOODS_RECEIPT.resx">
       <DependentUpon>GOODS_RECEIPT.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\HISTORY_GOOD_RE_ISS.resx">
+      <DependentUpon>HISTORY_GOOD_RE_ISS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\IMPORT_EXCEL.resx">
       <DependentUpon>IMPORT_EXCEL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\INVENTORY_SHEET_DETAIL.resx">
+      <DependentUpon>INVENTORY_SHEET_DETAIL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\MRP_LIST.resx">
+      <DependentUpon>MRP_LIST.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\POP_DESIGN.resx">
       <DependentUpon>POP_DESIGN.cs</DependentUpon>
@@ -1074,10 +1129,16 @@
     <Content Include="Images\icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\inentory.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\input.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\input_cost.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\inventory_sheet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\key-icon.png">
@@ -1112,6 +1173,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\moveto.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\MRP.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\navigationbar_16x16.png">
@@ -1271,6 +1335,10 @@
     <Content Include="Resources\exchange.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\inventory_sheet.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\MRP.png" />
     <Content Include="SPW-ICON.ico" />
     <Content Include="spw.ico" />
     <None Include="bin\Debug\Itenso.TimePeriod.dll" />

@@ -590,6 +590,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.xSimpleButton5.StyleController = this.xLayoutControl3;
             this.xSimpleButton5.TabIndex = 9;
             this.xSimpleButton5.Text = "DELETE";
+            this.xSimpleButton5.Click += new System.EventHandler(this.xSimpleButton5_Click);
             // 
             // xSimpleButton4
             // 

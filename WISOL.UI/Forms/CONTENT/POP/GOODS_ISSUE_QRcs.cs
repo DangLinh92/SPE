@@ -45,5 +45,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 stlKho.EditValue = datas[2].Rows[0]["CODE"].NullString();
             }
         }
+
+        private void xSimpleButton5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

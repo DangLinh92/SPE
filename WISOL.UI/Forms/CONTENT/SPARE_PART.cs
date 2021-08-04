@@ -102,6 +102,7 @@ namespace Wisol.MES.Forms.CONTENT
                 txtRate4.EditValue = 1;
 
                 txtMinOrder.EditValue = 0;
+                txtLeadTime.EditValue = 0;
 
                 picImage.Image = null;
                 txtCode.Enabled = true;
@@ -248,7 +249,8 @@ namespace Wisol.MES.Forms.CONTENT
                         "@A_RATE2",
                         "@A_RATE3",
                         "@A_RATE4",
-                        "@A_MIN_ORDER"
+                        "@A_MIN_ORDER",
+                        "@A_LEAD_TIME"
                     },
                     new string[]
                     {
@@ -279,8 +281,9 @@ namespace Wisol.MES.Forms.CONTENT
                         txtRate2.EditValue.NullString(),
                         txtRate3.EditValue.NullString(),
                         txtRate4.EditValue.NullString(),
-                        txtMinOrder.EditValue.NullString()
-                    });
+                        txtMinOrder.EditValue.NullString(),
+                        txtLeadTime.EditValue.NullString()
+                    }); ;
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
                     MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);
@@ -386,7 +389,7 @@ namespace Wisol.MES.Forms.CONTENT
             //txtDesc.EditValue = table.Rows[0]["DESCRIPTION"].NullString();
             sltCostCtr.EditValue = table.Rows[0]["COST_CTR"].NullString();
             txtMinOrder.EditValue = table.Rows[0]["MIN_ORDER"].NullString();
-
+            txtLeadTime.EditValue = table.Rows[0]["LEAD_TIME"].NullString();
             image = table.Rows[0]["IMAGE"].NullString();
 
             if (!string.IsNullOrWhiteSpace(image))

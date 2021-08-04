@@ -80,6 +80,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 Data.Columns.Add("TYPE_IN_OUT_CODE", typeof(string));
                 Data.Columns.Add("RETURN_TIME", typeof(string));
                 Data.Columns.Add("LOCATION", typeof(string));
+                Data.Columns.Add("QUANTITY_NG", typeof(string));
+                Data.Columns.Add("EXPRIRED_DATE", typeof(string));
 
                 base.mBindData.BindGridLookEdit(cboStatus, STATUS, "CODE", "NAME");
 
@@ -139,11 +141,17 @@ namespace Wisol.MES.Forms.CONTENT.POP
             mBindData.BindGridLookEdit(stlMemoryData, Consts.GetDataMemory(), "CODE", "NAME_VI");
             if (INOUT == Consts.OUT)
             {
+                txtQuantity_NG.Enabled = false;
+                dateExpired.Enabled = false;
+                loNote.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 cheIsScanbarcode.Checked = true;
                 txtScanbarcode.Focus();
             }
             else
             {
+                txtQuantity_NG.Enabled = true;
+                dateExpired.Enabled = true;
+                loNote.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 cheIsScanbarcode.Checked = false;
                 cheIsScanbarcode.Enabled = false;
                 txtScanbarcode.Enabled = false;
@@ -201,7 +209,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             item["CREATE_DATE"].NullString(), "", "", "", "",
                             item["TYPE_IN_OUT_CODE"].NullString(),
                             item["RETURN_TIME"].NullString(),
-                            item["LOCATION"].NullString()
+                            item["LOCATION"].NullString(),
+                            item["QUANTITY_NG"].NullString(),
+                            item["EXPRIRED_DATE"].NullString()
                         );
                 }
                 base.mBindData.BindGridView(gcList, Data);
@@ -220,7 +230,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                 if (INOUT == Consts.IN)
                 {
-                    txtPriceVN.Enabled = true;
                     txtScanbarcode.Enabled = false;
                     dateReturnTime.Enabled = false;
                     btnPrintReport.Enabled = false;
@@ -233,7 +242,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     gcLocation.Enabled = true;
                     btnPrintReport.Enabled = true;
                     txtScanbarcode.Enabled = true;
-                    txtPriceVN.Enabled = false;
                     txtScanbarcode.Focus();
                     lblRedNote.Visible = true;
                     loRedNote.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
@@ -275,10 +283,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     if (string.IsNullOrEmpty(stlSparePartCode.EditValue.NullString()) ||
                             string.IsNullOrEmpty(txtQuantity.EditValue.NullString()) ||
                             string.IsNullOrEmpty(stlUnit.EditValue.NullString()) ||
-                            string.IsNullOrEmpty(txtPriceVN.EditValue.NullString()) ||
-                            string.IsNullOrEmpty(txtPriceUS.EditValue.NullString()) ||
-                            string.IsNullOrEmpty(txtAmountVN.EditValue.NullString()) ||
-                            string.IsNullOrEmpty(txtAmountUS.EditValue.NullString()) ||
                             string.IsNullOrEmpty(stlType.EditValue.NullString()))
                     {
                         MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
@@ -300,14 +304,16 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         checkRow["SPARE_PART_CODE"] = stlSparePartCode.EditValue.NullString();
                         checkRow["QUANTITY"] = txtQuantity.EditValue.NullString();
                         checkRow["UNIT"] = stlUnit.EditValue.NullString();
-                        checkRow["PRICE_VN"] = Consts.ZERO; // txtPriceVN.EditValue.NullString();
-                        checkRow["PRICE_US"] = Consts.ZERO; //txtPriceUS.EditValue.NullString();
-                        checkRow["AMOUNT_VN"] = Consts.ZERO; //txtAmountVN.EditValue.NullString();
-                        checkRow["AMOUNT_US"] = Consts.ZERO; //txtAmountUS.EditValue.NullString();
+                        checkRow["PRICE_VN"] = Consts.ZERO; 
+                        checkRow["PRICE_US"] = Consts.ZERO; 
+                        checkRow["AMOUNT_VN"] = Consts.ZERO;
+                        checkRow["AMOUNT_US"] = Consts.ZERO;
                         checkRow["CAUSE"] = mmCause.EditValue.NullString();
                         checkRow["NOTE"] = mmNote.EditValue.NullString();
                         checkRow["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
                         checkRow["NAME"] = stlSparePartCode.Text;
+                        checkRow["QUANTITY_NG"] = txtQuantity_NG.EditValue.NullString() == "" ? "0": txtQuantity_NG.EditValue.NullString();
+                        checkRow["EXPRIRED_DATE"] = dateExpired.EditValue.NullString() == "" ? "2199-01-01": dateExpired.EditValue.NullString();
                     }
                     else
                     {
@@ -325,14 +331,16 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         row["SPARE_PART_CODE"] = stlSparePartCode.EditValue.NullString();
                         row["QUANTITY"] = txtQuantity.EditValue.NullString();
                         row["UNIT"] = stlUnit.EditValue.NullString();
-                        row["PRICE_VN"] = Consts.ZERO; //txtPriceVN.EditValue.NullString();
-                        row["PRICE_US"] = Consts.ZERO; //txtPriceUS.EditValue.NullString();
-                        row["AMOUNT_VN"] = Consts.ZERO; //txtAmountVN.EditValue.NullString();
-                        row["AMOUNT_US"] = Consts.ZERO; //txtAmountUS.EditValue.NullString();
+                        row["PRICE_VN"] = Consts.ZERO; 
+                        row["PRICE_US"] = Consts.ZERO; 
+                        row["AMOUNT_VN"] = Consts.ZERO;
+                        row["AMOUNT_US"] = Consts.ZERO;
                         row["CAUSE"] = mmCause.EditValue.NullString();
                         row["NOTE"] = mmNote.EditValue.NullString();
                         row["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
                         row["NAME"] = stlSparePartCode.Text;
+                        row["QUANTITY_NG"] = txtQuantity_NG.EditValue.NullString() == "" ? "0" : txtQuantity_NG.EditValue.NullString();
+                        row["EXPRIRED_DATE"] = dateExpired.EditValue.NullString() == "" ? "2199-01-01" : dateExpired.EditValue.NullString();
 
                         Data.Rows.Add(row);
                     }
@@ -693,6 +701,11 @@ namespace Wisol.MES.Forms.CONTENT.POP
             gvList.Columns["STATUS"].Visible = false;
             gvList.Columns["TYPE_IN_OUT_CODE"].Visible = false;
 
+            gvList.Columns["PRICE_VN"].Visible = false;
+            gvList.Columns["PRICE_US"].Visible = false;
+            gvList.Columns["AMOUNT_VN"].Visible = false;
+            gvList.Columns["AMOUNT_US"].Visible = false;
+
             #region format column
             //gvList.Columns["PRICE_VN"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             //gvList.Columns["PRICE_VN"].DisplayFormat.FormatString = "c2";
@@ -709,10 +722,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
             if (isExport)
             {
-                gvList.Columns["PRICE_VN"].Visible = false;
-                gvList.Columns["PRICE_US"].Visible = false;
-                gvList.Columns["AMOUNT_VN"].Visible = false;
-                gvList.Columns["AMOUNT_US"].Visible = false;
+                gvList.Columns["QUANTITY_NG"].Visible = false;
+                gvList.Columns["EXPRIRED_DATE"].Visible = false;
                 gvList.Columns["LOCATION"].Width = 100;
             }
             else
@@ -723,25 +734,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
             this.gvList.OptionsView.ColumnAutoWidth = true;
             //this.gvList.BestFitColumns();
-        }
-
-        private void txtPriceVN_EditValueChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                float priceVN = float.Parse(txtPriceVN.EditValue.NullString());
-                txtPriceUS.EditValue = Math.Round(priceVN / ExchangeRate, 3);
-
-                if (!string.IsNullOrEmpty(txtQuantity.EditValue.NullString()))
-                {
-                    txtAmountVN.EditValue = priceVN * float.Parse(txtQuantity.EditValue.NullString());
-                    txtAmountUS.EditValue = Math.Round(priceVN / ExchangeRate, 3) * float.Parse(txtQuantity.EditValue.NullString());
-                }
-            }
-            catch (Exception ex)
-            {
-                MsgBox.Show(ex.Message, MsgType.Error);
-            }
         }
 
         private void txtQuantity_EditValueChanged(object sender, EventArgs e)
@@ -756,12 +748,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     }
                 }
 
-                if (INOUT == Consts.IN && !string.IsNullOrEmpty(txtQuantity.EditValue.NullString()) && !string.IsNullOrEmpty(txtPriceVN.EditValue.NullString()))
+                if (INOUT == Consts.IN && !string.IsNullOrEmpty(txtQuantity.EditValue.NullString()))
                 {
-                    float priceVN = float.Parse(txtPriceVN.EditValue.NullString());
-
-                    txtAmountVN.EditValue = priceVN * float.Parse(txtQuantity.EditValue.NullString());
-                    txtAmountUS.EditValue = Math.Round(priceVN / ExchangeRate, 3) * float.Parse(txtQuantity.EditValue.NullString());
+                    txtQuantity_NG.EditValue = 0;
                 }
             }
             catch (Exception ex)
@@ -776,26 +765,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void txtPriceVN_Leave(object sender, EventArgs e)
         {
-            txtPriceVN.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            txtPriceVN.Properties.DisplayFormat.FormatString = "c2";
+
         }
 
         private void txtPriceUS_EditValueChanged(object sender, EventArgs e)
         {
-            txtPriceUS.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            txtPriceUS.Properties.DisplayFormat.FormatString = "c2";
-        }
 
-        private void txtAmountVN_EditValueChanged(object sender, EventArgs e)
-        {
-            txtAmountVN.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            txtAmountVN.Properties.DisplayFormat.FormatString = "c2";
-        }
-
-        private void txtAmountUS_EditValueChanged(object sender, EventArgs e)
-        {
-            txtAmountUS.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            txtAmountUS.Properties.DisplayFormat.FormatString = "c2";
         }
 
         private bool recheckOk = true;
@@ -824,11 +799,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             hasFillData = false;
             stlSparePartCode.EditValue = gvList.GetDataRow(RowHandle)["SPARE_PART_CODE"].NullString();
             stlUnit.EditValue = gvList.GetDataRow(RowHandle)["UNIT"].NullString();
-
-            if (INOUT == Consts.IN)
-            {
-                txtPriceVN.EditValue = Consts.ZERO; //gvList.GetDataRow(e.RowHandle)["PRICE_VN"].NullString();
-            }
 
             stlType.EditValue = gvList.GetDataRow(RowHandle)["TYPE_IN_OUT_CODE"].NullString();
             if (stlType.EditValue.NullString() == "3") // xuat tra lai
@@ -897,6 +867,19 @@ namespace Wisol.MES.Forms.CONTENT.POP
             txtQuantity.EditValue = gvList.GetDataRow(RowHandle)["QUANTITY"].NullString();
             mmCause.EditValue = gvList.GetDataRow(RowHandle)["CAUSE"].NullString();
             mmNote.EditValue = gvList.GetDataRow(RowHandle)["NOTE"].NullString();
+            txtQuantity_NG.EditValue = gvList.GetDataRow(RowHandle)["QUANTITY_NG"].NullString() == "" ? "0" : gvList.GetDataRow(RowHandle)["QUANTITY_NG"].NullString();
+
+            string dateEx = gvList.GetDataRow(RowHandle)["EXPRIRED_DATE"].NullString();
+
+            if(dateEx != "")
+            {
+                string ymd = DateTime.Parse(dateEx).ToString("yyyy-MM-dd");
+                dateExpired.EditValue = ymd == "2199-01-01" ? "" : ymd;
+            }
+            else
+            {
+                dateExpired.EditValue = null;
+            }
 
             if ((Mode == Consts.MODE_UPDATE || Mode == Consts.MODE_DELETE) && cboStatus.EditValue.NullString() == Consts.STATUS_COMPLETE)
             {
@@ -944,7 +927,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             stlSparePartCode.EditValue = null;
             txtQuantity.EditValue = 0;
             stlUnit.EditValue = null;
-            txtPriceVN.EditValue = 0;
+            txtQuantity_NG.EditValue = 0;
             mmCause.EditValue = null;
             mmNote.EditValue = null;
             dateReturnTime.EditValue = null;
@@ -971,7 +954,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 stlSparePartCode.EditValue = null;
                 txtQuantity.EditValue = 0;
                 stlUnit.EditValue = null;
-                txtPriceVN.EditValue = 0;
+                txtQuantity_NG.EditValue = 0;
                 mmCause.EditValue = null;
                 mmNote.EditValue = null;
                 dateReturnTime.EditValue = null;
@@ -1194,7 +1177,14 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 //        }
                 //    }
                 //}
-                # endregion
+                #endregion
+
+                InputLanguage originalInputLang = InputLanguage.CurrentInputLanguage;
+                var lang = InputLanguage.InstalledInputLanguages.OfType<InputLanguage>().Where(l => l.Culture.Name.StartsWith("en")).FirstOrDefault();
+                if (lang != null)
+                {
+                    InputLanguage.CurrentInputLanguage = lang;
+                }
 
                 if (cheIsScanbarcode.Checked)
                 {
@@ -1206,7 +1196,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         if (e.KeyCode == Keys.Enter)
                         {
                             isScanbarcode = true;
-                            string barcode = txtScanbarcode.EditValue.NullString().ToUpper();
+                            string barcode = txtScanbarcode.EditValue.NullString().ToUpper().ToString(new CultureInfo("en-US"));
                             string[] items = barcode.Split(Consts.CHARACTER_SPILIT_ON_BARCODE);
 
                             if (items.Length > 0)
@@ -1254,6 +1244,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             catch (Exception ex)
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
+                txtScanbarcode.EditValue = null;
             }
         }
 
@@ -1356,7 +1347,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     }
 
                     bool checkExist = false;
-                    string[] arr = conditionFindLocation.Split(',');
+                    string[] arr = conditionFindLocation?.Split(',');
+
+                    if (arr == null) return;
+
                     for (int k = 0; k < arr.Length; k++)
                     {
                         for (int i = 0; i < gvLocation.RowCount; i++)

@@ -16,7 +16,7 @@ namespace Wisol.MES.Forms.CONTENT
         DataTable dtChart = new DataTable();
         DataTable lot = new DataTable();
         string label = string.Empty;
-        private bool firstLoad = true;
+        //private bool firstLoad = true;
         public STOCK_IN()
         {
             InitializeComponent();
@@ -27,7 +27,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             Init_Control();
             LoadData();
-            firstLoad = false;
+            //firstLoad = false;
         }
 
         public override void Form_Show()
@@ -42,12 +42,12 @@ namespace Wisol.MES.Forms.CONTENT
 
         public override void ReloadData()
         {
-            if (firstLoad)
-            {
-                Init_Control();
-                LoadData();
-            }
-            firstLoad = true;
+            //if (firstLoad)
+            //{
+            //    Init_Control();
+            //    LoadData();
+            //}
+            //firstLoad = true;
         }
 
         private void Init_Control()
@@ -423,6 +423,18 @@ namespace Wisol.MES.Forms.CONTENT
         private void stlKho_EditValueChanged(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void btnReloadData_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            POP.HISTORY_GOOD_RE_ISS popup = new POP.HISTORY_GOOD_RE_ISS();
+            popup.Kho = stlKho.EditValue.NullString();
+            popup.ShowDialog();
         }
     }
 }

@@ -232,16 +232,15 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnBalance
             // 
-            this.btnBalance.Enabled = false;
             this.btnBalance.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBalance.ImageOptions.Image")));
-            this.btnBalance.Location = new System.Drawing.Point(790, 61);
+            this.btnBalance.Location = new System.Drawing.Point(802, 61);
             this.btnBalance.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnBalance.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnBalance.Name = "btnBalance";
             this.btnBalance.Size = new System.Drawing.Size(129, 30);
             this.btnBalance.StyleController = this.xLayoutControl2;
             this.btnBalance.TabIndex = 25;
-            this.btnBalance.Text = "BALANCE_WAREHOUSE";
+            this.btnBalance.Text = "LOAD DATA";
             this.btnBalance.Click += new System.EventHandler(this.btnBalance_Click);
             // 
             // cboFilter

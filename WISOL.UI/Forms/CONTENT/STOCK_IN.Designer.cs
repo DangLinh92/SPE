@@ -34,6 +34,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl1 = new Wisol.XLayoutControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.btnReloadData = new Wisol.XSimpleButton(this.components);
             this.stlKho = new Wisol.AceGridLookUpEdit(this.components);
             this.aceGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnSearch = new Wisol.XSimpleButton(this.components);
@@ -75,9 +76,12 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlGroup3 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.btnHistory = new Wisol.XSimpleButton(this.components);
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -108,9 +112,11 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             this.SuspendLayout();
             // 
             // xLayoutControl1
@@ -136,6 +142,8 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // xLayoutControl2
             // 
+            this.xLayoutControl2.Controls.Add(this.btnHistory);
+            this.xLayoutControl2.Controls.Add(this.btnReloadData);
             this.xLayoutControl2.Controls.Add(this.stlKho);
             this.xLayoutControl2.Controls.Add(this.btnSearch);
             this.xLayoutControl2.Controls.Add(this.btnClear);
@@ -153,6 +161,19 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl2.Size = new System.Drawing.Size(1095, 632);
             this.xLayoutControl2.TabIndex = 0;
             this.xLayoutControl2.Text = "xLayoutControl2";
+            // 
+            // btnReloadData
+            // 
+            this.btnReloadData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReloadData.ImageOptions.Image")));
+            this.btnReloadData.Location = new System.Drawing.Point(411, 60);
+            this.btnReloadData.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnReloadData.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnReloadData.Name = "btnReloadData";
+            this.btnReloadData.Size = new System.Drawing.Size(129, 30);
+            this.btnReloadData.StyleController = this.xLayoutControl2;
+            this.btnReloadData.TabIndex = 10;
+            this.btnReloadData.Text = "LOAD DATA";
+            this.btnReloadData.Click += new System.EventHandler(this.btnReloadData_Click);
             // 
             // stlKho
             // 
@@ -195,7 +216,7 @@ namespace Wisol.MES.Forms.CONTENT
             // btnClear
             // 
             this.btnClear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.ImageOptions.Image")));
-            this.btnClear.Location = new System.Drawing.Point(411, 60);
+            this.btnClear.Location = new System.Drawing.Point(677, 60);
             this.btnClear.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClear.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnClear.Name = "btnClear";
@@ -499,7 +520,9 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem7,
             this.layoutControlItem11,
             this.layoutControlItem9,
-            this.layoutControlItem8});
+            this.layoutControlItem8,
+            this.layoutControlItem10,
+            this.layoutControlItem13});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1095, 632);
             this.layoutControlGroup1.TextVisible = false;
@@ -570,9 +593,9 @@ namespace Wisol.MES.Forms.CONTENT
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.btnClear;
-            this.layoutControlItem11.Location = new System.Drawing.Point(399, 48);
+            this.layoutControlItem11.Location = new System.Drawing.Point(665, 48);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(676, 34);
+            this.layoutControlItem11.Size = new System.Drawing.Size(410, 34);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
@@ -593,6 +616,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem8.Size = new System.Drawing.Size(311, 24);
             this.layoutControlItem8.Text = "KHO";
             this.layoutControlItem8.TextSize = new System.Drawing.Size(49, 13);
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.btnReloadData;
+            this.layoutControlItem10.Location = new System.Drawing.Point(399, 48);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem10.TextVisible = false;
             // 
             // Root
             // 
@@ -621,6 +653,28 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlGroup3.Name = "layoutControlGroup3";
             this.layoutControlGroup3.Size = new System.Drawing.Size(211, 608);
             this.layoutControlGroup3.TextVisible = false;
+            // 
+            // btnHistory
+            // 
+            this.btnHistory.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnHistory.ImageOptions.Image")));
+            this.btnHistory.Location = new System.Drawing.Point(544, 60);
+            this.btnHistory.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnHistory.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnHistory.Name = "btnHistory";
+            this.btnHistory.Size = new System.Drawing.Size(129, 30);
+            this.btnHistory.StyleController = this.xLayoutControl2;
+            this.btnHistory.TabIndex = 11;
+            this.btnHistory.Text = "HISTORY";
+            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
+            // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.btnHistory;
+            this.layoutControlItem13.Location = new System.Drawing.Point(532, 48);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem13.TextVisible = false;
             // 
             // STOCK_IN
             // 
@@ -660,9 +714,11 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -717,5 +773,9 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraGrid.Views.Grid.GridView aceGridLookUpEdit1View;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraGrid.Columns.GridColumn col_TIME_INPUT;
+        private XSimpleButton btnReloadData;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
+        private XSimpleButton btnHistory;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
     }
 }

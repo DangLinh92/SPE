@@ -99,6 +99,12 @@ namespace Wisol.MES
         public static string STATUS_COMPLETE = "COMPLETE";
         public static string STATUS_NEW = "NEW";
         public static string STATUS_INPROGRESS = "INPROGRESS";
+        public static string STATUS_PUR_RECEIPT = "PUR_RECEIPT";
+        public static string STATUS_ORDER = "ORDER";
+        public static string STATUS_SHIPPING = "SHIPPING";
+        public static string STATUS_RECEIVE = "RECEIVE";
+        public static string STATUS_ACCEPT = "ACCEPT";
+        public static string STATUS_WAIT_ACCEPT = "WAIT_ACCEPT";
 
         public static char CHARACTER_SPILIT_ON_BARCODE = '$';
         public static string STR_SPILIT_ON_BARCODE = "$";
@@ -124,5 +130,8 @@ namespace Wisol.MES
         }
 
         public static DataTable SPAREPART_TO_ID;
+        public static string SMT_PRINTER_DEFAULT = "ZDesigner ZT410-600dpi ZPL (Copy 1)";
+        public static string SMT_DEPT = "SMT";
+        public static string CSP_DEPT = "CSP";
     }
 }

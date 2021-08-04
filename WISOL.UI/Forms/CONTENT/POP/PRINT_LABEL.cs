@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
+using Wisol.MES.Classes;
 using Wisol.MES.Inherit;
 
 namespace Wisol.MES.Forms.CONTENT.POP
@@ -32,7 +33,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             if (checkShowAllData.Checked)
             {
-                base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LOCATION.GET", new string[] { "A_DEPARTMENT", "A_STOCK" }, new string[] { Consts.DEPARTMENT, Kho });
+                base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LOCATION.GET_FOR_PRINT", new string[] { "A_DEPARTMENT", "A_STOCK" }, new string[] { Consts.DEPARTMENT, Kho });
                 if (base.mResultDB.ReturnInt == 0)
                 {
                     return base.mResultDB.ReturnDataSet.Tables;
@@ -56,7 +57,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 }
                 else
                 {
-                    base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LOCATION.GET", new string[] { "A_DEPARTMENT", "A_STOCK" }, new string[] { Consts.DEPARTMENT, Kho });
+                    base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LOCATION.GET_FOR_PRINT", new string[] { "A_DEPARTMENT", "A_STOCK" }, new string[] { Consts.DEPARTMENT, Kho });
                     if (base.mResultDB.ReturnInt == 0)
                     {
                         return base.mResultDB.ReturnDataSet.Tables;
@@ -116,6 +117,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void PRINT_LABEL_Load(object sender, EventArgs e)
         {
+            Classes.Common.SelectPrinter(cboPrinter);
+
             LoadData();
             GetLabelTemplate();
         }
@@ -231,7 +234,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         DateTime dExdate;
                         if (DateTime.TryParse(strDate, out dExdate))
                         {
-                            strDate = dTimeIn.ToString("yyyy-MM-dd");
+                            strDate = dExdate.ToString("yyyy-MM-dd");
                         }
                         else
                         {
@@ -259,19 +262,21 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             quantity + Consts.STR_SPILIT_ON_BARCODE +
                             unit;
 
+                        string newSparepartCode = gvList.GetRowCellValue(i, gvList.Columns[1]).NullString() + "-" + quantity + unit;
+
                         if (strDate == "2199-01-01")
                         {
-                            xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvList.GetRowCellValue(i, gvList.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "IN TIME:" + timeIn);
+                            xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", newSparepartCode).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "IN TIME:" + timeIn);
                         }
                         else
                         {
                             if (DateTime.TryParse(strDate, out DateTime ExpriDate))
                             {
-                                xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvList.GetRowCellValue(i, gvList.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "EXP:" + ExpriDate.ToString("yyyy-MM-dd"));
+                                xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", newSparepartCode).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "EXP:" + ExpriDate.ToString("yyyy-MM-dd"));
                             }
                             else
                             {
-                                xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", gvList.GetRowCellValue(i, gvList.Columns[1]).NullString()).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "IN TIME:" + timeIn);
+                                xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", newSparepartCode).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "IN TIME:" + timeIn);
                             }
                         }
 
@@ -357,10 +362,23 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
-                base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LABEL.GET_TEMP", new string[] { "A_CODE_TEMP" }, new string[] { "QRCODE_UPDATE" });//QRCODE
+                label = "";
+                string LabelCode = "QRCODE_" + cboPrinter.Text;
+                base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LABEL.GET_TEMP", new string[] { "A_CODE_TEMP" }, new string[] { LabelCode });//QRCODE
                 if (mResultDB.ReturnInt == 0)
                 {
-                    label = base.mResultDB.ReturnDataSet.Tables[0].Rows[0]["LABEL"].NullString();
+                    if (base.mResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                    {
+                        label = base.mResultDB.ReturnDataSet.Tables[0].Rows[0]["LABEL"].NullString();
+                    }
+                    else
+                    {
+                        MsgBox.Show("Không có File label cho printer "+ cboPrinter.Text, MsgType.Warning);
+                    }
+                }
+                else
+                {
+                    MsgBox.Show(mResultDB.ReturnString.Translation(), MsgType.Warning);
                 }
             }
             catch (Exception ex)
@@ -372,6 +390,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private void checkShowAllData_CheckedChanged(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void cboPrinter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PrinterClass.SetDefaultPrinter(cboPrinter.Text);
+            GetLabelTemplate();
         }
     }
 }

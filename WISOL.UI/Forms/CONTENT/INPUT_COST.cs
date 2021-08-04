@@ -5,6 +5,8 @@ using Wisol.MES.Inherit;
 using DevExpress.XtraGrid.Columns;
 using System.Data;
 using Wisol.Common;
+using System.Globalization;
+using System.Windows.Forms;
 
 namespace Wisol.MES.Forms.CONTENT
 {
@@ -16,7 +18,13 @@ namespace Wisol.MES.Forms.CONTENT
         public INPUT_COST()
         {
             InitializeComponent();
+            this.Load += INPUT_COST_Load;
         }
+
+        private void INPUT_COST_Load(object sender, EventArgs e)
+        {
+        }
+
         public override void Form_Show()
         {
             base.Form_Show();
@@ -27,62 +35,66 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INPUT_COST.GET", new string[] { "A_DEPARTMENT", "A_ROLE", "A_CTG" }, new string[] { Consts.DEPARTMENT, Consts.USER_INFO.UserRole, "NEW" });
+                m_BindData.BindGridLookEdit(stlMemory, Consts.GetDataMemory(), "CODE", "NAME_VI");
+                datePrice.EditValue = DateTime.Now;
+                txtPriceUS.Enabled = false;
+
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PRICE.INIT", new string[] { "A_DEPT_CODE" }, new string[] { Consts.DEPARTMENT });
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
-                    dt = base.m_ResultDB.ReturnDataSet.Tables[1];
-                    base.m_BindData.BindGridLookEdit(sltCtg, base.m_ResultDB.ReturnDataSet.Tables[0], "CODE", "NAME");
-                    base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[1]);
+                    DataTableCollection tableCollection = m_ResultDB.ReturnDataSet.Tables;
+                    if (tableCollection[0].Rows.Count > 0)
+                    {
+                        txtExchangeRate.EditValue = tableCollection[0].Rows[0]["RATE"].NullString();
+                    }
+                    else
+                    {
+                        txtExchangeRate.EditValue = null;
+                    }
 
-                    RepositoryItemTextEdit textEdit = new RepositoryItemTextEdit();
-                    RepositoryItemComboBox select = new RepositoryItemComboBox();
-                    select.Items.AddRange(new object[] {"VND","USD"});
-                    
-                    textEdit.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-                    textEdit.Mask.EditMask = "n2";
+                    m_BindData.BindGridView(gcList, tableCollection[1]);
+
                     gvList.Columns["ID"].Visible = false;
-                    gvList.OptionsBehavior.Editable = true;
+                    gvList.OptionsView.ColumnAutoWidth = true;
 
-                    GridColumn cost = gvList.Columns["COST_INPUT"];
-                    cost.OptionsColumn.AllowEdit = true;
-                    cost.ColumnEdit = textEdit;
-                    cost.FieldName = "txtCost";
-
-                    GridColumn currency = gvList.Columns["CURRENCY"];
-                    currency.OptionsColumn.AllowEdit = true;
-                    currency.ColumnEdit = select;
-                    currency.FieldName = "sltCurrency";
+                    m_BindData.BindGridLookEdit(stlUnit, tableCollection[3], "CODE", "NAME");
+                    m_BindData.BindGridLookEdit(stlSparepartCode, tableCollection[2], "CODE", "NAME_VI");
                 }
-
-                Init_Control(true);
             }
             catch (Exception ex)
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
-            base.InitializePage();
         }
         public override void SearchPage()
         {
             base.SearchPage();
+        }
+
+        private void gvList_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+
+        }
+
+        private void btnSaveExchangeRate_Click(object sender, EventArgs e)
+        {
             try
             {
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INPUT_COST.GET", new string[] { "A_DEPARTMENT", "A_ROLE", "A_CTG" }, new string[] { Consts.DEPARTMENT, Consts.USER_INFO.UserRole, sltCtg.EditValue.NullString() });
+                if (string.IsNullOrEmpty(txtExchangeRate.EditValue.NullString()) || (!string.IsNullOrEmpty(txtExchangeRate.EditValue.NullString()) && !float.TryParse(txtExchangeRate.EditValue.NullString(), out _)))
+                {
+                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                    txtExchangeRate.Focus();
+                    return;
+                }
+
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_EXCHANGE_RATE.PUT", new string[] { "A_RATE", "A_DATE" }, new string[] { txtExchangeRate.EditValue.NullString(), DateTime.Now.ToString() });
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
-                    dt = base.m_ResultDB.ReturnDataSet.Tables[1];
-                    base.m_BindData.BindGridLookEdit(sltCtg, base.m_ResultDB.ReturnDataSet.Tables[0], "CODE", "NAME");
-                    base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[1]);
-
-                    RepositoryItemTextEdit textEdit = new RepositoryItemTextEdit();
-                    textEdit.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-                    textEdit.Mask.EditMask = "n2";
-                    gvList.Columns["ID"].Visible = false;
-                    gvList.OptionsBehavior.Editable = true;
-                    GridColumn cost = gvList.Columns["COST_INPUT"];
-                    cost.OptionsColumn.AllowEdit = true;
-                    cost.ColumnEdit = textEdit;
-                    cost.FieldName = "txtCost";
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                }
+                else
+                {
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
                 }
             }
             catch (Exception ex)
@@ -90,57 +102,247 @@ namespace Wisol.MES.Forms.CONTENT
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
-        private void Init_Control(bool condFlag)
+
+        private void stlMemory_EditValueChanged(object sender, EventArgs e)
+        {
+            stlSparepartCode.EditValue = stlMemory.EditValue;
+        }
+
+        private void stlSparepartCode_EditValueChanged(object sender, EventArgs e)
+        {
+            Classes.Common.GetUnitBySparePart(stlSparepartCode.EditValue.NullString(), stlUnit, m_BindData);
+            GetImage(stlSparepartCode.EditValue.NullString());
+        }
+
+        private void GetImage(string sparepart)
         {
             try
             {
-                sltCtg.EditValue = "NEW";
-                dtEdit.Columns.Add("ID", typeof(string));
-                dtEdit.Columns.Add("COST", typeof(string));
-                dtEdit.Columns.Add("CODE", typeof(string));
+                imgSparepart.Image = null;
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.GET_IMG", new string[] { "A_DEPARTMENT", "A_CODE" }, new string[] { Consts.DEPARTMENT, sparepart });
+                if (m_ResultDB.ReturnInt == 0)
+                {
+                    DataTableCollection data = base.m_ResultDB.ReturnDataSet.Tables;
+                    if (data[0].Rows.Count > 0)
+                    {
+                        string strImg = data[0].Rows[0]["IMAGE"].NullString();
+                        Classes.Common.ShowImge(strImg, imgSparepart);
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
-        private void gvList_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+
+        private void txtPriceVN_EditValueChanged(object sender, EventArgs e)
         {
-            dtEdit.Rows.Add(new object[] { dt.Rows[e.RowHandle]["ID"].NullString(), e.Value, dt.Rows[e.RowHandle]["CODE"].NullString() });
+            if (txtExchangeRate.EditValue.NullString() != "" && cheVN.Checked && double.TryParse(txtPriceVN.EditValue.NullString(), out _))
+            {
+                double priceUs = double.Parse(txtPriceVN.EditValue.NullString()) / double.Parse(txtExchangeRate.EditValue.NullString());
+                txtPriceUS.EditValue = priceUs.ToString("R", CultureInfo.InvariantCulture);
+            }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void cheVN_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPriceVN.Enabled = cheVN.Checked;
+            cheUSD.Checked = !cheVN.Checked;
+        }
+
+        private void cheUSD_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPriceUS.Enabled = cheUSD.Checked;
+            cheVN.Checked = !cheUSD.Checked;
+        }
+
+        private void txtPriceUS_EditValueChanged(object sender, EventArgs e)
+        {
+            if (txtExchangeRate.EditValue.NullString() != "" && cheUSD.Checked && double.TryParse(txtPriceUS.EditValue.NullString(), out _))
+            {
+                double priceVN = double.Parse(txtPriceUS.EditValue.NullString()) * double.Parse(txtExchangeRate.EditValue.NullString());
+                txtPriceVN.EditValue = (priceVN).ToString("R", CultureInfo.InvariantCulture);
+            }
+        }
+
+        private void btnLoadData_Click(object sender, EventArgs e)
+        {
+            InitializePage();
+        }
+
+        /// <summary>
+        /// ADD NEW
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSave_Click_1(object sender, EventArgs e)
         {
             try
             {
-                if (dtEdit.Rows.Count == 0)
+                if (stlSparepartCode.EditValue.NullString() == "" || stlUnit.EditValue.NullString() == "" || txtPriceVN.EditValue.NullString() == "" || txtPriceUS.EditValue.NullString() == "")
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
                 }
-                //WaitForm loading = new WaitForm();
-                //loading.ShowDialog();
 
-                for (int i = 0; i < dtEdit.Rows.Count; i++)
+                string isEdit = "";
+                if (txtID.EditValue.NullString() == "")
                 {
-                    Console.WriteLine(dtEdit.Rows[i]["ID"].NullString());
-                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INPUT_COST@PUT",
-                    new string[] { "A_DEPARTMENT", "A_ROLE", "A_COST", "A_ID", "A_CODE", "A_CURRENCY" },
-                    new string[] { Consts.DEPARTMENT, Consts.USER_INFO.UserRole, dtEdit.Rows[i]["COST"].NullString(), dtEdit.Rows[i]["ID"].NullString(), dtEdit.Rows[i]["CODE"].NullString(), dtEdit.Rows[i]["CURRENCY"].NullString() });
-                    if(base.m_ResultDB.ReturnInt != 0)
-                    {
-                        //loading.Close();
-                    }
+                    isEdit = "False";
                 }
-                //loading.Close();
-                dtEdit.Clear();
-                MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);
-                SearchPage();
+                else
+                {
+                    isEdit = "True";
+                }
+
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PRICE.PUT",
+                                 new string[] { "A_DEPT_CODE", "A_SPARE_PART_CODE", "A_IS_EDIT", "A_PRICE_VN", "A_PRICE_US", "A_DATE", "A_UNIT", "A_ID" },
+                                 new string[] { Consts.DEPARTMENT,
+                                     stlSparepartCode.EditValue.NullString(),
+                                     isEdit,
+                                     txtPriceVN.EditValue.NullString(),
+                                     txtPriceUS.EditValue.NullString(),
+                                     datePrice.EditValue.NullString(),
+                                     stlUnit.EditValue.NullString(),
+                                     txtID.EditValue.NullString() });
+
+                if (m_ResultDB.ReturnInt == 0)
+                {
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                    InitializePage();
+                    Clear();
+                }
+                else
+                {
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                }
             }
             catch (Exception ex)
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
+        }
+
+        /// <summary>
+        ///  Edit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (stlSparepartCode.EditValue.NullString() == "" || stlUnit.EditValue.NullString() == "" || txtPriceVN.EditValue.NullString() == "" || txtPriceUS.EditValue.NullString() == "" || txtID.EditValue.NullString() == "")
+                {
+                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                    return;
+                }
+
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PRICE.PUT",
+                                 new string[] { "A_DEPT_CODE", "A_SPARE_PART_CODE", "A_IS_EDIT", "A_PRICE_VN", "A_PRICE_US", "A_DATE", "A_UNIT", "A_ID" },
+                                 new string[] { Consts.DEPARTMENT,
+                                     stlSparepartCode.EditValue.NullString(),
+                                     "True",
+                                     txtPriceVN.EditValue.NullString(),
+                                     txtPriceUS.EditValue.NullString(),
+                                     datePrice.EditValue.NullString(),
+                                     stlUnit.EditValue.NullString(),
+                                     txtID.EditValue.NullString() });
+
+                if (m_ResultDB.ReturnInt == 0)
+                {
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                    InitializePage();
+                    Clear();
+                }
+                else
+                {
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MsgBox.Show("MSG_COM_015".Translation(), MsgType.Warning, Components.DialogType.OkCancel);
+                if (dialogResult == DialogResult.OK)
+                {
+                    if (stlSparepartCode.EditValue.NullString() == "" || stlUnit.EditValue.NullString() == "" || txtPriceVN.EditValue.NullString() == "" || txtPriceUS.EditValue.NullString() == "" || txtID.EditValue.NullString() == "")
+                    {
+                        MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                        return;
+                    }
+
+                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PRICE.DELETE",
+                                     new string[] { "A_ID" },
+                                     new string[] { txtID.EditValue.NullString() });
+
+                    if (m_ResultDB.ReturnInt == 0)
+                    {
+                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                        InitializePage();
+                        Clear();
+                    }
+                    else
+                    {
+                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
+        private void Clear()
+        {
+            txtID.EditValue = null;
+            stlSparepartCode.EditValue = null;
+            stlUnit.EditValue = null;
+            txtPriceVN.EditValue = null;
+            txtPriceUS.EditValue = null;
+            datePrice.EditValue = DateTime.Now;
+            cheVN.Checked = true;
+        }
+
+        private void gvList_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            try
+            {
+                if (e.RowHandle < 0)
+                {
+                    return;
+                }
+
+                txtID.EditValue = gvList.GetRowCellValue(e.RowHandle, "ID").NullString();
+                stlSparepartCode.EditValue = gvList.GetRowCellValue(e.RowHandle, "SPARE_PART_CODE").NullString();
+                stlUnit.EditValue = gvList.GetRowCellValue(e.RowHandle, "UNIT").NullString();
+                txtPriceVN.EditValue = gvList.GetRowCellValue(e.RowHandle, "PRICE_VN").NullString();
+                txtPriceUS.EditValue = gvList.GetRowCellValue(e.RowHandle, "PRICE_US").NullString();
+                datePrice.EditValue = gvList.GetRowCellValue(e.RowHandle, "DATE").NullString();
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void cheEditExchange_CheckedChanged(object sender, EventArgs e)
+        {
+            txtExchangeRate.Enabled = cheEditExchange.Checked;
         }
     }
 }

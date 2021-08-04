@@ -50,6 +50,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.btnClear = new Wisol.XSimpleButton(this.components);
             this.btnSave = new Wisol.XSimpleButton(this.components);
             this.xLayoutControl1 = new Wisol.XLayoutControl();
+            this.txtLeadTime = new Wisol.XTextEdit();
             this.txtMinOrder = new Wisol.XTextEdit();
             this.sltUnit4 = new Wisol.AceGridLookUpEdit(this.components);
             this.aceGridLookUpEdit4View = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -110,6 +111,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem37 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -135,6 +137,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLeadTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinOrder.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sltUnit4.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aceGridLookUpEdit4View)).BeginInit();
@@ -194,6 +197,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -376,6 +380,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // xLayoutControl1
             // 
+            this.xLayoutControl1.Controls.Add(this.txtLeadTime);
             this.xLayoutControl1.Controls.Add(this.txtMinOrder);
             this.xLayoutControl1.Controls.Add(this.sltUnit4);
             this.xLayoutControl1.Controls.Add(this.sltUnit3);
@@ -408,6 +413,21 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl1.Size = new System.Drawing.Size(504, 769);
             this.xLayoutControl1.TabIndex = 9;
             this.xLayoutControl1.Text = "xLayoutControl1";
+            // 
+            // txtLeadTime
+            // 
+            this.txtLeadTime.IsRequire = false;
+            this.txtLeadTime.Location = new System.Drawing.Point(109, 468);
+            this.txtLeadTime.Name = "txtLeadTime";
+            this.txtLeadTime.NullBackColor = System.Drawing.Color.Lime;
+            this.txtLeadTime.NullValidation = false;
+            this.txtLeadTime.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtLeadTime.Properties.Appearance.Options.UseBackColor = true;
+            this.txtLeadTime.Properties.Mask.EditMask = "n";
+            this.txtLeadTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtLeadTime.Size = new System.Drawing.Size(383, 20);
+            this.txtLeadTime.StyleController = this.xLayoutControl1;
+            this.txtLeadTime.TabIndex = 31;
             // 
             // txtMinOrder
             // 
@@ -613,11 +633,11 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // picImage
             // 
-            this.picImage.Location = new System.Drawing.Point(109, 514);
+            this.picImage.Location = new System.Drawing.Point(109, 512);
             this.picImage.Name = "picImage";
             this.picImage.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.picImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.picImage.Size = new System.Drawing.Size(383, 243);
+            this.picImage.Size = new System.Drawing.Size(383, 245);
             this.picImage.StyleController = this.xLayoutControl1;
             toolTipTitleItem1.Text = "Upload ảnh";
             toolTipItem1.LeftIndent = 6;
@@ -633,9 +653,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // txtSpecification
             // 
-            this.txtSpecification.Location = new System.Drawing.Point(109, 468);
+            this.txtSpecification.Location = new System.Drawing.Point(109, 492);
             this.txtSpecification.Name = "txtSpecification";
-            this.txtSpecification.Size = new System.Drawing.Size(383, 42);
+            this.txtSpecification.Size = new System.Drawing.Size(383, 16);
             this.txtSpecification.StyleController = this.xLayoutControl1;
             this.txtSpecification.TabIndex = 14;
             // 
@@ -899,7 +919,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem26,
             this.layoutControlItem29,
             this.layoutControlItem31,
-            this.layoutControlItem34});
+            this.layoutControlItem34,
+            this.layoutControlItem37});
             this.layoutControlGroup1.Name = "Root";
             this.layoutControlGroup1.Size = new System.Drawing.Size(504, 769);
             this.layoutControlGroup1.TextVisible = false;
@@ -1009,9 +1030,9 @@ namespace Wisol.MES.Forms.CONTENT
             // layoutControlItem27
             // 
             this.layoutControlItem27.Control = this.txtSpecification;
-            this.layoutControlItem27.Location = new System.Drawing.Point(0, 456);
+            this.layoutControlItem27.Location = new System.Drawing.Point(0, 480);
             this.layoutControlItem27.Name = "layoutControlItem27";
-            this.layoutControlItem27.Size = new System.Drawing.Size(484, 46);
+            this.layoutControlItem27.Size = new System.Drawing.Size(484, 20);
             this.layoutControlItem27.Text = "SPECIFICATION";
             this.layoutControlItem27.TextSize = new System.Drawing.Size(94, 13);
             // 
@@ -1027,9 +1048,9 @@ namespace Wisol.MES.Forms.CONTENT
             // layoutControlItem16
             // 
             this.layoutControlItem16.Control = this.picImage;
-            this.layoutControlItem16.Location = new System.Drawing.Point(0, 502);
+            this.layoutControlItem16.Location = new System.Drawing.Point(0, 500);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(484, 247);
+            this.layoutControlItem16.Size = new System.Drawing.Size(484, 249);
             this.layoutControlItem16.Text = "Image";
             this.layoutControlItem16.TextSize = new System.Drawing.Size(94, 13);
             // 
@@ -1139,6 +1160,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem34.Size = new System.Drawing.Size(484, 24);
             this.layoutControlItem34.Text = "MIN_ORDER";
             this.layoutControlItem34.TextSize = new System.Drawing.Size(94, 13);
+            // 
+            // layoutControlItem37
+            // 
+            this.layoutControlItem37.Control = this.txtLeadTime;
+            this.layoutControlItem37.Location = new System.Drawing.Point(0, 456);
+            this.layoutControlItem37.Name = "layoutControlItem37";
+            this.layoutControlItem37.Size = new System.Drawing.Size(484, 24);
+            this.layoutControlItem37.Text = "LEAD_TIME";
+            this.layoutControlItem37.TextSize = new System.Drawing.Size(94, 13);
             // 
             // Root
             // 
@@ -1308,6 +1338,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).EndInit();
             this.xLayoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtLeadTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMinOrder.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sltUnit4.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aceGridLookUpEdit4View)).EndInit();
@@ -1367,6 +1398,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -1479,5 +1511,7 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem35;
         private XSimpleButton bntClearMemory;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem36;
+        private XTextEdit txtLeadTime;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem37;
     }
 }
