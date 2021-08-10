@@ -26,18 +26,21 @@ namespace Wisol.MES.Classes
         {
             try
             {
-                ResultDB result = Program.dbAccess.ExcuteProc("PKG_BUSINESS_SPAREPART.ENCRIPT_CODE"
-                    , new string[] { "A_DEPARTMENT" }
-                    , new string[] { Consts.DEPARTMENT }
-                    );
+                if (Consts.DEPARTMENT == Consts.SMT_DEPT)
+                {
+                    ResultDB result = Program.dbAccess.ExcuteProc("PKG_BUSINESS_SPAREPART.ENCRIPT_CODE"
+                                                                    , new string[] { "A_DEPARTMENT" }
+                                                                    , new string[] { Consts.DEPARTMENT }
+                                                                    );
 
-                if (result.ReturnInt == 0)
-                {
-                    Consts.SPAREPART_TO_ID = result.ReturnDataSet.Tables[0];
-                }
-                else
-                {
-                    Consts.SPAREPART_TO_ID = new DataTable();
+                    if (result.ReturnInt == 0)
+                    {
+                        Consts.SPAREPART_TO_ID = result.ReturnDataSet.Tables[0];
+                    }
+                    else
+                    {
+                        Consts.SPAREPART_TO_ID = new DataTable();
+                    }
                 }
             }
             catch (Exception ex)
@@ -50,6 +53,11 @@ namespace Wisol.MES.Classes
         {
             try
             {
+                if (Consts.DEPARTMENT != Consts.SMT_DEPT)
+                {
+                    return codeEncript;
+                }
+
                 if (Regex.Match(codeEncript, @"[a-zA-Z]").Success)
                 {
                     return codeEncript;
@@ -185,7 +193,7 @@ namespace Wisol.MES.Classes
             return 1;
         }
 
-       public static DataTable GetDataTable(GridView view)
+        public static DataTable GetDataTable(GridView view)
         {
             DataTable dt = new DataTable();
             foreach (GridColumn c in view.Columns)

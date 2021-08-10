@@ -241,7 +241,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             strDate = "2199-01-01";
                         }
 
-                        if (spareCode.Length > 8)
+                        if (spareCode.Length > 8 && Consts.DEPARTMENT == Consts.SMT_DEPT)
                         {
                             if (Consts.SPAREPART_TO_ID != null && Consts.SPAREPART_TO_ID.Rows.Count > 0)
                             {

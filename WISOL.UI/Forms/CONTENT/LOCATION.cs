@@ -775,6 +775,18 @@ namespace Wisol.MES.Forms.CONTENT
                         Exdate = "2199-01-01";
                     }
 
+                    if (spareCode.Length > 8 && Consts.DEPARTMENT == Consts.SMT_DEPT)
+                    {
+                        if (Consts.SPAREPART_TO_ID != null && Consts.SPAREPART_TO_ID.Rows.Count > 0)
+                        {
+                            DataRow[] rows = Consts.SPAREPART_TO_ID.Select("[SPARE_PART_CODE] = '" + spareCode + "'");
+                            if (rows.Length == 1)
+                            {
+                                spareCode = rows[0]["ENCRIPT_CODE"].NullString();
+                            }
+                        }
+                    }
+
                     string quantityInLabel = (float.Parse(quantity) / numberLabel).ToString();
                     string barcode =
                        spareCode + Consts.STR_SPILIT_ON_BARCODE +

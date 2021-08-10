@@ -45,7 +45,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtPriceUS = new Wisol.XTextEdit();
             this.datePrice = new DevExpress.XtraEditors.DateEdit();
             this.btnDelete = new Wisol.XSimpleButton(this.components);
-            this.btnSaveNew = new Wisol.XSimpleButton(this.components);
             this.imgSparepart = new DevExpress.XtraEditors.PictureEdit();
             this.txtPriceVN = new Wisol.XTextEdit();
             this.txtQuantity = new Wisol.XTextEdit();
@@ -63,15 +62,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.btnLoadData = new Wisol.XSimpleButton(this.components);
             this.gcList = new DevExpress.XtraGrid.GridControl();
             this.gvList = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -115,15 +113,14 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
@@ -215,7 +212,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl2.Controls.Add(this.txtPriceUS);
             this.xLayoutControl2.Controls.Add(this.datePrice);
             this.xLayoutControl2.Controls.Add(this.btnDelete);
-            this.xLayoutControl2.Controls.Add(this.btnSaveNew);
             this.xLayoutControl2.Controls.Add(this.imgSparepart);
             this.xLayoutControl2.Controls.Add(this.txtPriceVN);
             this.xLayoutControl2.Controls.Add(this.txtQuantity);
@@ -234,20 +230,20 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.txtID.Enabled = false;
             this.txtID.IsRequire = false;
-            this.txtID.Location = new System.Drawing.Point(113, 12);
+            this.txtID.Location = new System.Drawing.Point(119, 12);
             this.txtID.Name = "txtID";
             this.txtID.NullBackColor = System.Drawing.Color.Lime;
             this.txtID.NullValidation = false;
             this.txtID.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtID.Properties.Appearance.Options.UseBackColor = true;
-            this.txtID.Size = new System.Drawing.Size(297, 20);
+            this.txtID.Size = new System.Drawing.Size(291, 20);
             this.txtID.StyleController = this.xLayoutControl2;
             this.txtID.TabIndex = 23;
             // 
             // btnClear
             // 
             this.btnClear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.ImageOptions.Image")));
-            this.btnClear.Location = new System.Drawing.Point(12, 440);
+            this.btnClear.Location = new System.Drawing.Point(278, 406);
             this.btnClear.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClear.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnClear.Name = "btnClear";
@@ -260,7 +256,7 @@ namespace Wisol.MES.Forms.CONTENT
             // btnUpdate
             // 
             this.btnUpdate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.ImageOptions.Image")));
-            this.btnUpdate.Location = new System.Drawing.Point(145, 406);
+            this.btnUpdate.Location = new System.Drawing.Point(12, 406);
             this.btnUpdate.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnUpdate.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnUpdate.Name = "btnUpdate";
@@ -295,7 +291,7 @@ namespace Wisol.MES.Forms.CONTENT
             // txtPriceUS
             // 
             this.txtPriceUS.IsRequire = false;
-            this.txtPriceUS.Location = new System.Drawing.Point(113, 156);
+            this.txtPriceUS.Location = new System.Drawing.Point(119, 156);
             this.txtPriceUS.Name = "txtPriceUS";
             this.txtPriceUS.NullBackColor = System.Drawing.Color.Lime;
             this.txtPriceUS.NullValidation = false;
@@ -303,7 +299,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtPriceUS.Properties.Appearance.Options.UseBackColor = true;
             this.txtPriceUS.Properties.Mask.EditMask = "c3";
             this.txtPriceUS.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtPriceUS.Size = new System.Drawing.Size(191, 20);
+            this.txtPriceUS.Size = new System.Drawing.Size(185, 20);
             this.txtPriceUS.StyleController = this.xLayoutControl2;
             this.txtPriceUS.TabIndex = 18;
             this.txtPriceUS.EditValueChanged += new System.EventHandler(this.txtPriceUS_EditValueChanged);
@@ -311,20 +307,20 @@ namespace Wisol.MES.Forms.CONTENT
             // datePrice
             // 
             this.datePrice.EditValue = null;
-            this.datePrice.Location = new System.Drawing.Point(113, 180);
+            this.datePrice.Location = new System.Drawing.Point(119, 180);
             this.datePrice.Name = "datePrice";
             this.datePrice.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datePrice.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.datePrice.Size = new System.Drawing.Size(297, 20);
+            this.datePrice.Size = new System.Drawing.Size(291, 20);
             this.datePrice.StyleController = this.xLayoutControl2;
             this.datePrice.TabIndex = 17;
             // 
             // btnDelete
             // 
             this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(278, 406);
+            this.btnDelete.Location = new System.Drawing.Point(145, 406);
             this.btnDelete.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnDelete.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnDelete.Name = "btnDelete";
@@ -333,19 +329,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.btnDelete.TabIndex = 14;
             this.btnDelete.Text = "DELETE";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnSaveNew
-            // 
-            this.btnSaveNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveNew.ImageOptions.Image")));
-            this.btnSaveNew.Location = new System.Drawing.Point(12, 406);
-            this.btnSaveNew.MaximumSize = new System.Drawing.Size(129, 30);
-            this.btnSaveNew.MinimumSize = new System.Drawing.Size(129, 30);
-            this.btnSaveNew.Name = "btnSaveNew";
-            this.btnSaveNew.Size = new System.Drawing.Size(129, 30);
-            this.btnSaveNew.StyleController = this.xLayoutControl2;
-            this.btnSaveNew.TabIndex = 13;
-            this.btnSaveNew.Text = "NEW";
-            this.btnSaveNew.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
             // imgSparepart
             // 
@@ -359,7 +342,7 @@ namespace Wisol.MES.Forms.CONTENT
             // txtPriceVN
             // 
             this.txtPriceVN.IsRequire = false;
-            this.txtPriceVN.Location = new System.Drawing.Point(113, 132);
+            this.txtPriceVN.Location = new System.Drawing.Point(119, 132);
             this.txtPriceVN.Name = "txtPriceVN";
             this.txtPriceVN.NullBackColor = System.Drawing.Color.Lime;
             this.txtPriceVN.NullValidation = false;
@@ -367,7 +350,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtPriceVN.Properties.Appearance.Options.UseBackColor = true;
             this.txtPriceVN.Properties.Mask.EditMask = "c3";
             this.txtPriceVN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtPriceVN.Size = new System.Drawing.Size(191, 20);
+            this.txtPriceVN.Size = new System.Drawing.Size(185, 20);
             this.txtPriceVN.StyleController = this.xLayoutControl2;
             this.txtPriceVN.TabIndex = 8;
             this.txtPriceVN.EditValueChanged += new System.EventHandler(this.txtPriceVN_EditValueChanged);
@@ -377,20 +360,20 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtQuantity.EditValue = "1";
             this.txtQuantity.Enabled = false;
             this.txtQuantity.IsRequire = false;
-            this.txtQuantity.Location = new System.Drawing.Point(113, 108);
+            this.txtQuantity.Location = new System.Drawing.Point(119, 108);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.NullBackColor = System.Drawing.Color.Lime;
             this.txtQuantity.NullValidation = false;
             this.txtQuantity.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtQuantity.Properties.Appearance.Options.UseBackColor = true;
-            this.txtQuantity.Size = new System.Drawing.Size(297, 20);
+            this.txtQuantity.Size = new System.Drawing.Size(291, 20);
             this.txtQuantity.StyleController = this.xLayoutControl2;
             this.txtQuantity.TabIndex = 7;
             // 
             // stlUnit
             // 
             this.stlUnit.EditValue = "";
-            this.stlUnit.Location = new System.Drawing.Point(113, 84);
+            this.stlUnit.Location = new System.Drawing.Point(119, 84);
             this.stlUnit.Name = "stlUnit";
             this.stlUnit.Properties.Appearance.Options.UseTextOptions = true;
             this.stlUnit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -399,7 +382,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.stlUnit.Properties.ImmediatePopup = true;
             this.stlUnit.Properties.NullText = "";
             this.stlUnit.Properties.PopupView = this.aceGridLookUpEdit3View;
-            this.stlUnit.Size = new System.Drawing.Size(297, 20);
+            this.stlUnit.Size = new System.Drawing.Size(291, 20);
             this.stlUnit.StyleController = this.xLayoutControl2;
             this.stlUnit.TabIndex = 6;
             // 
@@ -414,7 +397,7 @@ namespace Wisol.MES.Forms.CONTENT
             // stlSparepartCode
             // 
             this.stlSparepartCode.EditValue = "";
-            this.stlSparepartCode.Location = new System.Drawing.Point(113, 60);
+            this.stlSparepartCode.Location = new System.Drawing.Point(119, 60);
             this.stlSparepartCode.Name = "stlSparepartCode";
             this.stlSparepartCode.Properties.Appearance.Options.UseTextOptions = true;
             this.stlSparepartCode.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -423,7 +406,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.stlSparepartCode.Properties.ImmediatePopup = true;
             this.stlSparepartCode.Properties.NullText = "";
             this.stlSparepartCode.Properties.PopupView = this.aceGridLookUpEdit2View;
-            this.stlSparepartCode.Size = new System.Drawing.Size(297, 20);
+            this.stlSparepartCode.Size = new System.Drawing.Size(291, 20);
             this.stlSparepartCode.StyleController = this.xLayoutControl2;
             this.stlSparepartCode.TabIndex = 5;
             this.stlSparepartCode.EditValueChanged += new System.EventHandler(this.stlSparepartCode_EditValueChanged);
@@ -439,7 +422,7 @@ namespace Wisol.MES.Forms.CONTENT
             // stlMemory
             // 
             this.stlMemory.EditValue = "";
-            this.stlMemory.Location = new System.Drawing.Point(113, 36);
+            this.stlMemory.Location = new System.Drawing.Point(119, 36);
             this.stlMemory.Name = "stlMemory";
             this.stlMemory.Properties.Appearance.Options.UseTextOptions = true;
             this.stlMemory.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -448,7 +431,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.stlMemory.Properties.ImmediatePopup = true;
             this.stlMemory.Properties.NullText = "";
             this.stlMemory.Properties.PopupView = this.aceGridLookUpEdit1View;
-            this.stlMemory.Size = new System.Drawing.Size(297, 20);
+            this.stlMemory.Size = new System.Drawing.Size(291, 20);
             this.stlMemory.StyleController = this.xLayoutControl2;
             this.stlMemory.TabIndex = 4;
             this.stlMemory.EditValueChanged += new System.EventHandler(this.stlMemory_EditValueChanged);
@@ -473,15 +456,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem7,
             this.layoutControlItem8,
             this.layoutControlItem10,
-            this.layoutControlItem13,
             this.layoutControlItem14,
             this.layoutControlItem3,
             this.layoutControlItem11,
             this.layoutControlItem9,
             this.layoutControlItem19,
             this.layoutControlItem20,
-            this.layoutControlItem12,
-            this.layoutControlItem21});
+            this.layoutControlItem21,
+            this.layoutControlItem12});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(422, 662);
             this.layoutControlGroup1.TextVisible = false;
@@ -493,14 +475,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.loMemory.Name = "loMemory";
             this.loMemory.Size = new System.Drawing.Size(402, 24);
             this.loMemory.Text = "MEMORY DATA";
-            this.loMemory.TextSize = new System.Drawing.Size(98, 13);
+            this.loMemory.TextSize = new System.Drawing.Size(104, 13);
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 462);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 428);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(402, 180);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(402, 214);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem5
@@ -510,7 +492,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(402, 24);
             this.layoutControlItem5.Text = "SPARE_PART_CODE";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(98, 13);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(104, 13);
             // 
             // layoutControlItem6
             // 
@@ -519,7 +501,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.Size = new System.Drawing.Size(402, 24);
             this.layoutControlItem6.Text = "UNIT";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(98, 13);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(104, 13);
             // 
             // layoutControlItem7
             // 
@@ -528,7 +510,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem7.Name = "layoutControlItem7";
             this.layoutControlItem7.Size = new System.Drawing.Size(402, 24);
             this.layoutControlItem7.Text = "QUANTITY";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(98, 13);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(104, 13);
             // 
             // layoutControlItem8
             // 
@@ -537,7 +519,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem8.Name = "layoutControlItem8";
             this.layoutControlItem8.Size = new System.Drawing.Size(296, 24);
             this.layoutControlItem8.Text = "PRICE_VN";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(98, 13);
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(104, 13);
             // 
             // layoutControlItem10
             // 
@@ -548,21 +530,12 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
-            // layoutControlItem13
-            // 
-            this.layoutControlItem13.Control = this.btnSaveNew;
-            this.layoutControlItem13.Location = new System.Drawing.Point(0, 394);
-            this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(133, 34);
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem13.TextVisible = false;
-            // 
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.btnDelete;
-            this.layoutControlItem14.Location = new System.Drawing.Point(266, 394);
+            this.layoutControlItem14.Location = new System.Drawing.Point(133, 394);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(136, 34);
+            this.layoutControlItem14.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
@@ -572,8 +545,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 168);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(402, 24);
-            this.layoutControlItem3.Text = "DATE";
-            this.layoutControlItem3.TextSize = new System.Drawing.Size(98, 13);
+            this.layoutControlItem3.Text = "Thời điểm áp dụng giá";
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(104, 13);
             // 
             // layoutControlItem11
             // 
@@ -582,7 +555,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Size = new System.Drawing.Size(296, 24);
             this.layoutControlItem11.Text = "PRICE_US";
-            this.layoutControlItem11.TextSize = new System.Drawing.Size(98, 13);
+            this.layoutControlItem11.TextSize = new System.Drawing.Size(104, 13);
             // 
             // layoutControlItem9
             // 
@@ -605,20 +578,11 @@ namespace Wisol.MES.Forms.CONTENT
             // layoutControlItem20
             // 
             this.layoutControlItem20.Control = this.btnUpdate;
-            this.layoutControlItem20.Location = new System.Drawing.Point(133, 394);
+            this.layoutControlItem20.Location = new System.Drawing.Point(0, 394);
             this.layoutControlItem20.Name = "layoutControlItem20";
             this.layoutControlItem20.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem20.TextVisible = false;
-            // 
-            // layoutControlItem12
-            // 
-            this.layoutControlItem12.Control = this.btnClear;
-            this.layoutControlItem12.Location = new System.Drawing.Point(0, 428);
-            this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(402, 34);
-            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem12.TextVisible = false;
             // 
             // layoutControlItem21
             // 
@@ -627,7 +591,16 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem21.Name = "layoutControlItem21";
             this.layoutControlItem21.Size = new System.Drawing.Size(402, 24);
             this.layoutControlItem21.Text = "ID";
-            this.layoutControlItem21.TextSize = new System.Drawing.Size(98, 13);
+            this.layoutControlItem21.TextSize = new System.Drawing.Size(104, 13);
+            // 
+            // layoutControlItem12
+            // 
+            this.layoutControlItem12.Control = this.btnClear;
+            this.layoutControlItem12.Location = new System.Drawing.Point(266, 394);
+            this.layoutControlItem12.Name = "layoutControlItem12";
+            this.layoutControlItem12.Size = new System.Drawing.Size(136, 34);
+            this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem12.TextVisible = false;
             // 
             // btnLoadData
             // 
@@ -793,15 +766,14 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
@@ -855,8 +827,6 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraEditors.DateTimeChartRangeControlClient dateTimeChartRangeControlClient1;
         private XSimpleButton btnDelete;
-        private XSimpleButton btnSaveNew;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
         private DevExpress.XtraEditors.DateEdit datePrice;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;

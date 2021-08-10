@@ -54,6 +54,11 @@ namespace Wisol.MES.Forms.CONTENT
 
                     m_BindData.BindGridView(gcList, tableCollection[1]);
 
+                    if(rowHandle >= 0)
+                    {
+                        gvList.MakeRowVisible(rowHandle);
+                    }
+
                     gvList.Columns["ID"].Visible = false;
                     gvList.OptionsView.ColumnAutoWidth = true;
 
@@ -178,6 +183,16 @@ namespace Wisol.MES.Forms.CONTENT
         /// <param name="e"></param>
         private void btnSave_Click_1(object sender, EventArgs e)
         {
+    
+        }
+
+        /// <summary>
+        ///  Edit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
             try
             {
                 if (stlSparepartCode.EditValue.NullString() == "" || stlUnit.EditValue.NullString() == "" || txtPriceVN.EditValue.NullString() == "" || txtPriceUS.EditValue.NullString() == "")
@@ -201,49 +216,6 @@ namespace Wisol.MES.Forms.CONTENT
                                  new string[] { Consts.DEPARTMENT,
                                      stlSparepartCode.EditValue.NullString(),
                                      isEdit,
-                                     txtPriceVN.EditValue.NullString(),
-                                     txtPriceUS.EditValue.NullString(),
-                                     datePrice.EditValue.NullString(),
-                                     stlUnit.EditValue.NullString(),
-                                     txtID.EditValue.NullString() });
-
-                if (m_ResultDB.ReturnInt == 0)
-                {
-                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
-                    InitializePage();
-                    Clear();
-                }
-                else
-                {
-                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MsgBox.Show(ex.Message, MsgType.Error);
-            }
-        }
-
-        /// <summary>
-        ///  Edit
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (stlSparepartCode.EditValue.NullString() == "" || stlUnit.EditValue.NullString() == "" || txtPriceVN.EditValue.NullString() == "" || txtPriceUS.EditValue.NullString() == "" || txtID.EditValue.NullString() == "")
-                {
-                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
-                    return;
-                }
-
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PRICE.PUT",
-                                 new string[] { "A_DEPT_CODE", "A_SPARE_PART_CODE", "A_IS_EDIT", "A_PRICE_VN", "A_PRICE_US", "A_DATE", "A_UNIT", "A_ID" },
-                                 new string[] { Consts.DEPARTMENT,
-                                     stlSparepartCode.EditValue.NullString(),
-                                     "True",
                                      txtPriceVN.EditValue.NullString(),
                                      txtPriceUS.EditValue.NullString(),
                                      datePrice.EditValue.NullString(),
@@ -316,12 +288,15 @@ namespace Wisol.MES.Forms.CONTENT
             txtPriceUS.EditValue = null;
             datePrice.EditValue = DateTime.Now;
             cheVN.Checked = true;
+            rowHandle = -1;
         }
 
+        int rowHandle = -1;
         private void gvList_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             try
             {
+                rowHandle = e.RowHandle;
                 if (e.RowHandle < 0)
                 {
                     return;
