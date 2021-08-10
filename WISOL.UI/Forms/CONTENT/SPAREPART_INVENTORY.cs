@@ -67,6 +67,8 @@ namespace Wisol.MES.Forms.CONTENT
                     stlKho.EditValue = firstValue;
                     gvList.Columns["ID"].Visible = false;
                     gvList.Columns["RATE_ALARM"].Visible = false;
+                    gvList.Columns["QUANTITY"].Caption = "Tồn kho hệ thống";
+                    gvList.Columns["QUANTITY_REAL"].Caption = "Tồn kho đầu kỳ";
                 }
 
                 radioInputType.SelectedIndex = 1;
@@ -94,6 +96,8 @@ namespace Wisol.MES.Forms.CONTENT
                     base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
                     gvList.Columns["ID"].Visible = false;
                     gvList.Columns["RATE_ALARM"].Visible = false;
+                    gvList.Columns["QUANTITY"].Caption = "Tồn kho hệ thống";
+                    gvList.Columns["QUANTITY_REAL"].Caption = "Tồn kho đầu kỳ";
                     gvList.OptionsView.ColumnAutoWidth = true;
                 }
             }

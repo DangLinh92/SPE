@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using Wisol.Objects;
@@ -133,5 +134,10 @@ namespace Wisol.MES
         public static string SMT_PRINTER_DEFAULT = "ZDesigner ZT410-600dpi ZPL (Copy 1)";
         public static string SMT_DEPT = "SMT";
         public static string CSP_DEPT = "CSP";
+
+        public static List<string> lstUnicodeUnitErr = new List<string> { "RÊL", "RÊL", "PẢI", "PẢI", "BÕ", "BÕ", "MÊTR", "MÊTR" };
+        public static List<string> lstUnicodeUnitOK = new List<string> { "REEL", "REEL", "PAIR", "PAIR", "BOX", "BOX", "METER", "METER" };
+
+        public static MainForm mainForm { get; set; }
     }
 }

@@ -175,6 +175,8 @@ namespace Wisol.MES
                 //di.ShowDialog();
 
                 Wisol.MES.Classes.Common.GetEncriptCode();
+
+                Consts.mainForm = this;
             }
             catch (Exception ex)
             {
@@ -319,6 +321,74 @@ namespace Wisol.MES
 
                 page.PageVisible = false;
                 page.Tooltip = page.Text.Translation("KOR");      
+
+                if (tabForm.TabPages.Count > 0)
+                {
+                    for (int i = 0; i < tabForm.TabPages.Count; i++)
+                    {
+                        if (tabForm.TabPages[i].Tag.NullString() == moduleCode)
+                        {
+                            tabForm.TabPages[i].BringToFront();
+                            tabForm.TabPages[i].Show();
+                            return;
+                        }
+                    }
+                }
+
+                page.Tag = moduleCode;
+                page.Text = moduleName;
+                page.Controls.Add(pageType);
+
+                tabForm.TabPages.Add(page);
+
+                tabForm.TabPages[tabForm.TabPages.Count - 1].Show();
+                ((PageType)tabForm.TabPages[tabForm.TabPages.Count - 1].Controls[0]).Form_Show();
+
+                page.PageVisible = true;
+                tabForm.SelectedTabPageIndex = tabForm.TabPages.Count - 1;
+
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        public void NewPageFromOtherPage(string moduleCode, string moduleName, string moduleAuth, string accessType,string mainID)
+        {
+            try
+            {
+                if (Consts.ACCESS_TYPE == "Y" && accessType == "N")
+                {
+                    MsgBox.Show("MSG_ERR_113".Translation(), MsgType.Warning);
+                    return;
+                }
+
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                var type = assembly.GetTypes().FirstOrDefault(x => x.Name == moduleCode);
+
+
+                PageType pageType = assembly.CreateInstance(type.FullName, true) as PageType;
+                if (pageType == null)
+                {
+                    MsgBox.Show("MSG_ERR_021".Translation(), MsgType.Warning);
+                    return;
+                }
+            
+                pageType.ModuleCode = moduleCode;
+                pageType.ModuleName = moduleName;
+                pageType.ModuleAuth = moduleAuth;
+                pageType.MainID = mainID;
+
+                pageType.Dock = DockStyle.Fill;
+                
+
+                tabForm.PaintStyleName = "Default";
+
+                var page = new DevExpress.XtraTab.XtraTabPage();
+
+                page.PageVisible = false;
+                page.Tooltip = page.Text.Translation("KOR");
 
                 if (tabForm.TabPages.Count > 0)
                 {

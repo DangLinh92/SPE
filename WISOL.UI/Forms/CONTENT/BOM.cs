@@ -99,15 +99,27 @@ namespace Wisol.MES.Forms.CONTENT
                             {
                                 txtRate.EditValue = table[0].Rows[0]["RATE"].NullString();
                             }
+                            else
+                            {
+                                txtRate.EditValue = "0";
+                            }
 
                             if(table[0].Rows[0]["FROM_TIME"].NullString() != "")
                             {
                                 dateFrom.EditValue = table[0].Rows[0]["FROM_TIME"].NullString();
                             }
+                            else
+                            {
+                                dateFrom.EditValue = null;
+                            }
                            
                             if (table[0].Rows[0]["TO_TIME"].NullString() != "")
                             {
                                 dateTo.EditValue = table[0].Rows[0]["TO_TIME"].NullString();
+                            }
+                            else
+                            {
+                                dateTo.EditValue = null;
                             }
                         }
                     }
@@ -302,15 +314,27 @@ namespace Wisol.MES.Forms.CONTENT
                             {
                                 txtRate.EditValue = table[0].Rows[0]["RATE"].NullString();
                             }
+                            else
+                            {
+                                txtRate.EditValue = "0";
+                            }
 
                             if (table[0].Rows[0]["FROM_TIME"].NullString() != "")
                             {
                                 dateFrom.EditValue = table[0].Rows[0]["FROM_TIME"].NullString();
                             }
+                            else
+                            {
+                                dateFrom.EditValue = null;
+                            }
 
                             if (table[0].Rows[0]["TO_TIME"].NullString() != "")
                             {
                                 dateTo.EditValue = table[0].Rows[0]["TO_TIME"].NullString();
+                            }
+                            else
+                            {
+                                dateTo.EditValue = null;
                             }
                         }
                     }

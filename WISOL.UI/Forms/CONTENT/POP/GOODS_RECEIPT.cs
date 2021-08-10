@@ -305,16 +305,16 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         checkRow["SPARE_PART_CODE"] = stlSparePartCode.EditValue.NullString();
                         checkRow["QUANTITY"] = txtQuantity.EditValue.NullString();
                         checkRow["UNIT"] = stlUnit.EditValue.NullString();
-                        checkRow["PRICE_VN"] = Consts.ZERO; 
-                        checkRow["PRICE_US"] = Consts.ZERO; 
+                        checkRow["PRICE_VN"] = Consts.ZERO;
+                        checkRow["PRICE_US"] = Consts.ZERO;
                         checkRow["AMOUNT_VN"] = Consts.ZERO;
                         checkRow["AMOUNT_US"] = Consts.ZERO;
                         checkRow["CAUSE"] = mmCause.EditValue.NullString();
                         checkRow["NOTE"] = mmNote.EditValue.NullString();
                         checkRow["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
                         checkRow["NAME"] = stlSparePartCode.Text;
-                        checkRow["QUANTITY_NG"] = txtQuantity_NG.EditValue.NullString() == "" ? "0": txtQuantity_NG.EditValue.NullString();
-                        checkRow["EXPRIRED_DATE"] = dateExpired.EditValue.NullString() == "" ? "2199-01-01": dateExpired.EditValue.NullString();
+                        checkRow["QUANTITY_NG"] = txtQuantity_NG.EditValue.NullString() == "" ? "0" : txtQuantity_NG.EditValue.NullString();
+                        checkRow["EXPRIRED_DATE"] = dateExpired.EditValue.NullString() == "" ? "2199-01-01" : dateExpired.EditValue.NullString();
                     }
                     else
                     {
@@ -332,8 +332,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         row["SPARE_PART_CODE"] = stlSparePartCode.EditValue.NullString();
                         row["QUANTITY"] = txtQuantity.EditValue.NullString();
                         row["UNIT"] = stlUnit.EditValue.NullString();
-                        row["PRICE_VN"] = Consts.ZERO; 
-                        row["PRICE_US"] = Consts.ZERO; 
+                        row["PRICE_VN"] = Consts.ZERO;
+                        row["PRICE_US"] = Consts.ZERO;
                         row["AMOUNT_VN"] = Consts.ZERO;
                         row["AMOUNT_US"] = Consts.ZERO;
                         row["CAUSE"] = mmCause.EditValue.NullString();
@@ -872,7 +872,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
             string dateEx = gvList.GetDataRow(RowHandle)["EXPRIRED_DATE"].NullString();
 
-            if(dateEx != "")
+            if (dateEx != "")
             {
                 string ymd = DateTime.Parse(dateEx).ToString("yyyy-MM-dd");
                 dateExpired.EditValue = ymd == "2199-01-01" ? "" : ymd;
@@ -1180,6 +1180,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 //}
                 #endregion
 
+
                 InputLanguage originalInputLang = InputLanguage.CurrentInputLanguage;
                 var lang = InputLanguage.InstalledInputLanguages.OfType<InputLanguage>().Where(l => l.Culture.Name.StartsWith("en")).FirstOrDefault();
                 if (lang != null)
@@ -1209,6 +1210,11 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                 string dateExpiried = items[4];
                                 string quantity = items[5];
                                 string unit = items[6];
+
+                                if (Consts.lstUnicodeUnitErr.Contains(unit))
+                                {
+                                    unit = Consts.lstUnicodeUnitOK[Consts.lstUnicodeUnitErr.FindIndex(x => x == unit)];
+                                }
 
                                 DataRow findRow = Data.Select().FirstOrDefault(x => x["SPARE_PART_CODE"].NullString() == sparepartCode);
                                 if (findRow != null)

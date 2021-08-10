@@ -280,7 +280,7 @@ namespace Wisol.MES.Forms.CONTENT
             // btnClear
             // 
             this.btnClear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.ImageOptions.Image")));
-            this.btnClear.Location = new System.Drawing.Point(278, 531);
+            this.btnClear.Location = new System.Drawing.Point(278, 508);
             this.btnClear.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClear.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnClear.Name = "btnClear";
@@ -293,7 +293,7 @@ namespace Wisol.MES.Forms.CONTENT
             // btnSave
             // 
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(12, 531);
+            this.btnSave.Location = new System.Drawing.Point(12, 508);
             this.btnSave.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSave.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnSave.Name = "btnSave";
@@ -306,7 +306,7 @@ namespace Wisol.MES.Forms.CONTENT
             // btnDelete
             // 
             this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(145, 531);
+            this.btnDelete.Location = new System.Drawing.Point(145, 508);
             this.btnDelete.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnDelete.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnDelete.Name = "btnDelete";
@@ -321,7 +321,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.img.Location = new System.Drawing.Point(12, 276);
             this.img.Name = "img";
             this.img.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.img.Size = new System.Drawing.Size(395, 251);
+            this.img.Size = new System.Drawing.Size(395, 228);
             this.img.StyleController = this.xLayoutControl3;
             this.img.TabIndex = 13;
             // 
@@ -467,9 +467,9 @@ namespace Wisol.MES.Forms.CONTENT
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 553);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 530);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(399, 224);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(399, 247);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // loSparepart
@@ -531,14 +531,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem16.Control = this.img;
             this.layoutControlItem16.Location = new System.Drawing.Point(0, 264);
             this.layoutControlItem16.Name = "layoutControlItem16";
-            this.layoutControlItem16.Size = new System.Drawing.Size(399, 255);
+            this.layoutControlItem16.Size = new System.Drawing.Size(399, 232);
             this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem16.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnDelete;
-            this.layoutControlItem4.Location = new System.Drawing.Point(133, 519);
+            this.layoutControlItem4.Location = new System.Drawing.Point(133, 496);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -547,7 +547,7 @@ namespace Wisol.MES.Forms.CONTENT
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnSave;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 519);
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 496);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
@@ -556,7 +556,7 @@ namespace Wisol.MES.Forms.CONTENT
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnClear;
-            this.layoutControlItem5.Location = new System.Drawing.Point(266, 519);
+            this.layoutControlItem5.Location = new System.Drawing.Point(266, 496);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);

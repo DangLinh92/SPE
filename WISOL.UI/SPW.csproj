@@ -380,11 +380,23 @@
     <Compile Include="Forms\CONTENT\POP\PRINT_LABEL.Designer.cs">
       <DependentUpon>PRINT_LABEL.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\POP\PURCHASE_REQUEST_DETAIL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\PURCHASE_REQUEST_DETAIL.Designer.cs">
+      <DependentUpon>PURCHASE_REQUEST_DETAIL.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\POP\UPDATE_SPAREPART_CODE.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\CONTENT\POP\UPDATE_SPAREPART_CODE.Designer.cs">
       <DependentUpon>UPDATE_SPAREPART_CODE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\PR_CHART.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\PR_CHART.Designer.cs">
+      <DependentUpon>PR_CHART.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CONTENT\PURCHASE_REQUEST.cs">
       <SubType>UserControl</SubType>
@@ -804,8 +816,14 @@
     <EmbeddedResource Include="Forms\CONTENT\POP\PRINT_LABEL.resx">
       <DependentUpon>PRINT_LABEL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\PURCHASE_REQUEST_DETAIL.resx">
+      <DependentUpon>PURCHASE_REQUEST_DETAIL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\UPDATE_SPAREPART_CODE.resx">
       <DependentUpon>UPDATE_SPAREPART_CODE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\PR_CHART.resx">
+      <DependentUpon>PR_CHART.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\PURCHASE_REQUEST.resx">
       <DependentUpon>PURCHASE_REQUEST.cs</DependentUpon>
@@ -989,6 +1007,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="SPW_TemporaryKey.pfx" />
+    <None Include="Worksheet_PR.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-product-documents-32.png">
@@ -1034,6 +1055,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Bottom10Percent_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\box.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\btnDelete.Image.bmp">
@@ -1330,6 +1354,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Zoom_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\box.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\exchange.png">

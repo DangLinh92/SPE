@@ -86,7 +86,7 @@ namespace Wisol.MES.Classes
                     if (m_ResultDB.ReturnInt == 0)
                     {
                         DataTable table = m_ResultDB.ReturnDataSet.Tables[0];
-                        m_BindData.BindGridLookEdit(unitControl, table, "CODE", "NAME");
+                        m_BindData.BindGridLookEdit(unitControl, table, "CODE", "NAME", "IMAGE");
 
                         if (table.Rows.Count > 0)
                         {
@@ -117,6 +117,19 @@ namespace Wisol.MES.Classes
                 img.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
                 img.Size = img.Image.Size;
             }
+        }
+
+        public static Image GetImage(string image)
+        {
+            if (!string.IsNullOrWhiteSpace(image))
+            {
+                byte[] imagebytes = Convert.FromBase64String(image);
+                using (var ms = new MemoryStream(imagebytes, 0, imagebytes.Length))
+                {
+                    return Image.FromStream(ms, true);
+                }
+            }
+            return null;
         }
 
         public static void SendMail(string title)

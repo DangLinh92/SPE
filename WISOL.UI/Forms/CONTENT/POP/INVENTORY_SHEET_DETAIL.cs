@@ -146,6 +146,11 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         string quantity = items[5];
                         string unit = items[6];
 
+                        if (Consts.lstUnicodeUnitErr.Contains(unit))
+                        {
+                            unit = Consts.lstUnicodeUnitOK[Consts.lstUnicodeUnitErr.FindIndex(x => x == unit)];
+                        }
+
                         if (dateExpiried == "2199-01-01")
                         {
                             dateExpiried = "";

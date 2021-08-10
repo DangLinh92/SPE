@@ -49,12 +49,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
-                if(stlSparepart.EditValue.NullString() == "")
-                {
-                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
-                    return;
-                }
-
                 base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_GOODS_RECEIPT_ISSUE.HISTORY_BY_CODE",
                     new string[] { "A_DEPT_CODE", "A_STOCK_CODE", "A_SPARE_PART", "A_TIME_FROM", "A_TIME_TO" },
                     new string[] { Consts.DEPARTMENT, Kho, stlSparepart.EditValue.NullString(), dateFrom.EditValue.NullString(),dateTo.EditValue.NullString() });
