@@ -72,6 +72,26 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.btnNextPagePR = new Wisol.XSimpleButton(this.components);
+            this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
+            this.gcListBelow = new Wisol.XGridControl();
+            this.gvListBelow = new Wisol.XGridView();
+            this.col_SPAREPART_CODE1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_NAME_VI1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_QUANTITY_NEED_BUY1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_UNIT1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_MRP_CODE1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_DATE_NEED_REQUIRED1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_DATE_NEED_BUY1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_DATE_NEED_FINISH1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_DATE_END_ACTUAL1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_DEPT_CODE1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_USER1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_STATUS1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_OFF_NOTI1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_ID1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_Sub = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemButtonEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnMRP_List = new Wisol.XSimpleButton(this.components);
             this.btnMrpCode = new Wisol.XSimpleButton(this.components);
             this.btnCreateMRP = new Wisol.XSimpleButton(this.components);
@@ -79,12 +99,31 @@ namespace Wisol.MES.Forms.CONTENT
             this.aceGridLookUpEdit6View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcList = new Wisol.XGridControl();
             this.gvList = new Wisol.XGridView();
+            this.col_SPAREPART_CODE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_NAME_VI = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_QUANTITY_NEED_BUY = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_UNIT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_MRP_CODE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_DATE_NEED_REQUIRED = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_DATE_NEED_BUY = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_DATE_NEED_FINISH = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_DATE_END_ACTUAL = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_DEPT_CODE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_USER_UPDATE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_STATUS = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_OFF_NOTI = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_ID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_Add = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem20 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -139,16 +178,24 @@ namespace Wisol.MES.Forms.CONTENT
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).BeginInit();
             this.xLayoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcListBelow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvListBelow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stlMrpCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aceGridLookUpEdit6View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
@@ -618,6 +665,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // xLayoutControl2
             // 
+            this.xLayoutControl2.Controls.Add(this.btnNextPagePR);
+            this.xLayoutControl2.Controls.Add(this.separatorControl1);
+            this.xLayoutControl2.Controls.Add(this.gcListBelow);
             this.xLayoutControl2.Controls.Add(this.btnMRP_List);
             this.xLayoutControl2.Controls.Add(this.btnMrpCode);
             this.xLayoutControl2.Controls.Add(this.btnCreateMRP);
@@ -631,10 +681,209 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl2.TabIndex = 0;
             this.xLayoutControl2.Text = "xLayoutControl2";
             // 
+            // btnNextPagePR
+            // 
+            this.btnNextPagePR.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNextPagePR.ImageOptions.Image")));
+            this.btnNextPagePR.Location = new System.Drawing.Point(858, 12);
+            this.btnNextPagePR.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnNextPagePR.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnNextPagePR.Name = "btnNextPagePR";
+            this.btnNextPagePR.Size = new System.Drawing.Size(129, 30);
+            this.btnNextPagePR.StyleController = this.xLayoutControl2;
+            this.btnNextPagePR.TabIndex = 11;
+            this.btnNextPagePR.Text = "GOTOPR_PAGE";
+            this.btnNextPagePR.Click += new System.EventHandler(this.btnNextPagePR_Click);
+            // 
+            // separatorControl1
+            // 
+            this.separatorControl1.Location = new System.Drawing.Point(180, 376);
+            this.separatorControl1.Name = "separatorControl1";
+            this.separatorControl1.Size = new System.Drawing.Size(807, 20);
+            this.separatorControl1.TabIndex = 10;
+            // 
+            // gcListBelow
+            // 
+            this.gcListBelow.Location = new System.Drawing.Point(12, 400);
+            this.gcListBelow.MainView = this.gvListBelow;
+            this.gcListBelow.Name = "gcListBelow";
+            this.gcListBelow.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemButtonEdit2});
+            this.gcListBelow.Size = new System.Drawing.Size(975, 351);
+            this.gcListBelow.TabIndex = 9;
+            this.gcListBelow.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvListBelow});
+            // 
+            // gvListBelow
+            // 
+            this.gvListBelow.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.col_SPAREPART_CODE1,
+            this.col_NAME_VI1,
+            this.col_QUANTITY_NEED_BUY1,
+            this.col_UNIT1,
+            this.col_MRP_CODE1,
+            this.col_DATE_NEED_REQUIRED1,
+            this.col_DATE_NEED_BUY1,
+            this.col_DATE_NEED_FINISH1,
+            this.col_DATE_END_ACTUAL1,
+            this.col_DEPT_CODE1,
+            this.col_USER1,
+            this.col_STATUS1,
+            this.col_OFF_NOTI1,
+            this.col_ID1,
+            this.col_Sub});
+            this.gvListBelow.GridControl = this.gcListBelow;
+            this.gvListBelow.Name = "gvListBelow";
+            this.gvListBelow.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gvListBelow_RowCellClick);
+            this.gvListBelow.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gvListBelow_RowCellStyle);
+            // 
+            // col_SPAREPART_CODE1
+            // 
+            this.col_SPAREPART_CODE1.Caption = "Mã thiết bị ";
+            this.col_SPAREPART_CODE1.FieldName = "SPAREPART_CODE";
+            this.col_SPAREPART_CODE1.Name = "col_SPAREPART_CODE1";
+            this.col_SPAREPART_CODE1.Visible = true;
+            this.col_SPAREPART_CODE1.VisibleIndex = 0;
+            this.col_SPAREPART_CODE1.Width = 63;
+            // 
+            // col_NAME_VI1
+            // 
+            this.col_NAME_VI1.Caption = "Tên tiếng việt";
+            this.col_NAME_VI1.FieldName = "NAME_VI";
+            this.col_NAME_VI1.Name = "col_NAME_VI1";
+            this.col_NAME_VI1.Visible = true;
+            this.col_NAME_VI1.VisibleIndex = 1;
+            this.col_NAME_VI1.Width = 63;
+            // 
+            // col_QUANTITY_NEED_BUY1
+            // 
+            this.col_QUANTITY_NEED_BUY1.Caption = "Lượng cần mua";
+            this.col_QUANTITY_NEED_BUY1.FieldName = "QUANTITY_NEED_BUY";
+            this.col_QUANTITY_NEED_BUY1.Name = "col_QUANTITY_NEED_BUY1";
+            this.col_QUANTITY_NEED_BUY1.Visible = true;
+            this.col_QUANTITY_NEED_BUY1.VisibleIndex = 2;
+            this.col_QUANTITY_NEED_BUY1.Width = 63;
+            // 
+            // col_UNIT1
+            // 
+            this.col_UNIT1.Caption = "Đơn vị";
+            this.col_UNIT1.FieldName = "UNIT";
+            this.col_UNIT1.Name = "col_UNIT1";
+            this.col_UNIT1.Visible = true;
+            this.col_UNIT1.VisibleIndex = 3;
+            this.col_UNIT1.Width = 63;
+            // 
+            // col_MRP_CODE1
+            // 
+            this.col_MRP_CODE1.Caption = "Mã yêu cầu thiết bị";
+            this.col_MRP_CODE1.FieldName = "MRP_CODE";
+            this.col_MRP_CODE1.Name = "col_MRP_CODE1";
+            this.col_MRP_CODE1.Visible = true;
+            this.col_MRP_CODE1.VisibleIndex = 4;
+            this.col_MRP_CODE1.Width = 63;
+            // 
+            // col_DATE_NEED_REQUIRED1
+            // 
+            this.col_DATE_NEED_REQUIRED1.Caption = "Ngày cần yêu cầu mua";
+            this.col_DATE_NEED_REQUIRED1.FieldName = "DATE_NEED_REQUIRED";
+            this.col_DATE_NEED_REQUIRED1.Name = "col_DATE_NEED_REQUIRED1";
+            this.col_DATE_NEED_REQUIRED1.Visible = true;
+            this.col_DATE_NEED_REQUIRED1.VisibleIndex = 5;
+            this.col_DATE_NEED_REQUIRED1.Width = 63;
+            // 
+            // col_DATE_NEED_BUY1
+            // 
+            this.col_DATE_NEED_BUY1.Caption = "Ngày cần mua";
+            this.col_DATE_NEED_BUY1.FieldName = "DATE_NEED_BUY";
+            this.col_DATE_NEED_BUY1.Name = "col_DATE_NEED_BUY1";
+            this.col_DATE_NEED_BUY1.Visible = true;
+            this.col_DATE_NEED_BUY1.VisibleIndex = 6;
+            this.col_DATE_NEED_BUY1.Width = 63;
+            // 
+            // col_DATE_NEED_FINISH1
+            // 
+            this.col_DATE_NEED_FINISH1.Caption = "Ngày cần giao hàng";
+            this.col_DATE_NEED_FINISH1.FieldName = "DATE_NEED_FINISH";
+            this.col_DATE_NEED_FINISH1.Name = "col_DATE_NEED_FINISH1";
+            this.col_DATE_NEED_FINISH1.Visible = true;
+            this.col_DATE_NEED_FINISH1.VisibleIndex = 7;
+            this.col_DATE_NEED_FINISH1.Width = 63;
+            // 
+            // col_DATE_END_ACTUAL1
+            // 
+            this.col_DATE_END_ACTUAL1.Caption = "Ngày giao thực tế";
+            this.col_DATE_END_ACTUAL1.FieldName = "DATE_END_ACTUAL";
+            this.col_DATE_END_ACTUAL1.Name = "col_DATE_END_ACTUAL1";
+            this.col_DATE_END_ACTUAL1.Visible = true;
+            this.col_DATE_END_ACTUAL1.VisibleIndex = 8;
+            this.col_DATE_END_ACTUAL1.Width = 63;
+            // 
+            // col_DEPT_CODE1
+            // 
+            this.col_DEPT_CODE1.Caption = "Bộ phận";
+            this.col_DEPT_CODE1.FieldName = "DEPT_CODE";
+            this.col_DEPT_CODE1.Name = "col_DEPT_CODE1";
+            this.col_DEPT_CODE1.Visible = true;
+            this.col_DEPT_CODE1.VisibleIndex = 9;
+            this.col_DEPT_CODE1.Width = 63;
+            // 
+            // col_USER1
+            // 
+            this.col_USER1.Caption = "Người tạo";
+            this.col_USER1.FieldName = "USER";
+            this.col_USER1.Name = "col_USER1";
+            this.col_USER1.Visible = true;
+            this.col_USER1.VisibleIndex = 10;
+            this.col_USER1.Width = 63;
+            // 
+            // col_STATUS1
+            // 
+            this.col_STATUS1.Caption = "Trạng thái";
+            this.col_STATUS1.FieldName = "STATUS";
+            this.col_STATUS1.Name = "col_STATUS1";
+            this.col_STATUS1.Visible = true;
+            this.col_STATUS1.VisibleIndex = 11;
+            this.col_STATUS1.Width = 63;
+            // 
+            // col_OFF_NOTI1
+            // 
+            this.col_OFF_NOTI1.Caption = "Tắt thông báo";
+            this.col_OFF_NOTI1.FieldName = "OFF_NOTI";
+            this.col_OFF_NOTI1.Name = "col_OFF_NOTI1";
+            this.col_OFF_NOTI1.Visible = true;
+            this.col_OFF_NOTI1.VisibleIndex = 12;
+            this.col_OFF_NOTI1.Width = 63;
+            // 
+            // col_ID1
+            // 
+            this.col_ID1.Caption = "ID";
+            this.col_ID1.FieldName = "ID";
+            this.col_ID1.Name = "col_ID1";
+            this.col_ID1.Visible = true;
+            this.col_ID1.VisibleIndex = 13;
+            this.col_ID1.Width = 63;
+            // 
+            // col_Sub
+            // 
+            this.col_Sub.Caption = "SUB";
+            this.col_Sub.ColumnEdit = this.repositoryItemButtonEdit2;
+            this.col_Sub.FieldName = "SUB";
+            this.col_Sub.Name = "col_Sub";
+            this.col_Sub.Visible = true;
+            this.col_Sub.VisibleIndex = 14;
+            this.col_Sub.Width = 25;
+            // 
+            // repositoryItemButtonEdit2
+            // 
+            this.repositoryItemButtonEdit2.AutoHeight = false;
+            this.repositoryItemButtonEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemButtonEdit2.ContextImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit2.ContextImageOptions.Image")));
+            this.repositoryItemButtonEdit2.Name = "repositoryItemButtonEdit2";
+            // 
             // btnMRP_List
             // 
             this.btnMRP_List.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnMRP_List.ImageOptions.Image")));
-            this.btnMRP_List.Location = new System.Drawing.Point(858, 12);
+            this.btnMRP_List.Location = new System.Drawing.Point(725, 12);
             this.btnMRP_List.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnMRP_List.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnMRP_List.Name = "btnMRP_List";
@@ -660,7 +909,7 @@ namespace Wisol.MES.Forms.CONTENT
             // btnCreateMRP
             // 
             this.btnCreateMRP.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCreateMRP.ImageOptions.Image")));
-            this.btnCreateMRP.Location = new System.Drawing.Point(725, 12);
+            this.btnCreateMRP.Location = new System.Drawing.Point(858, 755);
             this.btnCreateMRP.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnCreateMRP.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnCreateMRP.Name = "btnCreateMRP";
@@ -673,7 +922,7 @@ namespace Wisol.MES.Forms.CONTENT
             // stlMrpCode
             // 
             this.stlMrpCode.EditValue = "";
-            this.stlMrpCode.Location = new System.Drawing.Point(70, 12);
+            this.stlMrpCode.Location = new System.Drawing.Point(180, 12);
             this.stlMrpCode.Name = "stlMrpCode";
             this.stlMrpCode.Properties.Appearance.Options.UseTextOptions = true;
             this.stlMrpCode.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -682,9 +931,10 @@ namespace Wisol.MES.Forms.CONTENT
             this.stlMrpCode.Properties.ImmediatePopup = true;
             this.stlMrpCode.Properties.NullText = "";
             this.stlMrpCode.Properties.PopupView = this.aceGridLookUpEdit6View;
-            this.stlMrpCode.Size = new System.Drawing.Size(518, 20);
+            this.stlMrpCode.Size = new System.Drawing.Size(408, 20);
             this.stlMrpCode.StyleController = this.xLayoutControl2;
             this.stlMrpCode.TabIndex = 5;
+            this.stlMrpCode.EditValueChanged += new System.EventHandler(this.stlMrpCode_EditValueChanged);
             // 
             // aceGridLookUpEdit6View
             // 
@@ -699,13 +949,31 @@ namespace Wisol.MES.Forms.CONTENT
             this.gcList.Location = new System.Drawing.Point(12, 46);
             this.gcList.MainView = this.gvList;
             this.gcList.Name = "gcList";
-            this.gcList.Size = new System.Drawing.Size(975, 739);
+            this.gcList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemButtonEdit1});
+            this.gcList.Size = new System.Drawing.Size(975, 326);
             this.gcList.TabIndex = 4;
             this.gcList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvList});
             // 
             // gvList
             // 
+            this.gvList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.col_SPAREPART_CODE,
+            this.col_NAME_VI,
+            this.col_QUANTITY_NEED_BUY,
+            this.col_UNIT,
+            this.col_MRP_CODE,
+            this.col_DATE_NEED_REQUIRED,
+            this.col_DATE_NEED_BUY,
+            this.col_DATE_NEED_FINISH,
+            this.col_DATE_END_ACTUAL,
+            this.col_DEPT_CODE,
+            this.col_USER_UPDATE,
+            this.col_STATUS,
+            this.col_OFF_NOTI,
+            this.col_ID,
+            this.col_Add});
             this.gvList.GridControl = this.gcList;
             this.gvList.Name = "gvList";
             this.gvList.OptionsSelection.MultiSelect = true;
@@ -715,6 +983,150 @@ namespace Wisol.MES.Forms.CONTENT
             this.gvList.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gvList_RowCellClick);
             this.gvList.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gvList_RowCellStyle);
             // 
+            // col_SPAREPART_CODE
+            // 
+            this.col_SPAREPART_CODE.Caption = "Mã thiết bị";
+            this.col_SPAREPART_CODE.FieldName = "SPAREPART_CODE";
+            this.col_SPAREPART_CODE.Name = "col_SPAREPART_CODE";
+            this.col_SPAREPART_CODE.Visible = true;
+            this.col_SPAREPART_CODE.VisibleIndex = 1;
+            this.col_SPAREPART_CODE.Width = 58;
+            // 
+            // col_NAME_VI
+            // 
+            this.col_NAME_VI.Caption = "Tên tiếng việt";
+            this.col_NAME_VI.FieldName = "NAME_VI";
+            this.col_NAME_VI.Name = "col_NAME_VI";
+            this.col_NAME_VI.Visible = true;
+            this.col_NAME_VI.VisibleIndex = 2;
+            this.col_NAME_VI.Width = 58;
+            // 
+            // col_QUANTITY_NEED_BUY
+            // 
+            this.col_QUANTITY_NEED_BUY.Caption = "Lượng cần mua";
+            this.col_QUANTITY_NEED_BUY.FieldName = "QUANTITY_NEED_BUY";
+            this.col_QUANTITY_NEED_BUY.Name = "col_QUANTITY_NEED_BUY";
+            this.col_QUANTITY_NEED_BUY.Visible = true;
+            this.col_QUANTITY_NEED_BUY.VisibleIndex = 3;
+            this.col_QUANTITY_NEED_BUY.Width = 58;
+            // 
+            // col_UNIT
+            // 
+            this.col_UNIT.Caption = "Đơn vị";
+            this.col_UNIT.FieldName = "UNIT";
+            this.col_UNIT.Name = "col_UNIT";
+            this.col_UNIT.Visible = true;
+            this.col_UNIT.VisibleIndex = 4;
+            this.col_UNIT.Width = 58;
+            // 
+            // col_MRP_CODE
+            // 
+            this.col_MRP_CODE.Caption = "Mã yêu cầu thiết bị";
+            this.col_MRP_CODE.FieldName = "MRP_CODE";
+            this.col_MRP_CODE.Name = "col_MRP_CODE";
+            this.col_MRP_CODE.Visible = true;
+            this.col_MRP_CODE.VisibleIndex = 5;
+            this.col_MRP_CODE.Width = 58;
+            // 
+            // col_DATE_NEED_REQUIRED
+            // 
+            this.col_DATE_NEED_REQUIRED.Caption = "Ngày cần tạo yêu cầu mua";
+            this.col_DATE_NEED_REQUIRED.FieldName = "DATE_NEED_REQUIRED";
+            this.col_DATE_NEED_REQUIRED.Name = "col_DATE_NEED_REQUIRED";
+            this.col_DATE_NEED_REQUIRED.Visible = true;
+            this.col_DATE_NEED_REQUIRED.VisibleIndex = 6;
+            this.col_DATE_NEED_REQUIRED.Width = 58;
+            // 
+            // col_DATE_NEED_BUY
+            // 
+            this.col_DATE_NEED_BUY.Caption = "Ngày cần mua";
+            this.col_DATE_NEED_BUY.FieldName = "DATE_NEED_BUY";
+            this.col_DATE_NEED_BUY.Name = "col_DATE_NEED_BUY";
+            this.col_DATE_NEED_BUY.Visible = true;
+            this.col_DATE_NEED_BUY.VisibleIndex = 7;
+            this.col_DATE_NEED_BUY.Width = 58;
+            // 
+            // col_DATE_NEED_FINISH
+            // 
+            this.col_DATE_NEED_FINISH.Caption = "Ngày cần giao hàng";
+            this.col_DATE_NEED_FINISH.FieldName = "DATE_NEED_FINISH";
+            this.col_DATE_NEED_FINISH.Name = "col_DATE_NEED_FINISH";
+            this.col_DATE_NEED_FINISH.Visible = true;
+            this.col_DATE_NEED_FINISH.VisibleIndex = 8;
+            this.col_DATE_NEED_FINISH.Width = 58;
+            // 
+            // col_DATE_END_ACTUAL
+            // 
+            this.col_DATE_END_ACTUAL.Caption = "Ngày giao thực tế";
+            this.col_DATE_END_ACTUAL.FieldName = "DATE_END_ACTUAL";
+            this.col_DATE_END_ACTUAL.Name = "col_DATE_END_ACTUAL";
+            this.col_DATE_END_ACTUAL.Visible = true;
+            this.col_DATE_END_ACTUAL.VisibleIndex = 9;
+            this.col_DATE_END_ACTUAL.Width = 58;
+            // 
+            // col_DEPT_CODE
+            // 
+            this.col_DEPT_CODE.Caption = "Bộ phận";
+            this.col_DEPT_CODE.FieldName = "DEPT_CODE";
+            this.col_DEPT_CODE.Name = "col_DEPT_CODE";
+            this.col_DEPT_CODE.Visible = true;
+            this.col_DEPT_CODE.VisibleIndex = 10;
+            this.col_DEPT_CODE.Width = 58;
+            // 
+            // col_USER_UPDATE
+            // 
+            this.col_USER_UPDATE.Caption = "Người tạo";
+            this.col_USER_UPDATE.FieldName = "USER";
+            this.col_USER_UPDATE.Name = "col_USER_UPDATE";
+            this.col_USER_UPDATE.Visible = true;
+            this.col_USER_UPDATE.VisibleIndex = 11;
+            this.col_USER_UPDATE.Width = 58;
+            // 
+            // col_STATUS
+            // 
+            this.col_STATUS.Caption = "Trạng thái";
+            this.col_STATUS.FieldName = "STATUS";
+            this.col_STATUS.Name = "col_STATUS";
+            this.col_STATUS.Visible = true;
+            this.col_STATUS.VisibleIndex = 12;
+            this.col_STATUS.Width = 58;
+            // 
+            // col_OFF_NOTI
+            // 
+            this.col_OFF_NOTI.Caption = "Tắt thông báo";
+            this.col_OFF_NOTI.FieldName = "OFF_NOTI";
+            this.col_OFF_NOTI.Name = "col_OFF_NOTI";
+            this.col_OFF_NOTI.Visible = true;
+            this.col_OFF_NOTI.VisibleIndex = 13;
+            this.col_OFF_NOTI.Width = 58;
+            // 
+            // col_ID
+            // 
+            this.col_ID.Caption = "ID";
+            this.col_ID.FieldName = "ID";
+            this.col_ID.Name = "col_ID";
+            this.col_ID.Visible = true;
+            this.col_ID.VisibleIndex = 14;
+            this.col_ID.Width = 58;
+            // 
+            // col_Add
+            // 
+            this.col_Add.Caption = "ADD";
+            this.col_Add.ColumnEdit = this.repositoryItemButtonEdit1;
+            this.col_Add.FieldName = "ADD";
+            this.col_Add.Name = "col_Add";
+            this.col_Add.Visible = true;
+            this.col_Add.VisibleIndex = 15;
+            this.col_Add.Width = 25;
+            // 
+            // repositoryItemButtonEdit1
+            // 
+            this.repositoryItemButtonEdit1.AutoHeight = false;
+            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemButtonEdit1.ContextImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit1.ContextImageOptions.Image")));
+            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            // 
             // layoutControlGroup1
             // 
             this.layoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -722,9 +1134,12 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlGroup1.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem2,
             this.layoutControlItem17,
-            this.layoutControlItem19,
             this.layoutControlItem20,
-            this.layoutControlItem21});
+            this.layoutControlItem22,
+            this.layoutControlItem23,
+            this.layoutControlItem21,
+            this.layoutControlItem19,
+            this.layoutControlItem24});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(999, 797);
             this.layoutControlGroup1.TextVisible = false;
@@ -734,7 +1149,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem2.Control = this.gcList;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 34);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(979, 743);
+            this.layoutControlItem2.Size = new System.Drawing.Size(979, 330);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -745,16 +1160,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem17.Name = "layoutControlItem17";
             this.layoutControlItem17.Size = new System.Drawing.Size(580, 34);
             this.layoutControlItem17.Text = "MRP_CODE";
-            this.layoutControlItem17.TextSize = new System.Drawing.Size(55, 13);
-            // 
-            // layoutControlItem19
-            // 
-            this.layoutControlItem19.Control = this.btnCreateMRP;
-            this.layoutControlItem19.Location = new System.Drawing.Point(713, 0);
-            this.layoutControlItem19.Name = "layoutControlItem19";
-            this.layoutControlItem19.Size = new System.Drawing.Size(133, 34);
-            this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem19.TextVisible = false;
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(165, 13);
             // 
             // layoutControlItem20
             // 
@@ -765,14 +1171,52 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem20.TextVisible = false;
             // 
+            // layoutControlItem22
+            // 
+            this.layoutControlItem22.Control = this.gcListBelow;
+            this.layoutControlItem22.Location = new System.Drawing.Point(0, 388);
+            this.layoutControlItem22.Name = "layoutControlItem22";
+            this.layoutControlItem22.Size = new System.Drawing.Size(979, 355);
+            this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem22.TextVisible = false;
+            // 
+            // layoutControlItem23
+            // 
+            this.layoutControlItem23.Control = this.separatorControl1;
+            this.layoutControlItem23.Location = new System.Drawing.Point(0, 364);
+            this.layoutControlItem23.Name = "layoutControlItem23";
+            this.layoutControlItem23.Size = new System.Drawing.Size(979, 24);
+            this.layoutControlItem23.Text = "Danh sách thiết bị đã tạo yêu cầu.";
+            this.layoutControlItem23.TextSize = new System.Drawing.Size(165, 13);
+            // 
             // layoutControlItem21
             // 
+            this.layoutControlItem21.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.layoutControlItem21.Control = this.btnMRP_List;
-            this.layoutControlItem21.Location = new System.Drawing.Point(846, 0);
+            this.layoutControlItem21.Location = new System.Drawing.Point(713, 0);
             this.layoutControlItem21.Name = "layoutControlItem21";
             this.layoutControlItem21.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem21.TextVisible = false;
+            // 
+            // layoutControlItem24
+            // 
+            this.layoutControlItem24.Control = this.btnNextPagePR;
+            this.layoutControlItem24.Location = new System.Drawing.Point(846, 0);
+            this.layoutControlItem24.Name = "layoutControlItem24";
+            this.layoutControlItem24.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem24.TextVisible = false;
+            // 
+            // layoutControlItem19
+            // 
+            this.layoutControlItem19.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.layoutControlItem19.Control = this.btnCreateMRP;
+            this.layoutControlItem19.Location = new System.Drawing.Point(0, 743);
+            this.layoutControlItem19.Name = "layoutControlItem19";
+            this.layoutControlItem19.Size = new System.Drawing.Size(979, 34);
+            this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem19.TextVisible = false;
             // 
             // Root
             // 
@@ -858,16 +1302,24 @@ namespace Wisol.MES.Forms.CONTENT
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).EndInit();
             this.xLayoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcListBelow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvListBelow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stlMrpCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aceGridLookUpEdit6View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
@@ -943,5 +1395,44 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
         private XSimpleButton btnMRP_List;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem21;
+        private XGridControl gcListBelow;
+        private XGridView gvListBelow;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem22;
+        private DevExpress.XtraGrid.Columns.GridColumn col_SPAREPART_CODE;
+        private DevExpress.XtraGrid.Columns.GridColumn col_NAME_VI;
+        private DevExpress.XtraGrid.Columns.GridColumn col_QUANTITY_NEED_BUY;
+        private DevExpress.XtraGrid.Columns.GridColumn col_UNIT;
+        private DevExpress.XtraGrid.Columns.GridColumn col_MRP_CODE;
+        private DevExpress.XtraGrid.Columns.GridColumn col_DATE_NEED_REQUIRED;
+        private DevExpress.XtraGrid.Columns.GridColumn col_DATE_NEED_BUY;
+        private DevExpress.XtraGrid.Columns.GridColumn col_DATE_NEED_FINISH;
+        private DevExpress.XtraGrid.Columns.GridColumn col_DATE_END_ACTUAL;
+        private DevExpress.XtraGrid.Columns.GridColumn col_DEPT_CODE;
+        private DevExpress.XtraGrid.Columns.GridColumn col_USER_UPDATE;
+        private DevExpress.XtraGrid.Columns.GridColumn col_STATUS;
+        private DevExpress.XtraGrid.Columns.GridColumn col_OFF_NOTI;
+        private DevExpress.XtraGrid.Columns.GridColumn col_ID;
+        private DevExpress.XtraGrid.Columns.GridColumn col_Add;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
+        private DevExpress.XtraEditors.SeparatorControl separatorControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem23;
+        private DevExpress.XtraGrid.Columns.GridColumn col_SPAREPART_CODE1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_NAME_VI1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_QUANTITY_NEED_BUY1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_UNIT1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_MRP_CODE1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_DATE_NEED_REQUIRED1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_DATE_NEED_BUY1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_DATE_NEED_FINISH1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_DATE_END_ACTUAL1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_DEPT_CODE1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_USER1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_STATUS1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_OFF_NOTI1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_ID1;
+        private DevExpress.XtraGrid.Columns.GridColumn col_Sub;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit2;
+        private XSimpleButton btnNextPagePR;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
     }
 }

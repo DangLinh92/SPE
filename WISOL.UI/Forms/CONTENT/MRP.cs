@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraGrid.Views.Grid;
+﻿using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +32,7 @@ namespace Wisol.MES.Forms.CONTENT
             InitData();
         }
 
+        private List<string> IDInit = new List<string>();
         private void InitData()
         {
             try
@@ -46,13 +48,28 @@ namespace Wisol.MES.Forms.CONTENT
                     base.m_BindData.BindGridLookEdit(stlUnit, data[1], "CODE", "NAME");
                     base.m_BindData.BindGridLookEdit(stlSparepart, data[2], "CODE", "NAME_VI");
                     base.m_BindData.BindGridLookEdit(stlStatus, data[3], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(stlStatus, data[3], "CODE", "NAME");
-                    base.m_BindData.BindGridView(gcList, data[4]);
 
-                    gvList.OptionsSelection.MultiSelect = true;
-                    gvList.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
+                    DataRow newRowUp = data[4].NewRow();
+                    data[4].Rows.InsertAt(newRowUp, 0);
+
+                    DataRow newRowBelow = data[5].NewRow();
+                    data[5].Rows.InsertAt(newRowBelow, 0);
+
+                    gcList.DataSource = data[4];
+                    gcListBelow.DataSource = data[5];
+
                     gvList.Columns["ID"].Visible = false;
                     gvList.OptionsView.ColumnAutoWidth = true;
+                    gvListBelow.Columns["ID"].Visible = false;
+                    gvListBelow.OptionsView.ColumnAutoWidth = true;
+                    //gvListBelow.OptionsSelection.MultiSelect = true;
+                    //gvListBelow.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
+
+                    IDInit.Clear();
+                    foreach (DataRow row in data[5].Rows)
+                    {
+                        IDInit.Add(row["ID"].NullString());
+                    }
                 }
 
                 ControlState();
@@ -153,71 +170,75 @@ namespace Wisol.MES.Forms.CONTENT
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
                 }
-                DataRow row;
-                MRP_TYPE.Rows.Clear();
 
-                foreach (int i in gvList.GetSelectedRows())
+                DialogResult dialogResult = MsgBox.Show("CONFIRM_UPDATE".Translation(), MsgType.Information, DialogType.OkCancel);
+                if (dialogResult == DialogResult.OK)
                 {
-                    row = MRP_TYPE.NewRow();
-                    row["ID"] = gvList.GetRowCellValue(i, "ID").NullString();
-                    row["SPAREPART_CODE"] = gvList.GetRowCellValue(i, "SPAREPART_CODE").NullString();
-                    row["QUANTITY_NEED_BUY"] = gvList.GetRowCellValue(i, "QUANTITY_NEED_BUY").NullString();
-                    row["UNIT"] = gvList.GetRowCellValue(i, "UNIT").NullString();
-                    row["STATUS"] = gvList.GetRowCellValue(i, "STATUS").NullString();
+                    DataRow row;
+                    MRP_TYPE.Rows.Clear();
 
-                    if (gvList.GetRowCellValue(i, "DATE_NEED_BUY").NullString() != "")
+                    for (int i = 1; i < gvListBelow.RowCount; i++)
                     {
-                        row["DATE_NEED_BUY"] = gvList.GetRowCellValue(i, "DATE_NEED_BUY").NullString();
+                        row = MRP_TYPE.NewRow();
+                        row["ID"] = gvListBelow.GetRowCellValue(i, "ID").NullString();
+                        row["SPAREPART_CODE"] = gvListBelow.GetRowCellValue(i, "SPAREPART_CODE").NullString();
+                        row["QUANTITY_NEED_BUY"] = gvListBelow.GetRowCellValue(i, "QUANTITY_NEED_BUY").NullString();
+                        row["UNIT"] = gvListBelow.GetRowCellValue(i, "UNIT").NullString();
+                        row["STATUS"] = gvListBelow.GetRowCellValue(i, "STATUS").NullString();
+
+                        if (gvListBelow.GetRowCellValue(i, "DATE_NEED_BUY").NullString() != "")
+                        {
+                            row["DATE_NEED_BUY"] = gvListBelow.GetRowCellValue(i, "DATE_NEED_BUY").NullString();
+                        }
+
+                        if (gvListBelow.GetRowCellValue(i, "DATE_NEED_FINISH").NullString() != "")
+                        {
+                            row["DATE_NEED_FINISH"] = gvListBelow.GetRowCellValue(i, "DATE_NEED_FINISH").NullString();
+                        }
+
+                        if (gvListBelow.GetRowCellValue(i, "DATE_END_ACTUAL").NullString() != "")
+                        {
+                            row["DATE_END_ACTUAL"] = gvListBelow.GetRowCellValue(i, "DATE_END_ACTUAL").NullString();
+                        }
+
+                        row["USER_UPDATE"] = gvListBelow.GetRowCellValue(i, "USER_UPDATE").NullString();
+
+                        if (gvListBelow.GetRowCellValue(i, "DATE_UPDATE").NullString() != "")
+                        {
+                            row["DATE_UPDATE"] = gvListBelow.GetRowCellValue(i, "DATE_UPDATE").NullString();
+                        }
+
+                        row["OFF_NOTI]"] = gvListBelow.GetRowCellValue(i, "OFF_NOTI").NullString();
+
+                        if (gvListBelow.GetRowCellValue(i, "DATE_NEED_REQUIRED").NullString() != "")
+                        {
+                            row["DATE_NEED_REQUIRED"] = gvListBelow.GetRowCellValue(i, "DATE_NEED_REQUIRED").NullString();
+                        }
+
+                        row["DEPT_CODE"] = gvListBelow.GetRowCellValue(i, "DEPT_CODE").NullString();
+                        row["MRP_CODE"] = stlMrpCode.EditValue.NullString();
+                        MRP_TYPE.Rows.Add(row);
                     }
 
-                    if (gvList.GetRowCellValue(i, "DATE_NEED_FINISH").NullString() != "")
+                    if (MRP_TYPE.Rows.Count > 0)
                     {
-                        row["DATE_NEED_FINISH"] = gvList.GetRowCellValue(i, "DATE_NEED_FINISH").NullString();
-                    }
+                        base.m_ResultDB = base.m_DBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_MRP_PLAN.PUT", new string[] { "A_DEPARTMENT", "A_MRP_CODE", "A_USER" }, "A_DATA", new string[] { Consts.DEPARTMENT, stlMrpCode.EditValue.NullString(), Consts.USER_INFO.Id }, MRP_TYPE);
 
-                    if (gvList.GetRowCellValue(i, "DATE_END_ACTUAL").NullString() != "")
-                    {
-                        row["DATE_END_ACTUAL"] = gvList.GetRowCellValue(i, "DATE_END_ACTUAL").NullString();
-                    }
-
-                    row["USER_UPDATE"] = gvList.GetRowCellValue(i, "USER_UPDATE").NullString();
-
-                    if (gvList.GetRowCellValue(i, "DATE_UPDATE").NullString() != "")
-                    {
-                        row["DATE_UPDATE"] = gvList.GetRowCellValue(i, "DATE_UPDATE").NullString();
-                    }
-
-                    row["OFF_NOTI]"] = gvList.GetRowCellValue(i, "OFF_NOTI").NullString();
-
-                    if (gvList.GetRowCellValue(i, "DATE_NEED_REQUIRED").NullString() != "")
-                    {
-                        row["DATE_NEED_REQUIRED"] = gvList.GetRowCellValue(i, "DATE_NEED_REQUIRED").NullString();
-                    }
-
-                    row["DEPT_CODE"] = gvList.GetRowCellValue(i, "DEPT_CODE").NullString();
-                    row["MRP_CODE"] = stlMrpCode.EditValue.NullString();
-                    MRP_TYPE.Rows.Add(row);
-                }
-
-                if (MRP_TYPE.Rows.Count > 0)
-                {
-                    base.m_ResultDB = base.m_DBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_MRP_PLAN.PUT", new string[] { "A_DEPARTMENT", "A_MRP_CODE", "A_USER" }, "A_DATA", new string[] { Consts.DEPARTMENT, stlMrpCode.EditValue.NullString(), Consts.USER_INFO.Id }, MRP_TYPE);
-
-                    if (m_ResultDB.ReturnInt == 0)
-                    {
-                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
-                        MRP_TYPE.Rows.Clear();
-                        gvList.ClearSelection();
-                        InitData();
+                        if (m_ResultDB.ReturnInt == 0)
+                        {
+                            MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                            MRP_TYPE.Rows.Clear();
+                            InitData();
+                        }
+                        else
+                        {
+                            MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                        }
                     }
                     else
                     {
-                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                        MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     }
-                }
-                else
-                {
-                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                 }
             }
             catch (Exception ex)
@@ -228,18 +249,70 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void gvList_RowCellClick(object sender, RowCellClickEventArgs e)
         {
-            if (e.RowHandle < 0)
+            if (e.RowHandle <= 0)
                 return;
+
+            if (e.Column.FieldName == "ADD")
+            {
+                try
+                {
+                    if (stlMrpCode.EditValue.NullString() == "")
+                    {
+                        MsgBox.Show("HÃY CHỌN MÃ YÊU CẦU THIẾT BỊ MRP", MsgType.Warning);
+                        return;
+                    }
+
+                    gvListBelow.BeginSort();
+                    DataRow oldRow = gvList.GetDataRow(e.RowHandle);
+                    int newRowHandle = gvListBelow.RowCount - 1;
+                    DataRowView newRow = (gvListBelow.DataSource as DataView).AddNew();
+
+                    for (int i = 0; i < gvListBelow.Columns.Count - 1; i++)
+                    {
+                        string value = oldRow[i].NullString();
+
+                        if (gvListBelow.Columns[i].FieldName.ToString().StartsWith("DATE"))
+                        {
+                            if (value != "")
+                            {
+                                newRow[gvListBelow.Columns[i].FieldName] = DateTime.Parse(value);
+                            }
+                            else
+                            {
+                                newRow[gvListBelow.Columns[i].FieldName] = DBNull.Value;
+                            }
+                        }
+                        else
+                        {
+                            newRow[gvListBelow.Columns[i].FieldName] = value;
+                        }
+                    }
+                    gvListBelow.EndSort();
+                    gvList.DeleteRow(e.RowHandle);
+                }
+                catch (Exception ex)
+                {
+                    MsgBox.Show(ex.Message, MsgType.Error);
+                }
+            }
+            else
+            {
+                GetSingleMrp(e.RowHandle, gvList);
+            }
+        }
+
+        private void GetSingleMrp(int rowHanle, XGridView gvlst)
+        {
             try
             {
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_MRP.GET_SINGLE", new string[] { "A_ID" }, new string[] { gvList.GetRowCellValue(e.RowHandle, "ID").NullString() });
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_MRP.GET_SINGLE", new string[] { "A_ID" }, new string[] { gvlst.GetRowCellValue(rowHanle, "ID").NullString() });
 
                 if (m_ResultDB.ReturnInt == 0)
                 {
                     DataTableCollection data = m_ResultDB.ReturnDataSet.Tables;
                     if (data[0].Rows.Count > 0)
                     {
-                        txtID.EditValue = gvList.GetRowCellValue(e.RowHandle, "ID").NullString();
+                        txtID.EditValue = gvlst.GetRowCellValue(rowHanle, "ID").NullString();
                         stlMRP_CODE.EditValue = data[0].Rows[0]["MRP_CODE"].NullString();
                         stlSparepart.EditValue = data[0].Rows[0]["SPAREPART_CODE"].NullString();
                         txtQuantityNeedBuy.EditValue = data[0].Rows[0]["QUANTITY_NEED_BUY"].NullString();
@@ -263,6 +336,16 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
+                for (int i = 0; i < gvListBelow.RowCount; i++)
+                {
+                    if (!IDInit.Contains(gvListBelow.GetRowCellValue(i, "ID").NullString()))
+                    {
+                        MsgBox.Show("HÃY LƯU THÔNG TIN DANH SÁCH THIẾT BỊ ĐỂ TẠO YÊU CẦU NGUYÊN VẬT LIỆU", MsgType.Warning);
+                        btnCreateMRP.Focus();
+                        return;
+                    }
+                }
+
                 if (stlSparepart.EditValue.NullString() == "" ||
                     txtQuantityNeedBuy.EditValue.NullString() == "" ||
                     stlUnit.EditValue.NullString() == "" ||
@@ -371,6 +454,12 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
+                if (e.RowHandle == 0)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(229, 231, 233);
+                    return;
+                }
+
                 string status = gvList.GetRowCellValue(e.RowHandle, "STATUS").NullString();
                 string isOff = gvList.GetRowCellValue(e.RowHandle, "OFF_NOTI").NullString();
                 string dateNeedRequest = gvList.GetRowCellValue(e.RowHandle, "DATE_NEED_REQUIRED").NullString();
@@ -398,7 +487,7 @@ namespace Wisol.MES.Forms.CONTENT
                     {
                         e.Appearance.BackColor = Color.FromArgb(255, 204, 204);
                     }
-                    else if(string.IsNullOrEmpty(dateNeedRequest))
+                    else if (string.IsNullOrEmpty(dateNeedRequest))
                     {
                         e.Appearance.BackColor = Color.FromArgb(255, 252, 226);
                     }
@@ -456,6 +545,106 @@ namespace Wisol.MES.Forms.CONTENT
             POP.MRP_LIST pop = new POP.MRP_LIST();
             pop.ShowDialog();
             InitData();
+        }
+
+        private void stlMrpCode_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_MRP.GET_MRP_BY_CODE", new string[] { "A_DEPARTMENT", "A_MRP_CODE" }, new string[] { Consts.DEPARTMENT, stlMrpCode.EditValue.NullString() });
+                if (m_ResultDB.ReturnInt == 0)
+                {
+                    DataTable data = m_ResultDB.ReturnDataSet.Tables[0];
+                    gcListBelow.DataSource = data;
+
+                    DataRow newRowBelow = data.NewRow();
+                    data.Rows.InsertAt(newRowBelow, 0);
+
+                    gvListBelow.Columns["ID"].Visible = false;
+                    gvListBelow.OptionsView.ColumnAutoWidth = true;
+                }
+                else
+                {
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void gvListBelow_RowCellClick(object sender, RowCellClickEventArgs e)
+        {
+            if (e.RowHandle <= 0)
+                return;
+
+            if (e.Column.FieldName == "SUB")
+            {
+                try
+                {
+                    string status = gvListBelow.GetRowCellValue(e.RowHandle, "STATUS").NullString();
+                    if (status != "NEW" && status != "WAIT_ACCEPT")
+                    {
+                        return;
+                    }
+
+                    if (stlMrpCode.EditValue.NullString() == "")
+                    {
+                        MsgBox.Show("HÃY CHỌN MÃ YÊU CẦU THIẾT BỊ MRP", MsgType.Warning);
+                        return;
+                    }
+
+                    DataRow oldRow = gvListBelow.GetDataRow(e.RowHandle);
+                    gvList.BeginSort();
+                    DataRowView newRow = (gvList.DataSource as DataView).AddNew();
+                    for (int i = 0; i < gvList.Columns.Count - 1; i++)
+                    {
+                        string value = oldRow[i].NullString();
+                        if (gvList.Columns[i].FieldName.ToString().StartsWith("DATE"))
+                        {
+                            if (value != "")
+                            {
+                                newRow[gvList.Columns[i].FieldName] = DateTime.Parse(value);
+                            }
+                            else
+                            {
+                                newRow[gvList.Columns[i].FieldName] = DBNull.Value;
+                            }
+                        }
+                        else
+                        {
+                            newRow[gvList.Columns[i].FieldName] = value;
+                        }
+                    }
+                    gvList.EndSort();
+                    gvListBelow.DeleteRow(e.RowHandle);
+                }
+                catch (Exception ex)
+                {
+                    MsgBox.Show(ex.Message, MsgType.Error);
+                }
+            }
+            else
+            {
+                GetSingleMrp(e.RowHandle, gvListBelow);
+            }
+        }
+
+        private void gvListBelow_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            if (e.RowHandle < 0) return;
+
+            string status = gvListBelow.GetRowCellValue(e.RowHandle, "STATUS").NullString();
+            if (status != "NEW" && status != "WAIT_ACCEPT")
+            {
+                e.Appearance.BackColor = Color.FromArgb(229, 231, 233);
+            }
+        }
+
+        private void btnNextPagePR_Click(object sender, EventArgs e)
+        {
+            Consts.mainForm.NewPageFromOtherPage("PURCHASE_REQUEST", "Yêu cầu mua hàng-구매 요청", "W", "Y", "");
         }
     }
 }

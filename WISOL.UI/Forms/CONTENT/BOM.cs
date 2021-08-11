@@ -101,7 +101,7 @@ namespace Wisol.MES.Forms.CONTENT
                             }
                             else
                             {
-                                txtRate.EditValue = "0";
+                                txtRate.EditValue = "1";
                             }
 
                             if(table[0].Rows[0]["FROM_TIME"].NullString() != "")
@@ -151,6 +151,11 @@ namespace Wisol.MES.Forms.CONTENT
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
+                }
+
+                if(txtRate.EditValue.NullString() == "")
+                {
+                    txtRate.EditValue = 1;
                 }
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_BOM_SPAREPART.PUT",
@@ -316,7 +321,7 @@ namespace Wisol.MES.Forms.CONTENT
                             }
                             else
                             {
-                                txtRate.EditValue = "0";
+                                txtRate.EditValue = "1";
                             }
 
                             if (table[0].Rows[0]["FROM_TIME"].NullString() != "")
