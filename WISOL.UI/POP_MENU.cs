@@ -91,7 +91,7 @@ namespace Wisol.MES
             item4.MaxSize = new Size(150, 150);
             item4.Control = simpleButton4;
             item4.Move(item3, InsertType.Bottom);
-            string[] COLORS = new[] {"#c4424f", "#4B4B4B","#5D626E","#E3CAA6","#455EB2", "#1768C4", "#FFD16B", "#B5D38E", "#2E9482", "#399FE4", "#FA8072", "#1C4E80", "#488A99", "#6AB187" };
+            string[] COLORS = new[] { "#336699" };//{"#c4424f", "#4B4B4B","#5D626E","#E3CAA6","#455EB2", "#1768C4", "#FFD16B", "#B5D38E", "#2E9482", "#399FE4", "#FA8072", "#1C4E80", "#488A99", "#6AB187" };
             Random random = new Random();
 
             for (int i = 0; i < input.Rows.Count; i++)

@@ -68,7 +68,18 @@ namespace Wisol.MES.Forms.CONTENT
                     gvList.Columns["ID"].Visible = false;
                     gvList.Columns["RATE_ALARM"].Visible = false;
                     gvList.Columns["QUANTITY"].Caption = "Tồn kho hệ thống";
-                    gvList.Columns["QUANTITY_REAL"].Caption = "Tồn kho đầu kỳ";
+                    gvList.Columns["QUANTITY_REAL"].Caption = "Tồn kho sau kiểm kê";
+
+                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_SHEET.GET", 
+                        new string[] { "A_DEPARTMENT", "A_STOCK_CODE" }, 
+                        new string[] { Consts.DEPARTMENT, stlKho.EditValue.NullString() });
+
+                    if(m_ResultDB.ReturnInt == 0)
+                    {
+                        DataTable kiemkeData = m_ResultDB.ReturnDataSet.Tables[0];
+                        string dateUpdate = kiemkeData.Rows[0]["DATE_UPDATE"].NullString() == "" ? kiemkeData.Rows[0]["DATE_END"].NullString() : kiemkeData.Rows[0]["DATE_UPDATE"].NullString();
+                        lblKiemKeDate.Text = "Ngày kiểm kê: " + DateTime.Parse(kiemkeData.Rows[0]["DATE_UPDATE"].NullString()).ToString("yyyy-MM-dd") + " ";
+                    }
                 }
 
                 radioInputType.SelectedIndex = 1;
