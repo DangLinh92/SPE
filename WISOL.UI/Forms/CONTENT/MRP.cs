@@ -29,11 +29,11 @@ namespace Wisol.MES.Forms.CONTENT
         private void MRP_Load(object sender, EventArgs e)
         {
             CREAT_EWIP_MRP_TYPE();
-            InitData();
+            InitData(true);
         }
 
         private List<string> IDInit = new List<string>();
-        private void InitData()
+        private void InitData(bool isFirst = false)
         {
             try
             {
@@ -43,11 +43,15 @@ namespace Wisol.MES.Forms.CONTENT
                 if (m_ResultDB.ReturnInt == 0)
                 {
                     DataTableCollection data = base.m_ResultDB.ReturnDataSet.Tables;
-                    base.m_BindData.BindGridLookEdit(stlMrpCode, data[0], "MRP_CODE", "TITLE");
-                    base.m_BindData.BindGridLookEdit(stlMRP_CODE, data[0], "MRP_CODE", "TITLE");
-                    base.m_BindData.BindGridLookEdit(stlUnit, data[1], "CODE", "NAME");
-                    base.m_BindData.BindGridLookEdit(stlSparepart, data[2], "CODE", "NAME_VI");
-                    base.m_BindData.BindGridLookEdit(stlStatus, data[3], "CODE", "NAME");
+
+                    if (isFirst)
+                    {
+                        base.m_BindData.BindGridLookEdit(stlMrpCode, data[0], "MRP_CODE", "TITLE");
+                        base.m_BindData.BindGridLookEdit(stlMRP_CODE, data[0], "MRP_CODE", "TITLE");
+                        base.m_BindData.BindGridLookEdit(stlUnit, data[1], "CODE", "NAME");
+                        base.m_BindData.BindGridLookEdit(stlSparepart, data[2], "CODE", "NAME_VI");
+                        base.m_BindData.BindGridLookEdit(stlStatus, data[3], "CODE", "NAME");
+                    }
 
                     DataRow newRowUp = data[4].NewRow();
                     data[4].Rows.InsertAt(newRowUp, 0);
@@ -544,7 +548,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             POP.MRP_LIST pop = new POP.MRP_LIST();
             pop.ShowDialog();
-            InitData();
+            InitData(true);
         }
 
         private void stlMrpCode_EditValueChanged(object sender, EventArgs e)
@@ -577,14 +581,16 @@ namespace Wisol.MES.Forms.CONTENT
         private void gvListBelow_RowCellClick(object sender, RowCellClickEventArgs e)
         {
             if (e.RowHandle <= 0)
+            {
                 return;
+            }
 
             if (e.Column.FieldName == "SUB")
             {
                 try
                 {
                     string status = gvListBelow.GetRowCellValue(e.RowHandle, "STATUS").NullString();
-                    if (status != "NEW" && status != "WAIT_ACCEPT")
+                    if (status != "NEW" && status != "WAIT_ACCEPT" && status != "")
                     {
                         return;
                     }
@@ -633,10 +639,14 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void gvListBelow_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
-            if (e.RowHandle < 0) return;
+            if (e.RowHandle <= 0)
+            {
+                e.Appearance.BackColor = Color.FromArgb(229, 231, 233);
+                return; 
+            }
 
             string status = gvListBelow.GetRowCellValue(e.RowHandle, "STATUS").NullString();
-            if (status != "NEW" && status != "WAIT_ACCEPT")
+            if (status != "NEW" && status != "WAIT_ACCEPT" && status != "")
             {
                 e.Appearance.BackColor = Color.FromArgb(229, 231, 233);
             }

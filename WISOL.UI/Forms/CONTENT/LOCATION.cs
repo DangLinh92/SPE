@@ -21,7 +21,7 @@ namespace Wisol.MES.Forms.CONTENT
 {
     public partial class LOCATION : PageType
     {
-        //private bool firstLoad = true;
+        private bool firstLoad = true;
         public LOCATION()
         {
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             base.Form_Show();
             this.InitializePage();
-            //firstLoad = false;
+            firstLoad = false;
         }
 
         public override void InitializePage()
@@ -50,11 +50,11 @@ namespace Wisol.MES.Forms.CONTENT
 
         public override void ReloadData()
         {
-            //if (firstLoad)
-            //{
-            //InitializePage();
-            //}
-            // firstLoad = true;
+            if (firstLoad && cheAutoRefresh.Checked)
+            {
+                InitializePage();
+            }
+            firstLoad = true;
         }
 
         private void Init_Control()
@@ -449,20 +449,20 @@ namespace Wisol.MES.Forms.CONTENT
                     DateExpired = dateExpiredTime.EditValue.NullString();
                 }
 
-                if (!(cheEditQuantity.Checked && txtQuantity.Enabled))
-                {
-                    string message;
-                    bool checkRemain = CheckRemainQuantity(out message);
+                //if (!(cheEditQuantity.Checked && txtQuantity.Enabled))
+                //{
+                //    string message;
+                //    bool checkRemain = CheckRemainQuantity(out message);
 
-                    if (checkRemain == false)
-                    {
-                        if (!string.IsNullOrEmpty(message))
-                        {
-                            MsgBox.Show(message.Translation(), MsgType.Information);
-                        }
-                        return;
-                    }
-                }
+                //    if (checkRemain == false)
+                //    {
+                //        if (!string.IsNullOrEmpty(message))
+                //        {
+                //            MsgBox.Show(message.Translation(), MsgType.Information);
+                //        }
+                //        return;
+                //    }
+                //}
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.INSERT_SPAREPART_EXPIRED",
                     new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION", "A_CONDITION", "A_ISWATE", "A_QUANTITY", "A_DEPART_MENT", "A_STOCK", "A_BARCODE", "A_UNIT", "A_EXPIRED_DATE", "A_TIME_IN" },
@@ -545,7 +545,6 @@ namespace Wisol.MES.Forms.CONTENT
                 stlCondition.Enabled = true;
                 cheEditQuantity.Checked = true;
                 txtQuantity.Enabled = false;
-                txtQuantityNewAdd.Enabled = true;
                 dateInputTime.EditValue = DateTime.Now;
                 chePrint.Checked = false;
                 txtLabelNumber.EditValue = 0;
@@ -775,6 +774,7 @@ namespace Wisol.MES.Forms.CONTENT
                         Exdate = "2199-01-01";
                     }
 
+                    string oldSparepart = spareCode;
                     if (spareCode.Length > 8 && Consts.DEPARTMENT == Consts.SMT_DEPT)
                     {
                         if (Consts.SPAREPART_TO_ID != null && Consts.SPAREPART_TO_ID.Rows.Count > 0)
@@ -797,7 +797,7 @@ namespace Wisol.MES.Forms.CONTENT
                        quantityInLabel + Consts.STR_SPILIT_ON_BARCODE +
                        unit;
 
-                    string newSparepartCode = spareCode + "-" + quantityInLabel + unit;
+                    string newSparepartCode = oldSparepart + "-" + quantityInLabel + unit;
                     if (Exdate == "2199-01-01")
                     {
                         xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", newSparepartCode).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "IN TIME:" + timeIn);
@@ -1338,7 +1338,7 @@ namespace Wisol.MES.Forms.CONTENT
                 string barcode = "";
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.MOVE_SPARE_PART_TO_LOCATION",
-                      new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION_OLD", "A_LOCATION_NEW", "A_CONDITION", "A_QUANTITY", "A_DEPART_MENT", "A_STOCK", "A_BARCODE", "A_UNIT", "A_EXPIRED_DATE", "A_TIME_IN" },
+                      new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION_OLD", "A_LOCATION_NEW", "A_CONDITION", "A_QUANTITY", "A_DEPART_MENT", "A_STOCK", "A_BARCODE", "A_UNIT", "A_EXPIRED_DATE", "A_TIME_IN","A_USER" },
                        new string[]
                     {
                         txtSTT.EditValue.NullString(),
@@ -1352,7 +1352,8 @@ namespace Wisol.MES.Forms.CONTENT
                          barcode,
                          stlUnitMove.EditValue.NullString(),
                          DateExpired,
-                        dateTimeIn_Move.EditValue.NullString()
+                        dateTimeIn_Move.EditValue.NullString(),
+                        Consts.USER_INFO.Id
                     });
 
                 if (m_ResultDB.ReturnInt == 0)
@@ -1439,6 +1440,13 @@ namespace Wisol.MES.Forms.CONTENT
         {
             PrinterClass.SetDefaultPrinter(cboPrinter.Text);
             GetLabelTemplate();
+        }
+
+        private void btnHistory_Move_Click(object sender, EventArgs e)
+        {
+            POP.HISTORY_MOVE_LOCATION popup = new POP.HISTORY_MOVE_LOCATION();
+            popup.StockCode = stlKho.EditValue.NullString();
+            popup.ShowDialog();
         }
     }
 }

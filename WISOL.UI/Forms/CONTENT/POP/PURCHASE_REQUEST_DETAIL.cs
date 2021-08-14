@@ -29,7 +29,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             InitializeComponent();
             CreateDataItem();
-           
         }
 
         private void btnCreatePRCode_Click(object sender, EventArgs e)
@@ -107,6 +106,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     repositoryItemGridLookUpEdit1.DataSource = mResultDB.ReturnDataSet.Tables[2];
                     repositoryItemGridLookUpEdit1.DisplayMember = "NAME";
                     repositoryItemGridLookUpEdit1.ValueMember = "CODE";
+                    repositoryItemGridLookUpEdit1.BeforePopup += RepositoryItemGridLookUpEdit1_BeforePopup; ;
                     gvList.Columns["UNIT"].ColumnEdit = repositoryItemGridLookUpEdit1;
 
                     repositoryItemGridLookUpEdit2.DataSource = mResultDB.ReturnDataSet.Tables[3];
@@ -123,6 +123,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
+        }
+
+        private void RepositoryItemGridLookUpEdit1_BeforePopup(object sender, EventArgs e)
+        {
+            GridLookUpEdit item = sender as GridLookUpEdit;
+            string code = gvList.GetRowCellValue(rowHandleUnit, gvList.Columns["SPAREPART_CODE"]).NullString();
+            item.Properties.DataSource = Wisol.MES.Classes.Common.GetUnitBySparePart(code);
         }
 
         private void GetData()
@@ -301,6 +308,11 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         {
                             row["IS_DELETE"] = "0";
                         }
+
+                        row["PR_CODE"] = txtPR_Code.EditValue.NullString();
+                        row["STATUS"] = stlStatus.EditValue.NullString();
+                        row["MRP_CODE"] = stlMRP_Code.EditValue.NullString();
+                        row["DATE_UPDATE"] = DateTime.Now.ToString("yyyy-MM-dd");
                     }
                     DataItem.AcceptChanges();
                 }
@@ -383,7 +395,16 @@ namespace Wisol.MES.Forms.CONTENT.POP
             }
             else if (e.Column.FieldName == "UNIT")
             {
+                float rate = Classes.Common.ConvertUnit(row["UNIT"].NullString(), e.Value.NullString(), code);
                 row["UNIT"] = e.Value.NullString();
+                row["PRICE_VN"] = double.Parse(row["PRICE_VN"].NullString()) / rate;
+                row["PRICE_US"] = double.Parse(row["PRICE_US"].NullString()) / rate;
+
+                gvList.SetRowCellValue(e.RowHandle, "PRICE_VN", row["PRICE_VN"]);
+                gvList.SetRowCellValue(e.RowHandle, "EXPECTED_PRICE_VN", row["PRICE_VN"]);
+
+                gvList.SetRowCellValue(e.RowHandle, "PRICE_US", row["PRICE_US"]);
+                gvList.SetRowCellValue(e.RowHandle, "EXPECTED_PRICE_US", row["PRICE_US"]);
             }
             else if (e.Column.FieldName == "EXPECTED_PRICE_VN")
             {
@@ -561,6 +582,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
             catch (Exception ex)
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private int rowHandleUnit;
+        private void gvList_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
+        {
+            if(e.Column.FieldName == "UNIT")
+            {
+                rowHandleUnit = e.RowHandle;
             }
         }
     }

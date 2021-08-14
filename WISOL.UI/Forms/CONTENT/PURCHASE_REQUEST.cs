@@ -52,6 +52,7 @@ namespace Wisol.MES.Forms.CONTENT
             pop.Mode = Consts.MODE_NEW;
             pop.PRCode = string.Empty;
             pop.ShowDialog();
+            GetDataInit();
         }
 
         private void gvList_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)

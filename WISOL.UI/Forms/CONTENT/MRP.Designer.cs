@@ -122,8 +122,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -194,8 +194,8 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
@@ -1199,15 +1199,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem21.TextVisible = false;
             // 
-            // layoutControlItem24
-            // 
-            this.layoutControlItem24.Control = this.btnNextPagePR;
-            this.layoutControlItem24.Location = new System.Drawing.Point(846, 0);
-            this.layoutControlItem24.Name = "layoutControlItem24";
-            this.layoutControlItem24.Size = new System.Drawing.Size(133, 34);
-            this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem24.TextVisible = false;
-            // 
             // layoutControlItem19
             // 
             this.layoutControlItem19.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Far;
@@ -1217,6 +1208,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem19.Size = new System.Drawing.Size(979, 34);
             this.layoutControlItem19.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem19.TextVisible = false;
+            // 
+            // layoutControlItem24
+            // 
+            this.layoutControlItem24.Control = this.btnNextPagePR;
+            this.layoutControlItem24.Location = new System.Drawing.Point(846, 0);
+            this.layoutControlItem24.Name = "layoutControlItem24";
+            this.layoutControlItem24.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem24.TextVisible = false;
             // 
             // Root
             // 
@@ -1318,8 +1318,8 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();

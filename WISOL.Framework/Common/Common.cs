@@ -17,6 +17,14 @@ namespace Wisol.Common
                 return result.ToString().Trim();
         }
 
+        public static string IfNullIsZero(this object result)
+        {
+            if (result == null)
+                return "0";
+            else
+                return result.ToString().Trim() =="" ? "0" : result.ToString().Trim();
+        }
+
         public static Control[] GetAllControls(Control containerControl)
         {
             List<Control> allControls = new List<Control>();

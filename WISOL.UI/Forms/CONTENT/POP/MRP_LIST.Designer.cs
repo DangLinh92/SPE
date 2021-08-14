@@ -61,6 +61,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.gvGroupList = new Wisol.XGridView();
             this.col_MRP_CODE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_SPAREPART_CODE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_NAME_VN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_QUANTITY_NEED_BUY = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_UNIT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DATE_NEED_REQUIRED = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -76,7 +77,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.col_NAME_VN = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -452,6 +452,14 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_SPAREPART_CODE.VisibleIndex = 2;
             this.col_SPAREPART_CODE.Width = 104;
             // 
+            // col_NAME_VN
+            // 
+            this.col_NAME_VN.Caption = "Tên";
+            this.col_NAME_VN.FieldName = "NAME_VI";
+            this.col_NAME_VN.Name = "col_NAME_VN";
+            this.col_NAME_VN.Visible = true;
+            this.col_NAME_VN.VisibleIndex = 1;
+            // 
             // col_QUANTITY_NEED_BUY
             // 
             this.col_QUANTITY_NEED_BUY.Caption = "Số lượng cần mua";
@@ -588,14 +596,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem2.Size = new System.Drawing.Size(427, 715);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
-            // 
-            // col_NAME_VN
-            // 
-            this.col_NAME_VN.Caption = "Tên";
-            this.col_NAME_VN.FieldName = "NAME_VI";
-            this.col_NAME_VN.Name = "col_NAME_VN";
-            this.col_NAME_VN.Visible = true;
-            this.col_NAME_VN.VisibleIndex = 1;
             // 
             // MRP_LIST
             // 

@@ -69,6 +69,8 @@ namespace Wisol.MES.Forms.CONTENT
                     gvList.Columns["RATE_ALARM"].Visible = false;
                     gvList.Columns["QUANTITY"].Caption = "Tồn kho hệ thống";
                     gvList.Columns["QUANTITY_REAL"].Caption = "Tồn kho sau kiểm kê";
+                    gvList.Columns["SPECIFICATION"].Width = 150;
+                    gvList.Columns["NAME_KR"].Width = 150;
 
                     base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_SHEET.GET", 
                         new string[] { "A_DEPARTMENT", "A_STOCK_CODE" }, 
@@ -108,7 +110,9 @@ namespace Wisol.MES.Forms.CONTENT
                     gvList.Columns["ID"].Visible = false;
                     gvList.Columns["RATE_ALARM"].Visible = false;
                     gvList.Columns["QUANTITY"].Caption = "Tồn kho hệ thống";
-                    gvList.Columns["QUANTITY_REAL"].Caption = "Tồn kho đầu kỳ";
+                    gvList.Columns["QUANTITY_REAL"].Caption = "Tồn kho sau kiểm kê";
+                    gvList.Columns["SPECIFICATION"].Width = 150;
+                    gvList.Columns["NAME_KR"].Width = 150;
                     gvList.OptionsView.ColumnAutoWidth = true;
                 }
             }

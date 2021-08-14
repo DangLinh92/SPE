@@ -146,120 +146,297 @@ namespace Wisol.MES.Forms.CONTENT
 
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
+                    DataTable DataDraw = new DataTable();
                     DataTableCollection tableCollection = base.m_ResultDB.ReturnDataSet.Tables;
+
+                    DataColumn col0 = new DataColumn("");
+                    col0.DataType = System.Type.GetType("System.String");
+                    DataDraw.Columns.Add(col0);
+
+                    foreach (DataColumn column in tableCollection[3].Columns)
+                    {
+                        if (column.Caption != "CODE")
+                        {
+                            string columnName = column.Caption + "년 평균";
+                            DataColumn col = new DataColumn(columnName);
+                            col.DataType = System.Type.GetType("System.Decimal");
+                            DataDraw.Columns.Add(col);
+                        }
+                    }
+
+                    foreach (DataColumn column in tableCollection[0].Columns)
+                    {
+                        if (column.Caption != "SPARE_PART_CODE")
+                        {
+                            string columnName = int.Parse(column.Caption.Substring(4, 2)) + "월";
+                            DataColumn col = new DataColumn(columnName);
+                            col.DataType = System.Type.GetType("System.Decimal");
+                            DataDraw.Columns.Add(col);
+                        }
+                    }
+
+                    DataTable tableHeader = new DataTable();
+                    foreach (DataColumn col in DataDraw.Columns)
+                    {
+                        tableHeader.Columns.Add(col.Caption);
+                    }
+
+                    DataRow rowHeader = tableHeader.NewRow();
+                    int i = 0;
+                    foreach (DataColumn col in DataDraw.Columns)
+                    {
+                        if (i == 0)
+
+                        {
+                            rowHeader[0] = "";
+                        }
+                        else
+                        {
+                            rowHeader[col.Caption] = col.Caption;
+                        }
+                        i++;
+                    }
+                    tableHeader.Rows.Add(rowHeader);
+
+                    foreach (var code in lstCode.Split('$'))
+                    {
+                        DataRow row = DataDraw.NewRow();
+                        row[0] = code + "-PO(PACK)";
+                        DataDraw.Rows.Add(row);
+
+                        DataRow row1 = DataDraw.NewRow();
+                        row1[0] = code + "-사용수(PACK)";
+                        DataDraw.Rows.Add(row1);
+                    }
+                    DataRow row2 = DataDraw.NewRow();
+                    row2[0] = "생산계획(K point)";
+                    DataDraw.Rows.Add(row2);
+
+                    // AVG mua hang
+                    foreach (DataRow item in tableCollection[2].Rows)
+                    {
+                        foreach (DataRow row in DataDraw.Rows)
+                        {
+                            if (row[0].NullString().StartsWith(item[0].NullString()) && row[0].NullString().Contains("-PO(PACK)"))
+                            {
+                                row[1] = float.Parse(item[1].IfNullIsZero());
+                                row[2] = float.Parse(item[2].IfNullIsZero());
+                                break;
+                            }
+                        }
+                    }
+
+                    // AVG su dung
+                    foreach (DataRow item in tableCollection[3].Rows)
+                    {
+                        foreach (DataRow row in DataDraw.Rows)
+                        {
+                            if (row[0].NullString().StartsWith(item[0].NullString()) && row[0].NullString().Contains("-사용수(PACK)"))
+                            {
+                                row[1] = float.Parse(item[1].IfNullIsZero());
+                                row[2] = float.Parse(item[2].IfNullIsZero());
+                                break;
+                            }
+                        }
+                    }
+
+                    // mua hang theo thang
+                    foreach (DataRow item in tableCollection[0].Rows)
+                    {
+                        foreach (DataRow row in DataDraw.Rows)
+                        {
+                            if (row[0].NullString().StartsWith(item[0].NullString()) && row[0].NullString().Contains("-PO(PACK)"))
+                            {
+                                foreach (DataColumn col in tableCollection[0].Columns)
+                                {
+                                    if (col.Caption != "SPARE_PART_CODE")
+                                    {
+                                        string colName = int.Parse(col.Caption.Substring(4, 2)) + "월";
+                                        row[colName] = float.Parse(item[col.Caption].IfNullIsZero());
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                    // su dung theo thang
+                    foreach (DataRow item in tableCollection[1].Rows)
+                    {
+                        foreach (DataRow row in DataDraw.Rows)
+                        {
+                            if (row[0].NullString().StartsWith(item[0].NullString()) && row[0].NullString().Contains("-PO(PACK)"))
+                            {
+                                foreach (DataColumn col in tableCollection[1].Columns)
+                                {
+                                    if (col.Caption != "SPARE_PART_CODE")
+                                    {
+                                        string colName = int.Parse(col.Caption.Substring(4, 2)) + "월";
+                                        row[colName] = float.Parse(item[col.Caption].IfNullIsZero());
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+
+                    foreach (DataRow row in DataDraw.Rows)
+                    {
+                        for (int k = 1; k < DataDraw.Columns.Count; k++)
+                        {
+                            row[k] = float.Parse(row[k].IfNullIsZero());
+                        }
+                    }
+
                     IWorkbook workbook = spreadsheetPR.Document;
                     workbook.BeginUpdate();
 
                     Worksheet chartsheet = workbook.Worksheets["Char"];
-                    Chart chart = chartsheet.Charts.Add(ChartType.ColumnClustered);
-                    chart.TopLeftCell = chartsheet.Cells["B3"];
-                    chart.BottomRightCell = chartsheet.Cells["R28"];
+                    chartsheet.Clear(chartsheet["B29:R200"]);
 
-                    DataTable headerData = new DataTable();
-                    headerData.Columns.Add("ITEMS");
-                    headerData.Columns.Add("AGV1");
-                    headerData.Columns.Add("AGV2");
-
-                    foreach (DataColumn column in tableCollection[0].Columns)
+                    Chart chart;
+                    if (chartsheet.Charts.Count == 0)
                     {
-                        headerData.Columns.Add(column.Caption);
-                    }
-
-                    DataRow rowHeader = headerData.NewRow();
-                    rowHeader["ITEMS"] = "";
-                    rowHeader["AGV1"] = (DateTime.Parse(createDate).Year - 1) + "년 평균";
-                    rowHeader["AGV2"] = (DateTime.Parse(createDate).Year) + "년 평균";
-                    foreach (DataColumn column in tableCollection[0].Columns)
-                    {
-                        rowHeader[column.Caption] = int.Parse(column.Caption.Substring(4,2)) + "월";
-                    }
-                    headerData.Rows.Add(rowHeader);
-                    chartsheet.DataBindings.BindToDataSource(headerData, 28, 1);
-
-                    if (tableCollection[0].Rows.Count > 0)
-                    {
-                        // Luong mua hang
-                        chartsheet.DataBindings.BindToDataSource(tableCollection[0], 29, 4);
+                        chart = chartsheet.Charts.Add(ChartType.ColumnClustered);
+                        chart.TopLeftCell = chartsheet.Cells["B3"];
+                        chart.BottomRightCell = chartsheet.Cells["R28"];
                     }
                     else
                     {
-                        DataRow row = tableCollection[0].NewRow();
-                        for (int i = 0; i < DateTime.Parse(createDate).Month; i++)
-                        {
-                            row[i] = 0;
-                        }
-                        tableCollection[0].Rows.Add(row);
-                        chartsheet.DataBindings.BindToDataSource(tableCollection[0], 29, 4);
-                    }
-                   
-                    // Luong su dung
-                    int tb1Count = tableCollection[0].Rows.Count;
-                  
-                    int positionStart = (tb1Count > 0 ? tb1Count : 1) + 29;
-
-                    if(tableCollection[1].Rows.Count > 0)
-                    {
-                        chartsheet.DataBindings.BindToDataSource(tableCollection[1], positionStart, 4);
-                    }
-                    else
-                    {
-                        DataRow row = tableCollection[1].NewRow();
-                        for (int i = 0; i < DateTime.Parse(createDate).Month; i++)
-                        {
-                            row[i] = 0;
-                        }
-                        tableCollection[1].Rows.Add(row);
-                        chartsheet.DataBindings.BindToDataSource(tableCollection[1], positionStart, 4);
+                        chart = chartsheet.Charts[0];
                     }
 
-                    if(tableCollection[2].Rows.Count > 0)
+                    chartsheet.DataBindings.Clear();
+                    chart.Series.Clear();
+                    chartsheet.DataBindings.BindToDataSource(tableHeader, 28, 1);
+                    chartsheet.DataBindings.BindToDataSource(DataDraw, 29, 1);
+
+                    for (int h = 30; h < 30 + DataDraw.Rows.Count; h++)
                     {
-                        // avg luong mua hang
-                        chartsheet.DataBindings.BindToDataSource(tableCollection[2], 29, 1);
-                    }
-                    else
-                    {
-                        DataRow row = tableCollection[2].NewRow();
-                        for (int i = 0; i < 3; i++)
-                        {
-                            row[i] = 0;
-                        }
-                        tableCollection[2].Rows.Add(row);
-                        chartsheet.DataBindings.BindToDataSource(tableCollection[2], 29,1);
+                        string headerColumnStart = chartsheet.Columns[4].Heading;
+                        string headerColumnEnd = chartsheet.Columns[DataDraw.Columns.Count].Heading;
+                        string rangeAgv = (headerColumnStart + h) + ":" + (headerColumnEnd + h);
+                        chartsheet.Cells["D" + h].Formula = @"IFERROR(AVERAGE(" + rangeAgv + @"),"""")";
                     }
 
-                    int tb2Count = tableCollection[2].Rows.Count;
-                    int positionStartAgv = (tb2Count > 0 ? tb2Count : 1) + 29;
+                    #region
+                    //DataTable headerData = new DataTable();
+                    //headerData.Columns.Add("ITEMS");
+                    //headerData.Columns.Add("AGV1");
+                    //headerData.Columns.Add("AGV2");
 
-                    if(tableCollection[3].Rows.Count > 0)
-                    {
-                        // avg luong su dung
-                        chartsheet.DataBindings.BindToDataSource(tableCollection[3], positionStartAgv, 1);
-                    }
-                    else
-                    {
-                        DataRow row = tableCollection[3].NewRow();
-                        for (int i = 0; i < 3; i++)
-                        {
-                            row[i] = 0;
-                        }
-                        tableCollection[3].Rows.Add(row);
-                        chartsheet.DataBindings.BindToDataSource(tableCollection[3], positionStartAgv, 1);
-                    }
-                   
-                    int totalRow = (tb2Count > 0 ? tb2Count : 1) + (tableCollection[3].Rows.Count > 0 ? tableCollection[3].Rows.Count : 1);
-                    int columnIndex = tableCollection[0].Columns.Count + 3;
+                    //foreach (DataColumn column in tableCollection[0].Columns)
+                    //{
+                    //    headerData.Columns.Add(column.Caption);
+                    //}
+
+                    //DataRow rowHeader = headerData.NewRow();
+                    //rowHeader["ITEMS"] = "";
+                    //rowHeader["AGV1"] = (DateTime.Parse(createDate).Year - 1) + "년 평균";
+                    //rowHeader["AGV2"] = (DateTime.Parse(createDate).Year) + "년 평균";
+                    //foreach (DataColumn column in tableCollection[0].Columns)
+                    //{
+                    //    rowHeader[column.Caption] = int.Parse(column.Caption.Substring(4,2)) + "월";
+                    //}
+                    //headerData.Rows.Add(rowHeader);
+                    //chartsheet.DataBindings.BindToDataSource(headerData, 28, 1);
+
+                    //if (tableCollection[0].Rows.Count > 0)
+                    //{
+                    //    // Luong mua hang
+                    //    chartsheet.DataBindings.BindToDataSource(tableCollection[0], 29, 4);
+                    //}
+                    //else
+                    //{
+                    //    DataRow row = tableCollection[0].NewRow();
+                    //    for (int i = 0; i < DateTime.Parse(createDate).Month; i++)
+                    //    {
+                    //        row[i] = 0;
+                    //    }
+                    //    tableCollection[0].Rows.Add(row);
+                    //    chartsheet.DataBindings.BindToDataSource(tableCollection[0], 29, 4);
+                    //}
+
+                    //// Luong su dung
+                    //int tb1Count = tableCollection[0].Rows.Count;
+
+                    //int positionStart = (tb1Count > 0 ? tb1Count : 1) + 29;
+
+                    //if(tableCollection[1].Rows.Count > 0)
+                    //{
+                    //    chartsheet.DataBindings.BindToDataSource(tableCollection[1], positionStart, 4);
+                    //}
+                    //else
+                    //{
+                    //    DataRow row = tableCollection[1].NewRow();
+                    //    for (int i = 0; i < DateTime.Parse(createDate).Month; i++)
+                    //    {
+                    //        row[i] = 0;
+                    //    }
+                    //    tableCollection[1].Rows.Add(row);
+                    //    chartsheet.DataBindings.BindToDataSource(tableCollection[1], positionStart, 4);
+                    //}
+
+                    //if(tableCollection[2].Rows.Count > 0)
+                    //{
+                    //    // avg luong mua hang
+                    //    chartsheet.DataBindings.BindToDataSource(tableCollection[2], 29, 1);
+                    //}
+                    //else
+                    //{
+                    //    DataRow row = tableCollection[2].NewRow();
+                    //    for (int i = 0; i < 3; i++)
+                    //    {
+                    //        row[i] = 0;
+                    //    }
+                    //    tableCollection[2].Rows.Add(row);
+                    //    chartsheet.DataBindings.BindToDataSource(tableCollection[2], 29,1);
+                    //}
+
+                    //int tb2Count = tableCollection[2].Rows.Count;
+                    //int positionStartAgv = (tb2Count > 0 ? tb2Count : 1) + 29;
+
+                    //if(tableCollection[3].Rows.Count > 0)
+                    //{
+                    //    // avg luong su dung
+                    //    chartsheet.DataBindings.BindToDataSource(tableCollection[3], positionStartAgv, 1);
+                    //}
+                    //else
+                    //{
+                    //    DataRow row = tableCollection[3].NewRow();
+                    //    for (int i = 0; i < 3; i++)
+                    //    {
+                    //        row[i] = 0;
+                    //    }
+                    //    tableCollection[3].Rows.Add(row);
+                    //    chartsheet.DataBindings.BindToDataSource(tableCollection[3], positionStartAgv, 1);
+                    //}
+                    #endregion
+
+                    int totalRow = DataDraw.Rows.Count;
+                    int columnIndex = DataDraw.Columns.Count;
 
                     string columnEnd = chartsheet.Columns[columnIndex].Heading;
-                    string range = "B29:" + columnEnd + "" + (29 + totalRow + 1);
+                    string range = "B29:" + columnEnd + "" + (29 + totalRow);
 
                     chart.SelectData(chartsheet[range], ChartDataDirection.Row);
-                    chart.Series[totalRow].ChangeType(ChartType.Line);
-                    chart.Series[totalRow].AxisGroup = AxisGroup.Secondary;
+
+                    chart.Series[totalRow - 1].ChangeType(ChartType.Line);
+                    chart.Series[totalRow - 1].AxisGroup = AxisGroup.Secondary;
 
                     CellRange range2 = chartsheet.Range[range];
                     range2.SetInsideBorders(Color.Black, BorderLineStyle.Thin);
                     range2.Borders.SetOutsideBorders(Color.Black, BorderLineStyle.Medium);
+
+                    Formatting rangeFormatting = chartsheet[range].BeginUpdateFormatting();
+                    rangeFormatting.Alignment.Vertical = SpreadsheetVerticalAlignment.Center;
+                    rangeFormatting.Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                    chartsheet[range].EndUpdateFormatting(rangeFormatting);
+
+                    Formatting rangeFormatting1 = chartsheet["B29:B"+ (29 + totalRow)].BeginUpdateFormatting();
+                    rangeFormatting1.Alignment.Vertical = SpreadsheetVerticalAlignment.Center;
+                    rangeFormatting1.Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
+                    chartsheet[range].EndUpdateFormatting(rangeFormatting1);
 
                     workbook.EndUpdate();
                 }

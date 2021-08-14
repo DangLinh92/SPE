@@ -113,6 +113,34 @@ namespace Wisol.MES.Classes
             }
         }
 
+        public static DataTable GetUnitBySparePart(string sparepartCode)
+        {
+            DataTable table = new DataTable();
+            try
+            {
+                if (!string.IsNullOrEmpty(sparepartCode))
+                {
+                    ResultDB m_ResultDB = Program.dbAccess.ExcuteProc("PKG_BUSINESS_UNIT_SPAREPART.GET_UNIT_BY_SPAREPART",
+                        new string[] { "A_DEPT_CODE", "A_SPARE_PART_CODE" },
+                        new string[] { Consts.DEPARTMENT, sparepartCode });
+
+                    if (m_ResultDB.ReturnInt == 0)
+                    {
+                        table = m_ResultDB.ReturnDataSet.Tables[0];
+                    }
+                    else
+                    {
+                        MsgBox.Show("NOT FOUND UNIT FOR SPAREPART", MsgType.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+            return table;
+        }
+
         public static void ShowImge(string image, DevExpress.XtraEditors.PictureEdit img)
         {
             if (!string.IsNullOrWhiteSpace(image))
