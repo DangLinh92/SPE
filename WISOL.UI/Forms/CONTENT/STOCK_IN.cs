@@ -7,6 +7,7 @@ using System.IO;
 using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
+using Wisol.MES.Forms.CONTENT.POP;
 using Wisol.MES.Inherit;
 
 namespace Wisol.MES.Forms.CONTENT
@@ -435,6 +436,13 @@ namespace Wisol.MES.Forms.CONTENT
             POP.HISTORY_GOOD_RE_ISS popup = new POP.HISTORY_GOOD_RE_ISS();
             popup.Kho = stlKho.EditValue.NullString();
             popup.ShowDialog();
+        }
+
+        private void btnListSparepartLend_Click(object sender, EventArgs e)
+        {
+            POP.SPAREPART_LEND pop = new SPAREPART_LEND();
+            pop.sparepartCode = "";
+            pop.ShowDialog();
         }
     }
 }

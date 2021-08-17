@@ -392,6 +392,12 @@
     <Compile Include="Forms\CONTENT\POP\PURCHASE_REQUEST_DETAIL.Designer.cs">
       <DependentUpon>PURCHASE_REQUEST_DETAIL.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\POP\SPAREPART_LEND.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\SPAREPART_LEND.Designer.cs">
+      <DependentUpon>SPAREPART_LEND.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\POP\UPDATE_SPAREPART_CODE.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -827,6 +833,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\PURCHASE_REQUEST_DETAIL.resx">
       <DependentUpon>PURCHASE_REQUEST_DETAIL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\SPAREPART_LEND.resx">
+      <DependentUpon>SPAREPART_LEND.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\UPDATE_SPAREPART_CODE.resx">
       <DependentUpon>UPDATE_SPAREPART_CODE.cs</DependentUpon>

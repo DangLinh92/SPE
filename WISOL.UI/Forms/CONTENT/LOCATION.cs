@@ -736,7 +736,7 @@ namespace Wisol.MES.Forms.CONTENT
             string designFile = string.Empty;
             string xml_content_Original = string.Empty;
             string xml_content = label;
-
+            string sparepartInput = spareCode;
             try
             {
                 designFile = "STOCK_LABEL.xml";
@@ -750,6 +750,8 @@ namespace Wisol.MES.Forms.CONTENT
 
                 for (int j = 0; j < numberLabel; j++)
                 {
+                    spareCode = sparepartInput;
+
                     xml_content = label;
 
                     string lblPosition_condition = position + (position == "" ? (condition == "NG" ? "NG" : "") : (condition == "NG" ? ".NG" : ""));
@@ -774,7 +776,6 @@ namespace Wisol.MES.Forms.CONTENT
                         Exdate = "2199-01-01";
                     }
 
-                    string oldSparepart = spareCode;
                     if (spareCode.Length > 8 && Consts.DEPARTMENT == Consts.SMT_DEPT)
                     {
                         if (Consts.SPAREPART_TO_ID != null && Consts.SPAREPART_TO_ID.Rows.Count > 0)
@@ -797,7 +798,7 @@ namespace Wisol.MES.Forms.CONTENT
                        quantityInLabel + Consts.STR_SPILIT_ON_BARCODE +
                        unit;
 
-                    string newSparepartCode = oldSparepart + "-" + quantityInLabel + unit;
+                    string newSparepartCode = sparepartInput + "-" + quantityInLabel + unit;
                     if (Exdate == "2199-01-01")
                     {
                         xml_content = xml_content.Replace("$BARCODE$", barcode).Replace("$CODE$", newSparepartCode).Replace("$POSITION$", lblPosition_condition).Replace("$EXP_DATE$", "IN TIME:" + timeIn);

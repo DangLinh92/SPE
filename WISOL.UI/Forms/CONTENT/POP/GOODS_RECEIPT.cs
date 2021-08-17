@@ -1,12 +1,14 @@
 ﻿using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraPrinting;
 using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -48,7 +50,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
         public string ReceiptCode { get; set; }
         public string INOUT { get; set; }
 
-        private float ExchangeRate;
         public string StockCode { get; set; }
         public DataTable SparePartData { get; set; }
         public string CurrentStatus { get; set; }
@@ -83,6 +84,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 Data.Columns.Add("LOCATION", typeof(string));
                 Data.Columns.Add("QUANTITY_NG", typeof(string));
                 Data.Columns.Add("EXPRIRED_DATE", typeof(string));
+                Data.Columns.Add("IS_INTEGRATED", typeof(string)); // thiết bị tích hợp theo máy
 
                 base.mBindData.BindGridLookEdit(cboStatus, STATUS, "CODE", "NAME");
 
@@ -144,19 +146,25 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 txtQuantity_NG.Enabled = false;
                 dateExpired.Enabled = false;
-                loNote.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                mmNote.Enabled = false;
                 cheIsScanbarcode.Checked = true;
                 txtScanbarcode.Focus();
+                cheIsReturn.Enabled = false;
+                btnListSparepartPay.Enabled = false;
+                btnCreateLendCode.Enabled = true;
             }
             else
             {
+                cheIsReturn.Enabled = true;
                 txtQuantity_NG.Enabled = true;
                 dateExpired.Enabled = true;
                 loNote.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                mmNote.Enabled = true;
                 cheIsScanbarcode.Checked = false;
                 cheIsScanbarcode.Enabled = false;
                 txtScanbarcode.Enabled = false;
                 stlSparePartCode.Focus();
+                btnCreateLendCode.Enabled = false;
             }
 
             if (Mode == Consts.MODE_DELETE)
@@ -212,7 +220,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             item["RETURN_TIME"].NullString(),
                             item["LOCATION"].NullString(),
                             item["QUANTITY_NG"].NullString(),
-                            item["EXPRIRED_DATE"].NullString()
+                            item["EXPRIRED_DATE"].NullString(),
+                            item["IS_INTEGRATED"].NullString()
                         );
                 }
                 base.mBindData.BindGridView(gcList, Data);
@@ -315,6 +324,16 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         checkRow["NAME"] = stlSparePartCode.Text;
                         checkRow["QUANTITY_NG"] = txtQuantity_NG.EditValue.NullString() == "" ? "0" : txtQuantity_NG.EditValue.NullString();
                         checkRow["EXPRIRED_DATE"] = dateExpired.EditValue.NullString() == "" ? "2199-01-01" : dateExpired.EditValue.NullString();
+                        checkRow["IS_INTEGRATED"] = cheIsIntegrated.Checked ?"True":"False";
+
+                        if (cheIsReturn.Checked)
+                        {
+                            checkRow["RETURN_TIME"] = dateReturnTime.EditValue.NullString();
+                        }
+                        else
+                        {
+                            checkRow["RETURN_TIME"] = DBNull.Value;
+                        }
                     }
                     else
                     {
@@ -342,6 +361,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         row["NAME"] = stlSparePartCode.Text;
                         row["QUANTITY_NG"] = txtQuantity_NG.EditValue.NullString() == "" ? "0" : txtQuantity_NG.EditValue.NullString();
                         row["EXPRIRED_DATE"] = dateExpired.EditValue.NullString() == "" ? "2199-01-01" : dateExpired.EditValue.NullString();
+                        row["IS_INTEGRATED"] = cheIsIntegrated.Checked ? "True" : "False";
+                        if (cheIsReturn.Checked)
+                        {
+                            row["RETURN_TIME"] = dateReturnTime.EditValue.NullString();
+                        }
+                        else
+                        {
+                            row["RETURN_TIME"] = DBNull.Value;
+                        }
 
                         Data.Rows.Add(row);
                     }
@@ -706,6 +734,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             gvList.Columns["PRICE_US"].Visible = false;
             gvList.Columns["AMOUNT_VN"].Visible = false;
             gvList.Columns["AMOUNT_US"].Visible = false;
+            gvList.Columns["IS_INTEGRATED"].Visible = false;
 
             #region format column
             //gvList.Columns["PRICE_VN"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -869,6 +898,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             mmCause.EditValue = gvList.GetDataRow(RowHandle)["CAUSE"].NullString();
             mmNote.EditValue = gvList.GetDataRow(RowHandle)["NOTE"].NullString();
             txtQuantity_NG.EditValue = gvList.GetDataRow(RowHandle)["QUANTITY_NG"].NullString() == "" ? "0" : gvList.GetDataRow(RowHandle)["QUANTITY_NG"].NullString();
+            cheIsIntegrated.Checked = gvList.GetDataRow(RowHandle)["IS_INTEGRATED"].NullString() == "True" ? true : false;
 
             string dateEx = gvList.GetDataRow(RowHandle)["EXPRIRED_DATE"].NullString();
 
@@ -1024,12 +1054,17 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 }
 
                 base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_GOODS_RECEIPT_ISSUE.PUT",
-                    new string[] { "A_USER", "A_DELIVER_RECEIVER" }, "A_DATA",
-                    new string[] { Consts.USER_INFO.Id, txtDelivererAndReceiver.EditValue.NullString() }, Data);
+                    new string[] { "A_USER", "A_DELIVER_RECEIVER","A_RETURN_SPARE_PART_ID" }, "A_DATA",
+                    new string[] { Consts.USER_INFO.Id, txtDelivererAndReceiver.EditValue.NullString(), txtPAY_CODE.EditValue.NullString() }, Data);
 
                 if (mResultDB.ReturnInt == 0)
                 {
                     MsgBox.Show(base.mResultDB.ReturnString.Translation(), MsgType.Information);
+                    if (txtPAY_CODE.EditValue.NullString() != "")
+                    {
+                        GetLabelTemplate();
+                        PrintLendCode(Data.Rows[0]["SPARE_PART_CODE"].NullString(), txtPAY_CODE.EditValue.NullString(), Math.Ceiling(decimal.Parse(Data.Rows[0]["QUANTITY"].NullString())));
+                    }
                     ClearRight();
                     ClearItemAdd();
                 }
@@ -1793,5 +1828,183 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             stlSparePartCode.EditValue = stlMemoryData.EditValue;
         }
+
+        private void cheIsIntegrated_CheckedChanged(object sender, EventArgs e)
+        {
+            txtQuantity_NG.Enabled = !cheIsIntegrated.Checked;
+        }
+
+        private void cheIsReturn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cheIsReturn.Checked && INOUT == "IN")
+            {
+                dateReturnTime.EditValue = DateTime.Now;
+                btnListSparepartPay.Enabled = true;
+            }
+            else
+            {
+                btnListSparepartPay.Enabled = false;
+            }
+        }
+
+        private void btnListSparepartPay_Click(object sender, EventArgs e)
+        {
+            if (stlSparePartCode.EditValue.NullString() == "")
+                return;
+
+            POP.SPAREPART_LEND pop = new SPAREPART_LEND();
+            pop.sparepartCode = stlSparePartCode.EditValue.NullString();
+            pop.ShowDialog();
+            txtPAY_CODE.Text = SPAREPART_LEND.PAY_CODE;
+        }
+
+        /// <summary>
+        /// Tạo mã mượn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_MRP.CREATE_LEND_CODE",
+                     new string[] { "A_DEPARTMENT" },
+                     new string[] { Consts.DEPARTMENT });
+
+                if (mResultDB.ReturnInt == 0)
+                {
+                    if (mResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                    {
+                        txtPAY_CODE.EditValue = mResultDB.ReturnDataSet.Tables[0].Rows[0]["CODE"].NullString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        #region print LEND CODE
+        private void PrintLendCode(string spareCode, string lendCode,decimal numberLabel)
+        {
+            #region print
+            string designFile = string.Empty;
+            string xml_content_Original = string.Empty;
+            string xml_content = label;
+            try
+            {
+                designFile = "STOCK_LABEL.xml";
+
+                XtraReport reportPrint = new XtraReport();
+
+                ReportPrintTool pt1 = new ReportPrintTool(reportPrint);
+                pt1.PrintingSystem.StartPrint += new PrintDocumentEventHandler(PrintingSystem_StartPrint);
+
+                List<XtraReport> reports = new List<XtraReport>();
+
+                for (int j = 0; j < numberLabel; j++)
+                {
+                    xml_content = label;
+
+                    xml_content = xml_content.Replace("$BARCODE$", lendCode).Replace("$CODE$", spareCode).Replace("$POSITION$", lendCode).Replace("$EXP_DATE$", "IN TIME:" + DateTime.Now.ToString("yyyy-MM-dd"));
+
+                    xml_content = xml_content.Replace("&", "&amp;");
+                    File.WriteAllText(designFile, xml_content);
+
+                    XtraReport report = new XtraReport();
+                    report.PrintingSystem.ShowPrintStatusDialog = false;
+                    report.PrintingSystem.ShowMarginsWarning = false;
+                    report.LoadLayoutFromXml(designFile);
+
+                    int leftMargine = report.Margins.Left + 0;
+                    int rightMargine = report.Margins.Right;
+                    int topMargine = report.Margins.Top + 0;
+                    int bottomMargine = report.Margins.Bottom;
+                    if (leftMargine < 0)
+                    {
+                        leftMargine = 0;
+                    }
+                    if (topMargine < 0)
+                    {
+                        topMargine = 0;
+                    }
+                    report.Margins = new System.Drawing.Printing.Margins(leftMargine, rightMargine, topMargine, bottomMargine);
+                    report.CreateDocument();
+
+                    reports.Add(report);
+                    File.Delete(designFile);
+
+                }
+
+                foreach (XtraReport report in reports)
+                {
+                    ReportPrintTool pts = new ReportPrintTool(report);
+                    pts.PrintingSystem.StartPrint +=
+                        new PrintDocumentEventHandler(reportsStartPrintEventHandler);
+                }
+
+                pt1.PrintDialog();
+                foreach (XtraReport report in reports)
+                {
+                    ReportPrintTool pts = new ReportPrintTool(report);
+                    pts.Print();
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+            #endregion
+        }
+
+        private PrinterSettings prnSettings;
+        private void reportsStartPrintEventHandler(object sender, PrintDocumentEventArgs e)
+        {
+            int pageCount = e.PrintDocument.PrinterSettings.ToPage;
+            e.PrintDocument.PrinterSettings = prnSettings;
+
+            // The following line is required if the number of pages for each report varies, 
+            // and you consistently need to print all pages.
+            e.PrintDocument.PrinterSettings.ToPage = pageCount;
+        }
+
+        private void PrintingSystem_StartPrint(object sender, PrintDocumentEventArgs e)
+        {
+            prnSettings = e.PrintDocument.PrinterSettings;
+        }
+
+
+        string label;
+        private void GetLabelTemplate()
+        {
+            try
+            {
+                PrinterSettings settings = new PrinterSettings();
+                label = "";
+                string LabelCode = "QRCODE_" + settings.PrinterName;
+                base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LABEL.GET_TEMP", new string[] { "A_CODE_TEMP" }, new string[] { LabelCode });//QRCODE
+                if (mResultDB.ReturnInt == 0)
+                {
+                    if (base.mResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                    {
+                        label = base.mResultDB.ReturnDataSet.Tables[0].Rows[0]["LABEL"].NullString();
+                    }
+                    else
+                    {
+                        MsgBox.Show("Không có File label cho printer " + settings.PrinterName, MsgType.Warning);
+                    }
+                }
+                else
+                {
+                    MsgBox.Show(mResultDB.ReturnString.Translation(), MsgType.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+        #endregion
     }
 }

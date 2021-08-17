@@ -33,7 +33,7 @@ namespace Wisol.MES.Forms.CONTENT
         }
 
         private List<string> IDInit = new List<string>();
-        private void InitData(bool isFirst = false)
+        private void InitData(bool isFirst = false, string mrp = "")
         {
             try
             {
@@ -51,6 +51,11 @@ namespace Wisol.MES.Forms.CONTENT
                         base.m_BindData.BindGridLookEdit(stlUnit, data[1], "CODE", "NAME");
                         base.m_BindData.BindGridLookEdit(stlSparepart, data[2], "CODE", "NAME_VI");
                         base.m_BindData.BindGridLookEdit(stlStatus, data[3], "CODE", "NAME");
+                    }
+                    else
+                    {
+                        if (mrp != "")
+                            stlMrpCode.EditValue = mrp;
                     }
 
                     DataRow newRowUp = data[4].NewRow();
@@ -232,7 +237,7 @@ namespace Wisol.MES.Forms.CONTENT
                         {
                             MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
                             MRP_TYPE.Rows.Clear();
-                            InitData();
+                            InitData(false, stlMrpCode.EditValue.NullString());
                         }
                         else
                         {
@@ -241,7 +246,14 @@ namespace Wisol.MES.Forms.CONTENT
                     }
                     else
                     {
-                        MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                        base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_MRP.DETACK_ALL_MRP", new string[] { "A_DEPT_CODE", "A_USER", "A_MRP" }, new string[] { Consts.DEPARTMENT, Consts.USER_INFO.Id, stlMrpCode.EditValue.NullString() });
+
+                        if (m_ResultDB.ReturnInt == 0)
+                        {
+                            MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                            MRP_TYPE.Rows.Clear();
+                            InitData(false, stlMrpCode.EditValue.NullString());
+                        }
                     }
                 }
             }
@@ -642,7 +654,7 @@ namespace Wisol.MES.Forms.CONTENT
             if (e.RowHandle <= 0)
             {
                 e.Appearance.BackColor = Color.FromArgb(229, 231, 233);
-                return; 
+                return;
             }
 
             string status = gvListBelow.GetRowCellValue(e.RowHandle, "STATUS").NullString();
