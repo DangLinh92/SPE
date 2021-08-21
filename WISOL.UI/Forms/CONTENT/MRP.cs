@@ -51,6 +51,8 @@ namespace Wisol.MES.Forms.CONTENT
                         base.m_BindData.BindGridLookEdit(stlUnit, data[1], "CODE", "NAME");
                         base.m_BindData.BindGridLookEdit(stlSparepart, data[2], "CODE", "NAME_VI");
                         base.m_BindData.BindGridLookEdit(stlStatus, data[3], "CODE", "NAME");
+
+                        stlStatus.EditValue = "NEW";
                     }
                     else
                     {

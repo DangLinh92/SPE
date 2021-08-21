@@ -681,6 +681,7 @@ namespace Wisol.MES.Forms.CONTENT
                             dateTimeIn_Move.EditValue = data.Rows[0]["TIME_IN"].NullString();
 
                             //-- fill to move position
+                            UnitMoveOld = "";
                             stlSparepartCode_Move.EditValue = data.Rows[0]["SPARE_PART_CODE"].NullString();
                             txtQuantityMove.EditValue = data.Rows[0]["QUANTITY"].NullString();
                             txtOld_Location.EditValue = data.Rows[0]["LOCATION"].NullString();
@@ -691,6 +692,7 @@ namespace Wisol.MES.Forms.CONTENT
                             dateExpired_Move.Enabled = false;
                             stlSparepartCode_Move.Enabled = false;
                             txtOld_Location.Enabled = false;
+                            UnitMoveOld = stlUnitMove.EditValue.NullString();
                         }
                     }
                     else
@@ -1399,6 +1401,7 @@ namespace Wisol.MES.Forms.CONTENT
         private void stlSparepartCode_Move_EditValueChanged(object sender, EventArgs e)
         {
             GetUnitBySparePart(stlSparepartCode_Move.EditValue.NullString(), stlUnitMove);
+            UnitMoveOld = "";
         }
 
         private void bntClearMemory_Click(object sender, EventArgs e)
@@ -1448,6 +1451,21 @@ namespace Wisol.MES.Forms.CONTENT
             POP.HISTORY_MOVE_LOCATION popup = new POP.HISTORY_MOVE_LOCATION();
             popup.StockCode = stlKho.EditValue.NullString();
             popup.ShowDialog();
+        }
+
+        private string UnitMoveOld = "";
+        private void stlUnitMove_EditValueChanged(object sender, EventArgs e)
+        {
+            if(UnitMoveOld == "")
+            {
+                UnitMoveOld = stlUnitMove.EditValue.NullString();
+            }
+            else
+            {
+                float quantityMove = MES.Classes.Common.ConvertUnit(UnitMoveOld, stlUnitMove.EditValue.NullString(), stlSparepartCode_Move.EditValue.NullString()) * float.Parse(txtQuantityMove.EditValue.IfNullIsZero());
+                txtQuantityMove.EditValue = quantityMove;
+                UnitMoveOld = stlUnitMove.EditValue.NullString();
+            }
         }
     }
 }

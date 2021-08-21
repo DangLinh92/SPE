@@ -51,6 +51,7 @@ namespace Wisol.MES.Inherit
             mBindData = new BindData(service, Consts.USER_INFO.Language, Consts.GLOSSARY.Copy());
             mResultDB = new ResultDB();
         }
+
         private void FormType_Load(object sender, EventArgs e)
         {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -386,7 +387,11 @@ namespace Wisol.MES.Inherit
         {
             if (e.KeyCode == Keys.Escape)
             {
-                this.Close();
+                DialogResult dialogResult = MsgBox.Show("YOU ARE WANT CLOSE SCREEN!!!", MsgType.Warning, DialogType.OkCancel);
+                if (dialogResult == DialogResult.OK)
+                {
+                    this.Close();
+                }
             }
         }
 

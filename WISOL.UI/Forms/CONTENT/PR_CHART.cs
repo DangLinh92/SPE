@@ -26,7 +26,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void PR_CHART_Load(object sender, EventArgs e)
         {
-            lblPR_Code.Text = "Mã yêu cầu mua hàng :" + MainID.Split('^')[0];
+            lblPR_Code.Text = "Mã yêu cầu mua hàng :" + MainID.NullString().Split('^')[0];
             LoadItemsCheck();
             LoadTemplate();
         }
@@ -35,8 +35,8 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-                string prCode = MainID.Split('^')[0];
-                string mrpCode = MainID.Split('^')[1];
+                string prCode = MainID.NullString().Split('^')[0];
+                string mrpCode = MainID.NullString().Split('^')[1];
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PR.GET_PR_DETAIL_BY_CODE",
                new string[] { "A_DEPARTMENT", "A_PR_CODE", "A_MRP_CODE" },
@@ -72,11 +72,11 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-                string prCode = MainID.Split('^')[0];
-                string mrpCode = MainID.Split('^')[1];
-                string createDate = MainID.Split('^')[2];
-                string totalValue = MainID.Split('^')[3];
-                string totalValueUS = MainID.Split('^')[4];
+                string prCode = MainID.NullString().Split('^')[0];
+                string mrpCode = MainID.NullString().Split('^')[1];
+                string createDate = MainID.NullString().Split('^')[2];
+                string totalValue = MainID.NullString().Split('^')[3];
+                string totalValueUS = MainID.NullString().Split('^')[4];
 
                 if (string.IsNullOrEmpty(createDate))
                 {
@@ -105,6 +105,7 @@ namespace Wisol.MES.Forms.CONTENT
                     sheet.Cells["A3"].Value = "BỘ PHẬN: " + Consts.DEPARTMENT;
                     sheet.Cells["A4"].Value = "Ngày " + DateTime.Parse(createDate).Day + " Tháng " + DateTime.Parse(createDate).Month + " Năm " + DateTime.Parse(createDate).Year;
                     sheet.Cells["A8"].Value = "3. 구입 금액 (Giá trị đơn hàng) :" + (double.Parse(totalValue)).ToString("c") + " VND /" + (double.Parse(totalValueUS)).ToString("c") + "USD";
+                    sheet.Cells["A9"].Value = "4.구매 요청(PR.NO) :" + prCode;
                     sheet.Cells["H11"].Value = "Tồn kho tháng " + (DateTime.Parse(createDate).AddMonths(-1).Month);
                     sheet.Cells["J11"].Value = "SL dùng tháng " + (DateTime.Parse(createDate).Month);
                     sheet.Cells["K11"].Value = "SL dùng tháng " + (DateTime.Parse(createDate).AddMonths(1).Month);
@@ -137,7 +138,7 @@ namespace Wisol.MES.Forms.CONTENT
                 }
 
                 var lstCode = cheCbSparepartCollection.EditValue.NullString().Replace(",", "$");
-                string createDate = MainID.Split('^')[2];
+                string createDate = MainID.NullString().Split('^')[2];
 
                 base.m_ResultDB =
                     base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PR.GET_DATA_REPORT_CHART",

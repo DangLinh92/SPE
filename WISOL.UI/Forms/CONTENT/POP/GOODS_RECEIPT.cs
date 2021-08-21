@@ -96,7 +96,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     SparePartData = base.mResultDB.ReturnDataSet.Tables[1];
                     base.mBindData.BindGridLookEdit(stlSparePartCode, base.mResultDB.ReturnDataSet.Tables[1], "CODE", "NAME_VI");
                     base.mBindData.BindGridLookEdit(stlKho, base.mResultDB.ReturnDataSet.Tables[2], "CODE", "NAME");
-                    base.mBindData.BindGridLookEdit(stlOrderCode, base.mResultDB.ReturnDataSet.Tables[4], "ORDER_ID", "TITLE");
+                    base.mBindData.BindGridLookEdit(stlOrderCode, base.mResultDB.ReturnDataSet.Tables[4], "PO_ID", "TITLE");
 
                     DataTable tmp = new DataTable();
                     tmp.Columns.Add("CODE");

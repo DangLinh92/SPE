@@ -354,7 +354,7 @@ namespace Wisol.MES
             }
         }
 
-        public void NewPageFromOtherPage(string moduleCode, string moduleName, string moduleAuth, string accessType,string mainID)
+        public void NewPageFromOtherPage(string moduleCode, string moduleName, string moduleAuth, string accessType,object mainID)
         {
             try
             {

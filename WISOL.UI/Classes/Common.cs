@@ -221,11 +221,17 @@ namespace Wisol.MES.Classes
             return 1;
         }
 
-        public static DataTable GetDataTable(GridView view)
+        public static DataTable GetDataTable(GridView view, string[] arrNoAdd)
         {
             DataTable dt = new DataTable();
             foreach (GridColumn c in view.Columns)
-                dt.Columns.Add(c.FieldName);
+            {
+                if (!arrNoAdd.Contains(c.FieldName))
+                {
+                    dt.Columns.Add(c.FieldName);
+                }
+            }
+              
 
             for (int r = 0; r < view.RowCount; r++)
             {

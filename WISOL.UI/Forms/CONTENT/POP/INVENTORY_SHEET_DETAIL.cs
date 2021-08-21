@@ -27,6 +27,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         public string TimeFrom { get; set; }
         public string TimeTo { get; set; }
         public string Title { get; set; }
+        public string InventorySheetMonth { get; set; }
 
         private void ShowData()
         {
@@ -40,6 +41,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 txtTitle.EditValue = Title;
                 dateFrom.EditValue = TimeFrom;
                 dateTo.EditValue = TimeTo;
+                dateMonthSheetDetail.EditValue = InventorySheetMonth;
 
                 GetData("PKG_BUSINESS_INVENTORY_SHEET.GET_DETAIL", new string[] { "A_SHEET_ID", "A_DEPT_CODE", "A_STOCK" }, new string[] { SheetId, Consts.DEPARTMENT, Kho });
             }
@@ -304,7 +306,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             DialogResult dialogResult = MsgBox.Show("MSG_COM_INVENTORY_QUANTITY_REAL".Translation(), MsgType.Warning, DialogType.OkCancel);
             if (dialogResult == DialogResult.OK)
             {
-                DataTable data = Wisol.MES.Classes.Common.GetDataTable(gvList);
+                gvList.ClearColumnsFilter();
+
+                DataTable data = Wisol.MES.Classes.Common.GetDataTable(gvList,new string[] { });
                 if (data != null && data.Rows.Count > 0)
                 {
                     base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_INVENTORY_SHEET.INSERT_BATCH_INVENTORY_REAL",

@@ -72,5 +72,40 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
             this.Close();
         }
+
+        private void gvList_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            if (e.RowHandle < 0)
+                return;
+
+            if(e.Column.FieldName == "DATE_PAY")
+            {
+                string isPay = gvList.GetRowCellValue(e.RowHandle, "IS_PAY").NullString();
+
+                if (gvList.GetRowCellValue(e.RowHandle, "DATE_PAY").NullString() != "")
+                {
+                    if(isPay == "False")
+                    {
+                        DateTime datePay = DateTime.Parse(gvList.GetRowCellValue(e.RowHandle, "DATE_PAY").NullString());
+                        if (datePay.ToString("yyyyMMdd") == DateTime.Now.ToString("yyyyMMdd"))
+                        {
+                            e.Appearance.BackColor = Color.FromArgb(255, 204, 204);
+                        }
+                        else if (datePay.AddDays(-1).ToString("yyyyMMdd") == DateTime.Now.ToString("yyyyMMdd"))
+                        {
+                            e.Appearance.BackColor = Color.FromArgb(255, 229, 204);
+                        }
+                        else
+                        {
+                            e.Appearance.BackColor = Color.FromArgb(50, 205, 50);
+                        }
+                    }
+                    else
+                    {
+                        e.Appearance.BackColor = Color.FromArgb(192, 192, 192);
+                    }
+                }
+            }
+        }
     }
 }

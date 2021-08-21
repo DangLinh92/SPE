@@ -88,12 +88,12 @@ namespace Wisol.MES.Forms.CONTENT
                         base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PR.DELETE", new string[] { "A_DEPARTMENT", "A_PR_CODE" }, new string[] { Consts.DEPARTMENT, gvList.GetRowCellValue(e.RowHandle, "PR_CODE").NullString() });
                         if (base.m_ResultDB.ReturnInt == 0)
                         {
-                            MsgBox.Show(m_ResultDB.ReturnString, MsgType.Information);
+                            MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
                             GetDataInit();
                         }
                         else
                         {
-                            MsgBox.Show(m_ResultDB.ReturnString, MsgType.Error);
+                            MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
                         }
                     }
                 }
@@ -138,7 +138,7 @@ namespace Wisol.MES.Forms.CONTENT
                 }
                 else
                 {
-                    MsgBox.Show(m_ResultDB.ReturnString, MsgType.Error);
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
                 }
             }
             catch (Exception ex)

@@ -404,6 +404,24 @@
     <Compile Include="Forms\CONTENT\POP\UPDATE_SPAREPART_CODE.Designer.cs">
       <DependentUpon>UPDATE_SPAREPART_CODE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\POP\PO_CREATE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\PO_CREATE.Designer.cs">
+      <DependentUpon>PO_CREATE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\PO_EXPORT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\PO_EXPORT.Designer.cs">
+      <DependentUpon>PO_EXPORT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\PO_LIST.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\PO_LIST.Designer.cs">
+      <DependentUpon>PO_LIST.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\PR_CHART.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -840,6 +858,15 @@
     <EmbeddedResource Include="Forms\CONTENT\POP\UPDATE_SPAREPART_CODE.resx">
       <DependentUpon>UPDATE_SPAREPART_CODE.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\PO_CREATE.resx">
+      <DependentUpon>PO_CREATE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\PO_EXPORT.resx">
+      <DependentUpon>PO_EXPORT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\PO_LIST.resx">
+      <DependentUpon>PO_LIST.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\PR_CHART.resx">
       <DependentUpon>PR_CHART.cs</DependentUpon>
     </EmbeddedResource>
@@ -1006,6 +1033,9 @@
       <DependentUpon>DialogueWait.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="OpenPOMigration%28WHC%29.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest">
       <SubType>Designer</SubType>
@@ -1253,6 +1283,9 @@
     <Content Include="Images\Properties_32x32.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\purchase_order.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Question_32x32.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1390,6 +1423,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\MRP.png" />
+    <Content Include="Resources\purchase_order.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SPW-ICON.ico" />
     <Content Include="spw.ico" />
     <None Include="bin\Debug\Itenso.TimePeriod.dll" />

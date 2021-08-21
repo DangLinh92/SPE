@@ -126,6 +126,7 @@ namespace Wisol.MES.Forms.CONTENT
                     pop.TimeFrom = gvList.GetRowCellValue(e.RowHandle, "DATE_START").NullString();
                     pop.TimeTo = gvList.GetRowCellValue(e.RowHandle, "DATE_END").NullString();
                     pop.Title = gvList.GetRowCellValue(e.RowHandle, "TITLE").NullString();
+                    pop.InventorySheetMonth = gvList.GetRowCellValue(e.RowHandle, "INVENTORY_SHEET_MONTH").NullString();
                     pop.ShowDialog();
                     InitData();
                 }

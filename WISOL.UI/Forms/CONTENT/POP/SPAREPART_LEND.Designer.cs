@@ -33,14 +33,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SPAREPART_LEND));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl1 = new Wisol.XLayoutControl();
-            this.btnDelete = new Wisol.XSimpleButton(this.components);
             this.btnSave = new Wisol.XSimpleButton(this.components);
             this.gcList = new Wisol.XGridControl();
             this.gvList = new Wisol.XGridView();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
@@ -50,7 +48,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -65,7 +62,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // xLayoutControl1
             // 
-            this.xLayoutControl1.Controls.Add(this.btnDelete);
             this.xLayoutControl1.Controls.Add(this.btnSave);
             this.xLayoutControl1.Controls.Add(this.gcList);
             this.xLayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -75,18 +71,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.xLayoutControl1.Size = new System.Drawing.Size(795, 405);
             this.xLayoutControl1.TabIndex = 0;
             this.xLayoutControl1.Text = "xLayoutControl1";
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(145, 12);
-            this.btnDelete.MaximumSize = new System.Drawing.Size(129, 30);
-            this.btnDelete.MinimumSize = new System.Drawing.Size(129, 30);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(129, 30);
-            this.btnDelete.StyleController = this.xLayoutControl1;
-            this.btnDelete.TabIndex = 11;
-            this.btnDelete.Text = "DELETE";
             // 
             // btnSave
             // 
@@ -115,6 +99,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             this.gvList.GridControl = this.gcList;
             this.gvList.Name = "gvList";
+            this.gvList.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gvList_RowCellStyle);
             // 
             // Root
             // 
@@ -122,8 +107,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
-            this.layoutControlItem2,
-            this.layoutControlItem8});
+            this.layoutControlItem2});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(795, 405);
             this.Root.TextVisible = false;
@@ -142,18 +126,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem2.Control = this.btnSave;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem2.Size = new System.Drawing.Size(775, 34);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
-            // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.Control = this.btnDelete;
-            this.layoutControlItem8.Location = new System.Drawing.Point(133, 0);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(642, 34);
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem8.TextVisible = false;
             // 
             // SPAREPART_LEND
             // 
@@ -174,7 +149,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,7 +164,5 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private XSimpleButton btnSave;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
-        private XSimpleButton btnDelete;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
     }
 }

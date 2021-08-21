@@ -52,6 +52,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_UPDATE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_Edit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.col_Delete = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemButtonEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repositoryItemButtonEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -64,8 +66,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dateTimeChartRangeControlClient1 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
-            this.col_Delete = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemButtonEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.col_INVENTORY_SHEET_MONTH = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -81,6 +82,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
@@ -93,7 +95,6 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit3)).BeginInit();
             this.SuspendLayout();
             // 
             // xLayoutControl1
@@ -236,6 +237,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.gvList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.col_SHEET_ID,
             this.col_TITLE,
+            this.col_INVENTORY_SHEET_MONTH,
             this.col_DATE_START,
             this.col_DATE_END,
             this.col_USER_CREATE,
@@ -271,7 +273,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_START.FieldName = "DATE_START";
             this.col_DATE_START.Name = "col_DATE_START";
             this.col_DATE_START.Visible = true;
-            this.col_DATE_START.VisibleIndex = 2;
+            this.col_DATE_START.VisibleIndex = 3;
             this.col_DATE_START.Width = 150;
             // 
             // col_DATE_END
@@ -280,7 +282,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_END.FieldName = "DATE_END";
             this.col_DATE_END.Name = "col_DATE_END";
             this.col_DATE_END.Visible = true;
-            this.col_DATE_END.VisibleIndex = 3;
+            this.col_DATE_END.VisibleIndex = 4;
             this.col_DATE_END.Width = 150;
             // 
             // col_USER_CREATE
@@ -289,7 +291,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_USER_CREATE.FieldName = "USER_CREATE";
             this.col_USER_CREATE.Name = "col_USER_CREATE";
             this.col_USER_CREATE.Visible = true;
-            this.col_USER_CREATE.VisibleIndex = 4;
+            this.col_USER_CREATE.VisibleIndex = 5;
             this.col_USER_CREATE.Width = 150;
             // 
             // col_USER_UPDATE
@@ -298,7 +300,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_USER_UPDATE.FieldName = "USER_UPDATE";
             this.col_USER_UPDATE.Name = "col_USER_UPDATE";
             this.col_USER_UPDATE.Visible = true;
-            this.col_USER_UPDATE.VisibleIndex = 5;
+            this.col_USER_UPDATE.VisibleIndex = 6;
             this.col_USER_UPDATE.Width = 150;
             // 
             // col_DATE_UPDATE
@@ -307,7 +309,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_UPDATE.FieldName = "DATE_UPDATE";
             this.col_DATE_UPDATE.Name = "col_DATE_UPDATE";
             this.col_DATE_UPDATE.Visible = true;
-            this.col_DATE_UPDATE.VisibleIndex = 6;
+            this.col_DATE_UPDATE.VisibleIndex = 7;
             this.col_DATE_UPDATE.Width = 150;
             // 
             // col_Edit
@@ -317,7 +319,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_Edit.FieldName = "EDIT";
             this.col_Edit.Name = "col_Edit";
             this.col_Edit.Visible = true;
-            this.col_Edit.VisibleIndex = 7;
+            this.col_Edit.VisibleIndex = 8;
             this.col_Edit.Width = 50;
             // 
             // repositoryItemButtonEdit1
@@ -327,6 +329,24 @@ namespace Wisol.MES.Forms.CONTENT
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.repositoryItemButtonEdit1.ContextImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit1.ContextImageOptions.Image")));
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            // 
+            // col_Delete
+            // 
+            this.col_Delete.Caption = "DELETE";
+            this.col_Delete.ColumnEdit = this.repositoryItemButtonEdit3;
+            this.col_Delete.FieldName = "DELETE";
+            this.col_Delete.Name = "col_Delete";
+            this.col_Delete.Visible = true;
+            this.col_Delete.VisibleIndex = 9;
+            this.col_Delete.Width = 25;
+            // 
+            // repositoryItemButtonEdit3
+            // 
+            this.repositoryItemButtonEdit3.AutoHeight = false;
+            this.repositoryItemButtonEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemButtonEdit3.ContextImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit3.ContextImageOptions.Image")));
+            this.repositoryItemButtonEdit3.Name = "repositoryItemButtonEdit3";
             // 
             // repositoryItemButtonEdit2
             // 
@@ -434,23 +454,13 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // col_Delete
+            // col_INVENTORY_SHEET_MONTH
             // 
-            this.col_Delete.Caption = "DELETE";
-            this.col_Delete.ColumnEdit = this.repositoryItemButtonEdit3;
-            this.col_Delete.FieldName = "DELETE";
-            this.col_Delete.Name = "col_Delete";
-            this.col_Delete.Visible = true;
-            this.col_Delete.VisibleIndex = 8;
-            this.col_Delete.Width = 25;
-            // 
-            // repositoryItemButtonEdit3
-            // 
-            this.repositoryItemButtonEdit3.AutoHeight = false;
-            this.repositoryItemButtonEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.repositoryItemButtonEdit3.ContextImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit3.ContextImageOptions.Image")));
-            this.repositoryItemButtonEdit3.Name = "repositoryItemButtonEdit3";
+            this.col_INVENTORY_SHEET_MONTH.Caption = "Kiểm kê cho tháng";
+            this.col_INVENTORY_SHEET_MONTH.FieldName = "INVENTORY_SHEET_MONTH";
+            this.col_INVENTORY_SHEET_MONTH.Name = "col_INVENTORY_SHEET_MONTH";
+            this.col_INVENTORY_SHEET_MONTH.Visible = true;
+            this.col_INVENTORY_SHEET_MONTH.VisibleIndex = 2;
             // 
             // INVENTORY_SHEET
             // 
@@ -475,6 +485,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
@@ -487,7 +498,6 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -530,5 +540,6 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraGrid.Columns.GridColumn col_Delete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit3;
+        private DevExpress.XtraGrid.Columns.GridColumn col_INVENTORY_SHEET_MONTH;
     }
 }

@@ -76,7 +76,7 @@ namespace Wisol.MES.Inherit
         public BindData m_BindData = null;
         public ResultDB m_ResultDB = null;
 
-        public string MainID { get; set; } = string.Empty;
+        public object MainID { get; set; }
 
         public string ModuleCode { get; set; } = string.Empty;
         public string ModuleName { get; set; } = string.Empty;
