@@ -106,6 +106,7 @@ namespace Wisol.MES
         public static string STATUS_RECEIVE = "RECEIVE";
         public static string STATUS_ACCEPT = "ACCEPT";
         public static string STATUS_WAIT_ACCEPT = "WAIT_ACCEPT";
+        public static string STATUS_CANCEL = "CANCEL";
 
         public static char CHARACTER_SPILIT_ON_BARCODE = '$';
         public static string STR_SPILIT_ON_BARCODE = "$";

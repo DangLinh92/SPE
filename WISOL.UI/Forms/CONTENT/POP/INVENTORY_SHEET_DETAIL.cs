@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
@@ -155,7 +152,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                         if (dateExpiried == "2199-01-01")
                         {
-                            dateExpiried = "";
+                            dateExpiried = string.Empty;
                         }
 
                         for (int i = 0; i < gvList.RowCount; i++)
@@ -164,7 +161,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             {
                                 string time = gvList.GetRowCellValue(i, "TIME_IN").NullString();
                                 DateTime timeIn = new DateTime();
-                                if (time != "")
+                                if (time != string.Empty)
                                 {
                                     DateTime.TryParse(time, out timeIn);
                                 }
@@ -177,12 +174,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                     if (unit == gvList.GetRowCellValue(i, "UNIT").NullString())
                                     {
                                         string oldQuantity = gvList.GetRowCellValue(i, "QUANTITY_REAL").NullString();
-                                        if (oldQuantity == "")
+                                        if (oldQuantity == string.Empty)
                                         {
                                             oldQuantity = "0";
                                         }
 
-                                        if (quantity == "")
+                                        if (quantity == string.Empty)
                                         {
                                             quantity = "0";
                                         }
@@ -199,7 +196,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                     else
                                     {
                                         string oldQuantity = gvList.GetRowCellValue(i, "QUANTITY_REAL").NullString();
-                                        if (oldQuantity == "")
+                                        if (oldQuantity == string.Empty)
                                         {
                                             oldQuantity = "0";
                                         }
@@ -297,7 +294,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtSheetId.EditValue.NullString() == "" || dateFrom.EditValue.NullString() == "" || dateTo.EditValue.NullString() == "" || txtTitle.EditValue.NullString() == "")
+            if (txtSheetId.EditValue.NullString() == string.Empty || dateFrom.EditValue.NullString() == string.Empty || dateTo.EditValue.NullString() == string.Empty || txtTitle.EditValue.NullString() == string.Empty)
             {
                 MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                 return;
@@ -308,7 +305,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 gvList.ClearColumnsFilter();
 
-                DataTable data = Wisol.MES.Classes.Common.GetDataTable(gvList,new string[] { });
+                DataTable data = Wisol.MES.Classes.Common.GetDataTable(gvList, new string[] { });
                 if (data != null && data.Rows.Count > 0)
                 {
                     base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_INVENTORY_SHEET.INSERT_BATCH_INVENTORY_REAL",

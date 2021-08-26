@@ -181,7 +181,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.txtExchangeRate.Enabled = false;
             this.txtExchangeRate.IsRequire = false;
-            this.txtExchangeRate.Location = new System.Drawing.Point(151, 45);
+            this.txtExchangeRate.Location = new System.Drawing.Point(160, 45);
             this.txtExchangeRate.Name = "txtExchangeRate";
             this.txtExchangeRate.NullBackColor = System.Drawing.Color.Lime;
             this.txtExchangeRate.NullValidation = false;
@@ -189,7 +189,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtExchangeRate.Properties.Appearance.Options.UseBackColor = true;
             this.txtExchangeRate.Properties.Mask.EditMask = "c3";
             this.txtExchangeRate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtExchangeRate.Size = new System.Drawing.Size(563, 20);
+            this.txtExchangeRate.Size = new System.Drawing.Size(554, 20);
             this.txtExchangeRate.StyleController = this.xLayoutControl1;
             this.txtExchangeRate.TabIndex = 12;
             // 
@@ -230,13 +230,13 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.txtID.Enabled = false;
             this.txtID.IsRequire = false;
-            this.txtID.Location = new System.Drawing.Point(119, 12);
+            this.txtID.Location = new System.Drawing.Point(128, 12);
             this.txtID.Name = "txtID";
             this.txtID.NullBackColor = System.Drawing.Color.Lime;
             this.txtID.NullValidation = false;
             this.txtID.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtID.Properties.Appearance.Options.UseBackColor = true;
-            this.txtID.Size = new System.Drawing.Size(291, 20);
+            this.txtID.Size = new System.Drawing.Size(282, 20);
             this.txtID.StyleController = this.xLayoutControl2;
             this.txtID.TabIndex = 23;
             // 
@@ -291,7 +291,7 @@ namespace Wisol.MES.Forms.CONTENT
             // txtPriceUS
             // 
             this.txtPriceUS.IsRequire = false;
-            this.txtPriceUS.Location = new System.Drawing.Point(119, 156);
+            this.txtPriceUS.Location = new System.Drawing.Point(128, 156);
             this.txtPriceUS.Name = "txtPriceUS";
             this.txtPriceUS.NullBackColor = System.Drawing.Color.Lime;
             this.txtPriceUS.NullValidation = false;
@@ -299,7 +299,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtPriceUS.Properties.Appearance.Options.UseBackColor = true;
             this.txtPriceUS.Properties.Mask.EditMask = "c3";
             this.txtPriceUS.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtPriceUS.Size = new System.Drawing.Size(185, 20);
+            this.txtPriceUS.Size = new System.Drawing.Size(176, 20);
             this.txtPriceUS.StyleController = this.xLayoutControl2;
             this.txtPriceUS.TabIndex = 18;
             this.txtPriceUS.EditValueChanged += new System.EventHandler(this.txtPriceUS_EditValueChanged);
@@ -307,13 +307,13 @@ namespace Wisol.MES.Forms.CONTENT
             // datePrice
             // 
             this.datePrice.EditValue = null;
-            this.datePrice.Location = new System.Drawing.Point(119, 180);
+            this.datePrice.Location = new System.Drawing.Point(128, 180);
             this.datePrice.Name = "datePrice";
             this.datePrice.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.datePrice.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.datePrice.Size = new System.Drawing.Size(291, 20);
+            this.datePrice.Size = new System.Drawing.Size(282, 20);
             this.datePrice.StyleController = this.xLayoutControl2;
             this.datePrice.TabIndex = 17;
             // 
@@ -342,7 +342,7 @@ namespace Wisol.MES.Forms.CONTENT
             // txtPriceVN
             // 
             this.txtPriceVN.IsRequire = false;
-            this.txtPriceVN.Location = new System.Drawing.Point(119, 132);
+            this.txtPriceVN.Location = new System.Drawing.Point(128, 132);
             this.txtPriceVN.Name = "txtPriceVN";
             this.txtPriceVN.NullBackColor = System.Drawing.Color.Lime;
             this.txtPriceVN.NullValidation = false;
@@ -350,7 +350,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtPriceVN.Properties.Appearance.Options.UseBackColor = true;
             this.txtPriceVN.Properties.Mask.EditMask = "c3";
             this.txtPriceVN.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtPriceVN.Size = new System.Drawing.Size(185, 20);
+            this.txtPriceVN.Size = new System.Drawing.Size(176, 20);
             this.txtPriceVN.StyleController = this.xLayoutControl2;
             this.txtPriceVN.TabIndex = 8;
             this.txtPriceVN.EditValueChanged += new System.EventHandler(this.txtPriceVN_EditValueChanged);
@@ -360,20 +360,20 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtQuantity.EditValue = "1";
             this.txtQuantity.Enabled = false;
             this.txtQuantity.IsRequire = false;
-            this.txtQuantity.Location = new System.Drawing.Point(119, 108);
+            this.txtQuantity.Location = new System.Drawing.Point(128, 108);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.NullBackColor = System.Drawing.Color.Lime;
             this.txtQuantity.NullValidation = false;
             this.txtQuantity.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtQuantity.Properties.Appearance.Options.UseBackColor = true;
-            this.txtQuantity.Size = new System.Drawing.Size(291, 20);
+            this.txtQuantity.Size = new System.Drawing.Size(282, 20);
             this.txtQuantity.StyleController = this.xLayoutControl2;
             this.txtQuantity.TabIndex = 7;
             // 
             // stlUnit
             // 
             this.stlUnit.EditValue = "";
-            this.stlUnit.Location = new System.Drawing.Point(119, 84);
+            this.stlUnit.Location = new System.Drawing.Point(128, 84);
             this.stlUnit.Name = "stlUnit";
             this.stlUnit.Properties.Appearance.Options.UseTextOptions = true;
             this.stlUnit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -382,7 +382,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.stlUnit.Properties.ImmediatePopup = true;
             this.stlUnit.Properties.NullText = "";
             this.stlUnit.Properties.PopupView = this.aceGridLookUpEdit3View;
-            this.stlUnit.Size = new System.Drawing.Size(291, 20);
+            this.stlUnit.Size = new System.Drawing.Size(282, 20);
             this.stlUnit.StyleController = this.xLayoutControl2;
             this.stlUnit.TabIndex = 6;
             // 
@@ -397,7 +397,7 @@ namespace Wisol.MES.Forms.CONTENT
             // stlSparepartCode
             // 
             this.stlSparepartCode.EditValue = "";
-            this.stlSparepartCode.Location = new System.Drawing.Point(119, 60);
+            this.stlSparepartCode.Location = new System.Drawing.Point(128, 60);
             this.stlSparepartCode.Name = "stlSparepartCode";
             this.stlSparepartCode.Properties.Appearance.Options.UseTextOptions = true;
             this.stlSparepartCode.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -406,7 +406,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.stlSparepartCode.Properties.ImmediatePopup = true;
             this.stlSparepartCode.Properties.NullText = "";
             this.stlSparepartCode.Properties.PopupView = this.aceGridLookUpEdit2View;
-            this.stlSparepartCode.Size = new System.Drawing.Size(291, 20);
+            this.stlSparepartCode.Size = new System.Drawing.Size(282, 20);
             this.stlSparepartCode.StyleController = this.xLayoutControl2;
             this.stlSparepartCode.TabIndex = 5;
             this.stlSparepartCode.EditValueChanged += new System.EventHandler(this.stlSparepartCode_EditValueChanged);
@@ -422,7 +422,7 @@ namespace Wisol.MES.Forms.CONTENT
             // stlMemory
             // 
             this.stlMemory.EditValue = "";
-            this.stlMemory.Location = new System.Drawing.Point(119, 36);
+            this.stlMemory.Location = new System.Drawing.Point(128, 36);
             this.stlMemory.Name = "stlMemory";
             this.stlMemory.Properties.Appearance.Options.UseTextOptions = true;
             this.stlMemory.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -431,7 +431,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.stlMemory.Properties.ImmediatePopup = true;
             this.stlMemory.Properties.NullText = "";
             this.stlMemory.Properties.PopupView = this.aceGridLookUpEdit1View;
-            this.stlMemory.Size = new System.Drawing.Size(291, 20);
+            this.stlMemory.Size = new System.Drawing.Size(282, 20);
             this.stlMemory.StyleController = this.xLayoutControl2;
             this.stlMemory.TabIndex = 4;
             this.stlMemory.EditValueChanged += new System.EventHandler(this.stlMemory_EditValueChanged);
@@ -624,6 +624,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.repositoryItemTextEdit1});
             this.gcList.Size = new System.Drawing.Size(1220, 642);
             this.gcList.TabIndex = 8;
+            this.gcList.UseEmbeddedNavigator = true;
             this.gcList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvList});
             // 

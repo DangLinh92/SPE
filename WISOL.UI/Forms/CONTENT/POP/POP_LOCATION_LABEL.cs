@@ -2,7 +2,6 @@
 using DevExpress.XtraTreeList.Nodes;
 using System;
 using System.IO;
-using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
 using Wisol.MES.Inherit;
@@ -22,7 +21,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             try
             {
 
-                base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LOCATION@PRINT_LABEL", new string[] { "A_DEPARTMENT", "A_ROLE" }, new string[] { Consts.DEPARTMENT,Consts.USER_INFO.UserRole});
+                base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LOCATION@PRINT_LABEL", new string[] { "A_DEPARTMENT", "A_ROLE" }, new string[] { Consts.DEPARTMENT, Consts.USER_INFO.UserRole });
                 if (mResultDB.ReturnInt == 0)
                 {
                     treeList1.KeyFieldName = "CODE";
@@ -94,7 +93,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
-            
+
         }
     }
 }

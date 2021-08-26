@@ -170,26 +170,26 @@ namespace Wisol.MES.Forms.CONTENT
             // dateFromTime
             // 
             this.dateFromTime.EditValue = null;
-            this.dateFromTime.Location = new System.Drawing.Point(74, 12);
+            this.dateFromTime.Location = new System.Drawing.Point(83, 12);
             this.dateFromTime.Name = "dateFromTime";
             this.dateFromTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateFromTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateFromTime.Size = new System.Drawing.Size(573, 20);
+            this.dateFromTime.Size = new System.Drawing.Size(564, 20);
             this.dateFromTime.StyleController = this.xLayoutControl2;
             this.dateFromTime.TabIndex = 7;
             // 
             // dateToTime
             // 
             this.dateToTime.EditValue = null;
-            this.dateToTime.Location = new System.Drawing.Point(713, 12);
+            this.dateToTime.Location = new System.Drawing.Point(722, 12);
             this.dateToTime.Name = "dateToTime";
             this.dateToTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateToTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateToTime.Size = new System.Drawing.Size(520, 20);
+            this.dateToTime.Size = new System.Drawing.Size(511, 20);
             this.dateToTime.StyleController = this.xLayoutControl2;
             this.dateToTime.TabIndex = 6;
             // 
@@ -244,6 +244,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.gvList.GridControl = this.gcList;
             this.gvList.Name = "gvList";
             this.gvList.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gvList_RowCellClick);
+            this.gvList.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gvList_RowCellStyle);
             // 
             // col_PR_CODE
             // 

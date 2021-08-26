@@ -1,21 +1,15 @@
-﻿using DevExpress.XtraEditors.Repository;
-using DevExpress.XtraGrid.Views.Base;
+﻿using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Media;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
@@ -101,7 +95,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     DataTable tmp = new DataTable();
                     tmp.Columns.Add("CODE");
                     tmp.Columns.Add("NAME");
-                    string selectedValueFirt = "";
+                    string selectedValueFirt = string.Empty;
                     foreach (DataRow item in base.mResultDB.ReturnDataSet.Tables[5].Rows)
                     {
                         if (INOUT == Consts.IN)
@@ -212,10 +206,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             item["AMOUNT_US"].NullString(),
                             item["CAUSE"].NullString(),
                             item["NOTE"].NullString(),
-                            "",
-                            "",
-                            "",
-                            item["CREATE_DATE"].NullString(), "", "", "", "",
+string.Empty,
+string.Empty,
+string.Empty,
+                            item["CREATE_DATE"].NullString(), string.Empty, string.Empty, string.Empty, string.Empty,
                             item["TYPE_IN_OUT_CODE"].NullString(),
                             item["RETURN_TIME"].NullString(),
                             item["LOCATION"].NullString(),
@@ -322,9 +316,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         checkRow["NOTE"] = mmNote.EditValue.NullString();
                         checkRow["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
                         checkRow["NAME"] = stlSparePartCode.Text;
-                        checkRow["QUANTITY_NG"] = txtQuantity_NG.EditValue.NullString() == "" ? "0" : txtQuantity_NG.EditValue.NullString();
-                        checkRow["EXPRIRED_DATE"] = dateExpired.EditValue.NullString() == "" ? "2199-01-01" : dateExpired.EditValue.NullString();
-                        checkRow["IS_INTEGRATED"] = cheIsIntegrated.Checked ?"True":"False";
+                        checkRow["QUANTITY_NG"] = txtQuantity_NG.EditValue.NullString() == string.Empty ? "0" : txtQuantity_NG.EditValue.NullString();
+                        checkRow["EXPRIRED_DATE"] = dateExpired.EditValue.NullString() == string.Empty ? "2199-01-01" : dateExpired.EditValue.NullString();
+                        checkRow["IS_INTEGRATED"] = cheIsIntegrated.Checked ? "True" : "False";
 
                         if (cheIsReturn.Checked)
                         {
@@ -359,8 +353,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         row["NOTE"] = mmNote.EditValue.NullString();
                         row["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
                         row["NAME"] = stlSparePartCode.Text;
-                        row["QUANTITY_NG"] = txtQuantity_NG.EditValue.NullString() == "" ? "0" : txtQuantity_NG.EditValue.NullString();
-                        row["EXPRIRED_DATE"] = dateExpired.EditValue.NullString() == "" ? "2199-01-01" : dateExpired.EditValue.NullString();
+                        row["QUANTITY_NG"] = txtQuantity_NG.EditValue.NullString() == string.Empty ? "0" : txtQuantity_NG.EditValue.NullString();
+                        row["EXPRIRED_DATE"] = dateExpired.EditValue.NullString() == string.Empty ? "2199-01-01" : dateExpired.EditValue.NullString();
                         row["IS_INTEGRATED"] = cheIsIntegrated.Checked ? "True" : "False";
                         if (cheIsReturn.Checked)
                         {
@@ -449,7 +443,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                         DateTime exDate;
                         string valueDicItem;
-                        if (expiredDate.Contains("2199") || expiredDate == "" || !DateTime.TryParse(expiredDate, out exDate)) // no expired date
+                        if (expiredDate.Contains("2199") || expiredDate == string.Empty || !DateTime.TryParse(expiredDate, out exDate)) // no expired date
                         {
                             valueDicItem = quantity + "_" + condition + "_" + "2199-01-01";
                         }
@@ -507,7 +501,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         checkRow["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
                         checkRow["RETURN_TIME"] = dateReturnTime.EditValue.NullString();
 
-                        string location = "";
+                        string location = string.Empty;
                         foreach (var item in LocationDic)
                         {
                             location += item.Key + "_" + item.Value + ",";
@@ -538,7 +532,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         row["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
                         row["RETURN_TIME"] = dateReturnTime.EditValue.NullString();
 
-                        string location = "";
+                        string location = string.Empty;
                         foreach (var item in LocationDic)
                         {
                             location += item.Key + "_" + item.Value + ",";
@@ -604,7 +598,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         DateTime exDate;
                         string valueDicItem;
                         float Fquantity = float.Parse(quantity) * ConvertUnit(unit, newUnit, stlSparePartCode.EditValue.NullString());
-                        if (expiredDate.Contains("2199") || expiredDate == "" || !DateTime.TryParse(expiredDate, out exDate)) // no expired date
+                        if (expiredDate.Contains("2199") || expiredDate == string.Empty || !DateTime.TryParse(expiredDate, out exDate)) // no expired date
                         {
                             valueDicItem = Fquantity + "_" + condition + "_" + "2199-01-01";
                         }
@@ -648,7 +642,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         row["CREATE_DATE"] = dateInput.EditValue;
                         row["STOCK_CODE"] = stlKho.EditValue.NullString();
                         row["DEPT_CODE"] = Consts.DEPARTMENT;
-                        row["USER_CREATE"] = txtUserCreate.EditValue.NullString() == "" ? Consts.USER_INFO.Id : txtUserCreate.EditValue.NullString();
+                        row["USER_CREATE"] = txtUserCreate.EditValue.NullString() == string.Empty ? Consts.USER_INFO.Id : txtUserCreate.EditValue.NullString();
                         row["USER_SYS"] = Consts.USER_INFO.Id;
                         row["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
                         row["STATUS"] = cboStatus.EditValue.NullString();
@@ -659,7 +653,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         row["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
                         row["RETURN_TIME"] = dateReturnTime.EditValue.NullString();
 
-                        string location = "";
+                        string location = string.Empty;
                         foreach (var item in LocationDic)
                         {
                             location += item.Key + "_" + item.Value + ",";
@@ -680,7 +674,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         row["CREATE_DATE"] = dateInput.EditValue;
                         row["STOCK_CODE"] = stlKho.EditValue.NullString();
                         row["DEPT_CODE"] = Consts.DEPARTMENT;
-                        row["USER_CREATE"] = txtUserCreate.EditValue.NullString() == "" ? Consts.USER_INFO.Id : txtUserCreate.EditValue.NullString();
+                        row["USER_CREATE"] = txtUserCreate.EditValue.NullString() == string.Empty ? Consts.USER_INFO.Id : txtUserCreate.EditValue.NullString();
                         row["USER_SYS"] = Consts.USER_INFO.Id;
                         row["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
                         row["STATUS"] = cboStatus.EditValue.NullString();
@@ -692,7 +686,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         row["TYPE_IN_OUT_CODE"] = stlType.EditValue.NullString();
                         row["RETURN_TIME"] = dateReturnTime.EditValue.NullString();
 
-                        string location = "";
+                        string location = string.Empty;
                         foreach (var item in LocationDic)
                         {
                             location += item.Key + "_" + item.Value + ",";
@@ -789,20 +783,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             }
         }
 
-        private void txtAmountVN_Leave(object sender, EventArgs e)
-        {
-        }
-
-        private void txtPriceVN_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtPriceUS_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private bool recheckOk = true;
         private bool hasFillData = false;
         private void gvList_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
@@ -839,7 +819,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             if (INOUT == Consts.OUT)
             {
                 recheckOk = true;
-                conditionFindLocation = "";
+                conditionFindLocation = string.Empty;
 
                 string[] arrLocation = gvList.GetDataRow(RowHandle)["LOCATION"].NullString().Split(',');
                 for (int i = 0; i < arrLocation.Length; i++)
@@ -856,7 +836,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     string[] item = arr[i].Split('_');
                     for (int j = 0; j < gvLocation.DataRowCount; j++)
                     {
-                        string expiredDate = gvLocation.GetRowCellValue(j, "EXPIRED_DATE").NullString() == "" ? "2199-01-01" : gvLocation.GetRowCellValue(j, "EXPIRED_DATE").NullString();
+                        string expiredDate = gvLocation.GetRowCellValue(j, "EXPIRED_DATE").NullString() == string.Empty ? "2199-01-01" : gvLocation.GetRowCellValue(j, "EXPIRED_DATE").NullString();
                         string inTimeDate = gvLocation.GetRowCellValue(j, "TIME_IN").NullString();
                         DateTime exDate;
                         DateTime inDate;
@@ -874,7 +854,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                 exDate.ToString("yyyy-MM-dd") == item[3] && DateTime.Parse(inTimeDate).ToString("yyyy-MM-dd") == item[4])
                             )
                         {
-                            if (item[1] == "") item[1] = "0";
+                            if (item[1] == string.Empty) item[1] = "0";
 
                             gvLocation.SetRowCellValue(j, "QUANTITY_GET", item[1]);
 
@@ -897,15 +877,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
             txtQuantity.EditValue = gvList.GetDataRow(RowHandle)["QUANTITY"].NullString();
             mmCause.EditValue = gvList.GetDataRow(RowHandle)["CAUSE"].NullString();
             mmNote.EditValue = gvList.GetDataRow(RowHandle)["NOTE"].NullString();
-            txtQuantity_NG.EditValue = gvList.GetDataRow(RowHandle)["QUANTITY_NG"].NullString() == "" ? "0" : gvList.GetDataRow(RowHandle)["QUANTITY_NG"].NullString();
+            txtQuantity_NG.EditValue = gvList.GetDataRow(RowHandle)["QUANTITY_NG"].NullString() == string.Empty ? "0" : gvList.GetDataRow(RowHandle)["QUANTITY_NG"].NullString();
             cheIsIntegrated.Checked = gvList.GetDataRow(RowHandle)["IS_INTEGRATED"].NullString() == "True" ? true : false;
 
             string dateEx = gvList.GetDataRow(RowHandle)["EXPRIRED_DATE"].NullString();
 
-            if (dateEx != "")
+            if (dateEx != string.Empty)
             {
                 string ymd = DateTime.Parse(dateEx).ToString("yyyy-MM-dd");
-                dateExpired.EditValue = ymd == "2199-01-01" ? "" : ymd;
+                dateExpired.EditValue = ymd == "2199-01-01" ? string.Empty : ymd;
             }
             else
             {
@@ -1047,20 +1027,20 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     item["DEPT_CODE"] = Consts.DEPARTMENT;
                     item["INT_OUT"] = INOUT;
                     item["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
-                    item["USER_CREATE"] = txtUserCreate.EditValue.NullString() == "" ? Consts.USER_INFO.Id : txtUserCreate.EditValue.NullString();
+                    item["USER_CREATE"] = txtUserCreate.EditValue.NullString() == string.Empty ? Consts.USER_INFO.Id : txtUserCreate.EditValue.NullString();
                     item["CREATE_DATE"] = dateInput.EditValue.NullString();
                     item["STATUS"] = cboStatus.EditValue.NullString();
                     item["USER_SYS"] = Consts.USER_INFO.Id;
                 }
 
                 base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_GOODS_RECEIPT_ISSUE.PUT",
-                    new string[] { "A_USER", "A_DELIVER_RECEIVER","A_RETURN_SPARE_PART_ID" }, "A_DATA",
+                    new string[] { "A_USER", "A_DELIVER_RECEIVER", "A_RETURN_SPARE_PART_ID" }, "A_DATA",
                     new string[] { Consts.USER_INFO.Id, txtDelivererAndReceiver.EditValue.NullString(), txtPAY_CODE.EditValue.NullString() }, Data);
 
                 if (mResultDB.ReturnInt == 0)
                 {
                     MsgBox.Show(base.mResultDB.ReturnString.Translation(), MsgType.Information);
-                    if (txtPAY_CODE.EditValue.NullString() != "")
+                    if (txtPAY_CODE.EditValue.NullString() != string.Empty)
                     {
                         GetLabelTemplate();
                         PrintLendCode(Data.Rows[0]["SPARE_PART_CODE"].NullString(), txtPAY_CODE.EditValue.NullString(), Math.Ceiling(decimal.Parse(Data.Rows[0]["QUANTITY"].NullString())));
@@ -1128,11 +1108,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
-        }
-
-        private void stlSparePartCode_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private bool isScanbarcode = false;
@@ -1229,7 +1204,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     // SP-0001$01-01$OK$2021-06-30$2021-06-30$100$PACK
                     if (INOUT == Consts.OUT)
                     {
-                        conditionFindLocation = "";
+                        conditionFindLocation = string.Empty;
                         if (e.KeyCode == Keys.Enter)
                         {
                             isScanbarcode = true;
@@ -1279,7 +1254,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 }
                 else
                 {
-                    conditionFindLocation = "";
+                    conditionFindLocation = string.Empty;
                     return;
                 }
             }
@@ -1292,7 +1267,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private string GetConditionFromLocation(string sparepartCode, string location)
         {
-            if (location != "")
+            if (location != string.Empty)
             {
                 string[] arr = location.Split('_'); //location_quantity_condition_expired date_in time_unit
 
@@ -1303,7 +1278,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                     arr[3] + Consts.STR_SPILIT_WITH_QUANTITY + arr[1] + Consts.STR_SPILIT_WITH_QUANTITY + arr[5];
                 return condtion;
             }
-            return "";
+            return string.Empty;
         }
 
         private void txtScanbarcode_EditValueChanged(object sender, EventArgs e)
@@ -1404,16 +1379,16 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             string dateInWarehouse = gvLocation.GetRowCellValue(i, gvLocation.Columns["TIME_IN"]).NullString();
 
                             DateTime dateTimeInWareHouse;
-                            if (dateInWarehouse != "" || DateTime.TryParse(dateInWarehouse, out dateTimeInWareHouse))
+                            if (dateInWarehouse != string.Empty || DateTime.TryParse(dateInWarehouse, out dateTimeInWareHouse))
                             {
                                 dateInWarehouse = DateTime.Parse(dateInWarehouse).ToString("yyyy-MM-dd");
                             }
                             else
                             {
-                                dateInWarehouse = "";
+                                dateInWarehouse = string.Empty;
                             }
 
-                            dateExpiried = dateExpiried.NullString() == "" ? "2199-01-01" : DateTime.Parse(dateExpiried).ToString("yyyy-MM-dd");
+                            dateExpiried = dateExpiried.NullString() == string.Empty ? "2199-01-01" : DateTime.Parse(dateExpiried).ToString("yyyy-MM-dd");
 
                             string str =
                                   stlSparePartCode.EditValue.NullString() + Consts.STR_SPILIT_ON_BARCODE +
@@ -1423,9 +1398,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                   dateExpiried;
 
                             string lo = arr[k].Split(':')[0].Split(Consts.CHARACTER_SPILIT_ON_BARCODE)[1];
-                            if (lo == "" || lo == "W")
+                            if (lo == string.Empty || lo == "W")
                             {
-                                if (location == "")
+                                if (location == string.Empty)
                                 {
                                     str =
                                   stlSparePartCode.EditValue.NullString() + Consts.STR_SPILIT_ON_BARCODE +
@@ -1441,7 +1416,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                 string quantity_get = gvLocation.GetRowCellValue(i, "QUANTITY_GET").NullString();
                                 float newQuantity = 0;
 
-                                if (quantity_get != "")
+                                if (quantity_get != string.Empty)
                                 {
                                     newQuantity = ConvertUnit(arr[k].Split(':')[2], stlUnit.EditValue.NullString(), stlSparePartCode.EditValue.NullString()) * float.Parse(arr[k].Split(':')[1]) + float.Parse(quantity_get);
                                 }
@@ -1460,7 +1435,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                 else
                                 {
                                     MsgBox.Show("MSG_QUANTITY_INVALID".Translation(), MsgType.Warning);
-                                    txtScanbarcode.Text = "";
+                                    txtScanbarcode.Text = string.Empty;
                                     txtQuantity.Text = "0";
                                     isScanbarcode = false;
                                 }
@@ -1471,7 +1446,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     if (!checkExist)
                     {
                         // MsgBox.Show("NOT FOUND!", MsgType.Warning);
-                        txtScanbarcode.Text = "";
+                        txtScanbarcode.Text = string.Empty;
                         txtQuantity.Text = "0";
                     }
                     else
@@ -1849,7 +1824,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void btnListSparepartPay_Click(object sender, EventArgs e)
         {
-            if (stlSparePartCode.EditValue.NullString() == "")
+            if (stlSparePartCode.EditValue.NullString() == string.Empty)
                 return;
 
             POP.SPAREPART_LEND pop = new SPAREPART_LEND();
@@ -1886,7 +1861,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         }
 
         #region print LEND CODE
-        private void PrintLendCode(string spareCode, string lendCode,decimal numberLabel)
+        private void PrintLendCode(string spareCode, string lendCode, decimal numberLabel)
         {
             #region print
             string designFile = string.Empty;
@@ -1981,7 +1956,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             try
             {
                 PrinterSettings settings = new PrinterSettings();
-                label = "";
+                label = string.Empty;
                 string LabelCode = "QRCODE_" + settings.PrinterName;
                 base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LABEL.GET_TEMP", new string[] { "A_CODE_TEMP" }, new string[] { LabelCode });//QRCODE
                 if (mResultDB.ReturnInt == 0)

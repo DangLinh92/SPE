@@ -131,6 +131,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.dateTimeChartRangeControlClient2 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
             this.dateTimeChartRangeControlClient3 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
             this.dateTimeChartRangeControlClient4 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
+            this.btnReloadData = new Wisol.XSimpleButton(this.components);
+            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -203,6 +205,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             this.SuspendLayout();
             // 
             // xLayoutControl1
@@ -255,13 +258,13 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.txtID.Enabled = false;
             this.txtID.IsRequire = false;
-            this.txtID.Location = new System.Drawing.Point(137, 12);
+            this.txtID.Location = new System.Drawing.Point(146, 12);
             this.txtID.Name = "txtID";
             this.txtID.NullBackColor = System.Drawing.Color.Lime;
             this.txtID.NullValidation = false;
             this.txtID.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtID.Properties.Appearance.Options.UseBackColor = true;
-            this.txtID.Size = new System.Drawing.Size(270, 20);
+            this.txtID.Size = new System.Drawing.Size(261, 20);
             this.txtID.StyleController = this.xLayoutControl3;
             this.txtID.TabIndex = 22;
             // 
@@ -277,33 +280,33 @@ namespace Wisol.MES.Forms.CONTENT
             // dateNeedBuy
             // 
             this.dateNeedBuy.EditValue = null;
-            this.dateNeedBuy.Location = new System.Drawing.Point(137, 180);
+            this.dateNeedBuy.Location = new System.Drawing.Point(146, 180);
             this.dateNeedBuy.Name = "dateNeedBuy";
             this.dateNeedBuy.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateNeedBuy.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateNeedBuy.Size = new System.Drawing.Size(270, 20);
+            this.dateNeedBuy.Size = new System.Drawing.Size(261, 20);
             this.dateNeedBuy.StyleController = this.xLayoutControl3;
             this.dateNeedBuy.TabIndex = 20;
             // 
             // dateNeedRequired
             // 
             this.dateNeedRequired.EditValue = null;
-            this.dateNeedRequired.Location = new System.Drawing.Point(137, 156);
+            this.dateNeedRequired.Location = new System.Drawing.Point(146, 156);
             this.dateNeedRequired.Name = "dateNeedRequired";
             this.dateNeedRequired.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateNeedRequired.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateNeedRequired.Size = new System.Drawing.Size(270, 20);
+            this.dateNeedRequired.Size = new System.Drawing.Size(261, 20);
             this.dateNeedRequired.StyleController = this.xLayoutControl3;
             this.dateNeedRequired.TabIndex = 19;
             // 
             // stlMRP_CODE
             // 
             this.stlMRP_CODE.EditValue = "";
-            this.stlMRP_CODE.Location = new System.Drawing.Point(137, 36);
+            this.stlMRP_CODE.Location = new System.Drawing.Point(146, 36);
             this.stlMRP_CODE.Name = "stlMRP_CODE";
             this.stlMRP_CODE.Properties.Appearance.Options.UseTextOptions = true;
             this.stlMRP_CODE.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -312,7 +315,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.stlMRP_CODE.Properties.ImmediatePopup = true;
             this.stlMRP_CODE.Properties.NullText = "";
             this.stlMRP_CODE.Properties.PopupView = this.aceGridLookUpEdit1View;
-            this.stlMRP_CODE.Size = new System.Drawing.Size(270, 20);
+            this.stlMRP_CODE.Size = new System.Drawing.Size(261, 20);
             this.stlMRP_CODE.StyleController = this.xLayoutControl3;
             this.stlMRP_CODE.TabIndex = 18;
             // 
@@ -375,7 +378,7 @@ namespace Wisol.MES.Forms.CONTENT
             // txtQuantityNeedBuy
             // 
             this.txtQuantityNeedBuy.IsRequire = false;
-            this.txtQuantityNeedBuy.Location = new System.Drawing.Point(137, 84);
+            this.txtQuantityNeedBuy.Location = new System.Drawing.Point(146, 84);
             this.txtQuantityNeedBuy.Name = "txtQuantityNeedBuy";
             this.txtQuantityNeedBuy.NullBackColor = System.Drawing.Color.Lime;
             this.txtQuantityNeedBuy.NullValidation = false;
@@ -383,40 +386,40 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtQuantityNeedBuy.Properties.Appearance.Options.UseBackColor = true;
             this.txtQuantityNeedBuy.Properties.Mask.EditMask = "n";
             this.txtQuantityNeedBuy.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtQuantityNeedBuy.Size = new System.Drawing.Size(270, 20);
+            this.txtQuantityNeedBuy.Size = new System.Drawing.Size(261, 20);
             this.txtQuantityNeedBuy.StyleController = this.xLayoutControl3;
             this.txtQuantityNeedBuy.TabIndex = 12;
             // 
             // dateEndActual
             // 
             this.dateEndActual.EditValue = null;
-            this.dateEndActual.Location = new System.Drawing.Point(137, 228);
+            this.dateEndActual.Location = new System.Drawing.Point(146, 228);
             this.dateEndActual.Name = "dateEndActual";
             this.dateEndActual.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEndActual.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateEndActual.Size = new System.Drawing.Size(270, 20);
+            this.dateEndActual.Size = new System.Drawing.Size(261, 20);
             this.dateEndActual.StyleController = this.xLayoutControl3;
             this.dateEndActual.TabIndex = 10;
             // 
             // dateNeedFinish
             // 
             this.dateNeedFinish.EditValue = null;
-            this.dateNeedFinish.Location = new System.Drawing.Point(137, 204);
+            this.dateNeedFinish.Location = new System.Drawing.Point(146, 204);
             this.dateNeedFinish.Name = "dateNeedFinish";
             this.dateNeedFinish.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateNeedFinish.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateNeedFinish.Size = new System.Drawing.Size(270, 20);
+            this.dateNeedFinish.Size = new System.Drawing.Size(261, 20);
             this.dateNeedFinish.StyleController = this.xLayoutControl3;
             this.dateNeedFinish.TabIndex = 9;
             // 
             // stlStatus
             // 
             this.stlStatus.EditValue = "";
-            this.stlStatus.Location = new System.Drawing.Point(137, 132);
+            this.stlStatus.Location = new System.Drawing.Point(146, 132);
             this.stlStatus.Name = "stlStatus";
             this.stlStatus.Properties.Appearance.Options.UseTextOptions = true;
             this.stlStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -425,7 +428,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.stlStatus.Properties.ImmediatePopup = true;
             this.stlStatus.Properties.NullText = "";
             this.stlStatus.Properties.PopupView = this.aceGridLookUpEdit5View;
-            this.stlStatus.Size = new System.Drawing.Size(270, 20);
+            this.stlStatus.Size = new System.Drawing.Size(261, 20);
             this.stlStatus.StyleController = this.xLayoutControl3;
             this.stlStatus.TabIndex = 8;
             // 
@@ -440,7 +443,7 @@ namespace Wisol.MES.Forms.CONTENT
             // stlUnit
             // 
             this.stlUnit.EditValue = "";
-            this.stlUnit.Location = new System.Drawing.Point(137, 108);
+            this.stlUnit.Location = new System.Drawing.Point(146, 108);
             this.stlUnit.Name = "stlUnit";
             this.stlUnit.Properties.Appearance.Options.UseTextOptions = true;
             this.stlUnit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -449,7 +452,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.stlUnit.Properties.ImmediatePopup = true;
             this.stlUnit.Properties.NullText = "";
             this.stlUnit.Properties.PopupView = this.aceGridLookUpEdit4View;
-            this.stlUnit.Size = new System.Drawing.Size(270, 20);
+            this.stlUnit.Size = new System.Drawing.Size(261, 20);
             this.stlUnit.StyleController = this.xLayoutControl3;
             this.stlUnit.TabIndex = 7;
             // 
@@ -464,7 +467,7 @@ namespace Wisol.MES.Forms.CONTENT
             // stlSparepart
             // 
             this.stlSparepart.EditValue = "";
-            this.stlSparepart.Location = new System.Drawing.Point(137, 60);
+            this.stlSparepart.Location = new System.Drawing.Point(146, 60);
             this.stlSparepart.Name = "stlSparepart";
             this.stlSparepart.Properties.Appearance.Options.UseTextOptions = true;
             this.stlSparepart.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -473,7 +476,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.stlSparepart.Properties.ImmediatePopup = true;
             this.stlSparepart.Properties.NullText = "";
             this.stlSparepart.Properties.PopupView = this.aceGridLookUpEdit3View;
-            this.stlSparepart.Size = new System.Drawing.Size(270, 20);
+            this.stlSparepart.Size = new System.Drawing.Size(261, 20);
             this.stlSparepart.StyleController = this.xLayoutControl3;
             this.stlSparepart.TabIndex = 6;
             this.stlSparepart.EditValueChanged += new System.EventHandler(this.stlSparepart_EditValueChanged);
@@ -665,6 +668,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // xLayoutControl2
             // 
+            this.xLayoutControl2.Controls.Add(this.btnReloadData);
             this.xLayoutControl2.Controls.Add(this.btnNextPagePR);
             this.xLayoutControl2.Controls.Add(this.separatorControl1);
             this.xLayoutControl2.Controls.Add(this.gcListBelow);
@@ -684,7 +688,7 @@ namespace Wisol.MES.Forms.CONTENT
             // btnNextPagePR
             // 
             this.btnNextPagePR.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNextPagePR.ImageOptions.Image")));
-            this.btnNextPagePR.Location = new System.Drawing.Point(858, 12);
+            this.btnNextPagePR.Location = new System.Drawing.Point(725, 12);
             this.btnNextPagePR.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnNextPagePR.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnNextPagePR.Name = "btnNextPagePR";
@@ -696,9 +700,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // separatorControl1
             // 
-            this.separatorControl1.Location = new System.Drawing.Point(180, 376);
+            this.separatorControl1.Location = new System.Drawing.Point(189, 376);
             this.separatorControl1.Name = "separatorControl1";
-            this.separatorControl1.Size = new System.Drawing.Size(807, 20);
+            this.separatorControl1.Size = new System.Drawing.Size(798, 20);
             this.separatorControl1.TabIndex = 10;
             // 
             // gcListBelow
@@ -710,6 +714,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.repositoryItemButtonEdit2});
             this.gcListBelow.Size = new System.Drawing.Size(975, 351);
             this.gcListBelow.TabIndex = 9;
+            this.gcListBelow.UseEmbeddedNavigator = true;
             this.gcListBelow.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvListBelow});
             // 
@@ -883,7 +888,7 @@ namespace Wisol.MES.Forms.CONTENT
             // btnMRP_List
             // 
             this.btnMRP_List.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnMRP_List.ImageOptions.Image")));
-            this.btnMRP_List.Location = new System.Drawing.Point(725, 12);
+            this.btnMRP_List.Location = new System.Drawing.Point(592, 12);
             this.btnMRP_List.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnMRP_List.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnMRP_List.Name = "btnMRP_List";
@@ -896,7 +901,7 @@ namespace Wisol.MES.Forms.CONTENT
             // btnMrpCode
             // 
             this.btnMrpCode.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnMrpCode.ImageOptions.Image")));
-            this.btnMrpCode.Location = new System.Drawing.Point(592, 12);
+            this.btnMrpCode.Location = new System.Drawing.Point(459, 12);
             this.btnMrpCode.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnMrpCode.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnMrpCode.Name = "btnMrpCode";
@@ -922,7 +927,7 @@ namespace Wisol.MES.Forms.CONTENT
             // stlMrpCode
             // 
             this.stlMrpCode.EditValue = "";
-            this.stlMrpCode.Location = new System.Drawing.Point(180, 12);
+            this.stlMrpCode.Location = new System.Drawing.Point(189, 12);
             this.stlMrpCode.Name = "stlMrpCode";
             this.stlMrpCode.Properties.Appearance.Options.UseTextOptions = true;
             this.stlMrpCode.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -931,7 +936,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.stlMrpCode.Properties.ImmediatePopup = true;
             this.stlMrpCode.Properties.NullText = "";
             this.stlMrpCode.Properties.PopupView = this.aceGridLookUpEdit6View;
-            this.stlMrpCode.Size = new System.Drawing.Size(408, 20);
+            this.stlMrpCode.Size = new System.Drawing.Size(266, 20);
             this.stlMrpCode.StyleController = this.xLayoutControl2;
             this.stlMrpCode.TabIndex = 5;
             this.stlMrpCode.EditValueChanged += new System.EventHandler(this.stlMrpCode_EditValueChanged);
@@ -953,6 +958,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.repositoryItemButtonEdit1});
             this.gcList.Size = new System.Drawing.Size(975, 326);
             this.gcList.TabIndex = 4;
+            this.gcList.UseEmbeddedNavigator = true;
             this.gcList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvList});
             // 
@@ -1139,7 +1145,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem23,
             this.layoutControlItem21,
             this.layoutControlItem19,
-            this.layoutControlItem24});
+            this.layoutControlItem24,
+            this.layoutControlItem25});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(999, 797);
             this.layoutControlGroup1.TextVisible = false;
@@ -1158,14 +1165,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem17.Control = this.stlMrpCode;
             this.layoutControlItem17.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(580, 34);
+            this.layoutControlItem17.Size = new System.Drawing.Size(447, 34);
             this.layoutControlItem17.Text = "MRP_CODE";
             this.layoutControlItem17.TextSize = new System.Drawing.Size(165, 13);
             // 
             // layoutControlItem20
             // 
             this.layoutControlItem20.Control = this.btnMrpCode;
-            this.layoutControlItem20.Location = new System.Drawing.Point(580, 0);
+            this.layoutControlItem20.Location = new System.Drawing.Point(447, 0);
             this.layoutControlItem20.Name = "layoutControlItem20";
             this.layoutControlItem20.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem20.TextSize = new System.Drawing.Size(0, 0);
@@ -1193,7 +1200,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.layoutControlItem21.ContentHorzAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.layoutControlItem21.Control = this.btnMRP_List;
-            this.layoutControlItem21.Location = new System.Drawing.Point(713, 0);
+            this.layoutControlItem21.Location = new System.Drawing.Point(580, 0);
             this.layoutControlItem21.Name = "layoutControlItem21";
             this.layoutControlItem21.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem21.TextSize = new System.Drawing.Size(0, 0);
@@ -1212,7 +1219,7 @@ namespace Wisol.MES.Forms.CONTENT
             // layoutControlItem24
             // 
             this.layoutControlItem24.Control = this.btnNextPagePR;
-            this.layoutControlItem24.Location = new System.Drawing.Point(846, 0);
+            this.layoutControlItem24.Location = new System.Drawing.Point(713, 0);
             this.layoutControlItem24.Name = "layoutControlItem24";
             this.layoutControlItem24.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
@@ -1246,6 +1253,28 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem6.Size = new System.Drawing.Size(427, 826);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
+            // 
+            // btnReloadData
+            // 
+            this.btnReloadData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xSimpleButton1.ImageOptions.Image")));
+            this.btnReloadData.Location = new System.Drawing.Point(858, 12);
+            this.btnReloadData.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnReloadData.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnReloadData.Name = "btnReloadData";
+            this.btnReloadData.Size = new System.Drawing.Size(129, 30);
+            this.btnReloadData.StyleController = this.xLayoutControl2;
+            this.btnReloadData.TabIndex = 12;
+            this.btnReloadData.Text = "RELOAD DATA";
+            this.btnReloadData.Click += new System.EventHandler(this.btnReloadData_Click);
+            // 
+            // layoutControlItem25
+            // 
+            this.layoutControlItem25.Control = this.btnReloadData;
+            this.layoutControlItem25.Location = new System.Drawing.Point(846, 0);
+            this.layoutControlItem25.Name = "layoutControlItem25";
+            this.layoutControlItem25.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem25.TextVisible = false;
             // 
             // MRP
             // 
@@ -1327,6 +1356,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1434,5 +1464,7 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit2;
         private XSimpleButton btnNextPagePR;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
+        private XSimpleButton btnReloadData;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
     }
 }

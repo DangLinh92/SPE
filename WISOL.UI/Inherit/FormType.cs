@@ -21,6 +21,7 @@ using Wisol.BindDatas;
 using Wisol.Common;
 using Wisol.Components;
 using Wisol.DataAcess;
+using DialogType = Wisol.Components.DialogType;
 
 namespace Wisol.MES.Inherit
 {

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
 using Wisol.MES.Inherit;
@@ -15,9 +10,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
 {
     public partial class PO_CREATE : FormType
     {
-        public string PO_CODE_TEMP = "";
-        public string PO_ID = "";
-        public string Mode = "";
+        public string PO_CODE_TEMP = string.Empty;
+        public string PO_ID = string.Empty;
+        public string Mode = string.Empty;
 
         public PO_CREATE()
         {
@@ -27,7 +22,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void PO_CREATE_Load(object sender, EventArgs e)
         {
-            CREAT_PO_TYPE();
             InitData();
         }
 
@@ -71,7 +65,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     gvListPr_PO.OptionsView.ColumnAutoWidth = true;
                     gvListPr_PO.Columns["ID"].Visible = false;
 
-                    if (PO_ID != "")
+                    if (PO_ID != string.Empty)
                     {
                         stlPO.EditValue = PO_ID;
                     }
@@ -103,7 +97,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                         if (gvListPr_PO.Columns[i].FieldName.ToString().StartsWith("DATE"))
                         {
-                            if (value != "")
+                            if (value != string.Empty)
                             {
                                 newRow[gvListPr_PO.Columns[i].FieldName] = DateTime.Parse(value);
                             }
@@ -123,7 +117,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         }
                     }
 
-                    PutOderPR(stlPO.EditValue.NullString(), oldRow["PR_CODE"].NullString(), "PUR_RECEIPT", oldRow["DATE_NEED_FINISH"].NullString(), oldRow["DEPT_CODE"].NullString());
+                    PutOderPR(stlPO.EditValue.NullString(), oldRow["PR_CODE"].NullString(), "PUR_RECEIPT", oldRow["DATE_NEED_FINISH"].NullString(), oldRow["DEPT_CODE"].NullString(),"False");
                     gvListPr_PO.EndSort();
                     gvListPr.DeleteRow(e.RowHandle);
                 }
@@ -146,7 +140,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 try
                 {
                     string status = gvListPr_PO.GetRowCellValue(e.RowHandle, "STATUS").NullString();
-                    string[] arrStatus = { "", "ACCEPT", "NEW", "WAIT_ACCEPT", "PUR_RECEIPT","ORDER" };
+                    string[] arrStatus = { string.Empty, "ACCEPT", "NEW", "WAIT_ACCEPT", "PUR_RECEIPT", "ORDER" };
                     if (!arrStatus.Contains(status))
                     {
                         return;
@@ -160,7 +154,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         string value = oldRow[i].NullString();
                         if (gvListPr.Columns[i].FieldName.ToString().StartsWith("DATE"))
                         {
-                            if (value != "")
+                            if (value != string.Empty)
                             {
                                 newRow[gvListPr.Columns[i].FieldName] = DateTime.Parse(value);
                             }
@@ -180,7 +174,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         }
                     }
 
-                    PutOderPR("", oldRow["PR_CODE"].NullString(), "ACCEPT", oldRow["DATE_NEED_FINISH"].NullString(), oldRow["DEPT_CODE"].NullString());
+                    PutOderPR(string.Empty, oldRow["PR_CODE"].NullString(), "ACCEPT", oldRow["DATE_NEED_FINISH"].NullString(), oldRow["DEPT_CODE"].NullString(),"True");
                     gvListPr.EndSort();
                     gvListPr_PO.DeleteRow(e.RowHandle);
                 }
@@ -191,11 +185,11 @@ namespace Wisol.MES.Forms.CONTENT.POP
             }
         }
 
-        private void PutOderPR(string po_id, string prCode, string status, string dateFinish, string deptCode)
+        private void PutOderPR(string po_id, string prCode, string status, string dateFinish, string deptCode,string isDetack)
         {
             base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_ORDER_PR.PUT",
-                new string[] { "A_USER", "A_PO_ID", "A_PR_CODE", "A_STATUS", "A_DATE_NEED_FINISH", "A_DEPT_CODE_PR", "A_PO_ID_TEMP" },
-                new string[] { Consts.USER_INFO.Id, po_id, prCode, status, dateFinish, deptCode, PO_CODE_TEMP });
+                new string[] { "A_USER", "A_PO_ID", "A_PR_CODE", "A_STATUS", "A_DATE_NEED_FINISH", "A_DEPT_CODE_PR", "A_PO_ID_TEMP", "A_IS_DETACK" },
+                new string[] { Consts.USER_INFO.Id, po_id, prCode, status, dateFinish, deptCode, PO_CODE_TEMP,isDetack });
             if (mResultDB.ReturnInt != 0)
             {
                 throw new Exception(mResultDB.ReturnString);
@@ -213,10 +207,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 }
 
                 splashScreenManager1.ShowWaitForm();
-                string PR_LIST = "";
+                string PR_LIST = string.Empty;
                 for (int i = 1; i < gvListPr_PO.RowCount; i++)
                 {
-                    if (gvListPr_PO.GetRowCellValue(i, "PR_CODE").NullString() != "")
+                    if (gvListPr_PO.GetRowCellValue(i, "PR_CODE").NullString() != string.Empty)
                     {
                         PR_LIST += gvListPr_PO.GetRowCellValue(i, "PR_CODE").NullString() + "^";
                     }

@@ -18,7 +18,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 }
                 else
                     this.lctDepartment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-               
+
                 base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_MAKER.SHOW", new string[] { "A_CODE", "A_ROLE", "A_DEPARTMENT" }, new string[] { CODE, Consts.USER_INFO.UserRole, Consts.DEPARTMENT });
                 if (base.mResultDB.ReturnInt == 0)
                 {
@@ -69,6 +69,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private void btnCancel1_Click(object sender, EventArgs e)
         {
             this.Close();
-        } 
+        }
     }
 }

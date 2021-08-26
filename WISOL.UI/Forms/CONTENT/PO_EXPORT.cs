@@ -22,13 +22,18 @@ namespace Wisol.MES.Forms.CONTENT
             this.Load += PO_EXPORT_Load;
         }
 
+        private void PO_EXPORT_Load(object sender, EventArgs e)
+        {
+            InitData();
+        }
+
         private string PR_LIST;
         private string PO_CODE_TEMP;
         private string PO_ID;
         private string Mode;
         private DataTable PO_DETAIL_TYPE = new DataTable();
 
-        private void PO_EXPORT_Load(object sender, EventArgs e)
+        private void InitData()
         {
             PR_LIST = MainID.NullString().Split('$')[0];
             PO_CODE_TEMP = MainID.NullString().Split('$')[1];
@@ -66,15 +71,16 @@ namespace Wisol.MES.Forms.CONTENT
             PO_DETAIL_TYPE.Columns.Add("KOSTL_COST_CENTER");
             PO_DETAIL_TYPE.Columns.Add("DEPT_CODE");
 
-            if(Mode == Consts.MODE_VIEW)
+            if (Mode == Consts.MODE_VIEW)
             {
                 btnLoadFile.Enabled = false;
                 btnSave.Enabled = false;
                 LoadTemplate();
             }
-            else if(Mode == Consts.MODE_UPDATE)
+            else if (Mode == Consts.MODE_UPDATE)
             {
                 btnSave.Enabled = false;
+                btnLoadFile.PerformClick();
             }
         }
 
@@ -161,7 +167,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void GetDataForPOByID(Worksheet sheet)
         {
-            base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PO.GET_DETAIL_PO", new string[] { "A_PO_ID" }, new string[] { txtPO_ID.EditValue.NullString() });
+            base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PO.GET_DETAIL_PO", new string[] { "A_PO_ID_TEMP" }, new string[] { txtPO_Example.EditValue.NullString() });
             if (m_ResultDB.ReturnInt == 0)
             {
                 DataTableCollection tableCollection = base.m_ResultDB.ReturnDataSet.Tables;
@@ -176,6 +182,8 @@ namespace Wisol.MES.Forms.CONTENT
 
                 sheet.DataBindings.BindToDataSource(data, 3, 0);
                 PR_SP_DEPT = tableCollection[1];
+
+                txtTitle.EditValue = tableCollection[2].Rows[0]["TITLE"]; ;
             }
             else
             {
@@ -189,7 +197,7 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
-                saveFileDialog1.Filter = "exel files (*.xlsx)|*.xlsx";
+                saveFileDialog1.Filter = "excel files (*.xlsx)|*.xlsx";
                 saveFileDialog1.FilterIndex = 2;
                 saveFileDialog1.RestoreDirectory = true;
 

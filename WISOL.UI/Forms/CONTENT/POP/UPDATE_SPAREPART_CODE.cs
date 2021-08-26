@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
 using Wisol.MES.Inherit;
@@ -26,14 +19,14 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
-                if (string.IsNullOrEmpty(""+txtCodeOld.EditValue) || string.IsNullOrEmpty("" + txtCodeNew.EditValue))
+                if (string.IsNullOrEmpty(string.Empty + txtCodeOld.EditValue) || string.IsNullOrEmpty(string.Empty + txtCodeNew.EditValue))
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
                 }
-                base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_SP.UPDATE_CODE", 
-                    new string[] { "A_DEPARTMENT", "A_CODE_OLD", "A_CODE_NEW" }, 
-                    new string[] { Consts.DEPARTMENT,txtCodeOld.EditValue.NullString().ToUpper(),txtCodeNew.EditValue.NullString().ToUpper() });
+                base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_SP.UPDATE_CODE",
+                    new string[] { "A_DEPARTMENT", "A_CODE_OLD", "A_CODE_NEW" },
+                    new string[] { Consts.DEPARTMENT, txtCodeOld.EditValue.NullString().ToUpper(), txtCodeNew.EditValue.NullString().ToUpper() });
 
                 if (mResultDB.ReturnInt == 0)
                 {

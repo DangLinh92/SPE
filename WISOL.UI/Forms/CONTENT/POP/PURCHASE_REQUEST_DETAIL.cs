@@ -1,14 +1,9 @@
 ﻿using DevExpress.XtraEditors;
-using DevExpress.XtraEditors.Repository;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
@@ -382,12 +377,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 row["QUANTITY_NEED_BUY"] = e.Value.NullString();
 
-                string priceEx = gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_VN").NullString() == "" ? "0" : gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_VN").NullString();
-                string price = gvList.GetRowCellValue(e.RowHandle, "PRICE_VN").NullString() == "" ? "0" : gvList.GetRowCellValue(e.RowHandle, "PRICE_VN").NullString();
+                string priceEx = gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_VN").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_VN").NullString();
+                string price = gvList.GetRowCellValue(e.RowHandle, "PRICE_VN").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(e.RowHandle, "PRICE_VN").NullString();
                 string priceNew = price == "0" ? priceEx : price;
 
-                string priceExUS = gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_US").NullString() == "" ? "0" : gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_US").NullString();
-                string priceUS = gvList.GetRowCellValue(e.RowHandle, "PRICE_US").NullString() == "" ? "0" : gvList.GetRowCellValue(e.RowHandle, "PRICE_US").NullString();
+                string priceExUS = gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_US").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_US").NullString();
+                string priceUS = gvList.GetRowCellValue(e.RowHandle, "PRICE_US").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(e.RowHandle, "PRICE_US").NullString();
                 string priceNewUS = priceUS == "0" ? priceExUS : priceUS;
 
                 SetValueForGridViewPrice(e.Value.NullString(), priceNew, "TOTAL_MONEY_VN", e.RowHandle);
@@ -410,10 +405,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 row["EXPECTED_PRICE_VN"] = e.Value.NullString();
 
-                string priceEx = e.Value.NullString() == "" ? "0" : e.Value.NullString();
-                string price = gvList.GetRowCellValue(e.RowHandle, "PRICE_VN").NullString() == "" ? "0" : gvList.GetRowCellValue(e.RowHandle, "PRICE_VN").NullString();
+                string priceEx = e.Value.NullString() == string.Empty ? "0" : e.Value.NullString();
+                string price = gvList.GetRowCellValue(e.RowHandle, "PRICE_VN").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(e.RowHandle, "PRICE_VN").NullString();
                 string priceNew = price == "0" ? priceEx : price;
-                string quantity = gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString() == "" ? "0" : gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString();
+                string quantity = gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString();
 
                 SetValueForGridViewPrice(quantity, priceNew, "TOTAL_MONEY_VN", e.RowHandle);
             }
@@ -421,21 +416,21 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 row["PRICE_VN"] = e.Value.NullString();
 
-                string priceEx = gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_VN").NullString() == "" ? "0" : gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_VN").NullString();
-                string price = e.Value.NullString() == "" ? "0" : e.Value.NullString();
+                string priceEx = gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_VN").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_VN").NullString();
+                string price = e.Value.NullString() == string.Empty ? "0" : e.Value.NullString();
                 string priceNew = price == "0" ? priceEx : price;
 
-                string quantity = gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString() == "" ? "0" : gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString();
+                string quantity = gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString();
                 SetValueForGridViewPrice(quantity, priceNew, "TOTAL_MONEY_VN", e.RowHandle);
             }
             else if (e.Column.FieldName == "EXPECTED_PRICE_US")
             {
                 row["EXPECTED_PRICE_US"] = e.Value.NullString();
 
-                string priceExUS = e.Value.NullString() == "" ? "0" : e.Value.NullString(); ;
-                string priceUS = gvList.GetRowCellValue(e.RowHandle, "PRICE_US").NullString() == "" ? "0" : gvList.GetRowCellValue(e.RowHandle, "PRICE_US").NullString();
+                string priceExUS = e.Value.NullString() == string.Empty ? "0" : e.Value.NullString(); ;
+                string priceUS = gvList.GetRowCellValue(e.RowHandle, "PRICE_US").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(e.RowHandle, "PRICE_US").NullString();
                 string priceNewUS = priceUS == "0" ? priceExUS : priceUS;
-                string quantity = gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString() == "" ? "0" : gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString();
+                string quantity = gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString();
 
                 SetValueForGridViewPrice(quantity, priceNewUS, "TOTAL_MONEY_US", e.RowHandle);
             }
@@ -443,10 +438,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 row["PRICE_US"] = e.Value.NullString();
 
-                string priceExUS = gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_US").NullString() == "" ? "0" : gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_US").NullString();
-                string priceUS = e.Value.NullString() == "" ? "0" : e.Value.NullString();
+                string priceExUS = gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_US").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(e.RowHandle, "EXPECTED_PRICE_US").NullString();
+                string priceUS = e.Value.NullString() == string.Empty ? "0" : e.Value.NullString();
                 string priceNewUS = priceUS == "0" ? priceExUS : priceUS;
-                string quantity = gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString() == "" ? "0" : gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString();
+                string quantity = gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(e.RowHandle, "QUANTITY_NEED_BUY").NullString();
 
                 SetValueForGridViewPrice(quantity, priceNewUS, "TOTAL_MONEY_US", e.RowHandle);
             }
@@ -462,8 +457,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void SetValueForGridViewPrice(string quantiy, string price, string columnName, int rowHandle)
         {
-            if (quantiy == "" || !float.TryParse(quantiy, out _)) quantiy = "0";
-            if (price == "" || !float.TryParse(price, out _)) price = "0";
+            if (quantiy == string.Empty || !float.TryParse(quantiy, out _)) quantiy = "0";
+            if (price == string.Empty || !float.TryParse(price, out _)) price = "0";
 
             gvList.SetRowCellValue(rowHandle, columnName, float.Parse(quantiy) * float.Parse(price));
         }
@@ -487,11 +482,11 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 string dateNeedFinish;
                 for (int i = 0; i < gvList.RowCount; i++)
                 {
-                    expectVN = (gvList.GetRowCellValue(i, "EXPECTED_PRICE_VN").NullString() == "" ? "0" : gvList.GetRowCellValue(i, "EXPECTED_PRICE_VN").NullString());
-                    expectUS = gvList.GetRowCellValue(i, "EXPECTED_PRICE_US").NullString() == "" ? "0" : gvList.GetRowCellValue(i, "EXPECTED_PRICE_US").NullString();
-                    priceVN = gvList.GetRowCellValue(i, "PRICE_VN").NullString() == "" ? "0" : gvList.GetRowCellValue(i, "PRICE_VN").NullString();
-                    priceUS = gvList.GetRowCellValue(i, "PRICE_US").NullString() == "" ? "0" : gvList.GetRowCellValue(i, "PRICE_US").NullString();
-                    quantity = gvList.GetRowCellValue(i, "QUANTITY_NEED_BUY").NullString() == "" ? "0" : gvList.GetRowCellValue(i, "QUANTITY_NEED_BUY").NullString();
+                    expectVN = (gvList.GetRowCellValue(i, "EXPECTED_PRICE_VN").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(i, "EXPECTED_PRICE_VN").NullString());
+                    expectUS = gvList.GetRowCellValue(i, "EXPECTED_PRICE_US").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(i, "EXPECTED_PRICE_US").NullString();
+                    priceVN = gvList.GetRowCellValue(i, "PRICE_VN").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(i, "PRICE_VN").NullString();
+                    priceUS = gvList.GetRowCellValue(i, "PRICE_US").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(i, "PRICE_US").NullString();
+                    quantity = gvList.GetRowCellValue(i, "QUANTITY_NEED_BUY").NullString() == string.Empty ? "0" : gvList.GetRowCellValue(i, "QUANTITY_NEED_BUY").NullString();
 
                     string stt = gvList.GetRowCellValue(i, "STT_MRP").NullString();
                     if (!DeleteItem.Contains(stt))
@@ -588,7 +583,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private int rowHandleUnit;
         private void gvList_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
         {
-            if(e.Column.FieldName == "UNIT")
+            if (e.Column.FieldName == "UNIT")
             {
                 rowHandleUnit = e.RowHandle;
             }

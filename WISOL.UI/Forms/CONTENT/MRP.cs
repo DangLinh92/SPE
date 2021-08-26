@@ -54,11 +54,6 @@ namespace Wisol.MES.Forms.CONTENT
 
                         stlStatus.EditValue = "NEW";
                     }
-                    else
-                    {
-                        if (mrp != "")
-                            stlMrpCode.EditValue = mrp;
-                    }
 
                     DataRow newRowUp = data[4].NewRow();
                     data[4].Rows.InsertAt(newRowUp, 0);
@@ -76,10 +71,20 @@ namespace Wisol.MES.Forms.CONTENT
                     //gvListBelow.OptionsSelection.MultiSelect = true;
                     //gvListBelow.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
 
-                    IDInit.Clear();
-                    foreach (DataRow row in data[5].Rows)
+                    stlMrpCode.EditValue = "";
+                    if (mrp != "")
                     {
-                        IDInit.Add(row["ID"].NullString());
+                        stlMrpCode.EditValue = mrp;
+
+                        IDInit.Clear();
+                        for (int i = 0; i < gvListBelow.RowCount; i++)
+                        {
+                            IDInit.Add(gvListBelow.GetRowCellValue(i, "ID").NullString());
+                        }
+                    }
+                    else
+                    {
+                        GetMRPbyCode("");
                     }
                 }
 
@@ -404,7 +409,7 @@ namespace Wisol.MES.Forms.CONTENT
                 if (m_ResultDB.ReturnInt == 0)
                 {
                     MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
-                    InitData();
+                    InitData(false, stlMRP_CODE.EditValue.NullString());
                     ClearData();
                 }
                 else
@@ -567,9 +572,14 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void stlMrpCode_EditValueChanged(object sender, EventArgs e)
         {
+            GetMRPbyCode(stlMrpCode.EditValue.NullString());
+        }
+
+        private void GetMRPbyCode(string mrp)
+        {
             try
             {
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_MRP.GET_MRP_BY_CODE", new string[] { "A_DEPARTMENT", "A_MRP_CODE" }, new string[] { Consts.DEPARTMENT, stlMrpCode.EditValue.NullString() });
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_MRP.GET_MRP_BY_CODE", new string[] { "A_DEPARTMENT", "A_MRP_CODE" }, new string[] { Consts.DEPARTMENT, mrp });
                 if (m_ResultDB.ReturnInt == 0)
                 {
                     DataTable data = m_ResultDB.ReturnDataSet.Tables[0];
@@ -584,6 +594,12 @@ namespace Wisol.MES.Forms.CONTENT
                 else
                 {
                     MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                }
+
+                IDInit.Clear();
+                for (int i = 0; i < gvListBelow.RowCount; i++)
+                {
+                    IDInit.Add(gvListBelow.GetRowCellValue(i, "ID").NullString());
                 }
             }
             catch (Exception ex)
@@ -669,6 +685,11 @@ namespace Wisol.MES.Forms.CONTENT
         private void btnNextPagePR_Click(object sender, EventArgs e)
         {
             Consts.mainForm.NewPageFromOtherPage("PURCHASE_REQUEST", "Yêu cầu mua hàng-구매 요청", "W", "Y", "");
+        }
+
+        private void btnReloadData_Click(object sender, EventArgs e)
+        {
+            InitData();
         }
     }
 }

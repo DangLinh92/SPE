@@ -119,7 +119,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-                if(string.IsNullOrEmpty(dateFromTime.EditValue.NullString()) || string.IsNullOrEmpty(dateToTime.EditValue.NullString()))
+                if (string.IsNullOrEmpty(dateFromTime.EditValue.NullString()) || string.IsNullOrEmpty(dateToTime.EditValue.NullString()))
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
@@ -160,6 +160,36 @@ namespace Wisol.MES.Forms.CONTENT
             dateFromTime.EditValue = null;
             dateToTime.EditValue = null;
             GetDataInit();
+        }
+
+        private void gvList_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            if (e.RowHandle < 0)
+                return;
+
+            if (e.Column.FieldName == "PR_STATUS")
+            {
+                if (gvList.GetRowCellValue(e.RowHandle, "PR_STATUS").NullString() == Consts.STATUS_CANCEL)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(255, 153, 153);
+                }
+                else if (gvList.GetRowCellValue(e.RowHandle, "PR_STATUS").NullString() == Consts.STATUS_ACCEPT)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(255, 255, 204);
+                }
+                else if (gvList.GetRowCellValue(e.RowHandle, "PR_STATUS").NullString() == Consts.STATUS_ORDER)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(153, 255, 255);
+                }
+                else if (gvList.GetRowCellValue(e.RowHandle, "PR_STATUS").NullString() == Consts.STATUS_SHIPPING)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(204, 255, 153);
+                }
+                else if (gvList.GetRowCellValue(e.RowHandle, "PR_STATUS").NullString() == Consts.STATUS_COMPLETE)
+                {
+                    e.Appearance.BackColor = Color.LightGreen;
+                }
+            }
         }
     }
 }

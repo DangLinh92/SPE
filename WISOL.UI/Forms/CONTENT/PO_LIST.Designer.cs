@@ -43,6 +43,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.gvList = new Wisol.XGridView();
             this.col_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_PO_ID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_PO_ID_TEMP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_TITLE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DATE_ORERED = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_TIME = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -50,6 +51,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_NEED_FINISH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DATE_CREATE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_UPDATED_DATE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_USER_CREATE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_View = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.col_Edit = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -65,12 +67,13 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.col_PO_ID_TEMP = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
@@ -121,7 +124,13 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.splitContainerControl1.Location = new System.Drawing.Point(12, 805);
             this.splitContainerControl1.Name = "splitContainerControl1";
+            // 
+            // splitContainerControl1.Panel1
+            // 
             this.splitContainerControl1.Panel1.Text = "Panel1";
+            // 
+            // splitContainerControl1.Panel2
+            // 
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(1324, 1);
             this.splitContainerControl1.TabIndex = 9;
@@ -184,6 +193,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.repositoryItemButtonEdit4});
             this.gcList.Size = new System.Drawing.Size(1324, 731);
             this.gcList.TabIndex = 4;
+            this.gcList.UseEmbeddedNavigator = true;
             this.gcList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvList});
             // 
@@ -200,6 +210,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_NEED_FINISH,
             this.col_DATE_CREATE,
             this.col_UPDATED_DATE,
+            this.col_USER_CREATE,
             this.col_View,
             this.col_Edit,
             this.col_CANCEL,
@@ -226,6 +237,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_PO_ID.Visible = true;
             this.col_PO_ID.VisibleIndex = 1;
             this.col_PO_ID.Width = 137;
+            // 
+            // col_PO_ID_TEMP
+            // 
+            this.col_PO_ID_TEMP.Caption = "PO_ID_TEMP";
+            this.col_PO_ID_TEMP.FieldName = "PO_ID_TEMP";
+            this.col_PO_ID_TEMP.Name = "col_PO_ID_TEMP";
+            this.col_PO_ID_TEMP.Visible = true;
+            this.col_PO_ID_TEMP.VisibleIndex = 2;
             // 
             // col_TITLE
             // 
@@ -290,6 +309,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_UPDATED_DATE.VisibleIndex = 9;
             this.col_UPDATED_DATE.Width = 137;
             // 
+            // col_USER_CREATE
+            // 
+            this.col_USER_CREATE.Caption = "Người tạo";
+            this.col_USER_CREATE.FieldName = "USER_CREATE";
+            this.col_USER_CREATE.Name = "col_USER_CREATE";
+            this.col_USER_CREATE.Visible = true;
+            this.col_USER_CREATE.VisibleIndex = 10;
+            // 
             // col_View
             // 
             this.col_View.Caption = "VIEW";
@@ -298,7 +325,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_View.Name = "col_View";
             this.col_View.ToolTip = "View";
             this.col_View.Visible = true;
-            this.col_View.VisibleIndex = 10;
+            this.col_View.VisibleIndex = 11;
             this.col_View.Width = 25;
             // 
             // repositoryItemButtonEdit3
@@ -317,7 +344,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_Edit.Name = "col_Edit";
             this.col_Edit.ToolTip = "Sửa PO";
             this.col_Edit.Visible = true;
-            this.col_Edit.VisibleIndex = 11;
+            this.col_Edit.VisibleIndex = 12;
             this.col_Edit.Width = 25;
             // 
             // repositoryItemButtonEdit1
@@ -336,7 +363,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_CANCEL.Name = "col_CANCEL";
             this.col_CANCEL.ToolTip = "Hủy PO";
             this.col_CANCEL.Visible = true;
-            this.col_CANCEL.VisibleIndex = 12;
+            this.col_CANCEL.VisibleIndex = 13;
             this.col_CANCEL.Width = 25;
             // 
             // repositoryItemButtonEdit4
@@ -355,7 +382,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DELETE.Name = "col_DELETE";
             this.col_DELETE.ToolTip = "Xóa PO";
             this.col_DELETE.Visible = true;
-            this.col_DELETE.VisibleIndex = 13;
+            this.col_DELETE.VisibleIndex = 14;
             this.col_DELETE.Width = 25;
             // 
             // repositoryItemButtonEdit2
@@ -435,14 +462,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
-            // col_PO_ID_TEMP
-            // 
-            this.col_PO_ID_TEMP.Caption = "PO_ID_TEMP";
-            this.col_PO_ID_TEMP.FieldName = "PO_ID_TEMP";
-            this.col_PO_ID_TEMP.Name = "col_PO_ID_TEMP";
-            this.col_PO_ID_TEMP.Visible = true;
-            this.col_PO_ID_TEMP.VisibleIndex = 2;
-            // 
             // PO_LIST
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,6 +474,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).EndInit();
             this.xLayoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
@@ -512,5 +533,6 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
         private DevExpress.XtraGrid.Columns.GridColumn col_PO_ID_TEMP;
+        private DevExpress.XtraGrid.Columns.GridColumn col_USER_CREATE;
     }
 }

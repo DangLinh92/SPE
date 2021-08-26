@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Windows;
 using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
@@ -27,7 +26,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 if (Consts.USER_INFO.UserRole == "ROLE_ADMIN")
                 {
                     this.lctDepartment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                }else 
+                }
+                else
                     this.lctDepartment.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 
                 base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_SP.INIT_PUT", new string[] { "A_DEPARTMENT", "A_ROLE" }, new string[] { Consts.DEPARTMENT, Consts.USER_INFO.UserRole });
@@ -89,8 +89,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 else b64 = image;
                 string importDate = string.Empty;
                 base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_SP.PUT",
-                    new string[] { "A_CODE", "@A_CODE_MAKER", "A_NAME_VI", "A_NAME_KR", "A_UNIT", "A_GL_ACCOUNT", "A_COST_CTR", 
-                        "A_LOCATION", "A_DESC", "A_DEPARTMENT", 
+                    new string[] { "A_CODE", "@A_CODE_MAKER", "A_NAME_VI", "A_NAME_KR", "A_UNIT", "A_GL_ACCOUNT", "A_COST_CTR",
+                        "A_LOCATION", "A_DESC", "A_DEPARTMENT",
                         "A_IMAGE","A_TRANS_USER", "A_MAKER", "A_MIN_STOCK" },
                     new string[] { txtCode.EditValue.NullString(), txtCodeOfMaker.EditValue.NullString(), txtNameVi.EditValue.NullString(), txtNameKr.EditValue.NullString(),
                     sltUnit.EditValue.NullString(), txtGlaccount.EditValue.NullString(), txtCostCtr.EditValue.NullString(),

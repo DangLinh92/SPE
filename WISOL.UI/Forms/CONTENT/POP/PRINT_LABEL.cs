@@ -1,18 +1,12 @@
-﻿using DevExpress.XtraEditors.Repository;
-using DevExpress.XtraGrid.Views.Grid;
+﻿using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraReports.UI;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
 using Wisol.MES.Classes;
@@ -43,7 +37,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 if (Consts.GetDataMemory().Rows.Count > 0)
                 {
-                    string spareparts = "";
+                    string spareparts = string.Empty;
                     foreach (DataRow item in Consts.GetDataMemory().Rows)
                     {
                         spareparts += item["CODE"].NullString() + ",";
@@ -215,7 +209,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         string spareCode = gvList.GetRowCellValue(i, gvList.Columns[1]).NullString();
                         string position = gvList.GetRowCellValue(i, gvList.Columns[0]).NullString();
                         string condition = gvList.GetRowCellValue(i, gvList.Columns[3]).NullString();
-                        string lblPosition_condition = position + (position == "" ? (condition == "NG" ? "NG" : "") : (condition == "NG" ? ".NG" : ""));
+                        string lblPosition_condition = position + (position == string.Empty ? (condition == "NG" ? "NG" : string.Empty) : (condition == "NG" ? ".NG" : string.Empty));
                         string strDate = gvList.GetRowCellValue(i, gvList.Columns[11]).NullString();
                         string timeIn = gvList.GetRowCellValue(i, gvList.Columns[12]).NullString();
                         string quantity = gvList.GetRowCellValue(i, gvList.Columns[9]).NullString();
@@ -362,7 +356,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
-                label = "";
+                label = string.Empty;
                 string LabelCode = "QRCODE_" + cboPrinter.Text;
                 base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_LABEL.GET_TEMP", new string[] { "A_CODE_TEMP" }, new string[] { LabelCode });//QRCODE
                 if (mResultDB.ReturnInt == 0)
@@ -373,7 +367,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     }
                     else
                     {
-                        MsgBox.Show("Không có File label cho printer "+ cboPrinter.Text, MsgType.Warning);
+                        MsgBox.Show("Không có File label cho printer " + cboPrinter.Text, MsgType.Warning);
                     }
                 }
                 else

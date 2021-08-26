@@ -18,6 +18,12 @@ namespace Wisol.MES.Forms.CONTENT
         public PO_LIST()
         {
             InitializeComponent();
+            this.Load += PO_LIST_Load;
+        }
+
+        private void PO_LIST_Load(object sender, EventArgs e)
+        {
+            btnLoadData.PerformClick();
         }
 
         private void btnPR_list_Click(object sender, EventArgs e)
@@ -87,7 +93,7 @@ namespace Wisol.MES.Forms.CONTENT
                             data += row["PR_CODE"] + "^";
                         }
 
-                        data += "$" + poIdTemp + "$" + poId+"$"+Consts.MODE_VIEW;
+                        data += "$" + poIdTemp + "$" + poId + "$" + Consts.MODE_VIEW;
 
                         Consts.mainForm.NewPageFromOtherPage("PO_EXPORT", "PO FILE", "W", "Y", data);
                     }
@@ -107,11 +113,32 @@ namespace Wisol.MES.Forms.CONTENT
                 }
                 else if (e.Column.FieldName == "CANCEL")
                 {
-
+                    if (gvList.GetRowCellValue(e.RowHandle, "PO_ID").NullString() == "")
+                    {
+                        MsgBox.Show("PO_ID NOT FOUND!", MsgType.Information);
+                        return;
+                    }
+                    POP.PO_CANCEL pop = new POP.PO_CANCEL();
+                    pop.PO_ID = gvList.GetRowCellValue(e.RowHandle, "PO_ID").NullString();
+                    pop.ShowDialog();
+                    btnLoadData.PerformClick();
                 }
                 else if (e.Column.FieldName == "DELETE")
                 {
-
+                    DialogResult dialogResult = MsgBox.Show("MSG_COM_015".Translation(), MsgType.Warning, DialogType.OkCancel);
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PO.DELETE_PO", new string[] { "A_PO_ID", "A_PO_ID_TEMP", "A_USER" }, new string[] { poId, poIdTemp, Consts.USER_INFO.Id });
+                        if (m_ResultDB.ReturnInt == 0)
+                        {
+                            MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                        }
+                        else
+                        {
+                            MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                        }
+                        btnLoadData.PerformClick();
+                    }
                 }
             }
             catch (Exception ex)
@@ -122,7 +149,38 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void gvList_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
+            if (e.RowHandle < 0)
+            {
+                return;
+            }
 
+            if (e.Column.FieldName == "STATUS")
+            {
+                if (gvList.GetRowCellValue(e.RowHandle, "STATUS").NullString() == Consts.STATUS_CANCEL)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(255, 153, 153);
+                }
+                else if (gvList.GetRowCellValue(e.RowHandle, "STATUS").NullString() == Consts.STATUS_ACCEPT)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(255, 255, 204);
+                }
+                else if (gvList.GetRowCellValue(e.RowHandle, "STATUS").NullString() == Consts.STATUS_ORDER)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(153, 255, 255);
+                }
+                else if (gvList.GetRowCellValue(e.RowHandle, "STATUS").NullString() == Consts.STATUS_SHIPPING)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(204, 255, 153);
+                }
+                else if (gvList.GetRowCellValue(e.RowHandle, "STATUS").NullString() == Consts.STATUS_COMPLETE)
+                {
+                    e.Appearance.BackColor = Color.LightGreen;
+                }
+                else if (gvList.GetRowCellValue(e.RowHandle, "STATUS").NullString() == Consts.STATUS_RECEIVE)
+                {
+                    e.Appearance.BackColor = Color.FromArgb(0, 153, 153);
+                }
+            }
         }
     }
 }

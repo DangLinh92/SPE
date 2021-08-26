@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
 using Wisol.MES.Inherit;
+using DialogType = Wisol.Components.DialogType;
 
 namespace Wisol.MES.Forms.CONTENT
 {

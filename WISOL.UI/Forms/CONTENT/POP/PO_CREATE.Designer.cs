@@ -126,7 +126,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // stlPO
             // 
             this.stlPO.EditValue = "";
-            this.stlPO.Location = new System.Drawing.Point(48, 366);
+            this.stlPO.Location = new System.Drawing.Point(57, 366);
             this.stlPO.Name = "stlPO";
             this.stlPO.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(153)))));
             this.stlPO.Properties.Appearance.ForeColor = System.Drawing.Color.Black;
@@ -139,7 +139,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.stlPO.Properties.ImmediatePopup = true;
             this.stlPO.Properties.NullText = "";
             this.stlPO.Properties.PopupView = this.aceGridLookUpEdit1View;
-            this.stlPO.Size = new System.Drawing.Size(237, 20);
+            this.stlPO.Size = new System.Drawing.Size(228, 20);
             this.stlPO.StyleController = this.xLayoutControl1;
             this.stlPO.TabIndex = 1;
             this.stlPO.EditValueChanged += new System.EventHandler(this.stlPO_ID_EditValueChanged);
@@ -207,6 +207,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.repositoryItemButtonEdit1});
             this.gcListPr.Size = new System.Drawing.Size(1316, 292);
             this.gcListPr.TabIndex = 5;
+            this.gcListPr.UseEmbeddedNavigator = true;
             this.gcListPr.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvListPr});
             // 
@@ -258,6 +259,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // col_TOTAL_VALUE
             // 
             this.col_TOTAL_VALUE.Caption = "Giá trị đơn hàng(VN)";
+            this.col_TOTAL_VALUE.DisplayFormat.FormatString = "c3";
+            this.col_TOTAL_VALUE.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.col_TOTAL_VALUE.FieldName = "TOTAL_VALUE";
             this.col_TOTAL_VALUE.Name = "col_TOTAL_VALUE";
             this.col_TOTAL_VALUE.Visible = true;
@@ -267,6 +270,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // col_TOTAL_VALUE_US
             // 
             this.col_TOTAL_VALUE_US.Caption = "Giá trị đơn hàng(USD)";
+            this.col_TOTAL_VALUE_US.DisplayFormat.FormatString = "c3";
+            this.col_TOTAL_VALUE_US.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.col_TOTAL_VALUE_US.FieldName = "TOTAL_VALUE_US";
             this.col_TOTAL_VALUE_US.Name = "col_TOTAL_VALUE_US";
             this.col_TOTAL_VALUE_US.Visible = true;
@@ -336,6 +341,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.repositoryItemButtonEdit2});
             this.gcListPr_PO.Size = new System.Drawing.Size(1316, 400);
             this.gcListPr_PO.TabIndex = 4;
+            this.gcListPr_PO.UseEmbeddedNavigator = true;
             this.gcListPr_PO.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvListPr_PO});
             // 
@@ -387,6 +393,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // col_TOTAL_VALUE1
             // 
             this.col_TOTAL_VALUE1.Caption = "Giá trị đơn hàng(VN)";
+            this.col_TOTAL_VALUE1.DisplayFormat.FormatString = "c3";
+            this.col_TOTAL_VALUE1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.col_TOTAL_VALUE1.FieldName = "TOTAL_VALUE";
             this.col_TOTAL_VALUE1.Name = "col_TOTAL_VALUE1";
             this.col_TOTAL_VALUE1.Visible = true;
@@ -396,6 +404,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // col_TOTAL_VALUE_US1
             // 
             this.col_TOTAL_VALUE_US1.Caption = "Giá trị đơn hàng(USD)";
+            this.col_TOTAL_VALUE_US1.DisplayFormat.FormatString = "c3";
+            this.col_TOTAL_VALUE_US1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.col_TOTAL_VALUE_US1.FieldName = "TOTAL_VALUE_US";
             this.col_TOTAL_VALUE_US1.Name = "col_TOTAL_VALUE_US1";
             this.col_TOTAL_VALUE_US1.Visible = true;
@@ -553,7 +563,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.Controls.Add(this.groupControl1);
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("PO_CREATE.IconOptions.Icon")));
             this.Name = "PO_CREATE";
-            this.Text = "PR LIST";
+            this.Text = "PO_CREATE";
             this.Controls.SetChildIndex(this.groupControl1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);

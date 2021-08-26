@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Wisol.Components;
 using Wisol.MES.Inherit;
@@ -42,9 +38,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 DialogResult dialogResult = MsgBox.Show("MSG_IMPORT_EXCEL".Translation(), MsgType.Information, DialogType.OkCancel);
                 if (dialogResult == DialogResult.OK)
                 {
-                    if(ImpportType == Consts.IMPORT_TYPE_INVENTORY_REAL)
+                    if (ImpportType == Consts.IMPORT_TYPE_INVENTORY_REAL)
                     {
-                        base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_LOCATION.INSERT_BATCH_INVENTORY_REAL", new string[] { "A_DEPARTMENT_CODE", "A_STOCK", "A_USER", "A_TIME" }, "A_DATA", new string[] { Consts.DEPARTMENT, stock_code,Consts.USER_INFO.Id,"" }, Data);
+                        base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_LOCATION.INSERT_BATCH_INVENTORY_REAL", new string[] { "A_DEPARTMENT_CODE", "A_STOCK", "A_USER", "A_TIME" }, "A_DATA", new string[] { Consts.DEPARTMENT, stock_code, Consts.USER_INFO.Id, string.Empty }, Data);
                     }
                     else
                     {
@@ -68,7 +64,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void btnLoadData_Click(object sender, EventArgs e)
         {
-            string path = "";
+            string path = string.Empty;
             List<string> listSheet = new List<string>();
             //string namefile;
             OpenFileDialog dlg = new OpenFileDialog();
@@ -79,7 +75,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             if (dlgResult == DialogResult.OK)
             {
                 txtFilePath.Text = dlg.FileName;
-                if (txtFilePath.Text.Equals(""))
+                if (txtFilePath.Text.Equals(string.Empty))
                 {
                     lblMsg.Text = "Please Load File First!!!";
                     return;
@@ -119,7 +115,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     conexcel.Close();
 
                     Data.Rows.RemoveAt(0);
-                   
+
                     base.mBindData.BindGridView(gcList, Data);
                     //gvList.DeleteRow(0);
                 }

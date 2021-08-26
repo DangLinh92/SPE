@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
 using Wisol.MES.Inherit;
@@ -47,7 +40,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
-                if(txtMrpCode.EditValue.NullString() == "")
+                if (txtMrpCode.EditValue.NullString() == string.Empty)
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
@@ -55,9 +48,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                 base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_MRP_LIST.PUT",
                 new string[] { "A_DEPARTMENT", "A_MRP_CODE", "A_TITLE", "A_STATUS", "A_DATE_NEED_FINISH", "A_USER" },
-                new string[] { Consts.DEPARTMENT, txtMrpCode.EditValue.NullString(),txtTitle.EditValue.NullString(),"NEW","",Consts.USER_INFO.Id });
+                new string[] { Consts.DEPARTMENT, txtMrpCode.EditValue.NullString(), txtTitle.EditValue.NullString(), "NEW", string.Empty, Consts.USER_INFO.Id });
 
-                if(mResultDB.ReturnInt == 0)
+                if (mResultDB.ReturnInt == 0)
                 {
                     MsgBox.Show(mResultDB.ReturnString.Translation(), MsgType.Information);
                     this.Close();

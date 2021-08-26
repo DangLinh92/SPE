@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
-using Wisol.MES.Forms.REPORT;
-using Wisol.MES.Forms.REPORT.Models;
 using Wisol.MES.Inherit;
 
 namespace Wisol.MES.Forms.CONTENT.POP
@@ -29,7 +21,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_SP.GET",
                     new string[] { "A_DEPARTMENT" },
-                    new string[] { Consts.DEPARTMENT});
+                    new string[] { Consts.DEPARTMENT });
 
                 if (mResultDB.ReturnInt == 0)
                 {
@@ -51,7 +43,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_GOODS_RECEIPT_ISSUE.HISTORY_BY_CODE",
                     new string[] { "A_DEPT_CODE", "A_STOCK_CODE", "A_SPARE_PART", "A_TIME_FROM", "A_TIME_TO" },
-                    new string[] { Consts.DEPARTMENT, Kho, stlSparepart.EditValue.NullString(), dateFrom.EditValue.NullString(),dateTo.EditValue.NullString() });
+                    new string[] { Consts.DEPARTMENT, Kho, stlSparepart.EditValue.NullString(), dateFrom.EditValue.NullString(), dateTo.EditValue.NullString() });
                 if (mResultDB.ReturnInt == 0)
                 {
                     DataTable data = mResultDB.ReturnDataSet.Tables[0];
