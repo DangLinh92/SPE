@@ -218,6 +218,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.repositoryItemButtonEdit4});
             this.gcList.Size = new System.Drawing.Size(1620, 709);
             this.gcList.TabIndex = 4;
+            this.gcList.UseEmbeddedNavigator = true;
             this.gcList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvList});
             // 

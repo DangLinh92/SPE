@@ -349,7 +349,7 @@ namespace Wisol.MES.Forms.CONTENT
         private void txtSearch_QueryIsSearchColumn(object sender, DevExpress.XtraEditors.QueryIsSearchColumnEventArgs args)
         {
             string s = sender.ToString();
-            if (s != "Mã" && s!= "Tên tiếng việt") args.IsSearchColumn = false;
+            if (s != "Mã[상품]" && s != "Tên tiếng việt[Sparepart의 이름]") args.IsSearchColumn = false;
         }
 
         private void picImage_ImageChanged(object sender, EventArgs e)

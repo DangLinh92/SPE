@@ -270,6 +270,12 @@
     <Compile Include="Forms\CONTENT\INVENTORY_SHEET.Designer.cs">
       <DependentUpon>INVENTORY_SHEET.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\INVOICES.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\INVOICES.Designer.cs">
+      <DependentUpon>INVOICES.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\LABEL.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -281,6 +287,12 @@
     </Compile>
     <Compile Include="Forms\CONTENT\LOCATION.Designer.cs">
       <DependentUpon>LOCATION.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\LOGISTICS_DAILY_REPORT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\LOGISTICS_DAILY_REPORT.Designer.cs">
+      <DependentUpon>LOGISTICS_DAILY_REPORT.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CONTENT\MAKER.cs">
       <SubType>UserControl</SubType>
@@ -341,6 +353,12 @@
     </Compile>
     <Compile Include="Forms\CONTENT\POP\INVENTORY_SHEET_DETAIL.Designer.cs">
       <DependentUpon>INVENTORY_SHEET_DETAIL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\MERGE_SPARE_PART_CODE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\MERGE_SPARE_PART_CODE.Designer.cs">
+      <DependentUpon>MERGE_SPARE_PART_CODE.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CONTENT\POP\MRP_LIST.cs">
       <SubType>Form</SubType>
@@ -799,11 +817,17 @@
     <EmbeddedResource Include="Forms\CONTENT\INVENTORY_SHEET.resx">
       <DependentUpon>INVENTORY_SHEET.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\INVOICES.resx">
+      <DependentUpon>INVOICES.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\LABEL.resx">
       <DependentUpon>LABEL.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\LOCATION.resx">
       <DependentUpon>LOCATION.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\LOGISTICS_DAILY_REPORT.resx">
+      <DependentUpon>LOGISTICS_DAILY_REPORT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\MAKER.resx">
       <DependentUpon>MAKER.cs</DependentUpon>
@@ -834,6 +858,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\INVENTORY_SHEET_DETAIL.resx">
       <DependentUpon>INVENTORY_SHEET_DETAIL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\MERGE_SPARE_PART_CODE.resx">
+      <DependentUpon>MERGE_SPARE_PART_CODE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\MRP_LIST.resx">
       <DependentUpon>MRP_LIST.cs</DependentUpon>
@@ -1046,6 +1073,9 @@
       <DependentUpon>DialogueWait.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="INPUT_PRICE.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="OpenPOMigration%28WHC%29.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1229,6 +1259,9 @@
     <Content Include="Images\inventory_sheet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\invoice.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\key-icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1251,6 +1284,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\lock.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\logistic.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\MAX.png">
@@ -1433,6 +1469,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\inventory_sheet.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\invoice.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\logistic.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\MRP.png" />

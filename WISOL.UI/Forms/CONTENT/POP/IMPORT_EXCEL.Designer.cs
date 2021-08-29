@@ -32,6 +32,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IMPORT_EXCEL));
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lblTime = new System.Windows.Forms.Label();
+            this.dateValid = new Wisol.XDateEdit();
             this.lblMsg = new System.Windows.Forms.Label();
             this.txtFilePath = new Wisol.XTextEdit();
             this.btnImport = new Wisol.XSimpleButton(this.components);
@@ -41,6 +43,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.gvList = new Wisol.XGridView();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateValid.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateValid.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFilePath.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -50,6 +54,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.lblTime);
+            this.panelControl1.Controls.Add(this.dateValid);
             this.panelControl1.Controls.Add(this.lblMsg);
             this.panelControl1.Controls.Add(this.txtFilePath);
             this.panelControl1.Controls.Add(this.btnImport);
@@ -58,6 +64,28 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(800, 69);
             this.panelControl1.TabIndex = 4;
+            // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Location = new System.Drawing.Point(464, 48);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(130, 13);
+            this.lblTime.TabIndex = 6;
+            this.lblTime.Text = "Thời gian áp dụng giá tiền";
+            // 
+            // dateValid
+            // 
+            this.dateValid.EditValue = null;
+            this.dateValid.Location = new System.Drawing.Point(600, 45);
+            this.dateValid.Name = "dateValid";
+            this.dateValid.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateValid.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateValid.Size = new System.Drawing.Size(188, 20);
+            this.dateValid.TabIndex = 5;
+            this.dateValid.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
             // 
             // lblMsg
             // 
@@ -146,6 +174,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateValid.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateValid.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFilePath.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
@@ -166,5 +196,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private XGridView gvList;
         private XTextEdit txtFilePath;
         private System.Windows.Forms.Label lblMsg;
+        private System.Windows.Forms.Label lblTime;
+        private XDateEdit dateValid;
     }
 }

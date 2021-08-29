@@ -7,6 +7,11 @@ using System.Data;
 using Wisol.Common;
 using System.Globalization;
 using System.Windows.Forms;
+using DevExpress.XtraPrinting;
+using System.Diagnostics;
+using DevExpress.Export;
+using System.Drawing;
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace Wisol.MES.Forms.CONTENT
 {
@@ -23,6 +28,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void INPUT_COST_Load(object sender, EventArgs e)
         {
+            gcListTemp.Visible = false;
         }
 
         public override void Form_Show()
@@ -54,7 +60,7 @@ namespace Wisol.MES.Forms.CONTENT
 
                     m_BindData.BindGridView(gcList, tableCollection[1]);
 
-                    if(rowHandle >= 0)
+                    if (rowHandle >= 0)
                     {
                         gvList.MakeRowVisible(rowHandle);
                     }
@@ -188,7 +194,7 @@ namespace Wisol.MES.Forms.CONTENT
         /// <param name="e"></param>
         private void btnSave_Click_1(object sender, EventArgs e)
         {
-    
+
         }
 
         /// <summary>
@@ -323,6 +329,74 @@ namespace Wisol.MES.Forms.CONTENT
         private void cheEditExchange_CheckedChanged(object sender, EventArgs e)
         {
             txtExchangeRate.Enabled = cheEditExchange.Checked;
+        }
+
+        private void btnImportExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                try
+                {
+                    POP.IMPORT_EXCEL popup = new POP.IMPORT_EXCEL();
+                    popup.stock_code = "";
+                    popup.ImpportType = Consts.IMPORT_TYPE_PRICE;
+                    popup.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MsgBox.Show(ex.Message, MsgType.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void btnGetFileImport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PRICE.GET_DATE_FOR_IMPORT",
+                                    new string[] { "A_DEPT_CODE" },
+                                    new string[] { Consts.DEPARTMENT });
+
+                if (m_ResultDB.ReturnInt == 0)
+                {
+                    SaveFileDialog fileDialog = new SaveFileDialog();
+                    fileDialog.Filter = "Excel Files (.xls*)|*.xls*|All Files (*.*)|*.*";
+                    fileDialog.FileName = "INPUT_PRICE.xlsx";
+                    if (fileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string path = fileDialog.FileName;
+
+                        DataTable data = m_ResultDB.ReturnDataSet.Tables[0];
+                        //m_BindData.BindGridView(gcListTemp, data);
+                        gcListTemp.DataSource = data;
+                        //Customize export options
+                        DevExpress.Export.ExportSettings.DefaultExportType = ExportType.DataAware;
+                        gvListTemp.OptionsPrint.UsePrintStyles = false;
+                        gvListTemp.OptionsPrint.PrintHeader = true;
+                        gvListTemp.AppearancePrint.HeaderPanel.BackColor = Color.Orange;
+
+                        XlsxExportOptionsEx advOptions = new XlsxExportOptionsEx();
+                        advOptions.ShowTotalSummaries = DevExpress.Utils.DefaultBoolean.False;
+                        advOptions.SheetName = "EWIP_SPAREPART_PRICE";
+
+                        gvListTemp.ExportToXlsx(path, advOptions);
+                        // Open the created XLSX file with the default application.
+                        Process.Start(path);
+                    }
+                }
+                else
+                {
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
         }
     }
 }

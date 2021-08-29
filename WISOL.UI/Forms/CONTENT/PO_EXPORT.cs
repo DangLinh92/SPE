@@ -118,20 +118,20 @@ namespace Wisol.MES.Forms.CONTENT
                 workbook.LoadDocument("OpenPOMigration(WHC).xlsx");
                 Worksheet sheet1 = workbook.Worksheets[0];
 
-                if(Mode == Consts.MODE_NEW)
+                if (Mode == Consts.MODE_NEW)
                 {
                     GetDataForPO(sheet1);
                 }
-                else if(Mode == Consts.MODE_VIEW || Mode == Consts.MODE_UPDATE)
+                else if (Mode == Consts.MODE_VIEW || Mode == Consts.MODE_UPDATE)
                 {
                     GetDataForPOByID(sheet1);
 
-                    if(Mode == Consts.MODE_UPDATE)
+                    if (Mode == Consts.MODE_UPDATE)
                     {
                         btnSave.Enabled = true;
                     }
                 }
-               
+
                 workbook.EndUpdate();
             }
             catch (Exception ex)
@@ -209,12 +209,12 @@ namespace Wisol.MES.Forms.CONTENT
                     IWorkbook workbook = spreadsheet_PO.Document;
                     workbook.SaveDocument(fileName, DocumentFormat.Xlsx);
 
-                    if(Mode == Consts.MODE_NEW || Mode == Consts.MODE_UPDATE)
+                    if (Mode == Consts.MODE_NEW || Mode == Consts.MODE_UPDATE)
                     {
                         // save data
                         SavePO();
                     }
-                    else if(Mode == Consts.MODE_VIEW)
+                    else if (Mode == Consts.MODE_VIEW)
                     {
                         MsgBox.Show("TẠO FILE THÀNH CÔNG!!!", MsgType.Information);
                     }
@@ -228,7 +228,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(txtPO_ID.EditValue.NullString() != "")
+            if (txtPO_ID.EditValue.NullString() != "")
             {
                 SavePO();
             }
@@ -239,8 +239,16 @@ namespace Wisol.MES.Forms.CONTENT
             }
         }
 
+        private DataTable MERDED_CODE_DATA;
         private void SavePO()
         {
+            MERDED_CODE_DATA = new DataTable();
+            base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PO.GET_ALL_MERGE_CODE", new string[] { }, new string[] { });
+            if (m_ResultDB.ReturnInt == 0)
+            {
+                MERDED_CODE_DATA = m_ResultDB.ReturnDataSet.Tables[0];
+            }
+
             IWorkbook workbook = spreadsheet_PO.Document;
             Worksheet sheet = workbook.Worksheets[0];
             int i = 4;
@@ -248,6 +256,7 @@ namespace Wisol.MES.Forms.CONTENT
             int deliveryDate = 0;
             string dateCreatePO = "";
             PO_DETAIL_TYPE.Rows.Clear();
+            string tmpSparepart = "";
             while (sheet.Cells["V" + i].Value.NullString() != "")
             {
                 row = PO_DETAIL_TYPE.NewRow();
@@ -259,13 +268,25 @@ namespace Wisol.MES.Forms.CONTENT
                     dateCreatePO = sheet.Cells["A" + i].Value.NullString();
                 }
 
+                DataRow mergedRow = MERDED_CODE_DATA?.AsEnumerable().FirstOrDefault(x => x["CODE_MERGED"].NullString() == sheet.Cells["F" + i].Value.NullString() && x["DEPT_CODE"].NullString() == sheet.Cells["V" + i].Value.NullString());
+
+                if (mergedRow != null && mergedRow["SPARE_PART_CODE"].NullString() != "")
+                {
+                    row["SPARE_PART_CODE"] = mergedRow["SPARE_PART_CODE"].NullString(); // find spare part real
+                }
+                else
+                {
+                    row["SPARE_PART_CODE"] = sheet.Cells["F" + i].Value.NullString();
+                }
+                tmpSparepart = row["SPARE_PART_CODE"].NullString();
+
                 row["PO_CREATE"] = sheet.Cells["A" + i].Value.NullString();
                 row["LIFNR"] = sheet.Cells["B" + i].Value.NullString();
-                row["PR_CODE"] = (PR_SP_DEPT?.AsEnumerable().FirstOrDefault(x => x["SPAREPART_CODE"].NullString() == sheet.Cells["F" + i].Value.NullString() && x["DEPT_CODE"].NullString() == sheet.Cells["V" + i].Value.NullString())?["PR_CODE"].NullString()).NullString();
+                row["PR_CODE"] = (PR_SP_DEPT?.AsEnumerable().FirstOrDefault(x => x["SPAREPART_CODE"].NullString() == tmpSparepart && x["DEPT_CODE"].NullString() == sheet.Cells["V" + i].Value.NullString())?["PR_CODE"].NullString()).NullString();
                 row["KUNNR"] = sheet.Cells["C" + i].Value.NullString();
                 row["BKGRP"] = sheet.Cells["D" + i].Value.NullString();
                 row["PSTYP"] = sheet.Cells["E" + i].Value.NullString();
-                row["SPARE_PART_CODE"] = sheet.Cells["F" + i].Value.NullString();
+
                 row["TXZ01_DESCRIPTION"] = sheet.Cells["G" + i].Value.NullString();
                 row["WERKS"] = sheet.Cells["H" + i].Value.NullString();
                 row["LGORT"] = sheet.Cells["I" + i].Value.NullString();
@@ -301,12 +322,12 @@ namespace Wisol.MES.Forms.CONTENT
                 MsgBox.Show("KHÔNG CÓ DỮ LIỆU YÊU CÂÙ ĐẶT HÀNG", MsgType.Warning);
                 return;
             }
-             
+
             base.m_ResultDB = base.m_DBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_PO.PUT_PO",
                 new string[] { "A_LIST_PR_CODE", "A_PO_ID_TEMP", "A_PO_ID", "A_DATE_NEED_FINISH", "A_DATE_CREATE_PO", "A_TITLE", "A_USER" }, "A_DATA",
                 new string[] { PR_LIST, txtPO_Example.EditValue.NullString(), txtPO_ID.EditValue.NullString(), deliveryDate.NullString(), dateCreatePO, txtTitle.EditValue.NullString(), Consts.USER_INFO.Id }, PO_DETAIL_TYPE);
 
-            if(m_ResultDB.ReturnInt != 0)
+            if (m_ResultDB.ReturnInt != 0)
             {
                 MsgBox.Show(m_ResultDB.ReturnString.NullString().Translation(), MsgType.Error);
             }
@@ -314,6 +335,14 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 MsgBox.Show(m_ResultDB.ReturnString.NullString().Translation(), MsgType.Information);
             }
+        }
+
+        private void btnMerge_Click(object sender, EventArgs e)
+        {
+            POP.MERGE_SPARE_PART_CODE pop = new POP.MERGE_SPARE_PART_CODE();
+            pop.PR_LIST = PR_LIST;
+            pop.ShowDialog();
+            btnLoadFile.PerformClick();
         }
     }
 }

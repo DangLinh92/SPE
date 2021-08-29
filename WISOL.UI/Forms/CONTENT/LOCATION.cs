@@ -9,6 +9,7 @@ using DevExpress.XtraTreeMap;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Windows.Forms;
@@ -245,7 +246,8 @@ namespace Wisol.MES.Forms.CONTENT
                 DataTableCollection dataLocations = GetLocations();
                 if (dataLocations != null)
                 {
-                    base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
+                    //base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
+                    base.m_BindData.BindGridView(gcList, dataLocations[0]);
                     if (dataLocations[0].Rows.Count > 0)
                     {
                         gvList.Columns["KHO"].Visible = false;
@@ -253,7 +255,8 @@ namespace Wisol.MES.Forms.CONTENT
                         gvList.MakeRowVisible(gvList.DataRowCount - 1);
                     }
 
-                    base.m_BindData.BindGridView(gcListNoPosition, base.m_ResultDB.ReturnDataSet.Tables[1]);
+                    //base.m_BindData.BindGridView(gcListNoPosition, base.m_ResultDB.ReturnDataSet.Tables[1]);
+                    base.m_BindData.BindGridView(gcListNoPosition, dataLocations[1]);
                     if (dataLocations[1].Rows.Count > 0)
                     {
                         gvListNoPosition.Columns["KHO"].Visible = false;
@@ -501,7 +504,7 @@ namespace Wisol.MES.Forms.CONTENT
                     ClearSparepartLocation();
                     for (int i = 0; i < gvListNoPosition.DataRowCount; i++)
                     {
-                        string location = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[0]).NullString();
+                        string location = gvListNoPosition.GetRowCellValue(i, "LOCATION").NullString();
                         if (stlPosition.EditValue.NullString() == location)
                         {
                             gvListNoPosition.MakeRowVisible(i);
@@ -620,7 +623,7 @@ namespace Wisol.MES.Forms.CONTENT
         private void txtSearchNoLocation_QueryIsSearchColumn(object sender, DevExpress.XtraEditors.QueryIsSearchColumnEventArgs args)
         {
             string s = sender.ToString();
-            if (s != "Vị trí" && s != "Mã" && s != "Tên tiếng việt") args.IsSearchColumn = false;
+            if (s != "Vị trí-위치" && s != "Mã thiết bị" && s != "Tên tiếng việt[Sparepart의 이름]") args.IsSearchColumn = false;
         }
 
         private void gvListNoPosition_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
@@ -916,6 +919,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             POP.IMPORT_EXCEL popup = new POP.IMPORT_EXCEL();
             popup.stock_code = stlKho.EditValue.NullString();
+            popup.ImpportType = Consts.IMPORT_TYPE_BUSINESS_LOCATION_SPAREPART_INSERT_BATCH;
             popup.ShowDialog();
             ViewLocation();
         }
@@ -1379,7 +1383,7 @@ namespace Wisol.MES.Forms.CONTENT
 
                     for (int i = 0; i < gvListNoPosition.DataRowCount; i++)
                     {
-                        string location = gvListNoPosition.GetRowCellValue(i, gvListNoPosition.Columns[0]).NullString();
+                        string location = gvListNoPosition.GetRowCellValue(i, "LOCATION").NullString();
                         if (stlNew_Location.EditValue.NullString() == location)
                         {
                             gvListNoPosition.MakeRowVisible(i);
@@ -1465,6 +1469,25 @@ namespace Wisol.MES.Forms.CONTENT
                 float quantityMove = MES.Classes.Common.ConvertUnit(UnitMoveOld, stlUnitMove.EditValue.NullString(), stlSparepartCode_Move.EditValue.NullString()) * float.Parse(txtQuantityMove.EditValue.IfNullIsZero());
                 txtQuantityMove.EditValue = quantityMove;
                 UnitMoveOld = stlUnitMove.EditValue.NullString();
+            }
+        }
+
+        private void gvListNoPosition_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            if (e.RowHandle < 0)
+                return;
+
+            if(e.Column.FieldName == "INVENTORY_TIME")
+            {
+                e.Appearance.BackColor = Color.FromArgb(253, 242, 233);
+            }
+            else if(e.Column.FieldName == "QUANTITY")
+            {
+                e.Appearance.BackColor = Color.FromArgb(254, 245, 231);
+            }
+            else if (e.Column.FieldName == "SPARE_PART_CODE")
+            {
+                e.Appearance.BackColor = Color.FromArgb(251, 238, 230);
             }
         }
     }

@@ -149,6 +149,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 if (mResultDB.ReturnInt == 0)
                 {
                     MsgBox.Show(mResultDB.ReturnString.Translation(), MsgType.Information);
+                    InitData();
+                    Clear();
                 }
                 else
                 {

@@ -114,6 +114,10 @@ namespace Wisol.MES
         public static string ZERO = "0";
         public static string SHEET_NAME_EWIP_SPAREPART_LOCATION = "EWIP_SPAREPART_LOCATION$";
         public static string IMPORT_TYPE_INVENTORY_REAL = "0";
+        public static string IMPORT_TYPE_BUSINESS_LOCATION_SPAREPART_INSERT_BATCH = "1";
+        public static string IMPORT_TYPE_PRICE = "2";
+        public static string IMPORT_TYPE_INVOICE = "3";
+        public static string IMPORT_TYPE_LOGISTICS_DAILY = "4";
         public static string CONDITION_DEFAULT = "OK";
         public static string PACK_UNIT = "PACK";
 

@@ -67,8 +67,10 @@ namespace Wisol.MES.Forms.CONTENT
                     stlKho.EditValue = firstValue;
                     gvList.Columns["ID"].Visible = false;
                     gvList.Columns["RATE_ALARM"].Visible = false;
-                    gvList.Columns["QUANTITY"].Caption = "Tồn kho hệ thống";
-                    gvList.Columns["QUANTITY_REAL"].Caption = "Tồn kho sau kiểm kê";
+                    gvList.Columns["QUANTITY"].Caption = "Tồn kho hệ thống/시스템 재고";
+                    gvList.Columns["QUANTITY_REAL"].Caption = "Tồn kho sau kiểm kê/재고 실사후 파악한 재고";
+                    gvList.Columns["DIFFERENCE_QUANTITY"].Caption = "Chênh lệch/차이 수량";
+                    gvList.Columns["MIN_STOCK"].Caption = "Tồn tối thiểu/최소 재고";
                     gvList.Columns["SPECIFICATION"].Width = 150;
                     gvList.Columns["NAME_KR"].Width = 150;
 
@@ -80,7 +82,7 @@ namespace Wisol.MES.Forms.CONTENT
                     {
                         DataTable kiemkeData = m_ResultDB.ReturnDataSet.Tables[0];
                         string dateUpdate = kiemkeData.Rows[0]["DATE_UPDATE"].NullString() == "" ? kiemkeData.Rows[0]["DATE_END"].NullString() : kiemkeData.Rows[0]["DATE_UPDATE"].NullString();
-                        lblKiemKeDate.Text = "Ngày kiểm kê: " + DateTime.Parse(kiemkeData.Rows[0]["DATE_UPDATE"].NullString()).ToString("yyyy-MM-dd") + " ";
+                        lblKiemKeDate.Text = "Ngày kiểm kê(기말제품재고액): " + DateTime.Parse(kiemkeData.Rows[0]["DATE_UPDATE"].NullString()).ToString("yyyy-MM-dd") + " ";
                     }
                 }
 
@@ -109,8 +111,10 @@ namespace Wisol.MES.Forms.CONTENT
                     base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
                     gvList.Columns["ID"].Visible = false;
                     gvList.Columns["RATE_ALARM"].Visible = false;
-                    gvList.Columns["QUANTITY"].Caption = "Tồn kho hệ thống";
-                    gvList.Columns["QUANTITY_REAL"].Caption = "Tồn kho sau kiểm kê";
+                    gvList.Columns["QUANTITY"].Caption = "Tồn kho hệ thống/시스템 재고";
+                    gvList.Columns["QUANTITY_REAL"].Caption = "Tồn kho sau kiểm kê/재고 실사후 파악한 재고";
+                    gvList.Columns["DIFFERENCE_QUANTITY"].Caption = "Chênh lệch/차이 수량";
+                    gvList.Columns["MIN_STOCK"].Caption = "Tồn tối thiểu/최소 재고";
                     gvList.Columns["SPECIFICATION"].Width = 150;
                     gvList.Columns["NAME_KR"].Width = 150;
                     gvList.OptionsView.ColumnAutoWidth = true;
@@ -156,7 +160,7 @@ namespace Wisol.MES.Forms.CONTENT
         private void searchCode_QueryIsSearchColumn(object sender, DevExpress.XtraEditors.QueryIsSearchColumnEventArgs args)
         {
             string s = sender.ToString();
-            if (s != "Mã" && s != "Tên tiếng việt") args.IsSearchColumn = false;
+            if (s != "Mã[상품]" && s != "Tên tiếng việt[Sparepart의 이름]") args.IsSearchColumn = false;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
