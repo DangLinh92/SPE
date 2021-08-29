@@ -1,0 +1,14 @@
+﻿CREATE TABLE [dbo].[ESYSMSTURO] (
+  [PLANT] [varchar](10) NOT NULL,
+  [DEPARTMENT] [varchar](50) NOT NULL,
+  [USER_ID] [varchar](20) NOT NULL,
+  [ITEM_NO] [int] NOT NULL,
+  [USERROLE] [varchar](30) NULL,
+  [CREATE_TIME] [varchar](14) NULL,
+  [CREATE_USER] [varchar](20) NULL,
+  [UPDATE_TIME] [varchar](14) NULL,
+  [UPDATE_USER] [varchar](20) NULL,
+  CONSTRAINT [PK_ESYSMSTURO] PRIMARY KEY CLUSTERED ([PLANT], [DEPARTMENT], [USER_ID], [ITEM_NO])
+)
+ON [PRIMARY]
+GO

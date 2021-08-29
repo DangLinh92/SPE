@@ -1,0 +1,20 @@
+﻿CREATE TABLE [dbo].[EWIP_INVENTORY_DELIVERY_RECEIVING] (
+  [ID] [int] IDENTITY,
+  [CODE_NO] [nvarchar](50) NOT NULL,
+  [DATE] [date] NULL,
+  [IN_OUT] [nvarchar](50) NULL,
+  [STOCK_CODE] [varchar](50) NULL,
+  [DEPT_CODE] [nvarchar](100) NULL,
+  [USER_CREATE] [nvarchar](50) NULL,
+  [USER_SYS] [nvarchar](50) NULL,
+  [ORDER_CODE] [nvarchar](50) NULL,
+  [STATUS] [nvarchar](50) NULL,
+  [DELIVERET_RECEIVER] [nvarchar](100) NULL,
+  [TIME_INPUT] [nvarchar](50) NULL,
+  CONSTRAINT [PK_EWIP_INVENTORY_DELIVERY_RECEIVING] PRIMARY KEY CLUSTERED ([ID])
+)
+ON [PRIMARY]
+GO
+
+EXEC sys.sp_addextendedproperty N'MS_Description', N'0: NEW, 1: INPROGRESS , 2: COMPLETE , 4: CANCEL', 'SCHEMA', N'dbo', 'TABLE', N'EWIP_INVENTORY_DELIVERY_RECEIVING', 'COLUMN', N'STATUS'
+GO

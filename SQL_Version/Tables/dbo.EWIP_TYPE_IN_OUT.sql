@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[EWIP_TYPE_IN_OUT] (
+  [ID] [int] IDENTITY,
+  [CODE] [nvarchar](50) NULL,
+  [NAME] [nvarchar](50) NULL,
+  CONSTRAINT [PK_EWIP_TYPE_IN_OUT] PRIMARY KEY CLUSTERED ([ID])
+)
+ON [PRIMARY]
+GO

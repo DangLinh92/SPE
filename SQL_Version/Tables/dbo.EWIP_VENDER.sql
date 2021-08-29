@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[EWIP_VENDER] (
+  [VENDER_ID] [varchar](50) NOT NULL,
+  [NAME] [nvarchar](50) NULL,
+  [ADDRESS] [nvarchar](50) NULL,
+  [PHONE] [nvarchar](15) NULL,
+  [EMAIL] [nvarchar](50) NULL,
+  CONSTRAINT [PK_EWIP_VENDER_1] PRIMARY KEY CLUSTERED ([VENDER_ID])
+)
+ON [PRIMARY]
+GO

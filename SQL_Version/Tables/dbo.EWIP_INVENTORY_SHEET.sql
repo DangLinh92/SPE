@@ -1,0 +1,16 @@
+﻿CREATE TABLE [dbo].[EWIP_INVENTORY_SHEET] (
+  [ID] [int] IDENTITY,
+  [SHEET_ID] [nvarchar](50) NOT NULL,
+  [DATE_START] [date] NULL,
+  [DATE_END] [date] NULL,
+  [DEPT_CODE] [nvarchar](100) NULL,
+  [STOCK_CODE] [nvarchar](50) NULL,
+  [USER_CREATE] [nvarchar](50) NULL,
+  [USER_UPDATE] [nchar](10) NULL,
+  [DATE_UPDATE] [date] NULL,
+  [TITLE] [nvarchar](250) NULL,
+  [INVENTORY_SHEET_MONTH] [date] NULL,
+  CONSTRAINT [PK_EWIP_INVENTORY_SHEET] PRIMARY KEY CLUSTERED ([ID])
+)
+ON [PRIMARY]
+GO

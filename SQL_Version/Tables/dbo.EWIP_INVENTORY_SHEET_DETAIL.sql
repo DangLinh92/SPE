@@ -1,0 +1,19 @@
+﻿CREATE TABLE [dbo].[EWIP_INVENTORY_SHEET_DETAIL] (
+  [ID] [int] IDENTITY,
+  [SPARE_PART_CODE] [nvarchar](50) NULL,
+  [LOCATION] [nvarchar](50) NULL,
+  [QUANTITY] [float] NULL,
+  [UNIT] [nvarchar](50) NULL,
+  [SHEET_ID] [nvarchar](50) NOT NULL,
+  [DEPT_CODE] [nvarchar](50) NULL,
+  [STOCK_CODE] [nvarchar](50) NULL,
+  [QUANTITY_REAL] [float] NULL,
+  [DIFF] [float] NULL,
+  [IS_CHECK] [bit] NULL,
+  [CONDITION_CODE] [nvarchar](50) NULL,
+  [TIME_IN] [date] NULL,
+  [EXPIRED_DATE] [date] NULL,
+  CONSTRAINT [PK_EWIP_INVENTORY_SHEET_DETAIL] PRIMARY KEY CLUSTERED ([ID])
+)
+ON [PRIMARY]
+GO

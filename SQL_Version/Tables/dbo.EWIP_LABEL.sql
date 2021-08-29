@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[EWIP_LABEL] (
+  [CODE] [nvarchar](50) NOT NULL,
+  [LABEL] [nvarchar](max) NULL,
+  [DESC] [nvarchar](500) NULL,
+  CONSTRAINT [PK_EWIP_LABEL] PRIMARY KEY CLUSTERED ([CODE])
+)
+ON [PRIMARY]
+TEXTIMAGE_ON [PRIMARY]
+GO

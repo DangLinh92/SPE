@@ -1,0 +1,33 @@
+﻿CREATE TABLE [dbo].[EWIP_LOGISTICS_DAILY_REPORT] (
+  [ID] [int] IDENTITY,
+  [WAY] [nvarchar](50) NULL,
+  [LH] [nvarchar](50) NULL,
+  [MASTER_BL_MAWB_NO] [nvarchar](50) NULL,
+  [HOUSE_BL_HAWB_NO] [nvarchar](50) NULL,
+  [VESSEL_FLIGHT] [nvarchar](50) NULL,
+  [ETD] [nvarchar](50) NULL,
+  [ETA] [nvarchar](50) NULL,
+  [ETA_WISOL] [nvarchar](50) NULL,
+  [SHIPPER] [nvarchar](50) NULL,
+  [INVOICE] [nvarchar](200) NULL,
+  [QUANTITY_PAL] [nvarchar](50) NULL,
+  [GW_KGS] [nvarchar](50) NULL,
+  [CW_KGS] [nvarchar](50) NULL,
+  [MEASUREME_NT] [nvarchar](50) NULL,
+  [LCL_FCL] [nvarchar](50) NULL,
+  [CONT_20] [nvarchar](50) NULL,
+  [CONT_40] [nvarchar](50) NULL,
+  [POL] [nvarchar](50) NULL,
+  [POD] [nvarchar](50) NULL,
+  [TERM] [nvarchar](50) NULL,
+  [WARE_HOUSE] [nvarchar](50) NULL,
+  [TIME_DELIVERY] [nvarchar](50) NULL,
+  [NO_CD] [nvarchar](50) NULL,
+  [DESCRIPTION_OF_GOODS] [nvarchar](50) NULL,
+  [NOTE] [nvarchar](200) NULL,
+  [IMPORT_USER] [nvarchar](50) NULL,
+  [IMPORT_DATE] [datetime] NULL,
+  CONSTRAINT [PK_EWIP_LOGISTICS_DAILY_REPORT] PRIMARY KEY CLUSTERED ([ID])
+)
+ON [PRIMARY]
+GO

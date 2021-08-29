@@ -1,0 +1,20 @@
+﻿CREATE TABLE [dbo].[ESYSMSTUSR] (
+  [PLANT] [varchar](10) NOT NULL,
+  [DEPARTMENT] [varchar](100) NOT NULL,
+  [USER_ID] [varchar](20) NOT NULL,
+  [PASSWORD] [nvarchar](200) NOT NULL,
+  [USER_NAME] [nvarchar](100) NULL,
+  [PHONE_NUM] [nvarchar](50) NULL,
+  [EMAIL] [nvarchar](100) NULL,
+  [USEFLAG] [char](1) NOT NULL CONSTRAINT [DF_ESYSMSTUSR_USEFLAG] DEFAULT ('Y'),
+  [ADDRESS] [nvarchar](1000) NULL,
+  [REMARKS] [nvarchar](4000) NULL,
+  [CREATE_TIME] [varchar](14) NOT NULL,
+  [CREATE_USER] [varchar](20) NOT NULL,
+  [UPDATE_TIME] [varchar](14) NULL,
+  [UPDATE_USER] [varchar](20) NULL,
+  [MASTER_FLAG] [varchar](1) NULL,
+  CONSTRAINT [PK_ESYSMSTUSR] PRIMARY KEY CLUSTERED ([PLANT], [DEPARTMENT], [USER_ID])
+)
+ON [PRIMARY]
+GO

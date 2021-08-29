@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[EWIP_STOCK] (
+  [ID] [int] IDENTITY,
+  [CODE] [varchar](50) NOT NULL,
+  [NAME] [nvarchar](50) NULL,
+  [DEPT_CODE] [nvarchar](100) NOT NULL,
+  [MANAGERMENT_EMAIL1] [nvarchar](320) NULL,
+  [MANAGERMENT_EMAIL2] [nvarchar](320) NULL,
+  CONSTRAINT [PK_EWIP_STOCK] PRIMARY KEY CLUSTERED ([ID])
+)
+ON [PRIMARY]
+GO

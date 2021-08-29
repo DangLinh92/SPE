@@ -1,0 +1,19 @@
+﻿CREATE TABLE [dbo].[EWIP_MRP] (
+  [ID] [int] IDENTITY,
+  [SPAREPART_CODE] [nvarchar](50) NOT NULL,
+  [QUANTITY_NEED_BUY] [float] NOT NULL,
+  [UNIT] [nvarchar](50) NOT NULL,
+  [STATUS] [nvarchar](50) NULL,
+  [MRP_CODE] [nvarchar](50) NULL,
+  [DEPT_CODE] [nvarchar](100) NOT NULL,
+  [DATE_NEED_BUY] [date] NULL,
+  [DATE_NEED_FINISH] [date] NULL,
+  [DATE_END_ACTUAL] [date] NULL,
+  [USER_UPDATE] [nvarchar](50) NULL,
+  [DATE_UPDATE] [date] NULL,
+  [OFF_NOTI] [bit] NULL,
+  [DATE_NEED_REQUIRED] [date] NULL,
+  CONSTRAINT [PK_EWIP_MRP] PRIMARY KEY CLUSTERED ([ID])
+)
+ON [PRIMARY]
+GO

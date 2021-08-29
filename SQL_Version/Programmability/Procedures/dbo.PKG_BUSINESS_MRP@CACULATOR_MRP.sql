@@ -1,0 +1,188 @@
+﻿SET QUOTED_IDENTIFIER, ANSI_NULLS ON
+GO
+CREATE PROC [dbo].[PKG_BUSINESS_MRP@CACULATOR_MRP]
+AS
+BEGIN TRY
+		BEGIN
+		    SET NOCOUNT OFF;  
+			DECLARE @INVENTORY_CURRENT FLOAT
+			DECLARE @INVENTORY_MIN FLOAT
+			DECLARE @LEADER_TIME int
+			DECLARE @WORKING_A_DAY_PACK FLOAT
+			DECLARE @REQUEST_TO_ORDER INT = 8
+			DECLARE @PREPARE_TIME INT = 1
+
+			DECLARE @SPARE_PART_CODE NVARCHAR(50)
+			DECLARE @A_DEPARTMENT NVARCHAR(50)
+			DECLARE @A_STOCK NVARCHAR(50)
+			DECLARE @MONTH INT
+			DECLARE @YEAR INT
+			DECLARE @DATE_END DATE
+			DECLARE @POINT FLOAT
+			DECLARE @CHECK INT
+			DECLARE @WORKING_MONTH FLOAT
+			DECLARE @OFFSET_QUANTITY FLOAT
+			DECLARE @QTY_NEED_BUY FLOAT
+
+			BEGIN TRAN
+			DECLARE cursorDept3 CURSOR LOCAL FOR
+			SELECT [CODE] FROM [dbo].[ESYSMSTDEPT]
+
+			OPEN cursorDept3
+
+			FETCH NEXT FROM cursorDept3
+			INTO @A_DEPARTMENT
+
+			PRINT @A_DEPARTMENT
+
+			WHILE @@FETCH_STATUS = 0
+				BEGIN
+
+					PRINT @A_DEPARTMENT
+
+					 DECLARE cursorStock CURSOR LOCAL FOR
+					 SELECT [CODE] FROM [dbo].[EWIP_STOCK] WHERE [DEPT_CODE] = @A_DEPARTMENT
+
+					 OPEN cursorStock
+
+					 FETCH NEXT FROM cursorStock
+					 INTO @A_STOCK
+
+					 WHILE @@FETCH_STATUS = 0
+					    BEGIN						
+							  DECLARE cursorSparepart CURSOR LOCAL FOR
+							  SELECT [CODE] FROM [dbo].[EWIP_SPARE_PART] WHERE [SP_DEPT_CODE] = @A_DEPARTMENT
+							  
+							   OPEN cursorSparepart
+
+							  FETCH NEXT FROM cursorSparepart
+							  INTO @SPARE_PART_CODE
+							  
+							  PRINT @A_STOCK
+
+							  	WHILE @@FETCH_STATUS = 0
+							  		  BEGIN
+											PRINT '-- SPARE_PART_CODE --'
+											PRINT @SPARE_PART_CODE
+
+											SET @INVENTORY_CURRENT = 0
+											SET @INVENTORY_MIN = 0
+											SET @LEADER_TIME = 0
+											SET @WORKING_A_DAY_PACK = 0
+											SET @WORKING_MONTH = 0
+
+							  				SELECT @INVENTORY_CURRENT = ISNULL(sum([dbo].[CONVERT_UNIT]([UNIT_IN_CODE],'PACK',[SPARE_PART_CODE],@A_DEPARTMENT) * [QUANTITY]),0)
+							  				FROM [dbo].[EWIP_SPAREPART_INVENTORY]
+							  				WHERE [DEPT_CODE] = @A_DEPARTMENT AND [SPARE_PART_CODE] = @SPARE_PART_CODE AND [STOCK_CODE] = @A_STOCK
+							  				group by [SPARE_PART_CODE],[UNIT_IN_CODE]
+							                
+											PRINT '-- inventory--'
+											PRINT @INVENTORY_CURRENT
+
+							  				SELECT @INVENTORY_MIN = ISNULL([dbo].[CONVERT_UNIT]([UNIT_CODE],'PACK',[SPARE_PART_CODE],@A_DEPARTMENT) * [MIN_STOCK],0)
+							  				FROM [dbo].[EWIP_SETUP_MINSTOCK]
+							  				WHERE [SPARE_PART_CODE] = @SPARE_PART_CODE AND [DEPT_CODE] = @A_DEPARTMENT AND [STOCK_CODE] = @A_STOCK
+							  
+											PRINT @INVENTORY_MIN
+
+							                SELECT @LEADER_TIME = ISNULL([LEAD_TIME],0) FROM [dbo].[EWIP_SPARE_PART] WHERE [SP_DEPT_CODE] = @A_DEPARTMENT AND [CODE] = @SPARE_PART_CODE
+
+											PRINT '-- lead time--'
+											PRINT @LEADER_TIME
+
+											SET @DATE_END = DATEADD(DAY,@REQUEST_TO_ORDER + @LEADER_TIME + @PREPARE_TIME,GETDATE()) -- prepare time is 1 day 
+
+											SET @MONTH = MONTH(@DATE_END)
+											SET @YEAR = YEAR(@DATE_END)
+
+											PRINT @MONTH
+											PRINT @YEAR
+
+											SELECT @WORKING_A_DAY_PACK = ISNULL([WORKING_A_LINE_PACK]*[WORKING_LINE_NUMBER]*[RATE],0) ,@WORKING_MONTH = ISNULL([WORKING_A_MONTH],0)
+											FROM [dbo].[EWIP_BOM_BY_MONTH]
+											WHERE [DEPT_CODE] = @A_DEPARTMENT AND [MONTH] = @MONTH AND [YEART]= @YEAR AND SPARE_PART_CODE = @SPARE_PART_CODE
+
+											
+											IF @WORKING_A_DAY_PACK IS NULL OR @WORKING_A_DAY_PACK = 0
+											  BEGIN
+													SELECT TOP 1 @WORKING_A_DAY_PACK = [WORKING_A_LINE_PACK]*[WORKING_LINE_NUMBER]*[RATE], @WORKING_MONTH = ISNULL([WORKING_A_MONTH],0)
+													FROM [dbo].[EWIP_BOM_BY_MONTH]
+													WHERE [DEPT_CODE] = @A_DEPARTMENT AND SPARE_PART_CODE = @SPARE_PART_CODE
+													ORDER BY [YEART] DESC,[MONTH] DESC
+											  END
+
+											SET @OFFSET_QUANTITY = (@LEADER_TIME + @REQUEST_TO_ORDER+@PREPARE_TIME)*@WORKING_A_DAY_PACK
+
+											SET @POINT = (@INVENTORY_CURRENT - @INVENTORY_MIN) - @OFFSET_QUANTITY
+
+											PRINT '-- WORKING_A_DAY_PACK--point'
+											PRINT @WORKING_A_DAY_PACK
+											PRINT @POINT
+
+											IF @POINT < 0
+													BEGIN
+														SELECT @CHECK = COUNT(*)
+														FROM [dbo].[EWIP_MRP]
+														WHERE [DEPT_CODE] = @A_DEPARTMENT AND [SPAREPART_CODE] = @SPARE_PART_CODE
+
+														SET @QTY_NEED_BUY = CEILING(@OFFSET_QUANTITY + 5*@WORKING_A_DAY_PACK) -- hang ve sau 5 hom thi dat tiep
+
+														IF @CHECK = 0
+															BEGIN
+																INSERT INTO [dbo].[EWIP_MRP]
+																VALUES(@SPARE_PART_CODE,@QTY_NEED_BUY,'PACK',NULL,NULL,@A_DEPARTMENT,DATEADD(DAY,@REQUEST_TO_ORDER+@PREPARE_TIME,GETDATE()),@DATE_END,NULL,NULL,GETDATE(),'False',DATEADD(DAY,@PREPARE_TIME,GETDATE()))
+															 END
+														ELSE 
+														   BEGIN
+																DECLARE @CHECK1 INT = 0;
+																DECLARE @CHECK2 INT  = 0;
+																SELECT @CHECK1 = COUNT(*)
+																FROM [dbo].[EWIP_MRP]
+																WHERE [DEPT_CODE] = @A_DEPARTMENT AND [SPAREPART_CODE] = @SPARE_PART_CODE AND ([STATUS] <> 'COMPLETE' OR STATUS IS NULL)
+
+																SELECT @CHECK2 = COUNT(*)
+																FROM [dbo].[EWIP_MRP]
+																WHERE [DEPT_CODE] = @A_DEPARTMENT AND [SPAREPART_CODE] = @SPARE_PART_CODE AND OFF_NOTI = 'True'
+
+																IF @CHECK2 = 0
+																  BEGIN
+																	IF @CHECK1 = 0
+																	  BEGIN
+																			INSERT INTO [dbo].[EWIP_MRP]
+																			VALUES(@SPARE_PART_CODE,@QTY_NEED_BUY,'PACK',NULL,NULL,@A_DEPARTMENT,DATEADD(DAY,@REQUEST_TO_ORDER+@PREPARE_TIME,GETDATE()),@DATE_END,NULL,NULL,GETDATE(),'False',DATEADD(DAY,@PREPARE_TIME,GETDATE()))
+																	  END
+																	ELSE
+																	   BEGIN
+																			PRINT 'NEXT'
+																	   END  
+																  END
+														   END
+													END
+
+							  				FETCH NEXT FROM cursorSparepart
+							  				INTO @SPARE_PART_CODE
+							  		 END
+
+								CLOSE cursorSparepart
+								DEALLOCATE cursorSparepart
+
+								FETCH NEXT FROM cursorStock
+								INTO @A_STOCK
+						END
+
+						CLOSE cursorStock
+						DEALLOCATE cursorStock
+
+					 FETCH NEXT FROM cursorDept3
+					INTO @A_DEPARTMENT
+				END
+				CLOSE cursorDept3
+				DEALLOCATE cursorDept3
+       END
+	COMMIT TRAN
+END TRY
+	BEGIN CATCH
+	print ERROR_MESSAGE()
+  ROLLBACK TRAN
+END CATCH
+GO

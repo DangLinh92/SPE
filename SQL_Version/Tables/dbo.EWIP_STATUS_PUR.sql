@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[EWIP_STATUS_PUR] (
+  [ID] [int] IDENTITY,
+  [CODE] [nvarchar](50) NULL,
+  [NAME] [nvarchar](50) NULL,
+  [NAME_KR] [nvarchar](100) NULL,
+  CONSTRAINT [PK_EWIP_STATUS_PUR] PRIMARY KEY CLUSTERED ([ID])
+)
+ON [PRIMARY]
+GO

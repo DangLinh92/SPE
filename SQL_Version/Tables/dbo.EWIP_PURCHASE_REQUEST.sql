@@ -1,0 +1,19 @@
+﻿CREATE TABLE [dbo].[EWIP_PURCHASE_REQUEST] (
+  [ID] [int] IDENTITY,
+  [DATE_CREATE] [date] NULL,
+  [PR_CODE] [nvarchar](50) NULL,
+  [PR_STATUS] [nvarchar](50) NULL,
+  [MRP_CODE] [nvarchar](50) NULL,
+  [TOTAL_VALUE] [float] NULL,
+  [DATE_NEED_FINISH] [date] NULL,
+  [DATE_END_ACTUAL] [date] NULL,
+  [DEPT_CODE] [nvarchar](100) NULL,
+  [PURPOSE_OF_BUYING] [nvarchar](1000) NULL,
+  [USER_CREATE] [nvarchar](50) NULL,
+  [USER_UPDATE] [nvarchar](50) NULL,
+  [DATE_UPDATE] [date] NULL,
+  [TOTAL_VALUE_US] [float] NULL,
+  CONSTRAINT [PK_EWIP_PURCHASE_REQUEST] PRIMARY KEY CLUSTERED ([ID])
+)
+ON [PRIMARY]
+GO
