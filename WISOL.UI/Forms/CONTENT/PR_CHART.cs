@@ -454,7 +454,7 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
 
-                saveFileDialog1.Filter = "exel files (*.xlsx)|*.xlsx";
+                saveFileDialog1.Filter = "excel files (*.xlsx)|*.xlsx";
                 saveFileDialog1.FilterIndex = 2;
                 saveFileDialog1.RestoreDirectory = true;
 

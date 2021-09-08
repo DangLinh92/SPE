@@ -67,10 +67,10 @@ namespace Wisol.MES.Forms.CONTENT
 
                     gvList.Columns["ID"].Visible = false;
                     gvList.Columns["PRICE_VN"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                    gvList.Columns["PRICE_VN"].DisplayFormat.FormatString = "c3";
+                    gvList.Columns["PRICE_VN"].DisplayFormat.FormatString = "n3";
 
                     gvList.Columns["PRICE_US"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                    gvList.Columns["PRICE_US"].DisplayFormat.FormatString = "c3";
+                    gvList.Columns["PRICE_US"].DisplayFormat.FormatString = "n3";
                     gvList.OptionsView.ColumnAutoWidth = true;
 
                     m_BindData.BindGridLookEdit(stlUnit, tableCollection[3], "CODE", "NAME");

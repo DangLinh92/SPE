@@ -99,6 +99,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     gvList.Columns["QUANTITY_PRINT_LABEL"].OptionsColumn.AllowEdit = true;
                     gvList.Columns["TIME_IN"].OptionsColumn.AllowEdit = false;
                     gvList.Columns["QUANTITY_A_UNIT"].OptionsColumn.AllowEdit = true;
+                    gvList.Columns["PO_NO"].OptionsColumn.AllowEdit = false;
                     gvList.OptionsView.ColumnAutoWidth = true;
                 }
 
@@ -126,7 +127,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             {
                 if (dataLocations.Count > 1)
                 {
-                    ViewLocation(dataLocations[2]);
+                    ViewLocation(dataLocations[1]);
                 }
                 else
                 {
@@ -187,8 +188,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
             try
             {
-                // new barcode is : MA SAN PHAM$VI TRI$TINH TRANG$NGAY NHAP KHO$NGAY HET HAN$SO LUONG$DON VI
-                // SP-0001$01-01$OK$2021-06-30$2021-06-30$100$PACK
+                // new barcode is : MA SAN PHAM$VI TRI$TINH TRANG$NGAY NHAP KHO$NGAY HET HAN$SO LUONG$DON VI$PO_NO
+                // SP-0001$01-01$OK$2021-06-30$2021-06-30$100$PACK$12313
 
                 designFile = "STOCK_LABEL.xml";
 
@@ -201,19 +202,20 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 int check = 0;
                 foreach (int i in gvList.GetSelectedRows())
                 {
-                    int numberLabel = int.Parse(Math.Ceiling(decimal.Parse(gvList.GetRowCellValue(i, gvList.Columns[10]).NullString())).NullString());
+                    int numberLabel = int.Parse(Math.Ceiling(decimal.Parse(gvList.GetRowCellValue(i, "QUANTITY_PRINT_LABEL").NullString())).NullString());
                     for (int j = 0; j < numberLabel; j++)
                     {
                         xml_content = label;
 
-                        string spareCode = gvList.GetRowCellValue(i, gvList.Columns[1]).NullString();
-                        string position = gvList.GetRowCellValue(i, gvList.Columns[0]).NullString();
-                        string condition = gvList.GetRowCellValue(i, gvList.Columns[3]).NullString();
+                        string spareCode = gvList.GetRowCellValue(i, "SPARE_PART_CODE").NullString();
+                        string position = gvList.GetRowCellValue(i, "LOCATION").NullString();
+                        string condition = gvList.GetRowCellValue(i, "CONDITION_NAME").NullString();
                         string lblPosition_condition = position + (position == string.Empty ? (condition == "NG" ? "NG" : string.Empty) : (condition == "NG" ? ".NG" : string.Empty));
-                        string strDate = gvList.GetRowCellValue(i, gvList.Columns[11]).NullString();
-                        string timeIn = gvList.GetRowCellValue(i, gvList.Columns[12]).NullString();
-                        string quantity = gvList.GetRowCellValue(i, gvList.Columns[9]).NullString();
-                        string unit = gvList.GetRowCellValue(i, gvList.Columns[4]).NullString();
+                        string strDate = gvList.GetRowCellValue(i, "EXPIRED_DATE").NullString();
+                        string timeIn = gvList.GetRowCellValue(i, "TIME_IN").NullString();
+                        string quantity = gvList.GetRowCellValue(i, "QUANTITY_A_UNIT").NullString();
+                        string unit = gvList.GetRowCellValue(i, "UNIT").NullString();
+                        string poNo = gvList.GetRowCellValue(i, "PO_NO").NullString();
 
                         DateTime dTimeIn;
                         if (DateTime.TryParse(timeIn, out dTimeIn))
@@ -256,7 +258,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             quantity + Consts.STR_SPILIT_ON_BARCODE +
                             unit;
 
-                        string newSparepartCode = gvList.GetRowCellValue(i, gvList.Columns[1]).NullString() + "-" + quantity + unit;
+                        if (poNo != "")
+                        {
+                            barcode += (Consts.STR_SPILIT_ON_BARCODE + poNo);
+                        }
+
+                        string newSparepartCode = gvList.GetRowCellValue(i, "SPARE_PART_CODE").NullString() + "-" + quantity + unit;
 
                         if (strDate == "2199-01-01")
                         {

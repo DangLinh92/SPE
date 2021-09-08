@@ -141,12 +141,12 @@ namespace Wisol.MES.Forms.CONTENT
 
                         if (m_ResultDB.ReturnInt == 0)
                         {
-                            MsgBox.Show(m_ResultDB.ReturnString, MsgType.Information);
+                            MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
                             InitData();
                         }
                         else
                         {
-                            MsgBox.Show(m_ResultDB.ReturnString, MsgType.Error);
+                            MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
                         }
                     }
                 }

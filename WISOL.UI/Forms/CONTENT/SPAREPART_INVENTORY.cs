@@ -74,11 +74,11 @@ namespace Wisol.MES.Forms.CONTENT
                     gvList.Columns["SPECIFICATION"].Width = 150;
                     gvList.Columns["NAME_KR"].Width = 150;
 
-                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_SHEET.GET", 
-                        new string[] { "A_DEPARTMENT", "A_STOCK_CODE" }, 
+                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_SHEET.GET",
+                        new string[] { "A_DEPARTMENT", "A_STOCK_CODE" },
                         new string[] { Consts.DEPARTMENT, stlKho.EditValue.NullString() });
 
-                    if(m_ResultDB.ReturnInt == 0)
+                    if (m_ResultDB.ReturnInt == 0)
                     {
                         DataTable kiemkeData = m_ResultDB.ReturnDataSet.Tables[0];
                         string dateUpdate = kiemkeData.Rows[0]["DATE_UPDATE"].NullString() == "" ? kiemkeData.Rows[0]["DATE_END"].NullString() : kiemkeData.Rows[0]["DATE_UPDATE"].NullString();
@@ -574,7 +574,7 @@ namespace Wisol.MES.Forms.CONTENT
                     DateTime datefrom = (DateTime)dateFrom.EditValue;
                     DateTime dateto = (DateTime)dateTo.EditValue;
 
-                    if(datefrom > dateto)
+                    if (datefrom > dateto)
                     {
                         MsgBox.Show("MSG_ERR_TIME_INVALID".Translation(), MsgType.Warning);
                         dateFrom.Focus();
@@ -676,6 +676,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
+                // check xem can PO NO k
                 POP.EXPORT_EXCEL popup = new POP.EXPORT_EXCEL();
                 popup.ReportType = "0";
                 popup.ReportTitle = "Inventory of assets-Kiểm kê thiết bị";
@@ -702,6 +703,13 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
+        }
+
+        private void btnValueInventory_Click(object sender, EventArgs e)
+        {
+            splashScreenManager1.ShowWaitForm();
+            Consts.mainForm.NewPageFromOtherPage("INVENTORY_VALUES", "재고의 현금 가치- Giá trị tồn kho", "W", "Y", stlKho.EditValue.NullString());
+            splashScreenManager1.CloseWaitForm();
         }
     }
 }

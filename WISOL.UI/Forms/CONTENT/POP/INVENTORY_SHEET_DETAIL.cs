@@ -63,6 +63,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             gvList.Columns["INVENTORY_ASSETS_TIME"].OptionsColumn.AllowEdit = false;
             gvList.Columns["QUANTITY_REAL"].OptionsColumn.AllowEdit = true;
             gvList.Columns["DIFF"].OptionsColumn.AllowEdit = false;
+            gvList.Columns["PO_NO"].OptionsColumn.AllowEdit = false;
             gvList.OptionsView.ColumnAutoWidth = true;
         }
 
@@ -145,6 +146,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         string quantity = items[5];
                         string unit = items[6];
 
+                        string poNo = string.Empty;
+                        if (items.Length > 7)
+                        {
+                            poNo = items[7].NullString();
+                        }
+
                         if (Consts.lstUnicodeUnitErr.Contains(unit))
                         {
                             unit = Consts.lstUnicodeUnitOK[Consts.lstUnicodeUnitErr.FindIndex(x => x == unit)];
@@ -169,7 +176,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                 if (sparepartCode == gvList.GetRowCellValue(i, "SPARE_PART_CODE").NullString() &&
                                     condition == gvList.GetRowCellValue(i, "CONDITION_CODE").NullString() &&
                                     dateInWarehouse == timeIn.ToString("yyyy-MM-dd") &&
-                                    dateExpiried == gvList.GetRowCellValue(i, "EXPIRED_DATE").NullString())
+                                    dateExpiried == gvList.GetRowCellValue(i, "EXPIRED_DATE").NullString() &&
+                                    poNo == gvList.GetRowCellValue(i, "PO_NO").NullString())
                                 {
                                     if (unit == gvList.GetRowCellValue(i, "UNIT").NullString())
                                     {

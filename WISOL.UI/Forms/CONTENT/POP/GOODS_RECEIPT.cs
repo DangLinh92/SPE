@@ -90,7 +90,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     SparePartData = base.mResultDB.ReturnDataSet.Tables[1];
                     base.mBindData.BindGridLookEdit(stlSparePartCode, base.mResultDB.ReturnDataSet.Tables[1], "CODE", "NAME_VI");
                     base.mBindData.BindGridLookEdit(stlKho, base.mResultDB.ReturnDataSet.Tables[2], "CODE", "NAME");
-                    base.mBindData.BindGridLookEdit(stlOrderCode, base.mResultDB.ReturnDataSet.Tables[4], "PO_ID", "TITLE");
+                    base.mBindData.BindGridLookEdit(stlOrderCode, base.mResultDB.ReturnDataSet.Tables[4], "PO_ID", "PO_ID");
 
                     DataTable tmp = new DataTable();
                     tmp.Columns.Add("CODE");
@@ -206,9 +206,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
                             item["AMOUNT_US"].NullString(),
                             item["CAUSE"].NullString(),
                             item["NOTE"].NullString(),
-string.Empty,
-string.Empty,
-string.Empty,
+                            string.Empty,
+                            string.Empty,
+                            string.Empty,
                             item["CREATE_DATE"].NullString(), string.Empty, string.Empty, string.Empty, string.Empty,
                             item["TYPE_IN_OUT_CODE"].NullString(),
                             item["RETURN_TIME"].NullString(),
@@ -399,7 +399,7 @@ string.Empty,
                     }
                 }
 
-                if (!cheIsScanbarcode.Checked)
+                if (!cheIsScanbarcode.Checked) // NHAP KHO HOAC XUAT FIFO
                 {
                     if (string.IsNullOrEmpty(stlSparePartCode.EditValue.NullString()) ||
                         string.IsNullOrEmpty(txtQuantity.EditValue.NullString()) ||
@@ -435,6 +435,7 @@ string.Empty,
                         string expiredDate = gvLocation.GetRowCellValue(i, "EXPIRED_DATE").NullString();
                         string dateInWareHouse = gvLocation.GetRowCellValue(i, "TIME_IN").NullString();
                         string unit = gvLocation.GetRowCellValue(i, "UNIT").NullString();
+                        string poNo = gvLocation.GetRowCellValue(i, "PO_NO").NullString();
 
                         if (string.IsNullOrEmpty(location))
                         {
@@ -460,6 +461,11 @@ string.Empty,
                         else
                         {
                             valueDicItem += "_" + DateTime.Now.ToString("yyyy-MM-dd") + "_" + unit;
+                        }
+
+                        if (poNo != "")
+                        {
+                            valueDicItem += "_" + poNo; // location_quantity_condition_expired date_in time_unit_poNo : add PO 29-8-2021
                         }
 
                         if (LocationDic.ContainsKey(location))
@@ -549,7 +555,7 @@ string.Empty,
                     base.mBindData.BindGridView(gcList, Data);
                     FormatGridColumn(true);
                 }
-                else
+                else // xuat kho
                 {
                     if (gvLocation.GetSelectedRows().Length == 0)
                     {
@@ -583,6 +589,7 @@ string.Empty,
                         string expiredDate = gvLocation.GetRowCellValue(i, "EXPIRED_DATE").NullString();
                         string dateInWareHouse = gvLocation.GetRowCellValue(i, "TIME_IN").NullString();
                         string unit = gvLocation.GetRowCellValue(i, "UNIT").NullString();
+                        string poNo = gvLocation.GetRowCellValue(i, "PO_NO").NullString();
 
                         if (string.IsNullOrEmpty(location))
                         {
@@ -617,15 +624,59 @@ string.Empty,
                             valueDicItem += "_" + DateTime.Now.ToString("yyyy-MM-dd") + "_" + newUnit;
                         }
 
+                        if (poNo != "")
+                        {
+                            valueDicItem += "_" + poNo;
+                        }
+
                         float quantityUpdate = 0;
                         if (LocationDic.ContainsKey(location))
                         {
-                            string[] arr = LocationDic[location].Split('_');
-                            quantityUpdate = float.Parse(arr[0]) * ConvertUnit(arr[4], newUnit, stlSparePartCode.EditValue.NullString());
-                            arr[0] = quantityUpdate.NullString();
-                            arr[4] = newUnit;
-                            LocationDic[location] = arr[0] + "_" + arr[1] + "_" + arr[2] + "_" + arr[3] + "_" + arr[4]; // update old location 
-                            LocationDic[location] += "," + location + "_" + valueDicItem;   // location_quantity_condition_expired date_in time_unit
+                            string[] ArrItem = LocationDic[location].Split(',');
+
+                            string ItemUpdate = "";
+                            int k = 0;
+                            foreach (string item in ArrItem)
+                            {
+                                string[] arr = item.Split('_');
+
+                                if (arr.Length == 5 && k == 0) // quantity_condition_expired date_in time_unit
+                                {
+                                    quantityUpdate = float.Parse(arr[0]) * ConvertUnit(arr[4], newUnit, stlSparePartCode.EditValue.NullString());
+                                    arr[0] = quantityUpdate.NullString();
+                                    arr[4] = newUnit;
+
+                                    ItemUpdate += arr[0] + "_" + arr[1] + "_" + arr[2] + "_" + arr[3] + "_" + arr[4] + ",";
+                                }
+                                else
+                                if (arr.Length == 6 && k == 0) // quantity_condition_expired date_in time_unit_poNo
+                                {
+                                    quantityUpdate = float.Parse(arr[0]) * ConvertUnit(arr[4], newUnit, stlSparePartCode.EditValue.NullString());
+                                    arr[0] = quantityUpdate.NullString();
+                                    arr[4] = newUnit;
+
+                                    ItemUpdate += arr[0] + "_" + arr[1] + "_" + arr[2] + "_" + arr[3] + "_" + arr[4] + "_" + arr[5] + ",";
+                                }
+                                else if (arr.Length == 6 && k > 0) // location_quantity_condition_expired date_in time_unit
+                                {
+                                    quantityUpdate = float.Parse(arr[1]) * ConvertUnit(arr[5], newUnit, stlSparePartCode.EditValue.NullString());
+                                    arr[1] = quantityUpdate.NullString();
+                                    arr[5] = newUnit;
+
+                                    ItemUpdate += arr[0] + "_" + arr[1] + "_" + arr[2] + "_" + arr[3] + "_" + arr[4] + "_" + arr[5] + ",";
+                                }
+                                else if (arr.Length == 7) // location_quantity_condition_expired date_in time_unit_poNo
+                                {
+                                    quantityUpdate = float.Parse(arr[1]) * ConvertUnit(arr[5], newUnit, stlSparePartCode.EditValue.NullString());
+                                    arr[1] = quantityUpdate.NullString();
+                                    arr[5] = newUnit;
+
+                                    ItemUpdate += arr[0] + "_" + arr[1] + "_" + arr[2] + "_" + arr[3] + "_" + arr[4] + "_" + arr[5] + "_" + arr[6] + ",";
+                                }
+                                k += 1;
+                            }
+
+                            LocationDic[location] = ItemUpdate + location + "_" + valueDicItem;   // location_quantity_condition_expired date_in time_unit_poNo
                         }
                         else
                         {
@@ -816,7 +867,7 @@ string.Empty,
                 dateReturnTime.EditValue = gvList.GetDataRow(RowHandle)["RETURN_TIME"].NullString();
             }
 
-            if (INOUT == Consts.OUT)
+            if (INOUT == Consts.OUT) // xuat kho
             {
                 recheckOk = true;
                 conditionFindLocation = string.Empty;
@@ -829,7 +880,7 @@ string.Empty,
 
                 conditionFindLocation = conditionFindLocation.Remove(conditionFindLocation.Length - 1, 1);
 
-                string[] arr = gvList.GetDataRow(RowHandle)["LOCATION"].NullString().Split(',');
+                string[] arr = gvList.GetDataRow(RowHandle)["LOCATION"].NullString().Split(','); // location_quantity_condition_expired date_in time_unit_poNo,...
 
                 for (int i = 0; i < arr.Length; i++)
                 {
@@ -838,6 +889,14 @@ string.Empty,
                     {
                         string expiredDate = gvLocation.GetRowCellValue(j, "EXPIRED_DATE").NullString() == string.Empty ? "2199-01-01" : gvLocation.GetRowCellValue(j, "EXPIRED_DATE").NullString();
                         string inTimeDate = gvLocation.GetRowCellValue(j, "TIME_IN").NullString();
+                        string poNo = gvLocation.GetRowCellValue(j, "PO_NO").NullString(); // ad PO NO 29-8-2021
+
+                        bool isCheckPoNo = true;
+                        if (item.Length == 7) // have poNo
+                        {
+                            isCheckPoNo = item[6].NullString() == poNo;
+                        }
+
                         DateTime exDate;
                         DateTime inDate;
 
@@ -845,13 +904,17 @@ string.Empty,
                               (
                                 gvLocation.GetRowCellValue(j, "LOCATION").NullString() == item[0] &&
                                 gvLocation.GetRowCellValue(j, "CONDITION_CODE").NullString() == item[2] &&
-                                exDate.ToString("yyyy-MM-dd") == item[3] && inDate.ToString("yyyy-MM-dd") == item[4]
+                                exDate.ToString("yyyy-MM-dd") == item[3] &&
+                                inDate.ToString("yyyy-MM-dd") == item[4] &&
+                                isCheckPoNo
                               ) ||
                               (
                                 item[0] == "W" &&
                                 string.IsNullOrEmpty(gvLocation.GetRowCellValue(j, "LOCATION").NullString()) &&
                                 gvLocation.GetRowCellValue(j, "CONDITION_CODE").NullString() == item[2] &&
-                                exDate.ToString("yyyy-MM-dd") == item[3] && DateTime.Parse(inTimeDate).ToString("yyyy-MM-dd") == item[4])
+                                exDate.ToString("yyyy-MM-dd") == item[3] && DateTime.Parse(inTimeDate).ToString("yyyy-MM-dd") == item[4] &&
+                                isCheckPoNo
+                               )
                             )
                         {
                             if (item[1] == string.Empty) item[1] = "0";
@@ -1021,12 +1084,21 @@ string.Empty,
                     return;
                 }
 
+                if (cboStatus.EditValue.NullString() != Consts.STATUS_COMPLETE)
+                {
+                    DialogResult dialogResult = MsgBox.Show("TRẠNG THÁI ĐANG LÀ '" + cboStatus.EditValue.NullString()+"', ĐỂ XÁC NHẬN TỒN KHO HÃY CHỌN TRẠNG THÁI HOÀN THÀNH, NHẤN CANCEL ĐỂ CHỈNH SỬA, NHẤN OKE ĐỂ TIẾP TỤC".Translation(), MsgType.Warning, DialogType.OkCancel);
+                    if (dialogResult != DialogResult.OK)
+                    {
+                        return;
+                    }
+                }
+
                 foreach (DataRow item in Data.Rows)
                 {
                     item["STOCK_CODE"] = stlKho.EditValue.NullString();
                     item["DEPT_CODE"] = Consts.DEPARTMENT;
                     item["INT_OUT"] = INOUT;
-                    item["ORDER_CODE"] = stlOrderCode.EditValue.NullString();
+                    item["ORDER_CODE"] = stlOrderCode.EditValue.NullString(); // PO_NO
                     item["USER_CREATE"] = txtUserCreate.EditValue.NullString() == string.Empty ? Consts.USER_INFO.Id : txtUserCreate.EditValue.NullString();
                     item["CREATE_DATE"] = dateInput.EditValue.NullString();
                     item["STATUS"] = cboStatus.EditValue.NullString();
@@ -1200,8 +1272,8 @@ string.Empty,
 
                 if (cheIsScanbarcode.Checked)
                 {
-                    // new barcode is : MA SAN PHAM$VI TRI$TINH TRANG$NGAY NHAP KHO$NGAY HET HAN$SO LUONG$DON VI
-                    // SP-0001$01-01$OK$2021-06-30$2021-06-30$100$PACK
+                    // new barcode is : MA SAN PHAM$VI TRI$TINH TRANG$NGAY NHAP KHO$NGAY HET HAN$SO LUONG$DON VI$PO_NO
+                    // SP-0001$01-01$OK$2021-06-30$2021-06-30$100$PACK$1234
                     if (INOUT == Consts.OUT)
                     {
                         conditionFindLocation = string.Empty;
@@ -1220,6 +1292,12 @@ string.Empty,
                                 string dateExpiried = items[4];
                                 string quantity = items[5];
                                 string unit = items[6];
+
+                                string poNo = "";
+                                if (items.Length > 7)
+                                {
+                                    poNo = Consts.STR_SPILIT_ON_BARCODE + items[7].NullString();
+                                }
 
                                 if (Consts.lstUnicodeUnitErr.Contains(unit))
                                 {
@@ -1241,7 +1319,8 @@ string.Empty,
                                     location + Consts.STR_SPILIT_ON_BARCODE +
                                     condition + Consts.STR_SPILIT_ON_BARCODE +
                                     dateInWarehouse + Consts.STR_SPILIT_ON_BARCODE +
-                                    dateExpiried + Consts.STR_SPILIT_WITH_QUANTITY + quantity + Consts.STR_SPILIT_WITH_QUANTITY + unit;
+                                    dateExpiried + poNo +
+                                    Consts.STR_SPILIT_WITH_QUANTITY + quantity + Consts.STR_SPILIT_WITH_QUANTITY + unit;
 
                                 stlSparePartCode.EditValue = sparepartCode;
                                 stlUnit.EditValue = unit;
@@ -1269,13 +1348,21 @@ string.Empty,
         {
             if (location != string.Empty)
             {
-                string[] arr = location.Split('_'); //location_quantity_condition_expired date_in time_unit
+                //NEW: location_quantity_condition_expired date_in time_unit_poNo,...
+                string[] arr = location.Split('_'); //OLD: location_quantity_condition_expired date_in time_unit
+
+                string poNo = "";
+                if (arr.Length > 6)
+                {
+                    poNo = Consts.STR_SPILIT_ON_BARCODE + arr[6];
+                }
 
                 string condtion = sparepartCode + Consts.STR_SPILIT_ON_BARCODE +
                                     arr[0] + Consts.STR_SPILIT_ON_BARCODE +
                                     arr[2] + Consts.STR_SPILIT_ON_BARCODE +
                                     arr[4] + Consts.STR_SPILIT_ON_BARCODE +
-                                    arr[3] + Consts.STR_SPILIT_WITH_QUANTITY + arr[1] + Consts.STR_SPILIT_WITH_QUANTITY + arr[5];
+                                    arr[3] + poNo +
+                                    Consts.STR_SPILIT_WITH_QUANTITY + arr[1] + Consts.STR_SPILIT_WITH_QUANTITY + arr[5];
                 return condtion;
             }
             return string.Empty;
@@ -1377,6 +1464,7 @@ string.Empty,
                             string condition = gvLocation.GetRowCellValue(i, gvLocation.Columns["CONDITION_CODE"]).NullString();
                             string dateExpiried = gvLocation.GetRowCellValue(i, gvLocation.Columns["EXPIRED_DATE"]).NullString();
                             string dateInWarehouse = gvLocation.GetRowCellValue(i, gvLocation.Columns["TIME_IN"]).NullString();
+                            string poNo = gvLocation.GetRowCellValue(i, "PO_NO").NullString();
 
                             DateTime dateTimeInWareHouse;
                             if (dateInWarehouse != string.Empty || DateTime.TryParse(dateInWarehouse, out dateTimeInWareHouse))
@@ -1397,7 +1485,7 @@ string.Empty,
                                   dateInWarehouse + Consts.STR_SPILIT_ON_BARCODE +
                                   dateExpiried;
 
-                            string lo = arr[k].Split(':')[0].Split(Consts.CHARACTER_SPILIT_ON_BARCODE)[1];
+                            string lo = arr[k].Split(Consts.CHAR_SPILIT_WITH_QUANTITY)[0].Split(Consts.CHARACTER_SPILIT_ON_BARCODE)[1];// location
                             if (lo == string.Empty || lo == "W")
                             {
                                 if (location == string.Empty)
@@ -1411,18 +1499,23 @@ string.Empty,
                                 }
                             }
 
-                            if (str.Equals(arr[k].Split(':')[0]))
+                            if (poNo != "")
+                            {
+                                str += Consts.STR_SPILIT_ON_BARCODE + poNo;
+                            }
+
+                            if (str.Equals(arr[k].Split(Consts.CHAR_SPILIT_WITH_QUANTITY)[0]))
                             {
                                 string quantity_get = gvLocation.GetRowCellValue(i, "QUANTITY_GET").NullString();
                                 float newQuantity = 0;
 
                                 if (quantity_get != string.Empty)
                                 {
-                                    newQuantity = ConvertUnit(arr[k].Split(':')[2], stlUnit.EditValue.NullString(), stlSparePartCode.EditValue.NullString()) * float.Parse(arr[k].Split(':')[1]) + float.Parse(quantity_get);
+                                    newQuantity = ConvertUnit(arr[k].Split(Consts.CHAR_SPILIT_WITH_QUANTITY)[2], stlUnit.EditValue.NullString(), stlSparePartCode.EditValue.NullString()) * float.Parse(arr[k].Split(Consts.CHAR_SPILIT_WITH_QUANTITY)[1]) + float.Parse(quantity_get);
                                 }
                                 else
                                 {
-                                    newQuantity = ConvertUnit(arr[k].Split(':')[2], stlUnit.EditValue.NullString(), stlSparePartCode.EditValue.NullString()) * float.Parse(arr[k].Split(':')[1]);
+                                    newQuantity = ConvertUnit(arr[k].Split(Consts.CHAR_SPILIT_WITH_QUANTITY)[2], stlUnit.EditValue.NullString(), stlSparePartCode.EditValue.NullString()) * float.Parse(arr[k].Split(Consts.CHAR_SPILIT_WITH_QUANTITY)[1]);
                                 }
 
                                 if (newQuantity <= quantity)
@@ -1527,6 +1620,7 @@ string.Empty,
                         gvLocation.Columns["QUANTITY"].OptionsColumn.AllowEdit = false;
                         gvLocation.Columns["UNIT"].OptionsColumn.AllowEdit = false;
                         gvLocation.Columns["EXPIRED_DATE"].OptionsColumn.AllowEdit = false;
+                        gvLocation.Columns["PO_NO"].OptionsColumn.AllowEdit = false;
                         gvLocation.Columns["QUANTITY_GET"].OptionsColumn.AllowEdit = true;
                         gvLocation.Columns["QUANTITY"].SummaryItem.DisplayFormat = "{0:n3}";
                         gvLocation.Columns["QUANTITY_GET"].SummaryItem.DisplayFormat = "{0:n3}";

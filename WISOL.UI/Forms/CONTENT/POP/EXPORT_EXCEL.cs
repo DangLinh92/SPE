@@ -26,8 +26,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void EXPORT_EXCEL_Load(object sender, EventArgs e)
         {
-
-
             if (Consts.INVENTORY_REPORT.Equals(ReportType))
             {
                 groupControl1.Text = ReportTitle;
@@ -64,6 +62,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         {
                             gvList.Columns["STT"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                             gvList.Columns["STT"].DisplayFormat.FormatString = "n0";
+
+                            if(ReportType == Consts.INVENTORY_IN_OUT_REPORT)
+                            {
+                                gvList.Columns["PRICE_VN"].Visible = false;
+                                gvList.Columns["PRICE_US"].Visible = false;
+                            }
                         }
                     }
                 }

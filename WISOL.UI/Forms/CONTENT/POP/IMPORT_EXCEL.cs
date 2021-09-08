@@ -55,6 +55,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 {
                     if (ImpportType == Consts.IMPORT_TYPE_INVENTORY_REAL)
                     {
+                        // not use
                         base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_LOCATION.INSERT_BATCH_INVENTORY_REAL", new string[] { "A_DEPARTMENT_CODE", "A_STOCK", "A_USER", "A_TIME" }, "A_DATA", new string[] { Consts.DEPARTMENT, stock_code, Consts.USER_INFO.Id, string.Empty }, Data);
                     }
                     else if (ImpportType == Consts.IMPORT_TYPE_BUSINESS_LOCATION_SPAREPART_INSERT_BATCH)

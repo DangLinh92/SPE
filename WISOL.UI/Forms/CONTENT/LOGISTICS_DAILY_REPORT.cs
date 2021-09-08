@@ -66,5 +66,20 @@ namespace Wisol.MES.Forms.CONTENT
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
+
+        private void gvList_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            if (e.RowHandle < 0)
+                return;
+
+            if (e.Column.FieldName == "INVOICE")
+            {
+                e.Appearance.BackColor = Color.FromArgb(174, 214, 241);
+            }
+            else  if (e.Column.FieldName == "ETA_WISOL")
+            {
+                e.Appearance.BackColor = Color.FromArgb(251, 238, 230);
+            }
+        }
     }
 }

@@ -119,6 +119,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.gvList.GridControl = this.gcList;
             this.gvList.Name = "gvList";
+            this.gvList.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gvList_RowCellStyle);
             // 
             // Root
             // 

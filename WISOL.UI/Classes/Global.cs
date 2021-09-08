@@ -111,6 +111,7 @@ namespace Wisol.MES
         public static char CHARACTER_SPILIT_ON_BARCODE = '$';
         public static string STR_SPILIT_ON_BARCODE = "$";
         public static string STR_SPILIT_WITH_QUANTITY = ":";
+        public static char CHAR_SPILIT_WITH_QUANTITY = ':';
         public static string ZERO = "0";
         public static string SHEET_NAME_EWIP_SPAREPART_LOCATION = "EWIP_SPAREPART_LOCATION$";
         public static string IMPORT_TYPE_INVENTORY_REAL = "0";

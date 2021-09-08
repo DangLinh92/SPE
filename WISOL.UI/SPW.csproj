@@ -270,6 +270,12 @@
     <Compile Include="Forms\CONTENT\INVENTORY_SHEET.Designer.cs">
       <DependentUpon>INVENTORY_SHEET.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\INVENTORY_VALUES.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\INVENTORY_VALUES.Designer.cs">
+      <DependentUpon>INVENTORY_VALUES.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\INVOICES.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -305,6 +311,12 @@
     </Compile>
     <Compile Include="Forms\CONTENT\MRP.Designer.cs">
       <DependentUpon>MRP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\ORDER_JOURNEY.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\ORDER_JOURNEY.Designer.cs">
+      <DependentUpon>ORDER_JOURNEY.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CONTENT\POP\CREATE_MRP_CODE.cs">
       <SubType>Form</SubType>
@@ -438,6 +450,12 @@
     <Compile Include="Forms\CONTENT\POP\PO_CREATE.Designer.cs">
       <DependentUpon>PO_CREATE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\POP\VIRTUAL_PO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\VIRTUAL_PO.Designer.cs">
+      <DependentUpon>VIRTUAL_PO.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\PO_EXPORT.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -515,6 +533,12 @@
     </Compile>
     <Compile Include="Forms\CONTENT\COST_GLACCOUNT.Designer.cs">
       <DependentUpon>COST_GLACCOUNT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\REPORT\IN_OUT_STOCK_REPORT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\REPORT\IN_OUT_STOCK_REPORT.Designer.cs">
+      <DependentUpon>IN_OUT_STOCK_REPORT.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\REPORT\Models\STOCK_OUT_REPORT.cs" />
     <Compile Include="Forms\REPORT\REPORT_STOCK.cs">
@@ -817,6 +841,9 @@
     <EmbeddedResource Include="Forms\CONTENT\INVENTORY_SHEET.resx">
       <DependentUpon>INVENTORY_SHEET.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\INVENTORY_VALUES.resx">
+      <DependentUpon>INVENTORY_VALUES.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\INVOICES.resx">
       <DependentUpon>INVOICES.cs</DependentUpon>
     </EmbeddedResource>
@@ -834,6 +861,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\MRP.resx">
       <DependentUpon>MRP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\ORDER_JOURNEY.resx">
+      <DependentUpon>ORDER_JOURNEY.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\CREATE_MRP_CODE.resx">
       <DependentUpon>CREATE_MRP_CODE.cs</DependentUpon>
@@ -901,6 +931,9 @@
     <EmbeddedResource Include="Forms\CONTENT\POP\PO_CREATE.resx">
       <DependentUpon>PO_CREATE.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\VIRTUAL_PO.resx">
+      <DependentUpon>VIRTUAL_PO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\PO_EXPORT.resx">
       <DependentUpon>PO_EXPORT.cs</DependentUpon>
     </EmbeddedResource>
@@ -936,6 +969,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\COST_GLACCOUNT.resx">
       <DependentUpon>COST_GLACCOUNT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\REPORT\IN_OUT_STOCK_REPORT.resx">
+      <DependentUpon>IN_OUT_STOCK_REPORT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\REPORT\REPORT_STOCK.resx">
       <DependentUpon>REPORT_STOCK.cs</DependentUpon>
@@ -1202,6 +1238,9 @@
     <Content Include="Images\delete_32x32.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\delivery_logistics.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\exchange.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1463,6 +1502,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\box.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\delivery_logistics.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\exchange.png">

@@ -132,6 +132,7 @@ namespace Wisol.MES.Forms.CONTENT
             txtQuantityNewAdd.EditValue = "0";
             stlCondition.EditValue = Consts.CONDITION_DEFAULT;
             dateInputTime.EditValue = DateTime.Now;
+            txtPoNo.EditValue = "";
             txtQuantity.Enabled = false;
         }
 
@@ -276,7 +277,9 @@ namespace Wisol.MES.Forms.CONTENT
                         gvListNoPosition.Columns["QUANTITY"].OptionsColumn.AllowEdit = false;
                         gvListNoPosition.Columns["EXPIRED_DATE"].OptionsColumn.AllowEdit = false;
                         gvListNoPosition.Columns["QUANTITY_PRINT_LABEL"].OptionsColumn.AllowEdit = false;
-                        gvListNoPosition.OptionsView.ColumnAutoWidth = true;
+                        gvListNoPosition.Columns["PO_NO"].OptionsColumn.AllowEdit = false;
+                        gvListNoPosition.BestFitColumns();
+                        //gvListNoPosition.OptionsView.ColumnAutoWidth = true;
                     }
 
                 }
@@ -468,7 +471,7 @@ namespace Wisol.MES.Forms.CONTENT
                 //}
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.INSERT_SPAREPART_EXPIRED",
-                    new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION", "A_CONDITION", "A_ISWATE", "A_QUANTITY", "A_DEPART_MENT", "A_STOCK", "A_BARCODE", "A_UNIT", "A_EXPIRED_DATE", "A_TIME_IN" },
+                    new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION", "A_CONDITION", "A_ISWATE", "A_QUANTITY", "A_DEPART_MENT", "A_STOCK", "A_BARCODE", "A_UNIT", "A_EXPIRED_DATE", "A_TIME_IN", "A_PO_NO" },
                     new string[]
                     {
                         txtSTT.EditValue.NullString(),
@@ -482,7 +485,8 @@ namespace Wisol.MES.Forms.CONTENT
                         barcode,
                         stlUnit.EditValue.NullString(),
                         DateExpired,
-                        dateInputTime.EditValue.NullString()
+                        dateInputTime.EditValue.NullString(),
+                        txtPoNo.EditValue.NullString()
                     });
 
                 if (base.m_ResultDB.ReturnInt == 0)
@@ -491,15 +495,15 @@ namespace Wisol.MES.Forms.CONTENT
 
                     if (chePrint.Checked)
                     {
-                        Print(stlPosition.EditValue.NullString(), 
-                            stlCondition.EditValue.NullString(), 
+                        Print(stlPosition.EditValue.NullString(),
+                            stlCondition.EditValue.NullString(),
                             stlSparepart.EditValue.NullString(),
                             DateTime.Parse(dateInputTime.EditValue.NullString()).ToString("yyyy-MM-dd"),
-                            DateTime.Parse(DateExpired).ToString("yyyy-MM-dd"), 
-                            quantity.NullString(), stlUnit.EditValue.NullString(), 
-                            int.Parse(txtLabelNumber.EditValue.NullString()));
+                            DateTime.Parse(DateExpired).ToString("yyyy-MM-dd"),
+                            quantity.NullString(), stlUnit.EditValue.NullString(),
+                            int.Parse(txtLabelNumber.EditValue.NullString()),txtPoNo.EditValue.NullString());
                     }
-                    
+
                     ViewLocation();
                     ClearSparepartLocation();
                     for (int i = 0; i < gvListNoPosition.DataRowCount; i++)
@@ -544,11 +548,12 @@ namespace Wisol.MES.Forms.CONTENT
                 cheHasDateExpired.Checked = false;
                 dateExpiredTime.EditValue = null;
 
-                stlSparepart.Enabled = true;
+                //stlSparepart.Enabled = true;
                 stlCondition.Enabled = true;
                 cheEditQuantity.Checked = true;
                 txtQuantity.Enabled = false;
                 dateInputTime.EditValue = DateTime.Now;
+                txtPoNo.EditValue = "";
                 chePrint.Checked = false;
                 txtLabelNumber.EditValue = 0;
             }
@@ -585,7 +590,7 @@ namespace Wisol.MES.Forms.CONTENT
 
                     string codeLocation = txtposition1.EditValue.NullString();// + "-" + txtPosition2.EditValue.NullString();
                     base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.DELETE",
-                        new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION", "A_DEPART_MENT", "A_STOCK", "A_CONDITION", "A_UNIT", "A_EXPIRED_DATE", "A_TIME_IN" },
+                        new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION", "A_DEPART_MENT", "A_STOCK", "A_CONDITION", "A_UNIT", "A_EXPIRED_DATE", "A_TIME_IN", "A_PO_NO" },
                         new string[]
                         {
                             txtSTT.EditValue.NullString(),
@@ -596,7 +601,8 @@ namespace Wisol.MES.Forms.CONTENT
                             stlCondition.EditValue.NullString(),
                             stlUnit.EditValue.NullString(),
                             DateExpired,
-                            dateInputTime.EditValue.NullString()
+                            dateInputTime.EditValue.NullString(),
+                            txtPoNo.EditValue.NullString()
                         });
 
                     if (base.m_ResultDB.ReturnInt == 0)
@@ -682,6 +688,8 @@ namespace Wisol.MES.Forms.CONTENT
 
                             dateInputTime.EditValue = data.Rows[0]["TIME_IN"].NullString();
                             dateTimeIn_Move.EditValue = data.Rows[0]["TIME_IN"].NullString();
+                            txtPoNo.EditValue = data.Rows[0]["PO_NO"].NullString();
+                            txtPoNo_Move.EditValue = data.Rows[0]["PO_NO"].NullString();
 
                             //-- fill to move position
                             UnitMoveOld = "";
@@ -695,6 +703,7 @@ namespace Wisol.MES.Forms.CONTENT
                             dateExpired_Move.Enabled = false;
                             stlSparepartCode_Move.Enabled = false;
                             txtOld_Location.Enabled = false;
+                            txtPoNo_Move.Enabled = false;
                             UnitMoveOld = stlUnitMove.EditValue.NullString();
                         }
                     }
@@ -735,7 +744,7 @@ namespace Wisol.MES.Forms.CONTENT
             popup.ShowDialog();
         }
 
-        private void Print(string position, string condition, string spareCode, string timeIn, string Exdate, string quantity, string unit, int numberLabel)
+        private void Print(string position, string condition, string spareCode, string timeIn, string Exdate, string quantity, string unit, int numberLabel, string poNo)
         {
             #region print
             string designFile = string.Empty;
@@ -793,6 +802,12 @@ namespace Wisol.MES.Forms.CONTENT
                         }
                     }
 
+                    string addPo = "";
+                    if (poNo != "")
+                    {
+                        addPo = Consts.STR_SPILIT_ON_BARCODE + poNo;
+                    }
+
                     string quantityInLabel = (float.Parse(quantity) / numberLabel).ToString();
                     string barcode =
                        spareCode + Consts.STR_SPILIT_ON_BARCODE +
@@ -801,7 +816,7 @@ namespace Wisol.MES.Forms.CONTENT
                        timeIn + Consts.STR_SPILIT_ON_BARCODE +
                        Exdate + Consts.STR_SPILIT_ON_BARCODE +
                        quantityInLabel + Consts.STR_SPILIT_ON_BARCODE +
-                       unit;
+                       unit + addPo;
 
                     string newSparepartCode = sparepartInput + "-" + quantityInLabel + unit;
                     if (Exdate == "2199-01-01")
@@ -895,7 +910,7 @@ namespace Wisol.MES.Forms.CONTENT
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LABEL.GET_TEMP", new string[] { "A_CODE_TEMP" }, new string[] { LabelCode });//QRCODE
                 if (m_ResultDB.ReturnInt == 0)
                 {
-                    if(base.m_ResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                    if (base.m_ResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
                     {
                         label = base.m_ResultDB.ReturnDataSet.Tables[0].Rows[0]["LABEL"].NullString();
                     }
@@ -917,6 +932,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void btnImport_Click(object sender, EventArgs e)
         {
+            // check lại file template xem có column PO_NO ?
             POP.IMPORT_EXCEL popup = new POP.IMPORT_EXCEL();
             popup.stock_code = stlKho.EditValue.NullString();
             popup.ImpportType = Consts.IMPORT_TYPE_BUSINESS_LOCATION_SPAREPART_INSERT_BATCH;
@@ -1309,6 +1325,7 @@ namespace Wisol.MES.Forms.CONTENT
             stlConditionMove.EditValue = null;
             dateExpired_Move.EditValue = null;
             dateTimeIn_Move.EditValue = null;
+            txtPoNo_Move.EditValue = "";
 
             stlSparepartCode_Move.Enabled = false;
             txtOld_Location.Enabled = false;
@@ -1320,6 +1337,7 @@ namespace Wisol.MES.Forms.CONTENT
             dateTimeIn_Move.Enabled = false;
             chePrint_Move.Checked = false;
             txtLabelNumber_Move.EditValue = 0;
+            txtPoNo_Move.Enabled = false;
         }
 
         private void btnSaveMoveLocation_Click(object sender, EventArgs e)
@@ -1345,7 +1363,7 @@ namespace Wisol.MES.Forms.CONTENT
                 string barcode = "";
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.MOVE_SPARE_PART_TO_LOCATION",
-                      new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION_OLD", "A_LOCATION_NEW", "A_CONDITION", "A_QUANTITY", "A_DEPART_MENT", "A_STOCK", "A_BARCODE", "A_UNIT", "A_EXPIRED_DATE", "A_TIME_IN","A_USER" },
+                      new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION_OLD", "A_LOCATION_NEW", "A_CONDITION", "A_QUANTITY", "A_DEPART_MENT", "A_STOCK", "A_BARCODE", "A_UNIT", "A_EXPIRED_DATE", "A_TIME_IN", "A_USER", "A_PO_NO" },
                        new string[]
                     {
                         txtSTT.EditValue.NullString(),
@@ -1360,7 +1378,8 @@ namespace Wisol.MES.Forms.CONTENT
                          stlUnitMove.EditValue.NullString(),
                          DateExpired,
                         dateTimeIn_Move.EditValue.NullString(),
-                        Consts.USER_INFO.Id
+                        Consts.USER_INFO.Id,
+                        txtPoNo_Move.EditValue.NullString()
                     });
 
                 if (m_ResultDB.ReturnInt == 0)
@@ -1375,7 +1394,7 @@ namespace Wisol.MES.Forms.CONTENT
                             DateTime.Parse(dateTimeIn_Move.EditValue.NullString()).ToString("yyyy-MM-dd"),
                             DateTime.Parse(DateExpired).ToString("yyyy-MM-dd"),
                             txtQuantityMove.EditValue.NullString(), stlUnitMove.EditValue.NullString(),
-                            int.Parse(txtLabelNumber_Move.EditValue.NullString()));
+                            int.Parse(txtLabelNumber_Move.EditValue.NullString()),txtPoNo_Move.EditValue.NullString());
                     }
 
                     ViewLocation();
@@ -1460,7 +1479,7 @@ namespace Wisol.MES.Forms.CONTENT
         private string UnitMoveOld = "";
         private void stlUnitMove_EditValueChanged(object sender, EventArgs e)
         {
-            if(UnitMoveOld == "")
+            if (UnitMoveOld == "")
             {
                 UnitMoveOld = stlUnitMove.EditValue.NullString();
             }
@@ -1477,11 +1496,11 @@ namespace Wisol.MES.Forms.CONTENT
             if (e.RowHandle < 0)
                 return;
 
-            if(e.Column.FieldName == "INVENTORY_TIME")
+            if (e.Column.FieldName == "INVENTORY_TIME")
             {
                 e.Appearance.BackColor = Color.FromArgb(253, 242, 233);
             }
-            else if(e.Column.FieldName == "QUANTITY")
+            else if (e.Column.FieldName == "QUANTITY")
             {
                 e.Appearance.BackColor = Color.FromArgb(254, 245, 231);
             }

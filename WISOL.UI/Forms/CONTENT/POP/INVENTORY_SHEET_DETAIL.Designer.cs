@@ -143,18 +143,18 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // dateMonthSheetDetail
             // 
             this.dateMonthSheetDetail.EditValue = null;
-            this.dateMonthSheetDetail.Location = new System.Drawing.Point(720, 38);
+            this.dateMonthSheetDetail.Location = new System.Drawing.Point(729, 38);
             this.dateMonthSheetDetail.Name = "dateMonthSheetDetail";
             this.dateMonthSheetDetail.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateMonthSheetDetail.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateMonthSheetDetail.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.Vista;
-            this.dateMonthSheetDetail.Properties.Mask.EditMask = "y";
+            this.dateMonthSheetDetail.Properties.MaskSettings.Set("mask", "y");
             this.dateMonthSheetDetail.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearView;
             this.dateMonthSheetDetail.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView;
             this.dateMonthSheetDetail.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.True;
-            this.dateMonthSheetDetail.Size = new System.Drawing.Size(525, 20);
+            this.dateMonthSheetDetail.Size = new System.Drawing.Size(516, 20);
             this.dateMonthSheetDetail.StyleController = this.xLayoutControl2;
             this.dateMonthSheetDetail.TabIndex = 16;
             // 
@@ -207,13 +207,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // txtScanbarcode
             // 
             this.txtScanbarcode.IsRequire = false;
-            this.txtScanbarcode.Location = new System.Drawing.Point(102, 62);
+            this.txtScanbarcode.Location = new System.Drawing.Point(111, 62);
             this.txtScanbarcode.Name = "txtScanbarcode";
             this.txtScanbarcode.NullBackColor = System.Drawing.Color.Lime;
             this.txtScanbarcode.NullValidation = false;
             this.txtScanbarcode.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtScanbarcode.Properties.Appearance.Options.UseBackColor = true;
-            this.txtScanbarcode.Size = new System.Drawing.Size(1143, 20);
+            this.txtScanbarcode.Size = new System.Drawing.Size(1134, 20);
             this.txtScanbarcode.StyleController = this.xLayoutControl2;
             this.txtScanbarcode.TabIndex = 10;
             this.txtScanbarcode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.xTextEdit1_KeyDown);
@@ -221,26 +221,26 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // dateTo
             // 
             this.dateTo.EditValue = null;
-            this.dateTo.Location = new System.Drawing.Point(503, 12);
+            this.dateTo.Location = new System.Drawing.Point(512, 12);
             this.dateTo.Name = "dateTo";
             this.dateTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateTo.Size = new System.Drawing.Size(292, 20);
+            this.dateTo.Size = new System.Drawing.Size(283, 20);
             this.dateTo.StyleController = this.xLayoutControl2;
             this.dateTo.TabIndex = 9;
             // 
             // dateFrom
             // 
             this.dateFrom.EditValue = null;
-            this.dateFrom.Location = new System.Drawing.Point(102, 12);
+            this.dateFrom.Location = new System.Drawing.Point(111, 12);
             this.dateFrom.Name = "dateFrom";
             this.dateFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateFrom.Size = new System.Drawing.Size(307, 20);
+            this.dateFrom.Size = new System.Drawing.Size(298, 20);
             this.dateFrom.StyleController = this.xLayoutControl2;
             this.dateFrom.TabIndex = 8;
             // 
@@ -258,13 +258,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // txtTitle
             // 
             this.txtTitle.IsRequire = false;
-            this.txtTitle.Location = new System.Drawing.Point(102, 38);
+            this.txtTitle.Location = new System.Drawing.Point(111, 38);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.NullBackColor = System.Drawing.Color.Lime;
             this.txtTitle.NullValidation = false;
             this.txtTitle.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtTitle.Properties.Appearance.Options.UseBackColor = true;
-            this.txtTitle.Size = new System.Drawing.Size(524, 20);
+            this.txtTitle.Size = new System.Drawing.Size(515, 20);
             this.txtTitle.StyleController = this.xLayoutControl2;
             this.txtTitle.TabIndex = 6;
             // 
@@ -272,13 +272,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             this.txtSheetId.Enabled = false;
             this.txtSheetId.IsRequire = false;
-            this.txtSheetId.Location = new System.Drawing.Point(889, 12);
+            this.txtSheetId.Location = new System.Drawing.Point(898, 12);
             this.txtSheetId.Name = "txtSheetId";
             this.txtSheetId.NullBackColor = System.Drawing.Color.Lime;
             this.txtSheetId.NullValidation = false;
             this.txtSheetId.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtSheetId.Properties.Appearance.Options.UseBackColor = true;
-            this.txtSheetId.Size = new System.Drawing.Size(195, 20);
+            this.txtSheetId.Size = new System.Drawing.Size(186, 20);
             this.txtSheetId.StyleController = this.xLayoutControl2;
             this.txtSheetId.TabIndex = 5;
             // 

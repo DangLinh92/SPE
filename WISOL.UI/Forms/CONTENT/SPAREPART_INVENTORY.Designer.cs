@@ -36,6 +36,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.btnValueInventory = new Wisol.XSimpleButton(this.components);
             this.stackPanel1 = new DevExpress.Utils.Layout.StackPanel();
             this.lblKiemKeDate = new DevExpress.XtraEditors.LabelControl();
             this.btnBalance = new Wisol.XSimpleButton(this.components);
@@ -57,6 +58,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem31 = new DevExpress.XtraLayout.LayoutControlItem();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl1 = new Wisol.XLayoutControl();
             this.btnImport = new Wisol.XSimpleButton(this.components);
@@ -113,6 +115,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Wisol.MES.FrmWaitForm), true, true, typeof(System.Windows.Forms.UserControl));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
             this.splitContainerControl1.Panel1.SuspendLayout();
@@ -143,6 +146,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
@@ -230,6 +234,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // xLayoutControl2
             // 
+            this.xLayoutControl2.Controls.Add(this.btnValueInventory);
             this.xLayoutControl2.Controls.Add(this.stackPanel1);
             this.xLayoutControl2.Controls.Add(this.btnBalance);
             this.xLayoutControl2.Controls.Add(this.cboFilter);
@@ -247,20 +252,33 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl2.TabIndex = 0;
             this.xLayoutControl2.Text = "xLayoutControl2";
             // 
+            // btnValueInventory
+            // 
+            this.btnValueInventory.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnValueInventory.ImageOptions.Image")));
+            this.btnValueInventory.Location = new System.Drawing.Point(686, 61);
+            this.btnValueInventory.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnValueInventory.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnValueInventory.Name = "btnValueInventory";
+            this.btnValueInventory.Size = new System.Drawing.Size(129, 30);
+            this.btnValueInventory.StyleController = this.xLayoutControl2;
+            this.btnValueInventory.TabIndex = 1;
+            this.btnValueInventory.Text = "VALUE_INVENTORY";
+            this.btnValueInventory.Click += new System.EventHandler(this.btnValueInventory_Click);
+            // 
             // stackPanel1
             // 
             this.stackPanel1.Controls.Add(this.lblKiemKeDate);
             this.stackPanel1.LayoutDirection = DevExpress.Utils.Layout.StackPanelLayoutDirection.RightToLeft;
             this.stackPanel1.Location = new System.Drawing.Point(12, 61);
             this.stackPanel1.Name = "stackPanel1";
-            this.stackPanel1.Size = new System.Drawing.Size(803, 30);
+            this.stackPanel1.Size = new System.Drawing.Size(670, 30);
             this.stackPanel1.TabIndex = 26;
             // 
             // lblKiemKeDate
             // 
             this.lblKiemKeDate.Appearance.ForeColor = System.Drawing.Color.Maroon;
             this.lblKiemKeDate.Appearance.Options.UseForeColor = true;
-            this.lblKiemKeDate.Location = new System.Drawing.Point(735, 8);
+            this.lblKiemKeDate.Location = new System.Drawing.Point(602, 8);
             this.lblKiemKeDate.Name = "lblKiemKeDate";
             this.lblKiemKeDate.Size = new System.Drawing.Size(65, 13);
             this.lblKiemKeDate.TabIndex = 0;
@@ -340,8 +358,8 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.cboReportType.FormattingEnabled = true;
             this.cboReportType.Items.AddRange(new object[] {
-            "Báo cáo tồn kho/재고 보고서",
-            "Báo cáo tổng hợp nhập xuất tồn/월별 보고서"});
+            "Báo cáo tồn kho-재고 보고서",
+            "Báo cáo tổng hợp nhập xuất tồn-월별 보고서"});
             this.cboReportType.Location = new System.Drawing.Point(631, 12);
             this.cboReportType.Name = "cboReportType";
             this.cboReportType.Size = new System.Drawing.Size(317, 21);
@@ -395,7 +413,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem11,
             this.layoutControlItem28,
             this.layoutControlItem2,
-            this.layoutControlItem30});
+            this.layoutControlItem30,
+            this.layoutControlItem31});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(960, 743);
             this.layoutControlGroup1.TextVisible = false;
@@ -478,9 +497,18 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem30.Control = this.stackPanel1;
             this.layoutControlItem30.Location = new System.Drawing.Point(0, 49);
             this.layoutControlItem30.Name = "layoutControlItem30";
-            this.layoutControlItem30.Size = new System.Drawing.Size(807, 34);
+            this.layoutControlItem30.Size = new System.Drawing.Size(674, 34);
             this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem30.TextVisible = false;
+            // 
+            // layoutControlItem31
+            // 
+            this.layoutControlItem31.Control = this.btnValueInventory;
+            this.layoutControlItem31.Location = new System.Drawing.Point(674, 49);
+            this.layoutControlItem31.Name = "layoutControlItem31";
+            this.layoutControlItem31.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem31.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem31.TextVisible = false;
             // 
             // groupControl1
             // 
@@ -1159,6 +1187,10 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem29.TextVisible = false;
             // 
+            // splashScreenManager1
+            // 
+            this.splashScreenManager1.ClosingDelay = 500;
+            // 
             // SPAREPART_INVENTORY
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1198,6 +1230,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem31)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).EndInit();
@@ -1339,5 +1372,8 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.Utils.Layout.StackPanel stackPanel1;
         private DevExpress.XtraEditors.LabelControl lblKiemKeDate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem30;
+        private XSimpleButton btnValueInventory;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem31;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
     }
 }

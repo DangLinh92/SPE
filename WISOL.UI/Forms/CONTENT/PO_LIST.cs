@@ -140,6 +140,38 @@ namespace Wisol.MES.Forms.CONTENT
                         btnLoadData.PerformClick();
                     }
                 }
+                else if (e.Column.FieldName == "COMPLETE")
+                {
+                    string status = gvList.GetRowCellValue(e.RowHandle, "STATUS").NullString();
+
+                    if (status != Consts.STATUS_COMPLETE)
+                    {
+                        DialogResult dialogResult = MsgBox.Show("XÁC NHẬN ĐƠN HÀNG ĐÃ HOÀN THÀNH!", MsgType.Warning, DialogType.OkCancel);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PO.COMPLETE_PO", new string[] { "A_STATUS", "A_USER", "A_PO_ID" }, new string[] { Consts.STATUS_COMPLETE, Consts.USER_INFO.Id, poId });
+                        }
+                    }
+                    else
+                    {
+                        DialogResult dialogResult = MsgBox.Show("XÁC NHẬN ĐƠN HÀNG CHƯA HOÀN THÀNH!", MsgType.Warning, DialogType.OkCancel);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PO.COMPLETE_PO", new string[] { "A_STATUS", "A_USER", "A_PO_ID" }, new string[] { Consts.STATUS_ORDER, Consts.USER_INFO.Id, poId });
+                        }
+                    }
+
+                    if (m_ResultDB.ReturnInt == 0)
+                    {
+                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                    }
+                    else
+                    {
+                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                    }
+                    btnLoadData.PerformClick();
+
+                }
             }
             catch (Exception ex)
             {
@@ -181,6 +213,19 @@ namespace Wisol.MES.Forms.CONTENT
                     e.Appearance.BackColor = Color.FromArgb(0, 153, 153);
                 }
             }
+        }
+
+        /// <summary>
+        /// Tao dơn hàng ảo ,khi không nhớ mã PO
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnVirtualPO_Click(object sender, EventArgs e)
+        {
+            POP.VIRTUAL_PO pop = new POP.VIRTUAL_PO();
+            pop.Mode = Consts.MODE_NEW;
+            pop.ShowDialog();
+            btnLoadData.PerformClick();
         }
     }
 }
