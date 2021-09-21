@@ -119,6 +119,8 @@ namespace Wisol.MES
         public static string IMPORT_TYPE_PRICE = "2";
         public static string IMPORT_TYPE_INVOICE = "3";
         public static string IMPORT_TYPE_LOGISTICS_DAILY = "4";
+        public static string IMPORT_TYPE_GOC_PLAN = "5";
+        public static string IMPORT_TYPE_ACTUAL_PRODUCT = "6";
         public static string CONDITION_DEFAULT = "OK";
         public static string PACK_UNIT = "PACK";
 

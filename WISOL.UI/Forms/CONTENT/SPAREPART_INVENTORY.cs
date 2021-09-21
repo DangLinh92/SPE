@@ -81,8 +81,11 @@ namespace Wisol.MES.Forms.CONTENT
                     if (m_ResultDB.ReturnInt == 0)
                     {
                         DataTable kiemkeData = m_ResultDB.ReturnDataSet.Tables[0];
-                        string dateUpdate = kiemkeData.Rows[0]["DATE_UPDATE"].NullString() == "" ? kiemkeData.Rows[0]["DATE_END"].NullString() : kiemkeData.Rows[0]["DATE_UPDATE"].NullString();
-                        lblKiemKeDate.Text = "Ngày kiểm kê(기말제품재고액): " + DateTime.Parse(kiemkeData.Rows[0]["DATE_UPDATE"].NullString()).ToString("yyyy-MM-dd") + " ";
+                        if(kiemkeData.Rows.Count > 0)
+                        {
+                            string dateUpdate = kiemkeData.Rows[0]["DATE_UPDATE"].NullString() == "" ? kiemkeData.Rows[0]["DATE_END"].NullString() : kiemkeData.Rows[0]["DATE_UPDATE"].NullString();
+                            lblKiemKeDate.Text = "Ngày kiểm kê(기말제품재고액): " + DateTime.Parse(kiemkeData.Rows[0]["DATE_UPDATE"].NullString()).ToString("yyyy-MM-dd") + " ";
+                        }
                     }
                 }
 
@@ -534,7 +537,7 @@ namespace Wisol.MES.Forms.CONTENT
 
                 if (e.Column.FieldName == "QUANTITY")
                 {
-                    if (quantity <= minStock)
+                    if (quantity <= minStock && minStock > 0)
                     {
                         e.Appearance.BackColor = Color.LightSalmon;
                     }

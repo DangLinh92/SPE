@@ -246,6 +246,12 @@
     <Compile Include="Forms\CONTENT\CTG_STOCKIN.Designer.cs">
       <DependentUpon>CTG_STOCKIN.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\DAILY_ACTUAL_PRODUCT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\DAILY_ACTUAL_PRODUCT.Designer.cs">
+      <DependentUpon>DAILY_ACTUAL_PRODUCT.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\EXCHANGE_RATE.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -257,6 +263,12 @@
     </Compile>
     <Compile Include="Forms\CONTENT\GL_ACCOUNT.Designer.cs">
       <DependentUpon>GL_ACCOUNT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\GOC_PLANT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\GOC_PLANT.Designer.cs">
+      <DependentUpon>GOC_PLANT.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CONTENT\INPUT_COST.cs">
       <SubType>UserControl</SubType>
@@ -491,6 +503,12 @@
     </Compile>
     <Compile Include="Forms\CONTENT\SPAREPART_INVENTORY.Designer.cs">
       <DependentUpon>SPAREPART_INVENTORY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\SPARE_PART_EX.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\SPARE_PART_EX.Designer.cs">
+      <DependentUpon>SPARE_PART_EX.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CONTENT\SPARE_PART.cs">
       <SubType>UserControl</SubType>
@@ -829,11 +847,17 @@
     <EmbeddedResource Include="Forms\CONTENT\CTG_STOCKIN.resx">
       <DependentUpon>CTG_STOCKIN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\DAILY_ACTUAL_PRODUCT.resx">
+      <DependentUpon>DAILY_ACTUAL_PRODUCT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\EXCHANGE_RATE.resx">
       <DependentUpon>EXCHANGE_RATE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\GL_ACCOUNT.resx">
       <DependentUpon>GL_ACCOUNT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\GOC_PLANT.resx">
+      <DependentUpon>GOC_PLANT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\INPUT_COST.resx">
       <DependentUpon>INPUT_COST.cs</DependentUpon>
@@ -951,6 +975,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\SPAREPART_INVENTORY.resx">
       <DependentUpon>SPAREPART_INVENTORY.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\SPARE_PART_EX.resx">
+      <DependentUpon>SPARE_PART_EX.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\SPARE_PART.resx">
       <DependentUpon>SPARE_PART.cs</DependentUpon>
@@ -1109,6 +1136,12 @@
       <DependentUpon>DialogueWait.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="DAILY_ACTUAL_PRODUCT_SMT.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="GOC_PLANT_SMT.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="INPUT_PRICE.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1161,6 +1194,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\AboveAverage_32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\actualProduct.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\app.ico">
@@ -1371,6 +1407,9 @@
     <Content Include="Images\permission.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\plan_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Properties_32x32.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1501,6 +1540,9 @@
     <Content Include="Images\Zoom_32x32.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\actualProduct.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\BOM.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1526,6 +1568,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\MRP.png" />
+    <Content Include="Resources\plan_icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\purchase_order.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

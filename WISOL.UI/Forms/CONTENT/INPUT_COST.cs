@@ -212,6 +212,12 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
+                if(datePrice.EditValue.NullString() == "")
+                {
+                    MsgBox.Show("Hãy chọn thời gian áp dụng giá!", MsgType.Warning);
+                    return;
+                }
+
                 string isEdit = "";
                 if (txtID.EditValue.NullString() == "")
                 {
@@ -396,6 +402,19 @@ namespace Wisol.MES.Forms.CONTENT
             catch (Exception ex)
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void btnChangePrice_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MsgBox.Show("Nhấn OK để xác nhận áp dụng giá theo tỉ giá : "+ txtExchangeRate.EditValue.NullString(), MsgType.Information, Components.DialogType.OkCancel);
+            if (dialogResult == DialogResult.OK)
+            {
+                if (txtExchangeRate.EditValue.NullString() != "" && double.TryParse(txtPriceUS.EditValue.NullString(), out _))
+                {
+                    double priceVN = double.Parse(txtPriceUS.EditValue.NullString()) * double.Parse(txtExchangeRate.EditValue.NullString());
+                    txtPriceVN.EditValue = (priceVN).ToString("R", CultureInfo.InvariantCulture);
+                }
             }
         }
     }

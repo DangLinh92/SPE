@@ -642,7 +642,7 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 try
                 {
-                    // Get sparepart no position
+                    // Get spare part no position
                     base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.GET_SINGLE", new string[] { "A_STT" }, new string[] { gvListNoPosition.GetDataRow(e.RowHandle)["STT"].NullString() });
                     if (base.m_ResultDB.ReturnInt == 0)
                     {
@@ -907,7 +907,7 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 label = "";
                 string LabelCode = "QRCODE_" + cboPrinter.Text;
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LABEL.GET_TEMP", new string[] { "A_CODE_TEMP" }, new string[] { LabelCode });//QRCODE
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LABEL.GET_TEMP", new string[] { "A_CODE_TEMP" }, new string[] { LabelCode });//QRCODE 
                 if (m_ResultDB.ReturnInt == 0)
                 {
                     if (base.m_ResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)

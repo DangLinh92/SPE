@@ -1086,8 +1086,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                 if (cboStatus.EditValue.NullString() != Consts.STATUS_COMPLETE)
                 {
-                    DialogResult dialogResult = MsgBox.Show("TRẠNG THÁI ĐANG LÀ '" + cboStatus.EditValue.NullString()+"', ĐỂ XÁC NHẬN TỒN KHO HÃY CHỌN TRẠNG THÁI HOÀN THÀNH, NHẤN CANCEL ĐỂ CHỈNH SỬA, NHẤN OKE ĐỂ TIẾP TỤC".Translation(), MsgType.Warning, DialogType.OkCancel);
-                    if (dialogResult != DialogResult.OK)
+                    DialogResult dialogResult = MsgBox.Show("TRẠNG THÁI ĐANG LÀ '" + cboStatus.EditValue.NullString()+"', ĐỂ XÁC NHẬN TỒN KHO HÃY CHỌN TRẠNG THÁI HOÀN THÀNH, NHẤN OKE ĐỂ CHỈNH SỬA, NHẤN CANCEL ĐỂ TIẾP TỤC".Translation(), MsgType.Warning, DialogType.OkCancel);
+                    if (dialogResult == DialogResult.OK)
                     {
                         return;
                     }
@@ -1106,8 +1106,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 }
 
                 base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_GOODS_RECEIPT_ISSUE.PUT",
-                    new string[] { "A_USER", "A_DELIVER_RECEIVER", "A_RETURN_SPARE_PART_ID" }, "A_DATA",
-                    new string[] { Consts.USER_INFO.Id, txtDelivererAndReceiver.EditValue.NullString(), txtPAY_CODE.EditValue.NullString() }, Data);
+                    new string[] { "A_USER", "A_DELIVER_RECEIVER", "A_RETURN_SPARE_PART_ID","A_DEPARMENT" }, "A_DATA",
+                    new string[] { Consts.USER_INFO.Id, txtDelivererAndReceiver.EditValue.NullString(), txtPAY_CODE.EditValue.NullString(),Consts.DEPARTMENT }, Data);
 
                 if (mResultDB.ReturnInt == 0)
                 {
@@ -1162,7 +1162,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         return;
                     }
 
-                    base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_GOODS_RECEIPT_ISSUE.DELETE", new string[] { "A_RECEIPT_ISSUE_CODE", "A_INOUT", "A_USER", "A_STATUS" }, new string[] { ReceiptCode, INOUT, Consts.USER_INFO.Id, cboStatus.EditValue.NullString() });
+                    base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_GOODS_RECEIPT_ISSUE.DELETE", new string[] { "A_RECEIPT_ISSUE_CODE", "A_INOUT", "A_USER", "A_STATUS", "A_DEPARTMENT_INPUT" }, new string[] { ReceiptCode, INOUT, Consts.USER_INFO.Id, cboStatus.EditValue.NullString(),Consts.DEPARTMENT });
                     if (mResultDB.ReturnInt == 0)
                     {
                         MsgBox.Show(base.mResultDB.ReturnString.Translation(), MsgType.Information);

@@ -72,6 +72,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.btnReloadData = new Wisol.XSimpleButton(this.components);
             this.btnNextPagePR = new Wisol.XSimpleButton(this.components);
             this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
             this.gcListBelow = new Wisol.XGridControl();
@@ -124,6 +125,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem19 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -131,8 +133,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.dateTimeChartRangeControlClient2 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
             this.dateTimeChartRangeControlClient3 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
             this.dateTimeChartRangeControlClient4 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
-            this.btnReloadData = new Wisol.XSimpleButton(this.components);
-            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -198,6 +198,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
@@ -205,7 +206,6 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             this.SuspendLayout();
             // 
             // xLayoutControl1
@@ -685,6 +685,19 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl2.TabIndex = 0;
             this.xLayoutControl2.Text = "xLayoutControl2";
             // 
+            // btnReloadData
+            // 
+            this.btnReloadData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReloadData.ImageOptions.Image")));
+            this.btnReloadData.Location = new System.Drawing.Point(858, 12);
+            this.btnReloadData.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnReloadData.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnReloadData.Name = "btnReloadData";
+            this.btnReloadData.Size = new System.Drawing.Size(129, 30);
+            this.btnReloadData.StyleController = this.xLayoutControl2;
+            this.btnReloadData.TabIndex = 12;
+            this.btnReloadData.Text = "RELOAD DATA";
+            this.btnReloadData.Click += new System.EventHandler(this.btnReloadData_Click);
+            // 
             // btnNextPagePR
             // 
             this.btnNextPagePR.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNextPagePR.ImageOptions.Image")));
@@ -988,6 +1001,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.gvList.OptionsSelection.ShowCheckBoxSelectorInColumnHeader = DevExpress.Utils.DefaultBoolean.True;
             this.gvList.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gvList_RowCellClick);
             this.gvList.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gvList_RowCellStyle);
+            this.gvList.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gvList_CustomColumnDisplayText);
             // 
             // col_SPAREPART_CODE
             // 
@@ -1225,6 +1239,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem24.TextVisible = false;
             // 
+            // layoutControlItem25
+            // 
+            this.layoutControlItem25.Control = this.btnReloadData;
+            this.layoutControlItem25.Location = new System.Drawing.Point(846, 0);
+            this.layoutControlItem25.Name = "layoutControlItem25";
+            this.layoutControlItem25.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem25.TextVisible = false;
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -1253,28 +1276,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem6.Size = new System.Drawing.Size(427, 826);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
-            // 
-            // btnReloadData
-            // 
-            this.btnReloadData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xSimpleButton1.ImageOptions.Image")));
-            this.btnReloadData.Location = new System.Drawing.Point(858, 12);
-            this.btnReloadData.MaximumSize = new System.Drawing.Size(129, 30);
-            this.btnReloadData.MinimumSize = new System.Drawing.Size(129, 30);
-            this.btnReloadData.Name = "btnReloadData";
-            this.btnReloadData.Size = new System.Drawing.Size(129, 30);
-            this.btnReloadData.StyleController = this.xLayoutControl2;
-            this.btnReloadData.TabIndex = 12;
-            this.btnReloadData.Text = "RELOAD DATA";
-            this.btnReloadData.Click += new System.EventHandler(this.btnReloadData_Click);
-            // 
-            // layoutControlItem25
-            // 
-            this.layoutControlItem25.Control = this.btnReloadData;
-            this.layoutControlItem25.Location = new System.Drawing.Point(846, 0);
-            this.layoutControlItem25.Name = "layoutControlItem25";
-            this.layoutControlItem25.Size = new System.Drawing.Size(133, 34);
-            this.layoutControlItem25.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem25.TextVisible = false;
             // 
             // MRP
             // 
@@ -1349,6 +1350,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
@@ -1356,7 +1358,6 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

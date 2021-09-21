@@ -74,6 +74,20 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     {
                         base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_LOGISTICS_DAILY_REPORT.IMPORT", new string[] { "A_USER" }, "A_DATA", new string[] { Consts.USER_INFO.Id }, Data);
                     }
+                    else if(ImpportType == Consts.IMPORT_TYPE_GOC_PLAN)
+                    {
+                        if(Consts.DEPARTMENT == Consts.SMT_DEPT)
+                        {
+                            base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_GOC_PLAN.IMPORT_SMT", new string[] { "A_USER" }, "A_DATA", new string[] { Consts.USER_INFO.Id }, Data);
+                        }
+                    }
+                    else if(ImpportType == Consts.IMPORT_TYPE_ACTUAL_PRODUCT)
+                    {
+                        if (Consts.DEPARTMENT == Consts.SMT_DEPT)
+                        {
+                            base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_ACTUAL_PRODUCT.IMPORT_SMT", new string[] { "A_USER" }, "A_DATA", new string[] { Consts.USER_INFO.Id }, Data);
+                        }
+                    }
 
                     if (mResultDB.ReturnInt == 0)
                     {
@@ -145,7 +159,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     {
                         sheetName = "EWIP_SPAREPART_PRICE$";
                     }
-                    else if (ImpportType == Consts.IMPORT_TYPE_INVOICE || ImpportType == Consts.IMPORT_TYPE_LOGISTICS_DAILY)
+                    else if (ImpportType == Consts.IMPORT_TYPE_INVOICE || ImpportType == Consts.IMPORT_TYPE_LOGISTICS_DAILY || ImpportType == Consts.IMPORT_TYPE_GOC_PLAN || ImpportType == Consts.IMPORT_TYPE_ACTUAL_PRODUCT)
                     {
                         foreach (DataRow drSheet in dtExcel.Rows)
                         {

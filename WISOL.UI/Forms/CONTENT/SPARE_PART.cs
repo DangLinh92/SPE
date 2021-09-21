@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -103,6 +104,7 @@ namespace Wisol.MES.Forms.CONTENT
 
                 txtMinOrder.EditValue = 0;
                 txtLeadTime.EditValue = 0;
+                txtLeadTimeWeek.EditValue = 0;
 
                 picImage.Image = null;
                 txtCode.Enabled = true;
@@ -198,9 +200,10 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-                if (string.IsNullOrEmpty(sltSparePartType.EditValue.NullString()) && cbGenCode.Checked)
+                if (string.IsNullOrEmpty(sltSparePartType.EditValue.NullString())) // && cbGenCode.Checked)
                 {
                     MsgBox.Show("MSG_ERR_SPARE_TYPE".Translation(), MsgType.Warning);
+                    sltSparePartType.Focus();
                     return;
                 }
 
@@ -210,10 +213,9 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-                if(string.IsNullOrEmpty(sltUnit1.EditValue.NullString()) && sltUnit.EditValue.NullString() != Consts.PACK_UNIT)
+                if ((new List<string> { sltUnit.EditValue.NullString(), sltUnit1.EditValue.NullString(), sltUnit2.EditValue.NullString(), sltUnit3.EditValue.NullString(), sltUnit4.EditValue.NullString() }.Contains(Consts.PACK_UNIT) == false))
                 {
                     MsgBox.Show("MSG_ERR_MISS_PACK_UNIT".Translation(), MsgType.Warning);
-                    sltUnit1.Focus();
                     return;
                 }
 
@@ -389,7 +391,11 @@ namespace Wisol.MES.Forms.CONTENT
             //txtDesc.EditValue = table.Rows[0]["DESCRIPTION"].NullString();
             sltCostCtr.EditValue = table.Rows[0]["COST_CTR"].NullString();
             txtMinOrder.EditValue = table.Rows[0]["MIN_ORDER"].NullString();
-            txtLeadTime.EditValue = table.Rows[0]["LEAD_TIME"].NullString();
+
+            txtLeadTime.EditValue = table.Rows[0]["LEAD_TIME"].NullString().IfNullIsZero();
+            txtLeadTimeWeek.EditValue = Math.Round(float.Parse(txtLeadTime.EditValue.IfNullIsZero()) / 7);
+
+
             image = table.Rows[0]["IMAGE"].NullString();
 
             if (!string.IsNullOrWhiteSpace(image))
@@ -503,7 +509,7 @@ namespace Wisol.MES.Forms.CONTENT
                     s = "OP-";
                 }
 
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.GET_MAX_AUTO_CODE", new string[] { "A_TYPE", "A_DEPARTMENT" }, new string[] { s,Consts.DEPARTMENT });
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.GET_MAX_AUTO_CODE", new string[] { "A_TYPE", "A_DEPARTMENT" }, new string[] { s, Consts.DEPARTMENT });
 
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
@@ -587,7 +593,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void ShowSparepart(string code)
         {
-            if(!string.IsNullOrEmpty(code) && code.Contains(Consts.STR_SPILIT_ON_BARCODE))
+            if (!string.IsNullOrEmpty(code) && code.Contains(Consts.STR_SPILIT_ON_BARCODE))
             {
                 code = code.Split(Consts.CHARACTER_SPILIT_ON_BARCODE)[0];
             }
@@ -631,7 +637,7 @@ namespace Wisol.MES.Forms.CONTENT
                 {
                     code = gvList.GetRowCellValue(i, "CODE").NullString();
 
-                    if (Consts.GetDataMemory().Select("[CODE] = '"+code+"'").Length == 0)
+                    if (Consts.GetDataMemory().Select("[CODE] = '" + code + "'").Length == 0)
                     {
                         row = Consts.GetDataMemory().NewRow();
                         row["CODE"] = gvList.GetRowCellValue(i, "CODE");
@@ -657,6 +663,55 @@ namespace Wisol.MES.Forms.CONTENT
                 m_BindData.BindGridLookEdit(stlMemoryData, Consts.GetDataMemory(), "CODE", "NAME_VI");
                 gvList.ClearSelection();
                 MsgBox.Show("MSG_COM_004".Translation(), MsgType.Information);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void cheLeadTimeDay_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cheLeadTimeDay.Checked)
+            {
+                txtLeadTime.Enabled = true;
+                txtLeadTimeWeek.Enabled = false;
+                cheLeadTimeWeek.Checked = false;
+            }
+            else
+            {
+                txtLeadTime.Enabled = false;
+                txtLeadTimeWeek.Enabled = true;
+                cheLeadTimeWeek.Checked = true;
+            }
+        }
+
+        private void cheLeadTimeWeek_CheckedChanged(object sender, EventArgs e)
+        {
+            cheLeadTimeDay.Checked = !cheLeadTimeWeek.Checked;
+        }
+
+        private void txtLeadTimeWeek_EditValueChanged(object sender, EventArgs e)
+        {
+            if (cheLeadTimeWeek.Checked)
+            {
+                txtLeadTime.EditValue = Math.Round(float.Parse(txtLeadTimeWeek.EditValue.NullString()) * 7);
+            }
+        }
+
+        private void txtLeadTime_EditValueChanged(object sender, EventArgs e)
+        {
+            if (cheLeadTimeDay.Checked)
+            {
+                txtLeadTimeWeek.EditValue = Math.Round(float.Parse(txtLeadTime.EditValue.NullString()) / 7);
+            }
+        }
+
+        private void btnReferCode_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Consts.mainForm.NewPageFromOtherPage("SPARE_PART_EX", "Tổng hợp mã thiết bị", "W", "Y", "");
             }
             catch (Exception ex)
             {

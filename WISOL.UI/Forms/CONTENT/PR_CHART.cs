@@ -104,7 +104,7 @@ namespace Wisol.MES.Forms.CONTENT
                     sheet.DataBindings.BindToDataSource(data, 12, 0);
                     sheet.Cells["A3"].Value = "BỘ PHẬN: " + Consts.DEPARTMENT;
                     sheet.Cells["A4"].Value = "Ngày " + DateTime.Parse(createDate).Day + " Tháng " + DateTime.Parse(createDate).Month + " Năm " + DateTime.Parse(createDate).Year;
-                    sheet.Cells["A8"].Value = "3. 구입 금액 (Giá trị đơn hàng) :" + (double.Parse(totalValue)).ToString("c") + " VND /" + (double.Parse(totalValueUS)).ToString("c") + "USD";
+                    sheet.Cells["A8"].Value = "3. 구입 금액 (Giá trị đơn hàng) :" + (double.Parse(totalValue)).ToString("N3") + " VND /" + (double.Parse(totalValueUS)).ToString("N3") + "USD";
                     sheet.Cells["A9"].Value = "4.구매 요청(PR.NO) :" + prCode;
                     sheet.Cells["H11"].Value = "Tồn kho tháng " + (DateTime.Parse(createDate).AddMonths(-1).Month);
                     sheet.Cells["J11"].Value = "SL dùng tháng " + (DateTime.Parse(createDate).Month);

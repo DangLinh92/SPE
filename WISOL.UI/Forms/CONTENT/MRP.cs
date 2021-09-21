@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,16 @@ namespace Wisol.MES.Forms.CONTENT
 
                     gcList.DataSource = data[4];
                     gcListBelow.DataSource = data[5];
+
+                    gvList.OptionsBehavior.Editable = true;
+
+                    foreach (GridColumn item in gvList.Columns)
+                    {
+                        if(item.FieldName != "OFF_NOTI")
+                        {
+                            item.OptionsColumn.AllowEdit = false;
+                        }
+                    }
 
                     gvList.Columns["ID"].Visible = false;
                     gvList.OptionsView.ColumnAutoWidth = true;
@@ -335,6 +346,8 @@ namespace Wisol.MES.Forms.CONTENT
                     DataTableCollection data = m_ResultDB.ReturnDataSet.Tables;
                     if (data[0].Rows.Count > 0)
                     {
+                        string isOff = gvList.GetRowCellValue(rowHanle, "OFF_NOTI").NullString();
+
                         txtID.EditValue = gvlst.GetRowCellValue(rowHanle, "ID").NullString();
                         stlMRP_CODE.EditValue = data[0].Rows[0]["MRP_CODE"].NullString();
                         stlSparepart.EditValue = data[0].Rows[0]["SPAREPART_CODE"].NullString();
@@ -345,7 +358,7 @@ namespace Wisol.MES.Forms.CONTENT
                         dateNeedBuy.EditValue = data[0].Rows[0]["DATE_NEED_BUY"].NullString();
                         dateNeedFinish.EditValue = data[0].Rows[0]["DATE_NEED_FINISH"].NullString();
                         dateEndActual.EditValue = data[0].Rows[0]["DATE_END_ACTUAL"].NullString();
-                        checkOffNoti.Checked = bool.Parse(data[0].Rows[0]["OFF_NOTI"].NullString() == "" ? "False" : data[0].Rows[0]["OFF_NOTI"].NullString());
+                        checkOffNoti.Checked = bool.Parse(isOff); // == bool.Parse(data[0].Rows[0]["OFF_NOTI"].NullString() == "" ? "False" : data[0].Rows[0]["OFF_NOTI"].NullString());
                     }
                 }
             }
@@ -690,6 +703,10 @@ namespace Wisol.MES.Forms.CONTENT
         private void btnReloadData_Click(object sender, EventArgs e)
         {
             InitData();
+        }
+
+        private void gvList_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
         }
     }
 }
