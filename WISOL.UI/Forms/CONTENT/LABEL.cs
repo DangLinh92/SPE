@@ -20,6 +20,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             base.Form_Show();
             this.InitializePage();
+            Classes.Common.SetFormIdToButton(this, "LABEL");
         }
         public override void InitializePage()
         {

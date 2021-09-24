@@ -16,6 +16,8 @@ namespace Wisol.MES.Forms.SETTING
             base.Form_Show();
 
             this.InitializePage();
+
+            Classes.Common.SetFormIdToButton(this, "SETTING002");
         }
 
 

@@ -51,6 +51,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void PURCHASE_REQUEST_DETAIL_Load(object sender, EventArgs e)
         {
+            Classes.Common.SetFormIdToButton(null, "PURCHASE_REQUEST_DETAIL", this);
+
             Init();
 
             btnSave.Enabled = false;

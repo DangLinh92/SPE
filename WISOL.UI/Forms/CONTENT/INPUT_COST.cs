@@ -28,6 +28,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void INPUT_COST_Load(object sender, EventArgs e)
         {
+            Classes.Common.SetFormIdToButton(this, "INPUT_COST");
             gcListTemp.Visible = false;
         }
 

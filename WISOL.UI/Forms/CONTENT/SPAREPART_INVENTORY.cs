@@ -29,6 +29,7 @@ namespace Wisol.MES.Forms.CONTENT
             try
             {
                 Init_Control();
+                Classes.Common.SetFormIdToButton(this, "SPAREPART_INVENTORY");
                 //firstLoad = false;
             }
             catch (Exception ex)
@@ -73,6 +74,7 @@ namespace Wisol.MES.Forms.CONTENT
                     gvList.Columns["MIN_STOCK"].Caption = "Tồn tối thiểu/최소 재고";
                     gvList.Columns["SPECIFICATION"].Width = 150;
                     gvList.Columns["NAME_KR"].Width = 150;
+                    gvList.Columns["REMAIN_DAY"].Width = 100;
 
                     base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_INVENTORY_SHEET.GET",
                         new string[] { "A_DEPARTMENT", "A_STOCK_CODE" },
@@ -120,7 +122,9 @@ namespace Wisol.MES.Forms.CONTENT
                     gvList.Columns["MIN_STOCK"].Caption = "Tồn tối thiểu/최소 재고";
                     gvList.Columns["SPECIFICATION"].Width = 150;
                     gvList.Columns["NAME_KR"].Width = 150;
+                    gvList.Columns["REMAIN_DAY"].Width = 30;
                     gvList.OptionsView.ColumnAutoWidth = true;
+                    
                 }
             }
             catch (Exception ex)
@@ -549,6 +553,10 @@ namespace Wisol.MES.Forms.CONTENT
                     {
                         e.Appearance.BackColor = Color.LightGreen;
                     }
+                }
+                else if (e.Column.FieldName == "REMAIN_DAY")
+                {
+                    e.Appearance.BackColor = Color.FromArgb(212, 239, 223);
                 }
             }
             catch (Exception ex)

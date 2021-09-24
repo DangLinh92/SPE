@@ -25,6 +25,8 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
+                Classes.Common.SetFormIdToButton(this, "INVENTORY_SHEET");
+
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_KHO.GET", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
                 if (m_ResultDB.ReturnInt == 0)
                 {

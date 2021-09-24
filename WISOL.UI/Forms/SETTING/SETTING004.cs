@@ -41,9 +41,9 @@ namespace Wisol.MES.Forms.SETTING
             }
             this.layoutControlGroup2.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
             this.layoutControlGroup6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+            Classes.Common.SetFormIdToButton(this, "SETTING004");
         }
-
-
 
         public override void InitializePage()
         {

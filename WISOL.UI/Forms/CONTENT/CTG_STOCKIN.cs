@@ -16,6 +16,8 @@ namespace Wisol.MES.Forms.CONTENT
         {
             base.Form_Show();
             this.InitializePage();
+
+            Classes.Common.SetFormIdToButton(this, "CTG_STOCKIN");
         }
         public override void InitializePage()
         {

@@ -23,6 +23,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private void PO_CREATE_Load(object sender, EventArgs e)
         {
             InitData();
+
+            Classes.Common.SetFormIdToButton(null, "PO_CREATE", this);
         }
 
         DataTable PR_TYPE;

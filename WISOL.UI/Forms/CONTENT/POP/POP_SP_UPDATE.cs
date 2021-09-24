@@ -19,6 +19,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             InitializeComponent();
             InitializePage(CODE);
+
+            Classes.Common.SetFormIdToButton(null, "POP_SP_UPDATE", this);
         }
         private void InitializePage(string CODE)
         {

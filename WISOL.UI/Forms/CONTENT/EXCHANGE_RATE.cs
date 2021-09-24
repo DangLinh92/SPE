@@ -26,6 +26,8 @@ namespace Wisol.MES.Forms.CONTENT
             base.Form_Show();
 
             this.InitializePage();
+
+            Classes.Common.SetFormIdToButton(this, "EXCHANGE_RATE");
         }
 
         public override void InitializePage()

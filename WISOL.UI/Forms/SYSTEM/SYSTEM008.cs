@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.XtraGrid.Views.Grid;
+using System;
 using System.Data;
 using System.Windows.Forms;
 
@@ -21,9 +22,9 @@ namespace Wisol.MES.Forms.SYSTEM
             base.Form_Show();
 
             this.InitializePage();
+
+            Classes.Common.SetFormIdToButton(this, "SYSTEM008");
         }
-
-
 
         public override void InitializePage()
         {
@@ -45,6 +46,9 @@ namespace Wisol.MES.Forms.SYSTEM
 
                     Init_Control();
                 }
+
+                gvUserList.OptionsSelection.MultiSelect = true;
+                gvUserList.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
             }
             catch (Exception ex)
             {
@@ -156,6 +160,7 @@ namespace Wisol.MES.Forms.SYSTEM
             }
         }
 
+        // user click
         private void gvRoleList_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
             try
@@ -164,13 +169,22 @@ namespace Wisol.MES.Forms.SYSTEM
                     return;
                 else
                 {
+                    foreach (int i in gvUserList.GetSelectedRows())
+                    {
+                        if (i == e.RowHandle) continue;
+
+                        gvUserList.UnselectRow(i);
+                    }
+
                     base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_SYSTEM008.GET_LIST",
                         new string[]{"A_PLANT",
                             "A_USER_ID",
                             "A_DEPARTMENT"
                         },
-                        new string[]{Consts.PLANT,
-                            gvUserList.GetDataRow(gvUserList.FocusedRowHandle)["USER_ID"].NullString(),
+                        new string[]
+                        {
+                            Consts.PLANT,
+                            gvUserList.GetRowCellValue(e.RowHandle,"USER_ID").NullString(),
                             Consts.DEPARTMENT
                         }
                         );

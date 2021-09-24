@@ -20,6 +20,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             base.Form_Show();
             this.InitializePage();
+            Classes.Common.SetFormIdToButton(this, "STOCKIN_CANCEL");
         }
         public override void InitializePage()
         {

@@ -22,6 +22,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void INVOICES_Load(object sender, EventArgs e)
         {
+            Classes.Common.SetFormIdToButton(this, "INVOICES");
             InitData();
         }
 

@@ -16,6 +16,8 @@ namespace Wisol.MES.Forms
         {
             base.Form_Show();
             this.InitializePage();
+
+            Classes.Common.SetFormIdToButton(this, "COST_GLACCOUNT");
         }
         public override void InitializePage()
         {

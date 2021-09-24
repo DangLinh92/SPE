@@ -15,6 +15,8 @@ namespace Wisol.MES.Forms.REPORT
             base.Form_Show();
 
             this.InitializePage();
+
+            Classes.Common.SetFormIdToButton(this, "REPORT_STOCK");
         }
         public override void InitializePage()
         {

@@ -18,17 +18,17 @@ namespace Wisol.MES.Forms.SYSTEM
             base.Form_Show();
 
             this.InitializePage();
+
+            Classes.Common.SetFormIdToButton(this, "SYSTEM006");
         }
-
-
 
         public override void InitializePage()
         {
             try
             {
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_SYSTEM006.INT_LIST"
-                    , new string[] { "A_PLANT", "A_DEPARTMENT", "A_TRAN_USER" }
-                    , new string[] { Consts.PLANT, Consts.DEPARTMENT, Consts.USER_INFO.Id }
+                    , new string[] { "A_PLANT", "A_DEPARTMENT", "A_USER_ID" }
+                    , new string[] { Consts.PLANT, Consts.DEPARTMENT,Consts.USER_INFO.Id }
                     );
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
@@ -49,43 +49,7 @@ namespace Wisol.MES.Forms.SYSTEM
 
         public override void SearchPage()
         {
-            base.SearchPage();
-            ///try
-            //{
-            //    base.m_BindData.BindGridView(gcList,
-            //        "PKG_SYSTEM006.GET_LIST",
-            //        new string[] { "A_PLANT" },
-            //        new string[] { Consts.PLANT },
-            //        false,
-            //        "REMARKS"
-            //        );
-            //}
-            //catch (Exception ex)
-            //{
-            //    MsgBox.Show(ex.Message, MsgType.Error);
-            //}
-            try
-            {
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_SYSTEM006.GET_LIST"
-                        , new string[] { "A_PLANT",
-                        "A_DEPARTMENT"
-                        }
-                        , new string[] { Consts.PLANT,
-                        Consts.DEPARTMENT
-                        }
-                        );
-                if (base.m_ResultDB.ReturnInt == 0)
-                {
-                    base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
-                }
-                else
-                {
-                    MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Warning);
-                }
-            }catch(Exception ex)
-            {
-                MsgBox.Show(ex.Message, MsgType.Error);
-            }
+            InitializePage();
         }
 
 

@@ -12,7 +12,14 @@ namespace Wisol.MES.Forms.CONTENT
         public MAKER()
         {
             InitializeComponent();
+            this.Load += MAKER_Load;
         }
+
+        private void MAKER_Load(object sender, EventArgs e)
+        {
+            Classes.Common.SetFormIdToButton(this, "MAKER");
+        }
+
         public override void Form_Show()
         {
             base.Form_Show();

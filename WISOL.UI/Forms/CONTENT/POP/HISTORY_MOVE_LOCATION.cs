@@ -24,6 +24,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 mBindData.BindGridView(gcList, data);
                 this.gvList.OptionsView.ColumnAutoWidth = true;
             }
+
+            Classes.Common.SetFormIdToButton(null, "HISTORY_MOVE_LOCATION", this);
         }
     }
 }

@@ -26,6 +26,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             base.Form_Show();
             this.InitializePage();
+            Classes.Common.SetFormIdToButton(this, "SPARE_PART");
             //firstLoad = false;
         }
 
@@ -207,9 +208,9 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-                if (txtCode.EditValue.NullString().Contains(Consts.STR_SPILIT_ON_BARCODE) || txtCode.EditValue.NullString().Contains("_"))
+                if (txtCode.EditValue.NullString().Contains(Consts.STR_SPILIT_ON_BARCODE) || txtCode.EditValue.NullString().Contains("_") || txtCode.EditValue.NullString().Contains("."))
                 {
-                    MsgBox.Show("MSG_ERR_SPARE_CODE_CONTAIN_DOT".Translation(), MsgType.Warning);
+                    MsgBox.Show("Mã thiết bị không được chưa ký tự $ _ .".Translation(), MsgType.Warning);
                     return;
                 }
 
@@ -400,13 +401,20 @@ namespace Wisol.MES.Forms.CONTENT
 
             if (!string.IsNullOrWhiteSpace(image))
             {
-                byte[] imagebytes = Convert.FromBase64String(image);
-                using (var ms = new MemoryStream(imagebytes, 0, imagebytes.Length))
+                try
                 {
-                    picImage.Image = Image.FromStream(ms, true);
+                    byte[] imagebytes = Convert.FromBase64String(image);
+                    using (var ms = new MemoryStream(imagebytes, 0, imagebytes.Length))
+                    {
+                        picImage.Image = Image.FromStream(ms, true);
+                    }
+                    picImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                    picImage.Size = picImage.Image.Size;
                 }
-                picImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-                picImage.Size = picImage.Image.Size;
+                catch (Exception)
+                {
+                    picImage.Image = null;
+                }
             }
             else
             {

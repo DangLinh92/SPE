@@ -28,6 +28,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             Init_Control();
             LoadData();
+            Classes.Common.SetFormIdToButton(this, "STOCK_IN");
             //firstLoad = false;
         }
 

@@ -11,12 +11,15 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Wisol.BindDatas;
 using Wisol.Common;
 using Wisol.Components;
+using Wisol.MES.Inherit;
 
 namespace Wisol.MES.Classes
 {
@@ -153,6 +156,13 @@ namespace Wisol.MES.Classes
                 img.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
                 img.Size = img.Image.Size;
             }
+            else
+            {
+                string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Images/default-product-image.png");
+                img.Image = Image.FromFile(path);
+                img.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                img.Size = img.Image.Size;
+            }
         }
 
         public static Image GetImage(string image)
@@ -165,7 +175,10 @@ namespace Wisol.MES.Classes
                     return Image.FromStream(ms, true);
                 }
             }
-            return null;
+
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Images/default-product-image.png");
+
+            return Image.FromFile(path);
         }
 
         public static void SendMail(string title)
@@ -231,7 +244,7 @@ namespace Wisol.MES.Classes
                     dt.Columns.Add(c.FieldName);
                 }
             }
-              
+
 
             for (int r = 0; r < view.RowCount; r++)
             {
@@ -256,5 +269,102 @@ namespace Wisol.MES.Classes
             PrinterSettings settings = new PrinterSettings();
             cboPrinter.Text = settings.PrinterName;
         }
+
+        public static List<ButtonInfo> GetAllButton(PageType page)
+        {
+            List<ButtonInfo> buttonInfos = new List<ButtonInfo>();
+            IEnumerable<Control> lst = GetAll(page, typeof(XSimpleButton), typeof(SimpleButton));
+            ButtonInfo button;
+            foreach (var item in lst)
+            {
+                button = new ButtonInfo();
+                button.Name = item.Name;
+                button.Text = item.Text;
+                button.IsActive = true;
+                buttonInfos.Add(button);
+            }
+            return buttonInfos;
+        }
+
+        public static IEnumerable<Control> GetAll(Control control, Type type, Type type1)
+        {
+            var controls = control.Controls.Cast<Control>();
+
+            return controls.SelectMany(ctrl => GetAll(ctrl, type, type1))
+                                      .Concat(controls)
+                                      .Where(c => c.GetType() == type || c.GetType() == type1);
+        }
+
+        public static DataTable ToDataTable<T>(List<T> items, DataTable tableTemp)
+
+        {
+
+            DataTable dataTable = new DataTable(typeof(T).Name);
+
+            //Get all the properties
+
+            PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (PropertyInfo prop in Props)
+
+            {
+
+                //Setting column names as Property names
+                if (tableTemp.Columns.Contains(prop.Name))
+                {
+                    dataTable.Columns.Add(prop.Name, tableTemp.Columns[prop.Name].DataType);
+                }
+                else
+                {
+                    dataTable.Columns.Add(prop.Name);
+                }
+            }
+
+            foreach (T item in items)
+
+            {
+
+                var values = new object[Props.Length];
+
+                for (int i = 0; i < Props.Length; i++)
+
+                {
+
+                    //inserting property values to datatable rows
+
+                    values[i] = Props[i].GetValue(item, null);
+
+                }
+
+                dataTable.Rows.Add(values);
+
+            }
+
+            //put a breakpoint here and check datatable
+
+            return dataTable;
+
+        }
+
+        public static void SetFormIdToButton(PageType page, string formId, FormType formType = null)
+        {
+            var controls = page != null ? GetAll(page, typeof(XSimpleButton), typeof(SimpleButton)) : GetAll(formType, typeof(XSimpleButton), typeof(SimpleButton));
+            foreach (Control item in controls)
+            {
+                if(item.GetType() == typeof(XSimpleButton))
+                {
+                    ((XSimpleButton)item).FormId = formId;
+                    ((XSimpleButton)item).isFormType = page == null;
+                }
+            }
+        }
+    }
+
+    public class ButtonInfo
+    {
+        public string Text { get; set; }
+        public string Name { get; set; }
+        public string FormId { get; set; }
+        public bool IsActive { get; set; }
     }
 }

@@ -83,6 +83,7 @@
     <Compile Include="AceGridLookUpEdit.Designer.cs">
       <DependentUpon>AceGridLookUpEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommonRoleControl.cs" />
     <Compile Include="eXtendClass.cs" />
     <Compile Include="XAccordionControlElement.cs">
       <SubType>Component</SubType>
@@ -170,7 +171,12 @@
   <ItemGroup>
     <None Include="Resources\INIT.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\WISOL.Framework\Wisol.Framework.csproj">
+      <Project>{B664827E-7282-4566-AB2D-435B613A4E75}</Project>
+      <Name>Wisol.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\ADD.png" />
     <None Include="Resources\zoom_32x32.png" />

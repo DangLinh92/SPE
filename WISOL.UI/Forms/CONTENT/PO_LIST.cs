@@ -23,6 +23,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void PO_LIST_Load(object sender, EventArgs e)
         {
+            Classes.Common.SetFormIdToButton(this, "PO_LIST");
             btnLoadData.PerformClick();
         }
 

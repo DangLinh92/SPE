@@ -22,6 +22,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void LOGISTICS_DAILY_REPORT_Load(object sender, EventArgs e)
         {
+            Classes.Common.SetFormIdToButton(this, "LOGISTICS_DAILY_REPORT");
             InitData();
         }
 

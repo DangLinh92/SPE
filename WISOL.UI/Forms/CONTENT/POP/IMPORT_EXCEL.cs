@@ -36,6 +36,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 lblTime.Visible = false;
                 dateValid.Enabled = false;
             }
+
+            Classes.Common.SetFormIdToButton(null, "IMPORT_EXCEL", this);
         }
 
         private void btnImport_Click(object sender, EventArgs e)

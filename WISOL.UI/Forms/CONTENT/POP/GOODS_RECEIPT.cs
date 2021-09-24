@@ -36,6 +36,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             Wisol.MES.Classes.Common.GetEncriptCode();
             InitData();
 
+            Classes.Common.SetFormIdToButton(null, "GOODS_RECEIPT", this);
         }
         public DataTable Data { get; set; }
         private DataTable STATUS = new DataTable();

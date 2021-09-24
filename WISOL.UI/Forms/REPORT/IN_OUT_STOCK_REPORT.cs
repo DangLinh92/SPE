@@ -41,6 +41,8 @@ namespace Wisol.MES.Forms.REPORT
                     MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
                 }
                 stlDeptCode.EditValue = Consts.DEPARTMENT;
+
+                Classes.Common.SetFormIdToButton(this, "IN_OUT_STOCK_REPORT");
             }
             catch (Exception ex)
             {

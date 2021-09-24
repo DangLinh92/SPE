@@ -11,6 +11,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
         public CREATE_MRP_CODE()
         {
             InitializeComponent();
+            this.Load += CREATE_MRP_CODE_Load;
+        }
+
+        private void CREATE_MRP_CODE_Load(object sender, EventArgs e)
+        {
+            Classes.Common.SetFormIdToButton(null, "CREATE_MRP_CODE", this);
         }
 
         private void btnGencode_Click(object sender, EventArgs e)

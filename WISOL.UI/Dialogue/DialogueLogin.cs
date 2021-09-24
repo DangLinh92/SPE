@@ -214,6 +214,9 @@ namespace Wisol.MES.Dialog
                         Consts.USER_INFO.Role = proc.ReturnDataSet.Tables[1].Copy();
                         Consts.USER_INFO.UserRole = proc.ReturnDataSet.Tables[1].Rows[0]["USERROLE"].NullString();
                         Consts.DEPARTMENT = gleDepartment.EditValue.NullString();
+                        Consts.USER_INFO.RollControls = proc.ReturnDataSet.Tables[2].Copy();
+                        CommonRoleControl.RollControls = proc.ReturnDataSet.Tables[2].Copy();
+
                         DialogResult = System.Windows.Forms.DialogResult.OK;
 
                         //계정정보를 XML에 저장

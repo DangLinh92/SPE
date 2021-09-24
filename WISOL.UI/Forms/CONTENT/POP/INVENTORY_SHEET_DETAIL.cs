@@ -16,6 +16,12 @@ namespace Wisol.MES.Forms.CONTENT.POP
         public INVENTORY_SHEET_DETAIL()
         {
             InitializeComponent();
+            this.Load += INVENTORY_SHEET_DETAIL_Load1;
+        }
+
+        private void INVENTORY_SHEET_DETAIL_Load1(object sender, EventArgs e)
+        {
+            Classes.Common.SetFormIdToButton(null, "INVENTORY_SHEET_DETAIL", this);
         }
 
         public string Kho { get; set; }

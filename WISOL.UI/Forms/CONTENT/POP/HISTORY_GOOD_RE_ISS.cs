@@ -28,6 +28,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     DataTable data = mResultDB.ReturnDataSet.Tables[0];
                     base.mBindData.BindGridLookEdit(stlSparepart, data, "CODE", "NAME_VI", "NAME_KR,SPECIFICATION,GL_ACCOUNT,COST_CTR,VENDER_NAME,UNIT,TYPENAME,CODE_MERGED");
                 }
+
+                Classes.Common.SetFormIdToButton(null, "HISTORY_GOOD_RE_ISS", this);
             }
             catch (Exception ex)
             {

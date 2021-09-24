@@ -113,6 +113,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private void PRINT_LABEL_Load(object sender, EventArgs e)
         {
             Classes.Common.SelectPrinter(cboPrinter);
+            Classes.Common.SetFormIdToButton(null, "PRINT_LABEL", this);
 
             LoadData();
             GetLabelTemplate();

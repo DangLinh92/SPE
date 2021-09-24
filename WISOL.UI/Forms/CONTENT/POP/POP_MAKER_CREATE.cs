@@ -29,6 +29,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     base.mBindData.BindGridLookEdit(sltDepartment, base.mResultDB.ReturnDataSet.Tables[1], "DEPARTMENT", "DEPARTMENT");
                 }
                 Init_Control(true);
+
+                Classes.Common.SetFormIdToButton(null, "POP_MAKER_CREATE", this);
             }
             catch (Exception ex)
             {

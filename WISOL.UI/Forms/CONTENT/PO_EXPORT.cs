@@ -24,6 +24,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void PO_EXPORT_Load(object sender, EventArgs e)
         {
+            Classes.Common.SetFormIdToButton(this, "PO_EXPORT");
             InitData();
         }
 

@@ -30,6 +30,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                     label = base.mResultDB.ReturnDataSet.Tables[1].Rows[0]["LABEL"].ToString();
                 }
+
+                Classes.Common.SetFormIdToButton(null, "POP_LOCATION_LABEL", this);
             }
             catch (Exception ex)
             {

@@ -30,6 +30,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     sltDepartment.EditValue = base.mResultDB.ReturnDataSet.Tables[0].Rows[0]["DEPARTMENT"].ToString();
 
                 }
+                Classes.Common.SetFormIdToButton(null, "POP_MAKER_UPDATE", this);
             }
             catch (Exception ex)
             {

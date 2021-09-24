@@ -24,6 +24,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             base.Form_Show();
             this.InitializePage();
+            Classes.Common.SetFormIdToButton(this, "REPRINT_LABEL");
         }
 
         public override void InitializePage()

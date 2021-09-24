@@ -18,9 +18,9 @@ namespace Wisol.MES.Forms.SYSTEM
             base.Form_Show();
 
             this.InitializePage();
+
+            Classes.Common.SetFormIdToButton(this, "SYSTEM005");
         }
-
-
 
         public override void InitializePage()
         {
@@ -70,9 +70,9 @@ namespace Wisol.MES.Forms.SYSTEM
                         Consts.USER_INFO.Id,
                         Consts.DEPARTMENT
                     }
-                    //,
-                    //false,
-                    //"PASSWORD, REMARKS, USER_ROLE"
+                    ,
+                    false,
+                    "PASSWORD, REMARKS, USER_ROLE"
                     );
             }
             catch (Exception ex)
@@ -102,8 +102,6 @@ namespace Wisol.MES.Forms.SYSTEM
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
-
-
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -169,8 +167,6 @@ namespace Wisol.MES.Forms.SYSTEM
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
-
-
 
         private void gvList_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {

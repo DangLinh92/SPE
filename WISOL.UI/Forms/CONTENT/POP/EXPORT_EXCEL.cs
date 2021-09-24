@@ -26,6 +26,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void EXPORT_EXCEL_Load(object sender, EventArgs e)
         {
+            Classes.Common.SetFormIdToButton(null, "EXPORT_EXCEL", this);
+
             if (Consts.INVENTORY_REPORT.Equals(ReportType))
             {
                 groupControl1.Text = ReportTitle;

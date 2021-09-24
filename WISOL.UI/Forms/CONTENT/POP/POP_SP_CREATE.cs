@@ -40,6 +40,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     base.mBindData.BindGridLookEdit(sltUnit, base.mResultDB.ReturnDataSet.Tables[3], "CODE", "NAME");
                 }
                 Init_Control(true);
+
+                Classes.Common.SetFormIdToButton(null, "POP_SP_CREATE", this);
             }
             catch (Exception ex)
             {

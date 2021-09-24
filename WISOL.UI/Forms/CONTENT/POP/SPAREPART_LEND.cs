@@ -23,6 +23,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void SPAREPART_LEND_Load(object sender, EventArgs e)
         {
+            Classes.Common.SetFormIdToButton(null, "SPAREPART_LEND", this);
             GetData();
         }
 

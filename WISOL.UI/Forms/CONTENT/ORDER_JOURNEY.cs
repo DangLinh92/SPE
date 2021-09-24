@@ -18,6 +18,12 @@ namespace Wisol.MES.Forms.CONTENT
         public ORDER_JOURNEY()
         {
             InitializeComponent();
+            this.Load += ORDER_JOURNEY_Load;
+        }
+
+        private void ORDER_JOURNEY_Load(object sender, EventArgs e)
+        {
+            Classes.Common.SetFormIdToButton(this, "ORDER_JOURNEY");
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

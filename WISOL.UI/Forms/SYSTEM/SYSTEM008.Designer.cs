@@ -65,20 +65,20 @@
             this.layoutControl1.Controls.Add(this.gcUserList);
             this.layoutControl1.Controls.Add(this.btnSave);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.layoutControl1.Location = new System.Drawing.Point(0, 22);
+            this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(800, 398, 250, 350);
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(1366, 746);
+            this.layoutControl1.Size = new System.Drawing.Size(1366, 768);
             this.layoutControl1.TabIndex = 1;
             this.layoutControl1.Text = "layoutControl1";
             // 
             // gcRoleList
             // 
-            this.gcRoleList.Location = new System.Drawing.Point(705, 49);
+            this.gcRoleList.Location = new System.Drawing.Point(705, 45);
             this.gcRoleList.MainView = this.gvRoleList;
             this.gcRoleList.Name = "gcRoleList";
-            this.gcRoleList.Size = new System.Drawing.Size(637, 639);
+            this.gcRoleList.Size = new System.Drawing.Size(637, 665);
             this.gcRoleList.TabIndex = 21;
             this.gcRoleList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvRoleList});
@@ -90,11 +90,12 @@
             // 
             // gcUserList
             // 
-            this.gcUserList.Location = new System.Drawing.Point(24, 49);
+            this.gcUserList.Location = new System.Drawing.Point(24, 45);
             this.gcUserList.MainView = this.gvUserList;
             this.gcUserList.Name = "gcUserList";
-            this.gcUserList.Size = new System.Drawing.Size(643, 639);
+            this.gcUserList.Size = new System.Drawing.Size(643, 665);
             this.gcUserList.TabIndex = 20;
+            this.gcUserList.UseEmbeddedNavigator = true;
             this.gcUserList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvUserList});
             // 
@@ -102,13 +103,18 @@
             // 
             this.gvUserList.GridControl = this.gcUserList;
             this.gvUserList.Name = "gvUserList";
+            this.gvUserList.OptionsSelection.MultiSelect = true;
+            this.gvUserList.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.gvUserList.OptionsSelection.ResetSelectionClickOutsideCheckboxSelector = true;
             this.gvUserList.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gvRoleList_RowCellClick);
             // 
             // btnSave
             // 
             this.btnSave.ButtonType = Wisol.ButtonTypes.Save;
+            this.btnSave.FormId = null;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(1225, 704);
+            this.btnSave.isFormType = false;
+            this.btnSave.Location = new System.Drawing.Point(1225, 726);
             this.btnSave.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSave.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnSave.Name = "btnSave";
@@ -130,7 +136,7 @@
             this.layoutControlGroup3,
             this.splitterItem1});
             this.layoutControlGroup1.Name = "Root";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(1366, 746);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(1366, 768);
             this.layoutControlGroup1.TextVisible = false;
             // 
             // layoutControlGroup2
@@ -140,7 +146,7 @@
             this.layoutControlItem1});
             this.layoutControlGroup2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(671, 692);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(671, 714);
             this.layoutControlGroup2.Text = "USER_LIST";
             // 
             // layoutControlItem1
@@ -149,7 +155,7 @@
             this.layoutControlItem1.CustomizationFormText = "layoutControlItem1";
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(647, 643);
+            this.layoutControlItem1.Size = new System.Drawing.Size(647, 669);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -157,7 +163,7 @@
             // 
             this.layoutControlItem13.Control = this.btnSave;
             this.layoutControlItem13.CustomizationFormText = "layoutControlItem13";
-            this.layoutControlItem13.Location = new System.Drawing.Point(1213, 692);
+            this.layoutControlItem13.Location = new System.Drawing.Point(1213, 714);
             this.layoutControlItem13.Name = "layoutControlItem13";
             this.layoutControlItem13.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
@@ -167,7 +173,7 @@
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.CustomizationFormText = "emptySpaceItem2";
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 692);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 714);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Size = new System.Drawing.Size(1213, 34);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
@@ -179,7 +185,7 @@
             this.layoutControlItem2});
             this.layoutControlGroup3.Location = new System.Drawing.Point(681, 0);
             this.layoutControlGroup3.Name = "layoutControlGroup3";
-            this.layoutControlGroup3.Size = new System.Drawing.Size(665, 692);
+            this.layoutControlGroup3.Size = new System.Drawing.Size(665, 714);
             this.layoutControlGroup3.Text = "ROLE_LIST";
             // 
             // layoutControlItem2
@@ -187,7 +193,7 @@
             this.layoutControlItem2.Control = this.gcRoleList;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(641, 643);
+            this.layoutControlItem2.Size = new System.Drawing.Size(641, 669);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -197,7 +203,7 @@
             this.splitterItem1.CustomizationFormText = "splitterItem1";
             this.splitterItem1.Location = new System.Drawing.Point(671, 0);
             this.splitterItem1.Name = "splitterItem1";
-            this.splitterItem1.Size = new System.Drawing.Size(10, 692);
+            this.splitterItem1.Size = new System.Drawing.Size(10, 714);
             // 
             // SYSTEM008
             // 

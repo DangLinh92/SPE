@@ -51,6 +51,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void UPDATE_SPAREPART_CODE_Load(object sender, EventArgs e)
         {
+            Classes.Common.SetFormIdToButton(null, "UPDATE_SPAREPART_CODE", this);
             txtCodeOld.EditValue = SpareCode_Old;
             txtCodeNew.Focus();
         }

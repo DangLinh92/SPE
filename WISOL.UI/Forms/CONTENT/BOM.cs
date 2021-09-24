@@ -21,6 +21,8 @@ namespace Wisol.MES.Forms.CONTENT
         {
             base.Form_Show();
             this.InitializePage();
+
+            Classes.Common.SetFormIdToButton(this, "BOM");
         }
         public override void InitializePage()
         {

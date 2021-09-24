@@ -26,6 +26,8 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
+                Classes.Common.SetFormIdToButton(this, "DAILY_ACTUAL_PRODUCT");
+
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PRODUCT_ACTUAL_PLANT.INIT",
                                   new string[] { "A_DEPARTMENT", "A_DATE" },
                                   new string[] { Consts.DEPARTMENT, DateTime.Now.ToString("yyyyMMdd") });

@@ -33,6 +33,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private void MERGE_SPARE_PART_CODE_Load(object sender, EventArgs e)
         {
             InitData();
+
+            Classes.Common.SetFormIdToButton(null, "MERGE_SPARE_PART_CODE", this);
         }
 
         private void InitData()

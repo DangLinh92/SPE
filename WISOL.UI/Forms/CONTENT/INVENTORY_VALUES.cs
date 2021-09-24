@@ -52,28 +52,29 @@ namespace Wisol.MES.Forms.CONTENT
             finally
             {
                 splashScreenManager1.CloseWaitForm();
+                Classes.Common.SetFormIdToButton(this, "INVENTORY_VALUES");
             }
         }
 
         private void FormatGrid()
         {
             gvList.Columns["IN_VALUES_VN"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            gvList.Columns["IN_VALUES_VN"].DisplayFormat.FormatString = "n3";
+            gvList.Columns["IN_VALUES_VN"].DisplayFormat.FormatString = "n2";
 
             gvList.Columns["IN_VALUES_US"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            gvList.Columns["IN_VALUES_US"].DisplayFormat.FormatString = "n3";
+            gvList.Columns["IN_VALUES_US"].DisplayFormat.FormatString = "n2";
 
             gvList.Columns["OUT_VALUES_VN"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            gvList.Columns["OUT_VALUES_VN"].DisplayFormat.FormatString = "n3";
+            gvList.Columns["OUT_VALUES_VN"].DisplayFormat.FormatString = "n2";
 
             gvList.Columns["OUT_VALUES_US"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            gvList.Columns["OUT_VALUES_US"].DisplayFormat.FormatString = "n3";
+            gvList.Columns["OUT_VALUES_US"].DisplayFormat.FormatString = "n2";
 
             gvList.Columns["INVENTORY_VALUES_VN"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            gvList.Columns["INVENTORY_VALUES_VN"].DisplayFormat.FormatString = "n3";
+            gvList.Columns["INVENTORY_VALUES_VN"].DisplayFormat.FormatString = "n2";
 
             gvList.Columns["INVENTORY_VALUES_US"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-            gvList.Columns["INVENTORY_VALUES_US"].DisplayFormat.FormatString = "n3";
+            gvList.Columns["INVENTORY_VALUES_US"].DisplayFormat.FormatString = "n2";
             gvList.OptionsView.ColumnAutoWidth = true;
         }
 

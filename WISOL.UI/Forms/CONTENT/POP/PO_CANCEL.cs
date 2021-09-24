@@ -47,6 +47,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     gvList.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
                     gvList.OptionsView.ColumnAutoWidth = true;
                 }
+
+                Classes.Common.SetFormIdToButton(null, "PO_CANCEL", this);
             }
             catch (Exception ex)
             {

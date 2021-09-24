@@ -58,5 +58,10 @@ namespace Wisol.Objects
         }
 
         public string UserRole { get; set; }
+
+        public DataTable RollControls
+        {
+            get;set;
+        }
     }
 }

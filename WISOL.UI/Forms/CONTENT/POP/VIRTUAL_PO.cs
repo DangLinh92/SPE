@@ -25,27 +25,36 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void VIRTUAL_PO_Load(object sender, EventArgs e)
         {
-            DATA = new DataTable();
-            DATA.Columns.Add("TITLE");
-            DATA.Columns.Add("SPAREPART_CODE");
-            DATA.Columns.Add("NAME_VI");
-            DATA.Columns.Add("UNIT");
-            DATA.Columns.Add("QUANTITY_NEED_BUY");
-            DATA.Columns.Add("VENDOR");
-            DATA.Columns.Add("PRICE_VN");
-            DATA.Columns.Add("PRICE_US");
-            gcList.DataSource = DATA;
-
-            base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_VIRTUAL_PO.INIT", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
-
-            if (mResultDB.ReturnInt == 0)
+            try
             {
-                DataTableCollection datas = mResultDB.ReturnDataSet.Tables;
-                if (datas.Count > 0)
+                DATA = new DataTable();
+                DATA.Columns.Add("TITLE");
+                DATA.Columns.Add("SPAREPART_CODE");
+                DATA.Columns.Add("NAME_VI");
+                DATA.Columns.Add("UNIT");
+                DATA.Columns.Add("QUANTITY_NEED_BUY");
+                DATA.Columns.Add("VENDOR");
+                DATA.Columns.Add("PRICE_VN");
+                DATA.Columns.Add("PRICE_US");
+                gcList.DataSource = DATA;
+
+                base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_VIRTUAL_PO.INIT", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
+
+                if (mResultDB.ReturnInt == 0)
                 {
-                    mBindData.BindGridLookEdit(stlSparepart, datas[1], "CODE", "NAME_VI");
-                    mBindData.BindGridLookEdit(stlVendor, datas[2], "VENDER_ID", "NAME");
+                    DataTableCollection datas = mResultDB.ReturnDataSet.Tables;
+                    if (datas.Count > 0)
+                    {
+                        mBindData.BindGridLookEdit(stlSparepart, datas[1], "CODE", "NAME_VI");
+                        mBindData.BindGridLookEdit(stlVendor, datas[2], "VENDER_ID", "NAME");
+                    }
                 }
+
+                Classes.Common.SetFormIdToButton(null, "VIRTUAL_PO", this);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
 

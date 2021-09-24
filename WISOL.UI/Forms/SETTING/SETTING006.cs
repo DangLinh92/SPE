@@ -24,8 +24,8 @@ namespace Wisol.MES.Forms.SETTING
             base.Form_Show();
 
             this.InitializePage();
-            //this.layoutControlGroup6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-            //this.layoutControlItem13.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+            Classes.Common.SetFormIdToButton(this, "SETTING006");
         }
 
 

@@ -1,5 +1,7 @@
 ﻿using DevExpress.XtraEditors;
+using System;
 using System.ComponentModel;
+using Wisol.Components;
 
 namespace Wisol
 {
@@ -83,6 +85,30 @@ namespace Wisol
                         Image = global::Wisol.Properties.Resources.zoom_32x32;
                         Text = "VIEW";
                         break;
+                }
+            }
+        }
+
+        public string FormId { get; set; }
+        public bool isFormType { get; set; }
+
+        protected override void OnClick(EventArgs e)
+        {
+            if (isFormType)
+            {
+                base.OnClick(e);
+            }
+            else
+            {
+                bool active = CommonRoleControl.GetActiveWithRole(FormId, this.Name);
+
+                if (active)
+                {
+                    base.OnClick(e);
+                }
+                else
+                {
+                    MsgBox.Show("NOT HAVE PERMISSION TO ACCESS!!!", MsgType.Warning);
                 }
             }
         }

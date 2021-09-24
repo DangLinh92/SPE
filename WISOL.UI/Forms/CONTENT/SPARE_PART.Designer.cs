@@ -30,14 +30,15 @@ namespace Wisol.MES.Forms.CONTENT
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SPARE_PART));
             DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
             DevExpress.Utils.SuperToolTip superToolTip2 = new DevExpress.Utils.SuperToolTip();
             DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
             DevExpress.Utils.ToolTipItem toolTipItem2 = new DevExpress.Utils.ToolTipItem();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SPARE_PART));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnReferCode = new Wisol.XSimpleButton(this.components);
             this.bntClearMemory = new Wisol.XSimpleButton(this.components);
             this.btnMemoryData = new Wisol.XSimpleButton(this.components);
             this.stlMemoryData = new Wisol.AceGridLookUpEdit(this.components);
@@ -132,10 +133,9 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem36 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem41 = new DevExpress.XtraLayout.LayoutControlItem();
             this.memoExEdit1 = new DevExpress.XtraEditors.MemoExEdit();
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnReferCode = new Wisol.XSimpleButton(this.components);
-            this.layoutControlItem41 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stlMemoryData.Properties)).BeginInit();
@@ -226,9 +226,9 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem41)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoExEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem41)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -253,8 +253,23 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnReferCode
+            // 
+            this.btnReferCode.FormId = "SPARE_PART";
+            this.btnReferCode.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReferCode.ImageOptions.Image")));
+            this.btnReferCode.Location = new System.Drawing.Point(655, 830);
+            this.btnReferCode.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnReferCode.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnReferCode.Name = "btnReferCode";
+            this.btnReferCode.Size = new System.Drawing.Size(129, 30);
+            this.btnReferCode.StyleController = this.layoutControl1;
+            this.btnReferCode.TabIndex = 26;
+            this.btnReferCode.Text = "Mã thiết bị tổng hợp";
+            this.btnReferCode.Click += new System.EventHandler(this.btnReferCode_Click);
+            // 
             // bntClearMemory
             // 
+            this.bntClearMemory.FormId = "SPARE_PART";
             this.bntClearMemory.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("bntClearMemory.ImageOptions.Image")));
             this.bntClearMemory.Location = new System.Drawing.Point(788, 830);
             this.bntClearMemory.MaximumSize = new System.Drawing.Size(129, 30);
@@ -268,6 +283,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnMemoryData
             // 
+            this.btnMemoryData.FormId = "SPARE_PART";
             this.btnMemoryData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnMemoryData.ImageOptions.Image")));
             this.btnMemoryData.Location = new System.Drawing.Point(921, 830);
             this.btnMemoryData.MaximumSize = new System.Drawing.Size(129, 30);
@@ -305,6 +321,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnUpdate
             // 
+            this.btnUpdate.FormId = "SPARE_PART";
             this.btnUpdate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.ImageOptions.Image")));
             this.btnUpdate.Location = new System.Drawing.Point(1187, 830);
             this.btnUpdate.MaximumSize = new System.Drawing.Size(129, 30);
@@ -357,6 +374,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnDelete
             // 
+            this.btnDelete.FormId = "SPARE_PART";
             this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
             this.btnDelete.Location = new System.Drawing.Point(1453, 830);
             this.btnDelete.MaximumSize = new System.Drawing.Size(129, 30);
@@ -370,6 +388,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnClear
             // 
+            this.btnClear.FormId = "SPARE_PART";
             this.btnClear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.ImageOptions.Image")));
             this.btnClear.Location = new System.Drawing.Point(1320, 830);
             this.btnClear.MaximumSize = new System.Drawing.Size(129, 30);
@@ -383,6 +402,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnSave
             // 
+            this.btnSave.FormId = "SPARE_PART";
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.Location = new System.Drawing.Point(1054, 830);
             this.btnSave.MaximumSize = new System.Drawing.Size(129, 30);
@@ -1396,6 +1416,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem36.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem36.TextVisible = false;
             // 
+            // layoutControlItem41
+            // 
+            this.layoutControlItem41.Control = this.btnReferCode;
+            this.layoutControlItem41.Location = new System.Drawing.Point(643, 818);
+            this.layoutControlItem41.Name = "layoutControlItem41";
+            this.layoutControlItem41.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem41.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem41.TextVisible = false;
+            // 
             // memoExEdit1
             // 
             this.memoExEdit1.Location = new System.Drawing.Point(0, 0);
@@ -1410,28 +1439,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem25.Name = "layoutControlItem25";
             this.layoutControlItem25.Size = new System.Drawing.Size(234, 1);
             this.layoutControlItem25.TextSize = new System.Drawing.Size(50, 20);
-            // 
-            // btnReferCode
-            // 
-            this.btnReferCode.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xSimpleButton1.ImageOptions.Image")));
-            this.btnReferCode.Location = new System.Drawing.Point(655, 830);
-            this.btnReferCode.MaximumSize = new System.Drawing.Size(129, 30);
-            this.btnReferCode.MinimumSize = new System.Drawing.Size(129, 30);
-            this.btnReferCode.Name = "btnReferCode";
-            this.btnReferCode.Size = new System.Drawing.Size(129, 30);
-            this.btnReferCode.StyleController = this.layoutControl1;
-            this.btnReferCode.TabIndex = 26;
-            this.btnReferCode.Text = "Mã thiết bị tổng hợp";
-            this.btnReferCode.Click += new System.EventHandler(this.btnReferCode_Click);
-            // 
-            // layoutControlItem41
-            // 
-            this.layoutControlItem41.Control = this.btnReferCode;
-            this.layoutControlItem41.Location = new System.Drawing.Point(643, 818);
-            this.layoutControlItem41.Name = "layoutControlItem41";
-            this.layoutControlItem41.Size = new System.Drawing.Size(133, 34);
-            this.layoutControlItem41.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem41.TextVisible = false;
             // 
             // SPARE_PART
             // 
@@ -1531,9 +1538,9 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem36)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem41)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoExEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem41)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

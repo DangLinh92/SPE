@@ -18,6 +18,8 @@ namespace Wisol.MES.Forms.SETTING
             base.Form_Show();
 
             this.InitializePage();
+
+            Classes.Common.SetFormIdToButton(this, "SETTING009");
         }
         public override void InitializePage()
         {
@@ -28,7 +30,6 @@ namespace Wisol.MES.Forms.SETTING
                     new string[] { });
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
-                    //base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
                     base.m_BindData.BindGridLookEdit(stlParent, base.m_ResultDB.ReturnDataSet.Tables[1], "CODE", "NAME_LOCATION");
                     Init_Control(true);
 

@@ -18,6 +18,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private void MRP_LIST_Load(object sender, EventArgs e)
         {
             InitData();
+
+            Classes.Common.SetFormIdToButton(null, "MRP_LIST", this);
         }
 
         private void InitData()

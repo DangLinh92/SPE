@@ -29,6 +29,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void MRP_Load(object sender, EventArgs e)
         {
+            Classes.Common.SetFormIdToButton(this, "MRP");
             CREAT_EWIP_MRP_TYPE();
             InitData(true);
         }
@@ -346,7 +347,12 @@ namespace Wisol.MES.Forms.CONTENT
                     DataTableCollection data = m_ResultDB.ReturnDataSet.Tables;
                     if (data[0].Rows.Count > 0)
                     {
-                        string isOff = gvList.GetRowCellValue(rowHanle, "OFF_NOTI").NullString();
+                        string isOff = gvlst.GetRowCellValue(rowHanle, "OFF_NOTI").NullString();
+
+                        if(!bool.TryParse(isOff,out _))
+                        {
+                            isOff = "False";
+                        }
 
                         txtID.EditValue = gvlst.GetRowCellValue(rowHanle, "ID").NullString();
                         stlMRP_CODE.EditValue = data[0].Rows[0]["MRP_CODE"].NullString();

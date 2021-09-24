@@ -17,6 +17,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             base.Form_Show();
             this.InitializePage();
+            Classes.Common.SetFormIdToButton(this, "UNIT");
         }
 
         public override void InitializePage()

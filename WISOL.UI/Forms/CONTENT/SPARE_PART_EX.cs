@@ -199,13 +199,20 @@ namespace Wisol.MES.Forms.CONTENT
 
             if (!string.IsNullOrWhiteSpace(image))
             {
-                byte[] imagebytes = Convert.FromBase64String(image);
-                using (var ms = new MemoryStream(imagebytes, 0, imagebytes.Length))
+                try
                 {
-                    picImage.Image = Image.FromStream(ms, true);
+                    byte[] imagebytes = Convert.FromBase64String(image);
+                    using (var ms = new MemoryStream(imagebytes, 0, imagebytes.Length))
+                    {
+                        picImage.Image = Image.FromStream(ms, true);
+                    }
+                    picImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                    picImage.Size = picImage.Image.Size;
                 }
-                picImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-                picImage.Size = picImage.Image.Size;
+                catch (Exception)
+                {
+                    picImage.Image = null;
+                }
             }
             else
             {

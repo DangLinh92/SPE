@@ -28,6 +28,7 @@ namespace Wisol.MES.Forms.CONTENT
                 txtSparePart.EditValue = string.Empty;
                 txtSparePart.Focus();
                 txtSparePart.Select();
+                Classes.Common.SetFormIdToButton(this, "STOCK_OUT");
             }
             catch (Exception ex)
             {

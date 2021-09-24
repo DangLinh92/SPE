@@ -25,6 +25,7 @@ namespace Wisol.MES.Forms.CONTENT
         private void PURCHASE_REQUEST_Load(object sender, EventArgs e)
         {
             GetDataInit();
+            Classes.Common.SetFormIdToButton(this, "PURCHASE_REQUEST");
         }
 
         private void GetDataInit()
