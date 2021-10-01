@@ -25,6 +25,11 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void GOC_PLANT_Load(object sender, EventArgs e)
         {
+            LoadData();
+        }
+
+        private void LoadData()
+        {
             try
             {
                 Classes.Common.SetFormIdToButton(this, "GOC_PLANT");
@@ -48,7 +53,6 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
-           
         }
 
         private void btnGetFileTemp_Click(object sender, EventArgs e)
@@ -89,6 +93,7 @@ namespace Wisol.MES.Forms.CONTENT
             popup.stock_code = "";
             popup.ImpportType = Consts.IMPORT_TYPE_GOC_PLAN;
             popup.ShowDialog();
+            LoadData();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

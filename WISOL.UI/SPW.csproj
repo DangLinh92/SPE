@@ -462,6 +462,12 @@
     <Compile Include="Forms\CONTENT\POP\PO_CREATE.Designer.cs">
       <DependentUpon>PO_CREATE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\POP\VENDOR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\VENDOR.Designer.cs">
+      <DependentUpon>VENDOR.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\POP\VIRTUAL_PO.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -954,6 +960,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\PO_CREATE.resx">
       <DependentUpon>PO_CREATE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\VENDOR.resx">
+      <DependentUpon>VENDOR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\VIRTUAL_PO.resx">
       <DependentUpon>VIRTUAL_PO.cs</DependentUpon>

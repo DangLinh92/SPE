@@ -726,5 +726,18 @@ namespace Wisol.MES.Forms.CONTENT
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
+
+        private void btnAddVendor_Click(object sender, EventArgs e)
+        {
+            POP.VENDOR pop = new POP.VENDOR();
+            pop.ShowDialog();
+
+            base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_VENDOR.GET", new string[] { }, new string[] { });
+            if (base.m_ResultDB.ReturnInt == 0)
+            {
+                DataTableCollection data = base.m_ResultDB.ReturnDataSet.Tables;
+                base.m_BindData.BindGridLookEdit(sltVender, data[0], "VENDER_ID", "NAME");
+            }
+        }
     }
 }

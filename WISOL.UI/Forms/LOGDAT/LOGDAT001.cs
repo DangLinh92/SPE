@@ -94,10 +94,9 @@ namespace Wisol.MES.Forms.LOGDAT
             }
         }
 
-
-
-
-
-
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            SearchPage();
+        }
     }
 }

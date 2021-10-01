@@ -1087,11 +1087,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                 if (cboStatus.EditValue.NullString() != Consts.STATUS_COMPLETE)
                 {
-                    DialogResult dialogResult = MsgBox.Show("TRẠNG THÁI ĐANG LÀ '" + cboStatus.EditValue.NullString()+"', ĐỂ XÁC NHẬN TỒN KHO HÃY CHỌN TRẠNG THÁI HOÀN THÀNH, NHẤN OKE ĐỂ CHỈNH SỬA, NHẤN CANCEL ĐỂ TIẾP TỤC".Translation(), MsgType.Warning, DialogType.OkCancel);
-                    if (dialogResult == DialogResult.OK)
-                    {
-                        return;
-                    }
+                    //DialogResult dialogResult = MsgBox.Show("", MsgType.Warning, DialogType.OkCancel);
+                    MsgBox.Show("HÃY CHỌN TRẠNG THÁI HOÀN THÀNH ĐỂ XÁC NHẬN!!", MsgType.Warning);
+                    return;
                 }
 
                 foreach (DataRow item in Data.Rows)

@@ -3,6 +3,7 @@ using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Columns;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
@@ -362,6 +363,25 @@ namespace Wisol.MES.Forms.CONTENT
         private void txtLine_EditValueChanged(object sender, EventArgs e)
         {
             SetMonthUsing();
+        }
+
+        private void gvList_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            if (e.RowHandle < 0)
+                return;
+
+            if(e.Column.FieldName == "MIN_STOCK_PACK")
+            {
+                e.Appearance.BackColor = Color.FromArgb(212, 239, 223);
+            }
+            else if(e.Column.FieldName == "WORKING_A_MONTH")
+            {
+                e.Appearance.BackColor = Color.FromArgb(253, 235, 208);
+            }
+            else if (e.Column.FieldName == "WORKING_A_LINE_PACK")
+            {
+                e.Appearance.BackColor = Color.FromArgb(253, 242, 233);
+            }
         }
     }
 }

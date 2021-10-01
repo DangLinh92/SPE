@@ -140,33 +140,33 @@ namespace Wisol.MES.Forms.CONTENT
             // dateFrom
             // 
             this.dateFrom.EditValue = null;
-            this.dateFrom.Location = new System.Drawing.Point(657, 69);
+            this.dateFrom.Location = new System.Drawing.Point(666, 69);
             this.dateFrom.Name = "dateFrom";
             this.dateFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateFrom.Size = new System.Drawing.Size(200, 20);
+            this.dateFrom.Size = new System.Drawing.Size(191, 20);
             this.dateFrom.StyleController = this.xLayoutControl1;
             this.dateFrom.TabIndex = 30;
             // 
             // dateTo
             // 
             this.dateTo.EditValue = null;
-            this.dateTo.Location = new System.Drawing.Point(923, 69);
+            this.dateTo.Location = new System.Drawing.Point(932, 69);
             this.dateTo.Name = "dateTo";
             this.dateTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateTo.Size = new System.Drawing.Size(159, 20);
+            this.dateTo.Size = new System.Drawing.Size(150, 20);
             this.dateTo.StyleController = this.xLayoutControl1;
             this.dateTo.TabIndex = 29;
             // 
             // txtRate
             // 
             this.txtRate.IsRequire = false;
-            this.txtRate.Location = new System.Drawing.Point(378, 69);
+            this.txtRate.Location = new System.Drawing.Point(387, 69);
             this.txtRate.Name = "txtRate";
             this.txtRate.NullBackColor = System.Drawing.Color.Lime;
             this.txtRate.NullValidation = false;
@@ -174,13 +174,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtRate.Properties.Appearance.Options.UseBackColor = true;
             this.txtRate.Properties.Mask.EditMask = "p";
             this.txtRate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtRate.Size = new System.Drawing.Size(213, 20);
+            this.txtRate.Size = new System.Drawing.Size(204, 20);
             this.txtRate.StyleController = this.xLayoutControl1;
             this.txtRate.TabIndex = 28;
             // 
             // btnClear
             // 
+            this.btnClear.FormId = null;
             this.btnClear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.ImageOptions.Image")));
+            this.btnClear.isFormType = false;
             this.btnClear.Location = new System.Drawing.Point(1219, 69);
             this.btnClear.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClear.MinimumSize = new System.Drawing.Size(129, 30);
@@ -193,7 +195,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnDelete
             // 
+            this.btnDelete.FormId = null;
             this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
+            this.btnDelete.isFormType = false;
             this.btnDelete.Location = new System.Drawing.Point(1352, 69);
             this.btnDelete.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnDelete.MinimumSize = new System.Drawing.Size(129, 30);
@@ -206,7 +210,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnCreate
             // 
+            this.btnCreate.FormId = null;
             this.btnCreate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCreate.ImageOptions.Image")));
+            this.btnCreate.isFormType = false;
             this.btnCreate.Location = new System.Drawing.Point(1086, 69);
             this.btnCreate.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnCreate.MinimumSize = new System.Drawing.Size(129, 30);
@@ -378,6 +384,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.gvList.OptionsView.AllowCellMerge = true;
             this.gvList.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.gvList.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gvList_RowCellClick);
+            this.gvList.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gvList_RowCellStyle);
             this.gvList.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gvList_InitNewRow);
             this.gvList.Click += new System.EventHandler(this.gvList_Click);
             // 

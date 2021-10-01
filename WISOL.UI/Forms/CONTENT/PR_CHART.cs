@@ -98,7 +98,14 @@ namespace Wisol.MES.Forms.CONTENT
                         {
                             sheet.Rows[i + 12].CopyFrom(sheet.Rows[12], PasteSpecial.Formats);
                         }
-                        sheet.Pictures.AddPicture(Classes.Common.GetImage(data.Rows[i]["IMAGE"].NullString()), sheet["F" + (13 + i)]);
+                        Picture pic = sheet.Pictures.AddPicture(Classes.Common.GetImage(data.Rows[i]["IMAGE"].NullString()), sheet["F" + (13 + i)]);
+                        sheet["F" + (13 + i)].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
+                        sheet["F" + (13 + i)].Alignment.Vertical = SpreadsheetVerticalAlignment.Center;
+                        pic.Placement = Placement.MoveAndSize;
+                       
+                        pic.Width = (float)sheet["F" + (13 + i)].ColumnWidth - 80;
+                        pic.Height = (float)sheet["F" + (13 + i)].RowHeight - 80;
+                        pic.Move(40, 40);
                         data.Rows[i]["IMAGE"] = "";
                     }
 

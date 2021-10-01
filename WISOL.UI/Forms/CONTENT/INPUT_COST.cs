@@ -56,7 +56,16 @@ namespace Wisol.MES.Forms.CONTENT
                     }
                     else
                     {
-                        txtExchangeRate.EditValue = null;
+                        txtExchangeRate.EditValue = 0;
+                    }
+
+                    if (tableCollection[4].Rows.Count > 0)
+                    {
+                        txtKrwToVnd.EditValue = tableCollection[4].Rows[0]["RATE"].NullString();
+                    }
+                    else
+                    {
+                        txtKrwToVnd.EditValue = 0;
                     }
 
                     m_BindData.BindGridView(gcList, tableCollection[1]);
@@ -66,6 +75,7 @@ namespace Wisol.MES.Forms.CONTENT
                         gvList.MakeRowVisible(rowHandle);
                     }
 
+                    gvList.Columns["INPUT_DEFAULT"].Visible = false;
                     gvList.Columns["ID"].Visible = false;
                     gvList.Columns["PRICE_VN"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                     gvList.Columns["PRICE_VN"].DisplayFormat.FormatString = "n3";
@@ -104,7 +114,14 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_EXCHANGE_RATE.PUT", new string[] { "A_RATE", "A_DATE" }, new string[] { txtExchangeRate.EditValue.NullString(), DateTime.Now.ToString() });
+                if (string.IsNullOrEmpty(txtKrwToVnd.EditValue.NullString()) || (!string.IsNullOrEmpty(txtKrwToVnd.EditValue.NullString()) && !float.TryParse(txtKrwToVnd.EditValue.NullString(), out _)))
+                {
+                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                    txtKrwToVnd.Focus();
+                    return;
+                }
+
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_EXCHANGE_RATE.PUT", new string[] { "A_RATE", "A_DATE", "A_RATE_KRW" }, new string[] { txtExchangeRate.EditValue.NullString(), DateTime.Now.ToString(), txtKrwToVnd.EditValue.NullString() });
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
                     MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
@@ -213,7 +230,7 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-                if(datePrice.EditValue.NullString() == "")
+                if (datePrice.EditValue.NullString() == "" || !DateTime.TryParse(datePrice.EditValue.NullString(),out _))
                 {
                     MsgBox.Show("Hãy chọn thời gian áp dụng giá!", MsgType.Warning);
                     return;
@@ -229,8 +246,18 @@ namespace Wisol.MES.Forms.CONTENT
                     isEdit = "True";
                 }
 
+                string inputDefault = "";
+                if (cheUSD.Checked)
+                {
+                    inputDefault = "USD";
+                }
+                else
+                {
+                    inputDefault = "VND";
+                }
+
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PRICE.PUT",
-                                 new string[] { "A_DEPT_CODE", "A_SPARE_PART_CODE", "A_IS_EDIT", "A_PRICE_VN", "A_PRICE_US", "A_DATE", "A_UNIT", "A_ID" },
+                                 new string[] { "A_DEPT_CODE", "A_SPARE_PART_CODE", "A_IS_EDIT", "A_PRICE_VN", "A_PRICE_US", "A_DATE", "A_UNIT", "A_ID", "A_INPUT_DEFAULT" },
                                  new string[] { Consts.DEPARTMENT,
                                      stlSparepartCode.EditValue.NullString(),
                                      isEdit,
@@ -238,7 +265,8 @@ namespace Wisol.MES.Forms.CONTENT
                                      txtPriceUS.EditValue.NullString(),
                                      datePrice.EditValue.NullString(),
                                      stlUnit.EditValue.NullString(),
-                                     txtID.EditValue.NullString() });
+                                     txtID.EditValue.NullString(),
+                                     inputDefault});
 
                 if (m_ResultDB.ReturnInt == 0)
                 {
@@ -326,6 +354,7 @@ namespace Wisol.MES.Forms.CONTENT
                 txtPriceVN.EditValue = gvList.GetRowCellValue(e.RowHandle, "PRICE_VN").NullString();
                 txtPriceUS.EditValue = gvList.GetRowCellValue(e.RowHandle, "PRICE_US").NullString();
                 datePrice.EditValue = gvList.GetRowCellValue(e.RowHandle, "DATE").NullString();
+                cheUSD.Checked = gvList.GetRowCellValue(e.RowHandle, "INPUT_DEFAULT").NullString() == "USD" ? true : false;
             }
             catch (Exception ex)
             {
@@ -336,6 +365,7 @@ namespace Wisol.MES.Forms.CONTENT
         private void cheEditExchange_CheckedChanged(object sender, EventArgs e)
         {
             txtExchangeRate.Enabled = cheEditExchange.Checked;
+            txtKrwToVnd.Enabled = cheEditExchange.Checked;
         }
 
         private void btnImportExcel_Click(object sender, EventArgs e)
@@ -408,7 +438,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void btnChangePrice_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MsgBox.Show("Nhấn OK để xác nhận áp dụng giá theo tỉ giá : "+ txtExchangeRate.EditValue.NullString(), MsgType.Information, Components.DialogType.OkCancel);
+            DialogResult dialogResult = MsgBox.Show("Nhấn OK để xác nhận áp dụng giá theo tỉ giá : " + txtExchangeRate.EditValue.NullString(), MsgType.Information, Components.DialogType.OkCancel);
             if (dialogResult == DialogResult.OK)
             {
                 if (txtExchangeRate.EditValue.NullString() != "" && double.TryParse(txtPriceUS.EditValue.NullString(), out _))

@@ -24,6 +24,11 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void DAILY_ACTUAL_PRODUCT_Load(object sender, EventArgs e)
         {
+            LoadData();
+        }
+
+        private void LoadData()
+        {
             try
             {
                 Classes.Common.SetFormIdToButton(this, "DAILY_ACTUAL_PRODUCT");
@@ -112,6 +117,7 @@ namespace Wisol.MES.Forms.CONTENT
             popup.stock_code = "";
             popup.ImpportType = Consts.IMPORT_TYPE_ACTUAL_PRODUCT;
             popup.ShowDialog();
+            LoadData();
         }
     }
 }
