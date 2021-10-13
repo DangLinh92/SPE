@@ -42,8 +42,16 @@ namespace Wisol.MES.Forms.CONTENT
             Mode = MainID.NullString().Split('$')[3];
 
             cboCurrentce.SetEditValue("USD");
-            txtPO_Example.EditValue = PO_CODE_TEMP;
+
+            string poIdGen = PO_CODE_TEMP;
+
+            txtPO_Example.EditValue = poIdGen;
             txtPO_ID.EditValue = PO_ID;
+
+            if (PO_ID.NullString() == "" || Mode == Consts.MODE_NEW)
+            {
+                txtPO_ID.EditValue = poIdGen;
+            }
 
             PO_DETAIL_TYPE.Columns.Add("PO_ID");
             PO_DETAIL_TYPE.Columns.Add("PO_ID_TEMP");
@@ -231,7 +239,11 @@ namespace Wisol.MES.Forms.CONTENT
         {
             if (txtPO_ID.EditValue.NullString() != "")
             {
-                SavePO();
+                DialogResult dialogResult = MsgBox.Show("XÁC NHẬN HOÀN THÀNH!!!".Translation(), MsgType.Warning, DialogType.OkCancel);
+                if (dialogResult == DialogResult.OK)
+                {
+                    SavePO();
+                }
             }
             else
             {
@@ -341,6 +353,15 @@ namespace Wisol.MES.Forms.CONTENT
         private void btnMerge_Click(object sender, EventArgs e)
         {
             POP.MERGE_SPARE_PART_CODE pop = new POP.MERGE_SPARE_PART_CODE();
+            pop.PR_LIST = PR_LIST;
+            pop.ShowDialog();
+            btnLoadFile.PerformClick();
+        }
+
+        private void btnAddSapPO_Click(object sender, EventArgs e)
+        {
+            POP.SAP_PO_ADD pop = new POP.SAP_PO_ADD();
+            pop.PO_ID = txtPO_ID.EditValue.NullString();
             pop.PR_LIST = PR_LIST;
             pop.ShowDialog();
             btnLoadFile.PerformClick();

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
@@ -201,6 +202,12 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
+                if(sltVender.EditValue.NullString() == "OTHER")
+                {
+                    MsgBox.Show("HÃY CHỌN NHÀ CUNG CẤP PHÙ HỢP!".Translation(), MsgType.Warning);
+                    return;
+                }
+
                 if (string.IsNullOrEmpty(sltSparePartType.EditValue.NullString())) // && cbGenCode.Checked)
                 {
                     MsgBox.Show("MSG_ERR_SPARE_TYPE".Translation(), MsgType.Warning);
@@ -344,6 +351,7 @@ namespace Wisol.MES.Forms.CONTENT
             if (base.m_ResultDB.ReturnInt == 0)
             {
                 base.m_BindData.BindGridView(gcList, base.m_ResultDB.ReturnDataSet.Tables[0]);
+                gvList.Columns.Where(x => x.VisibleIndex <= gvList.Columns["NAME_KR"].VisibleIndex).ToList().ForEach(x => x.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left);
                 gvList.OptionsSelection.MultiSelect = true;
                 gvList.OptionsSelection.MultiSelectMode = GridMultiSelectMode.CheckBoxRowSelect;
             }

@@ -62,7 +62,7 @@ namespace Wisol.MES.Forms.REPORT
                     DataTableCollection datas = m_ResultDB.ReturnDataSet.Tables;
                     foreach (DataRow row in datas[0].Rows)
                     {
-                        cheCboSparepart.Properties.Items.Add(row["CODE"].NullString(), row["NAME"].NullString());
+                        cheCboSparepart.Properties.Items.Add(row["CODE"].NullString(), row["CODE"].NullString() +": "+ row["NAME"].NullString());
                     }
                 }
                 else
@@ -428,7 +428,7 @@ namespace Wisol.MES.Forms.REPORT
 
                 if(cheCboSparepart.EditValue.NullString() == "")
                 {
-                    if(!(cboQty_Money.EditValue.NullString() == "MONEY" && rdoChoose.EditValue.NullString() == "3"))
+                    if(!(cboQty_Money.EditValue.NullString() == "MONEY" && (new string[] {"3","2","4" }).Contains(rdoChoose.EditValue.NullString())))
                     {
                         MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                         return;
@@ -568,6 +568,21 @@ namespace Wisol.MES.Forms.REPORT
                 DicNameSparepart.Clear();
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
+        }
+
+        private void cheCboSparepart_CloseUp(object sender, DevExpress.XtraEditors.Controls.CloseUpEventArgs e)
+        {
+            List<string> lstSparepart = new List<string>();
+            int count = cheCboSparepart.Properties.Items.Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (cheCboSparepart.Properties.Items[i].CheckState == CheckState.Checked)
+                {
+                    lstSparepart.Add(cheCboSparepart.Properties.Items[i].Description.NullString());
+                }
+            }
+
+            lstBoxSparepart.DataSource = lstSparepart;
         }
     }
 }

@@ -466,6 +466,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnAddVendor
             // 
+            this.btnAddVendor.Enabled = false;
             this.btnAddVendor.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddVendor.ImageOptions.Image")));
             this.btnAddVendor.Location = new System.Drawing.Point(372, 108);
             this.btnAddVendor.Name = "btnAddVendor";

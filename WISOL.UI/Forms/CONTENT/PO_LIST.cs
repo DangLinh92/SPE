@@ -36,7 +36,7 @@ namespace Wisol.MES.Forms.CONTENT
                 {
                     DataTable data = m_ResultDB.ReturnDataSet.Tables[0];
                     POP.PO_CREATE pop = new POP.PO_CREATE();
-                    pop.PO_CODE_TEMP = data.Rows[0]["CODE"].NullString();
+                    pop.PO_CODE_TEMP = data.Rows[0]["CODE"].NullString() + "-" + Classes.Common.GetUniqueKey();
                     pop.Mode = Consts.MODE_NEW;
                     pop.ShowDialog();
                 }

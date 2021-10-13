@@ -444,6 +444,12 @@
     <Compile Include="Forms\CONTENT\POP\PURCHASE_REQUEST_DETAIL.Designer.cs">
       <DependentUpon>PURCHASE_REQUEST_DETAIL.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\POP\SAP_PO_ADD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\SAP_PO_ADD.Designer.cs">
+      <DependentUpon>SAP_PO_ADD.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\POP\SPAREPART_LEND.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -504,6 +510,12 @@
     <Compile Include="Forms\CONTENT\REPRINT_LABEL.Designer.cs">
       <DependentUpon>REPRINT_LABEL.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\SAP_PO_PR_INFO.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\SAP_PO_PR_INFO.Designer.cs">
+      <DependentUpon>SAP_PO_PR_INFO.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\SPAREPART_INVENTORY.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -558,6 +570,30 @@
     <Compile Include="Forms\CONTENT\COST_GLACCOUNT.Designer.cs">
       <DependentUpon>COST_GLACCOUNT.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MAINTAIN\EQUIPMENT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\MAINTAIN\EQUIPMENT.Designer.cs">
+      <DependentUpon>EQUIPMENT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MAINTAIN\EQUIPMENT_TREE.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\MAINTAIN\EQUIPMENT_TREE.Designer.cs">
+      <DependentUpon>EQUIPMENT_TREE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MAINTAIN\HISTORY_MAINTAIN.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\MAINTAIN\HISTORY_MAINTAIN.Designer.cs">
+      <DependentUpon>HISTORY_MAINTAIN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MAINTAIN\POP\SPARE_PARTS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MAINTAIN\POP\SPARE_PARTS.Designer.cs">
+      <DependentUpon>SPARE_PARTS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\REPORT\IN_OUT_STOCK_REPORT.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -576,6 +612,12 @@
     </Compile>
     <Compile Include="Forms\REPORT\REPORT_STOCKIN.Designer.cs">
       <DependentUpon>REPORT_STOCKIN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\REPORT\SPARE_PART_VALUE_REPORT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\REPORT\SPARE_PART_VALUE_REPORT.Designer.cs">
+      <DependentUpon>SPARE_PART_VALUE_REPORT.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\REPORT\StockOutReport.cs">
       <SubType>Component</SubType>
@@ -952,6 +994,9 @@
     <EmbeddedResource Include="Forms\CONTENT\POP\PURCHASE_REQUEST_DETAIL.resx">
       <DependentUpon>PURCHASE_REQUEST_DETAIL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\SAP_PO_ADD.resx">
+      <DependentUpon>SAP_PO_ADD.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\SPAREPART_LEND.resx">
       <DependentUpon>SPAREPART_LEND.cs</DependentUpon>
     </EmbeddedResource>
@@ -982,6 +1027,9 @@
     <EmbeddedResource Include="Forms\CONTENT\REPRINT_LABEL.resx">
       <DependentUpon>REPRINT_LABEL.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\SAP_PO_PR_INFO.resx">
+      <DependentUpon>SAP_PO_PR_INFO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\SPAREPART_INVENTORY.resx">
       <DependentUpon>SPAREPART_INVENTORY.cs</DependentUpon>
     </EmbeddedResource>
@@ -1006,6 +1054,18 @@
     <EmbeddedResource Include="Forms\CONTENT\COST_GLACCOUNT.resx">
       <DependentUpon>COST_GLACCOUNT.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MAINTAIN\EQUIPMENT.resx">
+      <DependentUpon>EQUIPMENT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MAINTAIN\EQUIPMENT_TREE.resx">
+      <DependentUpon>EQUIPMENT_TREE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MAINTAIN\HISTORY_MAINTAIN.resx">
+      <DependentUpon>HISTORY_MAINTAIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MAINTAIN\POP\SPARE_PARTS.resx">
+      <DependentUpon>SPARE_PARTS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\REPORT\IN_OUT_STOCK_REPORT.resx">
       <DependentUpon>IN_OUT_STOCK_REPORT.cs</DependentUpon>
     </EmbeddedResource>
@@ -1014,6 +1074,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\REPORT\REPORT_STOCKIN.resx">
       <DependentUpon>REPORT_STOCKIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\REPORT\SPARE_PART_VALUE_REPORT.resx">
+      <DependentUpon>SPARE_PART_VALUE_REPORT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\REPORT\StockOutReport.resx">
       <DependentUpon>StockOutReport.cs</DependentUpon>
@@ -1220,6 +1283,9 @@
     <Content Include="Images\AVG.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\bar-chart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\BelowAverage_32x32.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1290,6 +1356,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\delivery_logistics.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\drilling-machine.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\engineering.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\exchange.png">
@@ -1377,6 +1449,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\logistic.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\maintenance.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\MAX.png">
@@ -1555,6 +1630,9 @@
     <Content Include="Resources\actualProduct.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\bar-chart.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\BOM.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1570,6 +1648,12 @@
     <Content Include="Resources\delivery_logistics.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\drilling-machine.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\engineering.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\exchange.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -1580,6 +1664,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\logistic.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\maintenance.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\MRP.png" />

@@ -35,6 +35,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlGroup4 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.btnDetailViewPO = new Wisol.XSimpleButton(this.components);
+            this.txtPO_ID = new Wisol.XTextEdit();
             this.btnGetAll = new Wisol.XSimpleButton(this.components);
             this.btnSearch = new Wisol.XSimpleButton(this.components);
             this.dateFromTime = new DevExpress.XtraEditors.DateEdit();
@@ -44,6 +46,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.gvList = new Wisol.XGridView();
             this.col_PR_CODE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_MRP_CODE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_PO_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_TOTAL_VALUE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_TOTAL_VALUE_US = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DATE_CREATE = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -68,6 +71,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem9 = new DevExpress.XtraLayout.LayoutControlItem();
             this.xLayoutControl1 = new Wisol.XLayoutControl();
             this.dateTimeChartRangeControlClient1 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Wisol.MES.FrmWaitForm), true, true, typeof(System.Windows.Forms.UserControl));
@@ -76,6 +81,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).BeginInit();
             this.xLayoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPO_ID.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFromTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFromTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateToTime.Properties.CalendarTimeProperties)).BeginInit();
@@ -93,6 +99,8 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).BeginInit();
@@ -128,6 +136,8 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // xLayoutControl2
             // 
+            this.xLayoutControl2.Controls.Add(this.btnDetailViewPO);
+            this.xLayoutControl2.Controls.Add(this.txtPO_ID);
             this.xLayoutControl2.Controls.Add(this.btnGetAll);
             this.xLayoutControl2.Controls.Add(this.btnSearch);
             this.xLayoutControl2.Controls.Add(this.dateFromTime);
@@ -141,9 +151,39 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl2.TabIndex = 4;
             this.xLayoutControl2.Text = "xLayoutControl2";
             // 
+            // btnDetailViewPO
+            // 
+            this.btnDetailViewPO.FormId = null;
+            this.btnDetailViewPO.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDetailViewPO.ImageOptions.Image")));
+            this.btnDetailViewPO.isFormType = false;
+            this.btnDetailViewPO.Location = new System.Drawing.Point(393, 12);
+            this.btnDetailViewPO.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnDetailViewPO.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnDetailViewPO.Name = "btnDetailViewPO";
+            this.btnDetailViewPO.Size = new System.Drawing.Size(129, 30);
+            this.btnDetailViewPO.StyleController = this.xLayoutControl2;
+            this.btnDetailViewPO.TabIndex = 11;
+            this.btnDetailViewPO.Text = "Find SAP PO";
+            this.btnDetailViewPO.Click += new System.EventHandler(this.btnDetailViewPO_Click);
+            // 
+            // txtPO_ID
+            // 
+            this.txtPO_ID.IsRequire = false;
+            this.txtPO_ID.Location = new System.Drawing.Point(101, 12);
+            this.txtPO_ID.Name = "txtPO_ID";
+            this.txtPO_ID.NullBackColor = System.Drawing.Color.Lime;
+            this.txtPO_ID.NullValidation = false;
+            this.txtPO_ID.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtPO_ID.Properties.Appearance.Options.UseBackColor = true;
+            this.txtPO_ID.Size = new System.Drawing.Size(288, 20);
+            this.txtPO_ID.StyleController = this.xLayoutControl2;
+            this.txtPO_ID.TabIndex = 10;
+            // 
             // btnGetAll
             // 
+            this.btnGetAll.FormId = null;
             this.btnGetAll.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGetAll.ImageOptions.Image")));
+            this.btnGetAll.isFormType = false;
             this.btnGetAll.Location = new System.Drawing.Point(1370, 12);
             this.btnGetAll.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnGetAll.MinimumSize = new System.Drawing.Size(129, 30);
@@ -156,7 +196,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnSearch
             // 
+            this.btnSearch.FormId = null;
             this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
+            this.btnSearch.isFormType = false;
             this.btnSearch.Location = new System.Drawing.Point(1237, 12);
             this.btnSearch.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSearch.MinimumSize = new System.Drawing.Size(129, 30);
@@ -170,32 +212,34 @@ namespace Wisol.MES.Forms.CONTENT
             // dateFromTime
             // 
             this.dateFromTime.EditValue = null;
-            this.dateFromTime.Location = new System.Drawing.Point(83, 12);
+            this.dateFromTime.Location = new System.Drawing.Point(615, 12);
             this.dateFromTime.Name = "dateFromTime";
             this.dateFromTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateFromTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateFromTime.Size = new System.Drawing.Size(564, 20);
+            this.dateFromTime.Size = new System.Drawing.Size(289, 20);
             this.dateFromTime.StyleController = this.xLayoutControl2;
             this.dateFromTime.TabIndex = 7;
             // 
             // dateToTime
             // 
             this.dateToTime.EditValue = null;
-            this.dateToTime.Location = new System.Drawing.Point(722, 12);
+            this.dateToTime.Location = new System.Drawing.Point(997, 12);
             this.dateToTime.Name = "dateToTime";
             this.dateToTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateToTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateToTime.Size = new System.Drawing.Size(511, 20);
+            this.dateToTime.Size = new System.Drawing.Size(236, 20);
             this.dateToTime.StyleController = this.xLayoutControl2;
             this.dateToTime.TabIndex = 6;
             // 
             // btnNew
             // 
+            this.btnNew.FormId = null;
             this.btnNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.ImageOptions.Image")));
+            this.btnNew.isFormType = false;
             this.btnNew.Location = new System.Drawing.Point(1503, 12);
             this.btnNew.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnNew.MinimumSize = new System.Drawing.Size(129, 30);
@@ -229,6 +273,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.gvList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.col_PR_CODE,
             this.col_MRP_CODE,
+            this.col_PO_ID,
             this.col_TOTAL_VALUE,
             this.col_TOTAL_VALUE_US,
             this.col_DATE_CREATE,
@@ -265,13 +310,21 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_MRP_CODE.VisibleIndex = 1;
             this.col_MRP_CODE.Width = 129;
             // 
+            // col_PO_ID
+            // 
+            this.col_PO_ID.Caption = "Mã PO hệ thống";
+            this.col_PO_ID.FieldName = "PO_ID";
+            this.col_PO_ID.Name = "col_PO_ID";
+            this.col_PO_ID.Visible = true;
+            this.col_PO_ID.VisibleIndex = 2;
+            // 
             // col_TOTAL_VALUE
             // 
             this.col_TOTAL_VALUE.Caption = "Giá trị đơn hàng(VND)";
             this.col_TOTAL_VALUE.FieldName = "TOTAL_VALUE";
             this.col_TOTAL_VALUE.Name = "col_TOTAL_VALUE";
             this.col_TOTAL_VALUE.Visible = true;
-            this.col_TOTAL_VALUE.VisibleIndex = 2;
+            this.col_TOTAL_VALUE.VisibleIndex = 3;
             this.col_TOTAL_VALUE.Width = 129;
             // 
             // col_TOTAL_VALUE_US
@@ -280,7 +333,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_TOTAL_VALUE_US.FieldName = "TOTAL_VALUE_US";
             this.col_TOTAL_VALUE_US.Name = "col_TOTAL_VALUE_US";
             this.col_TOTAL_VALUE_US.Visible = true;
-            this.col_TOTAL_VALUE_US.VisibleIndex = 3;
+            this.col_TOTAL_VALUE_US.VisibleIndex = 4;
             this.col_TOTAL_VALUE_US.Width = 129;
             // 
             // col_DATE_CREATE
@@ -289,7 +342,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_CREATE.FieldName = "DATE_CREATE";
             this.col_DATE_CREATE.Name = "col_DATE_CREATE";
             this.col_DATE_CREATE.Visible = true;
-            this.col_DATE_CREATE.VisibleIndex = 4;
+            this.col_DATE_CREATE.VisibleIndex = 5;
             this.col_DATE_CREATE.Width = 129;
             // 
             // col_DATE_NEED_FINISH
@@ -298,7 +351,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_NEED_FINISH.FieldName = "DATE_NEED_FINISH";
             this.col_DATE_NEED_FINISH.Name = "col_DATE_NEED_FINISH";
             this.col_DATE_NEED_FINISH.Visible = true;
-            this.col_DATE_NEED_FINISH.VisibleIndex = 5;
+            this.col_DATE_NEED_FINISH.VisibleIndex = 6;
             this.col_DATE_NEED_FINISH.Width = 129;
             // 
             // col_DATE_END_ACTUAL
@@ -307,7 +360,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_END_ACTUAL.FieldName = "DATE_END_ACTUAL]";
             this.col_DATE_END_ACTUAL.Name = "col_DATE_END_ACTUAL";
             this.col_DATE_END_ACTUAL.Visible = true;
-            this.col_DATE_END_ACTUAL.VisibleIndex = 6;
+            this.col_DATE_END_ACTUAL.VisibleIndex = 7;
             this.col_DATE_END_ACTUAL.Width = 129;
             // 
             // col_USER_CREATE
@@ -316,7 +369,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_USER_CREATE.FieldName = "USER_CREATE";
             this.col_USER_CREATE.Name = "col_USER_CREATE";
             this.col_USER_CREATE.Visible = true;
-            this.col_USER_CREATE.VisibleIndex = 7;
+            this.col_USER_CREATE.VisibleIndex = 8;
             this.col_USER_CREATE.Width = 129;
             // 
             // col_USER_UPDATE
@@ -325,7 +378,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_USER_UPDATE.FieldName = "USER_UPDATE";
             this.col_USER_UPDATE.Name = "col_USER_UPDATE";
             this.col_USER_UPDATE.Visible = true;
-            this.col_USER_UPDATE.VisibleIndex = 8;
+            this.col_USER_UPDATE.VisibleIndex = 9;
             this.col_USER_UPDATE.Width = 129;
             // 
             // col_DATE_UPDATE
@@ -334,7 +387,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_UPDATE.FieldName = "DATE_UPDATE";
             this.col_DATE_UPDATE.Name = "col_DATE_UPDATE";
             this.col_DATE_UPDATE.Visible = true;
-            this.col_DATE_UPDATE.VisibleIndex = 9;
+            this.col_DATE_UPDATE.VisibleIndex = 10;
             this.col_DATE_UPDATE.Width = 129;
             // 
             // col_PR_STATUS
@@ -343,7 +396,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_PR_STATUS.FieldName = "PR_STATUS";
             this.col_PR_STATUS.Name = "col_PR_STATUS";
             this.col_PR_STATUS.Visible = true;
-            this.col_PR_STATUS.VisibleIndex = 10;
+            this.col_PR_STATUS.VisibleIndex = 11;
             this.col_PR_STATUS.Width = 129;
             // 
             // col_Chart
@@ -354,7 +407,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_Chart.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("col_Chart.ImageOptions.Image")));
             this.col_Chart.Name = "col_Chart";
             this.col_Chart.Visible = true;
-            this.col_Chart.VisibleIndex = 11;
+            this.col_Chart.VisibleIndex = 12;
             this.col_Chart.Width = 25;
             // 
             // repositoryItemButtonEdit4
@@ -373,7 +426,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_View.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("col_View.ImageOptions.Image")));
             this.col_View.Name = "col_View";
             this.col_View.Visible = true;
-            this.col_View.VisibleIndex = 12;
+            this.col_View.VisibleIndex = 13;
             this.col_View.Width = 25;
             // 
             // repositoryItemButtonEdit1
@@ -392,7 +445,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_EDIT.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("col_EDIT.ImageOptions.Image")));
             this.col_EDIT.Name = "col_EDIT";
             this.col_EDIT.Visible = true;
-            this.col_EDIT.VisibleIndex = 13;
+            this.col_EDIT.VisibleIndex = 14;
             this.col_EDIT.Width = 25;
             // 
             // repositoryItemButtonEdit2
@@ -411,7 +464,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DELETE.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("col_DELETE.ImageOptions.Image")));
             this.col_DELETE.Name = "col_DELETE";
             this.col_DELETE.Visible = true;
-            this.col_DELETE.VisibleIndex = 14;
+            this.col_DELETE.VisibleIndex = 15;
             this.col_DELETE.Width = 25;
             // 
             // repositoryItemButtonEdit3
@@ -432,7 +485,9 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem4,
             this.layoutControlItem5,
             this.layoutControlItem6,
-            this.layoutControlItem7});
+            this.layoutControlItem7,
+            this.layoutControlItem8,
+            this.layoutControlItem9});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1644, 767);
             this.layoutControlGroup1.TextVisible = false;
@@ -458,20 +513,20 @@ namespace Wisol.MES.Forms.CONTENT
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.dateToTime;
-            this.layoutControlItem4.Location = new System.Drawing.Point(639, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(896, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(586, 34);
+            this.layoutControlItem4.Size = new System.Drawing.Size(329, 34);
             this.layoutControlItem4.Text = "TO_TIME";
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(59, 13);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(77, 13);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.dateFromTime;
-            this.layoutControlItem5.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(514, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(639, 34);
+            this.layoutControlItem5.Size = new System.Drawing.Size(382, 34);
             this.layoutControlItem5.Text = "FROM_TIME";
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(59, 13);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(77, 13);
             // 
             // layoutControlItem6
             // 
@@ -490,6 +545,24 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem7.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem7.TextVisible = false;
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.txtPO_ID;
+            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(381, 34);
+            this.layoutControlItem8.Text = "Mã PO hệ thống";
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(77, 13);
+            // 
+            // layoutControlItem9
+            // 
+            this.layoutControlItem9.Control = this.btnDetailViewPO;
+            this.layoutControlItem9.Location = new System.Drawing.Point(381, 0);
+            this.layoutControlItem9.Name = "layoutControlItem9";
+            this.layoutControlItem9.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem9.TextVisible = false;
             // 
             // xLayoutControl1
             // 
@@ -520,6 +593,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).EndInit();
             this.xLayoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtPO_ID.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFromTime.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFromTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateToTime.Properties.CalendarTimeProperties)).EndInit();
@@ -537,6 +611,8 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).EndInit();
             this.xLayoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).EndInit();
@@ -586,5 +662,10 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraGrid.Columns.GridColumn col_Chart;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit4;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
+        private XSimpleButton btnDetailViewPO;
+        private XTextEdit txtPO_ID;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
+        private DevExpress.XtraGrid.Columns.GridColumn col_PO_ID;
     }
 }

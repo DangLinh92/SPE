@@ -78,10 +78,10 @@ namespace Wisol.MES.Forms.CONTENT
                     gvList.Columns["INPUT_DEFAULT"].Visible = false;
                     gvList.Columns["ID"].Visible = false;
                     gvList.Columns["PRICE_VN"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                    gvList.Columns["PRICE_VN"].DisplayFormat.FormatString = "n3";
+                    gvList.Columns["PRICE_VN"].DisplayFormat.FormatString = "n2";
 
                     gvList.Columns["PRICE_US"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
-                    gvList.Columns["PRICE_US"].DisplayFormat.FormatString = "n3";
+                    gvList.Columns["PRICE_US"].DisplayFormat.FormatString = "n2";
                     gvList.OptionsView.ColumnAutoWidth = true;
 
                     m_BindData.BindGridLookEdit(stlUnit, tableCollection[3], "CODE", "NAME");
@@ -145,6 +145,8 @@ namespace Wisol.MES.Forms.CONTENT
         private void stlSparepartCode_EditValueChanged(object sender, EventArgs e)
         {
             Classes.Common.GetUnitBySparePart(stlSparepartCode.EditValue.NullString(), stlUnit, m_BindData);
+            txtCodeMin.Text = Classes.Common.GetUnitMinBySparePart(stlSparepartCode.EditValue.NullString(), stlUnit.EditValue.NullString()).Split('^')[0];
+            txtRate.Text = Classes.Common.GetUnitMinBySparePart(stlSparepartCode.EditValue.NullString(), stlUnit.EditValue.NullString()).Split('^')[1];
             GetImage(stlSparepartCode.EditValue.NullString());
         }
 
@@ -230,7 +232,7 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-                if (datePrice.EditValue.NullString() == "" || !DateTime.TryParse(datePrice.EditValue.NullString(),out _))
+                if (datePrice.EditValue.NullString() == "" || !DateTime.TryParse(datePrice.EditValue.NullString(), out _))
                 {
                     MsgBox.Show("Hãy chọn thời gian áp dụng giá!", MsgType.Warning);
                     return;
@@ -394,6 +396,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
+                // get data import
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_PRICE.GET_DATE_FOR_IMPORT",
                                     new string[] { "A_DEPT_CODE" },
                                     new string[] { Consts.DEPARTMENT });
@@ -447,6 +450,37 @@ namespace Wisol.MES.Forms.CONTENT
                     txtPriceVN.EditValue = (priceVN).ToString("R", CultureInfo.InvariantCulture);
                 }
             }
+        }
+
+        private void stlUnit_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                base.m_ResultDB = Program.dbAccess.ExcuteProc("PKG_BUSINESS_UNIT_SPAREPART.GET_UNIT_MIN_BY_SPAREPART",
+                     new string[] { "A_DEPT_CODE", "A_SPARE_PART_CODE", "A_UNIT_CODE" },
+                     new string[] { Consts.DEPARTMENT, stlSparepartCode.EditValue.NullString(), stlUnit.EditValue.NullString() });
+
+                if (m_ResultDB.ReturnInt == 0)
+                {
+                    DataTable table = m_ResultDB.ReturnDataSet.Tables[0];
+
+                    if (table.Rows.Count > 0)
+                    {
+                        txtCodeMin.Text = table.Rows[0]["UNIT_CODE_MIN"].NullString();
+                        txtRate.Text = table.Rows[0]["RATE"].NullString();
+                    }
+                }
+                else
+                {
+                    MsgBox.Show("NOT FOUND UNIT FOR SPAREPART", MsgType.Error);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
     }
 }

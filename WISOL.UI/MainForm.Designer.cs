@@ -460,7 +460,6 @@
             this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
             this.accordionControl1.Size = new System.Drawing.Size(48, 698);
             this.accordionControl1.TabIndex = 10;
-            this.accordionControl1.Text = "accordionControl1";
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             this.accordionControl1.Click += new System.EventHandler(this.accordionControl1_Click);
             this.accordionControl1.MouseHover += new System.EventHandler(this.accordionControl1_MouseHover);
@@ -537,8 +536,8 @@
             this.accordionControlElement4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement4.ImageOptions.Image")));
             this.accordionControlElement4.Name = "accordionControlElement4";
             this.accordionControlElement4.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement4.Tag = "SEARCH";
-            this.accordionControlElement4.Text = "SEARCH";
+            this.accordionControlElement4.Tag = "EQUIPMENT";
+            this.accordionControlElement4.Text = "EQUIPMENT";
             this.accordionControlElement4.Click += new System.EventHandler(this.accordionControlElement4_Click);
             // 
             // tabForm

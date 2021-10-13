@@ -1154,23 +1154,21 @@ namespace Wisol.MES
 
         private void accordionControlElement4_Click(object sender, EventArgs e)
         {
+           
             try
             {
-                m_SplashScreenManager.ShowWaitForm();
-                if (m_PageType == null)
-                {
-                    return;
-                }
-
-                m_PageType.SearchPage();
+                pop.Close();
+                string index = "4";
+                var menu = m_Menus.Select("UPRSEQ  LIKE '" + index + "%'");
+                DataTable d_menu = menu.CopyToDataTable();
+                pop = new POP_MENU(index, accordionControlElement4.Tag.ToString().Translation(), d_menu);
+                pop.FormClosed += Pop_FormClosed;
+               
+                pop.Show();
             }
             catch (Exception ex)
             {
-                MsgBox.Show(ex.Message, MsgType.Error);
-            }
-            finally
-            {
-                SplashScreenToggle(SplashScreenStatus.Off);
+                MsgBox.Show(ex.Message, MsgType.Warning);
             }
         }
 

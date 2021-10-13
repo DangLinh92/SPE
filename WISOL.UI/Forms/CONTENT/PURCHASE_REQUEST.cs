@@ -109,6 +109,10 @@ namespace Wisol.MES.Forms.CONTENT
                     Consts.mainForm.NewPageFromOtherPage("PR_CHART", "Biểu đồ kế hoạch sản xuất", "W", "Y", mainID);
                     splashScreenManager1.CloseWaitForm();
                 }
+                else
+                {
+                    txtPO_ID.EditValue = gvList.GetRowCellValue(e.RowHandle, "PO_ID");
+                }
             }
             catch (Exception ex)
             {
@@ -190,6 +194,26 @@ namespace Wisol.MES.Forms.CONTENT
                 {
                     e.Appearance.BackColor = Color.LightGreen;
                 }
+            }
+
+            if(e.Column.FieldName == "PO_ID")
+            {
+                e.Appearance.BackColor = Color.FromArgb(251, 238, 230);
+            } 
+        }
+
+        private void btnDetailViewPO_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                splashScreenManager1.ShowWaitForm();
+                string mainId = txtPO_ID.EditValue.NullString();
+                Consts.mainForm.NewPageFromOtherPage("SAP_PO_PR_INFO", "Thông tin chi tiết đặt hàng với mã PO trên SAP", "W", "Y", mainId);
+                splashScreenManager1.CloseWaitForm();
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
     }

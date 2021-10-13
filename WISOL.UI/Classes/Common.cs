@@ -12,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -114,6 +115,38 @@ namespace Wisol.MES.Classes
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
+        }
+
+        public static string GetUnitMinBySparePart(string sparepartCode, string unit)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(sparepartCode))
+                {
+                    ResultDB m_ResultDB = Program.dbAccess.ExcuteProc("PKG_BUSINESS_UNIT_SPAREPART.GET_UNIT_MIN_BY_SPAREPART",
+                        new string[] { "A_DEPT_CODE", "A_SPARE_PART_CODE", "A_UNIT_CODE" },
+                        new string[] { Consts.DEPARTMENT, sparepartCode, unit });
+
+                    if (m_ResultDB.ReturnInt == 0)
+                    {
+                        DataTable table = m_ResultDB.ReturnDataSet.Tables[0];
+
+                        if (table.Rows.Count > 0)
+                        {
+                            return table.Rows[0]["UNIT_CODE_MIN"].NullString() + "^" + table.Rows[0]["RATE"].NullString();
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show("NOT FOUND UNIT FOR SPAREPART", MsgType.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+            return "^";
         }
 
         public static DataTable GetUnitBySparePart(string sparepartCode)
@@ -351,12 +384,35 @@ namespace Wisol.MES.Classes
             var controls = page != null ? GetAll(page, typeof(XSimpleButton), typeof(SimpleButton)) : GetAll(formType, typeof(XSimpleButton), typeof(SimpleButton));
             foreach (Control item in controls)
             {
-                if(item.GetType() == typeof(XSimpleButton))
+                if (item.GetType() == typeof(XSimpleButton))
                 {
                     ((XSimpleButton)item).FormId = formId;
                     ((XSimpleButton)item).isFormType = page == null;
                 }
             }
+        }
+
+        public static string GetUniqueKey()
+        {
+            int maxSize = 8;
+            char[] chars = new char[62];
+            string a;
+            a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            chars = a.ToCharArray();
+            int size = maxSize;
+            byte[] data = new byte[1];
+            RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider();
+            crypto.GetNonZeroBytes(data);
+            size = maxSize;
+            data = new byte[size];
+            crypto.GetNonZeroBytes(data);
+            StringBuilder result = new StringBuilder(size);
+            foreach (byte b in data)
+            { 
+                result.Append(chars[b % (chars.Length - 1)]); 
+            }
+
+            return result.ToString();
         }
     }
 

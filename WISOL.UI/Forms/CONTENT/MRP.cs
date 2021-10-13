@@ -708,7 +708,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void btnReloadData_Click(object sender, EventArgs e)
         {
-            InitData();
+            InitData(true);
         }
 
         private void gvList_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)

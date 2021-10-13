@@ -98,6 +98,7 @@ namespace Wisol.MES.Forms.CONTENT
                 radioInputType.Enabled = false;
                 txtRateAlarm.EditValue = 20;
                 //gvList.OptionsView.ColumnAutoWidth = true;
+                gvList.Columns.Where(x => x.VisibleIndex <= gvList.Columns["NAME_KR"].VisibleIndex).ToList().ForEach(x => x.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left);
 
             }
             catch (Exception ex)
@@ -124,7 +125,8 @@ namespace Wisol.MES.Forms.CONTENT
                     gvList.Columns["NAME_KR"].Width = 150;
                     gvList.Columns["REMAIN_WEEK"].Width = 30;
                     //gvList.OptionsView.ColumnAutoWidth = true;
-                    
+                    gvList.Columns.Where(x => x.VisibleIndex <= gvList.Columns["NAME_KR"].VisibleIndex).ToList().ForEach(x => x.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left);
+
                 }
             }
             catch (Exception ex)

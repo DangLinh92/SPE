@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
@@ -277,6 +278,8 @@ namespace Wisol.MES.Forms.CONTENT
                         gvListNoPosition.Columns["PO_NO"].OptionsColumn.AllowEdit = false;
                         gvListNoPosition.BestFitColumns();
                         //gvListNoPosition.OptionsView.ColumnAutoWidth = true;
+
+                        gvListNoPosition.Columns.Where(x => x.VisibleIndex <= gvListNoPosition.Columns["NAME_VI"].VisibleIndex).ToList().ForEach(x => x.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left);
                     }
 
                 }
@@ -569,7 +572,7 @@ namespace Wisol.MES.Forms.CONTENT
                     string.IsNullOrEmpty(stlSparepart.EditValue.NullString()) ||
                     string.IsNullOrEmpty(stlCondition.EditValue.NullString()))
                 {
-                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);                      
                     stlPosition.Focus();
                     return;
                 }
@@ -587,7 +590,7 @@ namespace Wisol.MES.Forms.CONTENT
 
                     string codeLocation = txtposition1.EditValue.NullString();// + "-" + txtPosition2.EditValue.NullString();
                     base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.DELETE",
-                        new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION", "A_DEPART_MENT", "A_STOCK", "A_CONDITION", "A_UNIT", "A_EXPIRED_DATE", "A_TIME_IN", "A_PO_NO" },
+                        new string[] { "A_STT", "A_SPARE_PART_CODE", "A_LOCATION", "A_DEPART_MENT", "A_STOCK", "A_CONDITION", "A_UNIT", "A_EXPIRED_DATE", "A_TIME_IN", "A_PO_NO","A_USER" },
                         new string[]
                         {
                             txtSTT.EditValue.NullString(),
@@ -599,7 +602,8 @@ namespace Wisol.MES.Forms.CONTENT
                             stlUnit.EditValue.NullString(),
                             DateExpired,
                             dateInputTime.EditValue.NullString(),
-                            txtPoNo.EditValue.NullString()
+                            txtPoNo.EditValue.NullString(),
+                            Consts.USER_INFO.Id
                         });
 
                     if (base.m_ResultDB.ReturnInt == 0)
@@ -1349,6 +1353,13 @@ namespace Wisol.MES.Forms.CONTENT
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     stlPosition.Focus();
+                    return;
+                }
+
+                if(!float.TryParse(txtQuantityMove.EditValue.NullString(),out _))
+                {
+                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                    txtQuantityMove.Focus();
                     return;
                 }
 
