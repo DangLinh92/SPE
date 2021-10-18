@@ -26,10 +26,10 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void PR_CHART_Load(object sender, EventArgs e)
         {
+            Classes.Common.SetFormIdToButton(this, "PR_CHART");
             lblPR_Code.Text = "Mã yêu cầu mua hàng :" + MainID.NullString().Split('^')[0];
             LoadItemsCheck();
             LoadTemplate();
-            Classes.Common.SetFormIdToButton(this, "PR_CHART");
         }
 
         private void LoadItemsCheck()

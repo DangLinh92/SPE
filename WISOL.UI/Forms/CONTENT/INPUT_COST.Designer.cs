@@ -450,6 +450,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.imgSparepart.Location = new System.Drawing.Point(12, 204);
             this.imgSparepart.Name = "imgSparepart";
             this.imgSparepart.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.imgSparepart.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.imgSparepart.Size = new System.Drawing.Size(395, 211);
             this.imgSparepart.StyleController = this.xLayoutControl2;
             this.imgSparepart.TabIndex = 10;

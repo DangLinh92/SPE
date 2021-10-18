@@ -336,6 +336,12 @@
     <Compile Include="Forms\CONTENT\POP\CREATE_MRP_CODE.Designer.cs">
       <DependentUpon>CREATE_MRP_CODE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\POP\DOCUMENT_FORM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\DOCUMENT_FORM.Designer.cs">
+      <DependentUpon>DOCUMENT_FORM.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\POP\EXPORT_EXCEL.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -533,6 +539,12 @@
     </Compile>
     <Compile Include="Forms\CONTENT\SPARE_PART.Designer.cs">
       <DependentUpon>SPARE_PART.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\SPARE_PART_EXPORT.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\SPARE_PART_EXPORT.Designer.cs">
+      <DependentUpon>SPARE_PART_EXPORT.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CONTENT\STOCKIN_CANCEL.cs">
       <SubType>UserControl</SubType>
@@ -940,6 +952,9 @@
     <EmbeddedResource Include="Forms\CONTENT\POP\CREATE_MRP_CODE.resx">
       <DependentUpon>CREATE_MRP_CODE.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\DOCUMENT_FORM.resx">
+      <DependentUpon>DOCUMENT_FORM.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\EXPORT_EXCEL.resx">
       <DependentUpon>EXPORT_EXCEL.cs</DependentUpon>
     </EmbeddedResource>
@@ -1038,6 +1053,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\SPARE_PART.resx">
       <DependentUpon>SPARE_PART.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\SPARE_PART_EXPORT.resx">
+      <DependentUpon>SPARE_PART_EXPORT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\STOCKIN_CANCEL.resx">
       <DependentUpon>STOCKIN_CANCEL.cs</DependentUpon>
@@ -1238,6 +1256,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SPARE_PART_DATA_TEMP.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="SPW_TemporaryKey.pfx" />
     <None Include="Worksheet_PR.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

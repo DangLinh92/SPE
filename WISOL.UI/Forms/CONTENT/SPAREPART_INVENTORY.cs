@@ -684,6 +684,9 @@ namespace Wisol.MES.Forms.CONTENT
             #endregion
 
             GetData();
+
+            btnClear.PerformClick();
+            btnClearReal.PerformClick();
         }
         private void btnInventoryOfAssets_Click(object sender, EventArgs e)
         {

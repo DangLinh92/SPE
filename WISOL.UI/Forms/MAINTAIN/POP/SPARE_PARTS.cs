@@ -75,17 +75,29 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
                     DATA.Columns.Add("CODE");
                     DATA.Columns.Add("NAME_VI");
                 }
-                else
-                {
-                    DATA.Rows.Clear();
-                }
+                //else
+                //{
+                //    DATA.Rows.Clear();
+                //}
 
-                foreach (int index in gvList.GetSelectedRows())
+                //foreach (int index in gvList.GetSelectedRows())
+                //{
+                //    DataRow row = DATA.NewRow();
+                //    row["CODE"] = gvList.GetRowCellValue(index, "CODE").NullString();
+                //    row["NAME_VI"] = gvList.GetRowCellValue(index, "NAME_VI").NullString();
+                //    DATA.Rows.Add(row);
+                //}
+                gvList.ClearColumnsFilter();
+
+                for (int i = 0; i < gvList.RowCount; i++)
                 {
-                    DataRow row = DATA.NewRow();
-                    row["CODE"] = gvList.GetRowCellValue(index, "CODE").NullString();
-                    row["NAME_VI"] = gvList.GetRowCellValue(index, "NAME_VI").NullString();
-                    DATA.Rows.Add(row);
+                    foreach (DataRow item in DATA.Rows)
+                    {
+                        if (item["CODE"].NullString() == gvList.GetRowCellValue(i, "CODE").NullString())
+                        {
+                            gvList.SelectRow(i);
+                        }
+                    }
                 }
 
                 this.Close();
@@ -101,6 +113,60 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             try
             {
                 this.Close();
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void gvList_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            if (gvList.IsRowSelected(e.RowHandle))
+            {
+                e.Appearance.BackColor = Color.FromArgb(125, 206, 160);
+            }
+        }
+
+        private void gvList_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            try
+            {
+                if(e.RowHandle < 0)
+                    return;
+
+                if(e.Column.Caption == "Selection")
+                {
+                    string Ischecked = e.CellValue.NullString();
+
+                    if (DATA == null)
+                    {
+                        DATA = new DataTable();
+                        DATA.Columns.Add("CODE");
+                        DATA.Columns.Add("NAME_VI");
+                    }
+
+                    if(Ischecked == "True")
+                    {
+                        DataRow row = DATA.NewRow();
+                        row["CODE"] = gvList.GetRowCellValue(e.RowHandle, "CODE").NullString();
+                        row["NAME_VI"] = gvList.GetRowCellValue(e.RowHandle, "NAME_VI").NullString();
+                        DATA.Rows.Add(row);
+                    }
+                    else
+                    {
+                        DataRow row = gvList.GetDataRow(e.RowHandle);
+                        foreach (DataRow item in DATA.Rows)
+                        {
+                            if (item["CODE"].NullString() == row["CODE"].NullString())
+                            {
+                                DATA.Rows.Remove(item);
+                                break;
+                            }
+                        }
+                       
+                    }
+                }
             }
             catch (Exception ex)
             {

@@ -76,6 +76,8 @@ namespace Wisol.MES.Forms.CONTENT
             gvList.Columns["INVENTORY_VALUES_US"].DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             gvList.Columns["INVENTORY_VALUES_US"].DisplayFormat.FormatString = "n2";
             //gvList.OptionsView.ColumnAutoWidth = true;
+
+            gvList.Columns.Where(x => x.VisibleIndex <= gvList.Columns["PRICE_US"].VisibleIndex).ToList().ForEach(x => x.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left);
         }
 
         private void btnExport_Click(object sender, EventArgs e)

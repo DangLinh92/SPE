@@ -83,6 +83,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.DocumentTab = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.treeListEquipment = new DevExpress.XtraTreeList.TreeList();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stlEquipment.Properties)).BeginInit();
@@ -123,6 +124,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.labelControl14);
             this.groupControl1.Controls.Add(this.stlEquipment);
             this.groupControl1.Controls.Add(this.tabControl);
             this.groupControl1.Controls.Add(this.panelControl1);
@@ -136,7 +138,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // stlEquipment
             // 
             this.stlEquipment.EditValue = "";
-            this.stlEquipment.Location = new System.Drawing.Point(7, 26);
+            this.stlEquipment.Location = new System.Drawing.Point(69, 26);
             this.stlEquipment.Name = "stlEquipment";
             this.stlEquipment.Properties.Appearance.Options.UseTextOptions = true;
             this.stlEquipment.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -145,7 +147,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.stlEquipment.Properties.ImmediatePopup = true;
             this.stlEquipment.Properties.NullText = "";
             this.stlEquipment.Properties.PopupView = this.aceGridLookUpEdit1View;
-            this.stlEquipment.Size = new System.Drawing.Size(362, 20);
+            this.stlEquipment.Size = new System.Drawing.Size(300, 20);
             this.stlEquipment.TabIndex = 1;
             this.stlEquipment.EditValueChanged += new System.EventHandler(this.stlEquipment_EditValueChanged);
             // 
@@ -640,6 +642,14 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.treeListEquipment.TabIndex = 0;
             this.treeListEquipment.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeListEquipment_FocusedNodeChanged);
             // 
+            // labelControl14
+            // 
+            this.labelControl14.Location = new System.Drawing.Point(14, 29);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(49, 13);
+            this.labelControl14.TabIndex = 2;
+            this.labelControl14.Text = "Mã tài sản";
+            // 
             // EQUIPMENT_TREE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -650,6 +660,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.Controls.SetChildIndex(this.groupControl1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
+            this.groupControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stlEquipment.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aceGridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).EndInit();
@@ -743,5 +754,6 @@ namespace Wisol.MES.Forms.MAINTAIN
         private DevExpress.XtraLayout.LayoutControlGroup Root;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraGrid.Columns.GridColumn col_Type;
+        private LabelControl labelControl14;
     }
 }

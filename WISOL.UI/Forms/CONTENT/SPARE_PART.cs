@@ -62,6 +62,8 @@ namespace Wisol.MES.Forms.CONTENT
                     base.m_BindData.BindGridLookEdit(sltUnit2, data[1], "CODE", "NAME");
                     base.m_BindData.BindGridLookEdit(sltUnit3, data[1], "CODE", "NAME");
                     base.m_BindData.BindGridLookEdit(sltUnit4, data[1], "CODE", "NAME");
+
+                    base.m_BindData.BindGridLookEdit(stlStage, data[5], "OPERATION_ID", "OPERATION_NAME");
                 }
 
                 btnUpdate.Enabled = false;
@@ -246,7 +248,7 @@ namespace Wisol.MES.Forms.CONTENT
                         "@A_EQUIPMENT",
                         "@A_SPECIFICATION",
                         "@A_UNIT",
-                        "@A_DESC",
+                        "@A_DESC", // cong doan
                         "@A_COST_CTR",
                         "@A_DEPARTMENT",
                         "@A_IMAGE",
@@ -277,7 +279,7 @@ namespace Wisol.MES.Forms.CONTENT
                         txtEquipment.EditValue.NullString(),
                         txtSpecification.EditValue.NullString(),
                         sltUnit.EditValue.NullString(),
-                        "",
+                        stlStage.EditValue.NullString(), // cong doan
                         sltCostCtr.EditValue.NullString(),
                         Consts.DEPARTMENT,
                         b64,
@@ -397,7 +399,7 @@ namespace Wisol.MES.Forms.CONTENT
             txtEquipment.EditValue = table.Rows[0]["EQUIPMENT_USED"].NullString();
             txtSpecification.EditValue = table.Rows[0]["SPECIFICATION"].NullString();
             sltUnit.EditValue = table.Rows[0]["UNIT_ID"].NullString();
-            //txtDesc.EditValue = table.Rows[0]["DESCRIPTION"].NullString();
+            stlStage.EditValue = table.Rows[0]["STAGE"].NullString();
             sltCostCtr.EditValue = table.Rows[0]["COST_CTR"].NullString();
             txtMinOrder.EditValue = table.Rows[0]["MIN_ORDER"].NullString();
 
@@ -746,6 +748,33 @@ namespace Wisol.MES.Forms.CONTENT
                 DataTableCollection data = base.m_ResultDB.ReturnDataSet.Tables;
                 base.m_BindData.BindGridLookEdit(sltVender, data[0], "VENDER_ID", "NAME");
             }
+        }
+
+        private void btnOutExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                splashScreenManager1.ShowWaitForm();
+                Consts.mainForm.NewPageFromOtherPage("SPARE_PART_EXPORT", "Dữ liệu thiết bị", "W", "Y", "");
+                splashScreenManager1.CloseWaitForm();
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void btnDocument_Click(object sender, EventArgs e)
+        {
+            if(txtCode.EditValue.NullString() == "")
+            {
+                MsgBox.Show("INPUT SPAREPART CODE !!!", MsgType.Warning);
+                return;
+            }
+
+            POP.DOCUMENT_FORM pop = new POP.DOCUMENT_FORM();
+            pop.SparepartCode = txtCode.EditValue.NullString();
+            pop.ShowDialog();
         }
     }
 }

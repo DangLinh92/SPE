@@ -26,6 +26,7 @@ namespace Wisol.MES.Forms.REPORT
         {
             try
             {
+                loChartSecond.Visibility =DevExpress.XtraLayout.Utils.LayoutVisibility.Never ;
                 cboVNDKWR.SelectedIndex = 0;
                 Classes.Common.SetFormIdToButton(this, "SPARE_PART_VALUE_REPORT");
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_CHART_IN_OUT_STOCK.INIT_SPAREPART", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
@@ -52,6 +53,7 @@ namespace Wisol.MES.Forms.REPORT
             {
                 string typeView = "";
                 string time = "";
+                string text = "";
                 if (rdoWeek.Checked)
                 {
                     if (spWeek.EditValue.NullString() == "")
@@ -63,18 +65,19 @@ namespace Wisol.MES.Forms.REPORT
 
                     typeView = "WEEK";
                     time = spWeek.EditValue.NullString();
+                    text = typeView + " " + time;
                 }
                 else if (rdoMonth.Checked)
                 {
                     if (dateMonth.EditValue.NullString() == "")
                     {
                         MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
-                        dateMonth.Focus();
                         return;
                     }
 
                     typeView = "MONTH";
                     time = dateMonth.EditValue.NullString();
+                    text = typeView + " " + DateTime.Parse(time).Month;
                 }
                 else if (rdoQuarter.Checked)
                 {
@@ -87,6 +90,7 @@ namespace Wisol.MES.Forms.REPORT
 
                     typeView = "QUARTER";
                     time = spQuarter.EditValue.NullString();
+                    text = typeView + " " + time;
                 }
                 else if (rdoYear.Checked)
                 {
@@ -99,16 +103,17 @@ namespace Wisol.MES.Forms.REPORT
 
                     typeView = "YEAR";
                     time = dateYear.EditValue.NullString();
+                    text = typeView + " " + time;
                 }
 
-                if(spTopNValue.EditValue.NullString() == "" || spTopNValue.EditValue.NullString() == "0")
+                if (spTopNValue.EditValue.NullString() == "" || spTopNValue.EditValue.NullString() == "0")
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     spTopNValue.Focus();
                     return;
                 }
 
-                if(stlDeptCode.EditValue.NullString() == "")
+                if (stlDeptCode.EditValue.NullString() == "")
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     stlDeptCode.Focus();
@@ -122,7 +127,7 @@ namespace Wisol.MES.Forms.REPORT
                     return;
                 }
 
-                if(typeView == "")
+                if (typeView == "")
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
@@ -135,7 +140,27 @@ namespace Wisol.MES.Forms.REPORT
                 if (m_ResultDB.ReturnInt == 0)
                 {
                     DataTableCollection datas = m_ResultDB.ReturnDataSet.Tables;
-                    DrawChart(datas);
+                    DrawChart(datas, chartMain, text);
+
+                    if (dateMonth2.EditValue.NullString() != "")
+                    {
+                        loChartSecond.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
+                        base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_CHART_SPARE_PART_VALUES.GETDATA",
+                                        new string[] { "A_DEPARTMENT", "A_TYPE", "A_TIME", "A_KRW_VND", "A_TOP" },
+                                        new string[] { stlDeptCode.EditValue.NullString(), typeView, dateMonth2.EditValue.NullString(), cboVNDKWR.EditValue.NullString(), spTopNValue.EditValue.NullString() });
+
+                        if (m_ResultDB.ReturnInt == 0)
+                        {
+                            DataTableCollection datas1 = m_ResultDB.ReturnDataSet.Tables;
+
+                            text = typeView + " " + DateTime.Parse(dateMonth2.EditValue.NullString()).Month;
+                            DrawChart(datas1, chartSecond,text);
+                        }
+                        else
+                        {
+                            MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                        }
+                    }
                 }
                 else
                 {
@@ -148,10 +173,10 @@ namespace Wisol.MES.Forms.REPORT
             }
         }
 
-        private void DrawChart(DataTableCollection datas)
+        private void DrawChart(DataTableCollection datas, ChartControl chartControl,string text)
         {
-            chartMain.Series.Clear();
-            chartMain.Titles.Clear();
+            chartControl.Series.Clear();
+            chartControl.Titles.Clear();
 
             if (datas.Count == 0) return;
 
@@ -184,10 +209,10 @@ namespace Wisol.MES.Forms.REPORT
             series_Cumulative.Label.ResolveOverlappingMode = ResolveOverlappingMode.HideOverlapped;
             series_Cumulative.Label.TextPattern = "{V:n0}%";
 
-            chartMain.Series.Add(series_Cumulative);
+            chartControl.Series.Add(series_Cumulative);
 
             // draw column value
-            Series series_iv = new Series("Value("+ "K." + cboVNDKWR.EditValue.NullString() + ")", ViewType.Bar);
+            Series series_iv = new Series("Value(" + "K." + cboVNDKWR.EditValue.NullString() + ")", ViewType.Bar);
             series_iv.DataSource = datas[1];
             series_iv.ArgumentDataMember = "SPARE_PART_CODE";
             series_iv.ValueDataMembers.AddRange("INVENTORY_VALUE");
@@ -202,14 +227,14 @@ namespace Wisol.MES.Forms.REPORT
             series_iv.Label.ResolveOverlappingMode = ResolveOverlappingMode.HideOverlapped;
             series_iv.Label.TextPattern = "{V:n0}";
 
-            chartMain.Series.Add(series_iv);
+            chartControl.Series.Add(series_iv);
 
             // Create a chart title.
             ChartTitle chartTitle = new ChartTitle();
-            chartTitle.Text = "PHÂN TÍCH GIÁ TRỊ TỒN CỦA VẬT TƯ THIẾT BỊ - 자재, 장비 금액 분석";
-            chartMain.Titles.Add(chartTitle);
+            chartTitle.Text = text;// "PHÂN TÍCH GIÁ TRỊ TỒN CỦA VẬT TƯ THIẾT BỊ - 자재, 장비 금액 분석";
+            chartControl.Titles.Add(chartTitle);
 
-            XYDiagram diagram = chartMain.Diagram as XYDiagram;
+            XYDiagram diagram = chartControl.Diagram as XYDiagram;
             diagram.AxisY.Label.TextPattern = "{V:n0}";
             diagram.AxisY.Title.Text = "K." + cboVNDKWR.EditValue.NullString();
             diagram.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
@@ -236,6 +261,14 @@ namespace Wisol.MES.Forms.REPORT
                 dateMonth.Enabled = false;
                 dateYear.Enabled = false;
                 spQuarter.Enabled = false;
+                dateMonth2.Enabled = false;
+                dateMonth2.EditValue = null;
+                loChartSecond.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+                chartMain.Series.Clear();
+                chartMain.Titles.Clear();
+
+                chartSecond.Series.Clear();
+                chartSecond.Titles.Clear();
             }
         }
 
@@ -247,6 +280,14 @@ namespace Wisol.MES.Forms.REPORT
                 dateMonth.Enabled = true;
                 dateYear.Enabled = false;
                 spQuarter.Enabled = false;
+                dateMonth2.Enabled = true;
+                loChartSecond.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+                chartMain.Series.Clear();
+                chartMain.Titles.Clear();
+
+                chartSecond.Series.Clear();
+                chartSecond.Titles.Clear();
             }
         }
 
@@ -258,6 +299,15 @@ namespace Wisol.MES.Forms.REPORT
                 dateMonth.Enabled = false;
                 dateYear.Enabled = false;
                 spQuarter.Enabled = true;
+                dateMonth2.Enabled =false;
+                dateMonth2.EditValue = null;
+                loChartSecond.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+                chartMain.Series.Clear();
+                chartMain.Titles.Clear();
+
+                chartSecond.Series.Clear();
+                chartSecond.Titles.Clear();
             }
         }
 
@@ -269,7 +319,44 @@ namespace Wisol.MES.Forms.REPORT
                 dateMonth.Enabled = false;
                 dateYear.Enabled = true;
                 spQuarter.Enabled = false;
+                dateMonth2.Enabled = false;
+                dateMonth2.EditValue = null;
+                loChartSecond.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
+
+                chartMain.Series.Clear();
+                chartMain.Titles.Clear();
+
+                chartSecond.Series.Clear();
+                chartSecond.Titles.Clear();
             }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            rdoMonth.Checked = false;
+            rdoWeek.Checked = false;
+            rdoQuarter.Checked = false;
+            rdoYear.Checked = false;
+
+            spWeek.EditValue = 0;
+            dateMonth.EditValue = null;
+            dateMonth2.EditValue = null;
+            spQuarter.EditValue = null;
+            dateYear.EditValue = null;
+            spTopNValue.EditValue = 0;
+
+            spWeek.Enabled = true;
+            dateMonth.Enabled = true;
+            dateYear.Enabled = true;
+            spQuarter.Enabled = true;
+            dateMonth2.Enabled = true;
+
+            chartMain.Series.Clear();
+            chartMain.Titles.Clear();
+
+            chartSecond.Series.Clear();
+            chartSecond.Titles.Clear();
+            loChartSecond.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
         }
     }
 }

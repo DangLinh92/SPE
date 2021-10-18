@@ -27,8 +27,18 @@ namespace Wisol.MES.Forms.REPORT
         {
             try
             {
+                Classes.Common.SetFormIdToButton(this, "IN_OUT_STOCK_REPORT");
+
+                if (DATA_SPARE_PART == null)
+                {
+                    DATA_SPARE_PART = new DataTable();
+                    DATA_SPARE_PART.Columns.Add("CODE");
+                    DATA_SPARE_PART.Columns.Add("NAME_VI");
+                }
+
                 cboQty_Money.SelectedIndex = 1;
                 cboVNDKWR.SelectedIndex = 0;
+                cboChooseData.SelectedIndex = 1;
 
                 dateMonthCompare.EditValue = DateTime.Now;
 
@@ -44,7 +54,7 @@ namespace Wisol.MES.Forms.REPORT
                 }
                 stlDeptCode.EditValue = Consts.DEPARTMENT;
 
-                Classes.Common.SetFormIdToButton(this, "IN_OUT_STOCK_REPORT");
+                
             }
             catch (Exception ex)
             {
@@ -62,7 +72,7 @@ namespace Wisol.MES.Forms.REPORT
                     DataTableCollection datas = m_ResultDB.ReturnDataSet.Tables;
                     foreach (DataRow row in datas[0].Rows)
                     {
-                        cheCboSparepart.Properties.Items.Add(row["CODE"].NullString(), row["CODE"].NullString() +": "+ row["NAME"].NullString());
+                        cheCboSparepart.Properties.Items.Add(row["CODE"].NullString(), row["CODE"].NullString() + ": " + row["NAME"].NullString());
                     }
                 }
                 else
@@ -130,6 +140,29 @@ namespace Wisol.MES.Forms.REPORT
                 QuaterFrom.Enabled = true;
                 QuaterTo.Enabled = true;
             }
+
+            if (cboChooseData.SelectedIndex == 0)
+            {
+                if (rdoChoose.EditValue.NullString() == "1") // DAY
+                {
+                    dateTo.Enabled = false;
+                }
+                else
+                if (rdoChoose.EditValue.NullString() == "2")// WEEK
+                {
+                    spWeekTo.Enabled = false;
+                }
+                else
+                if (rdoChoose.EditValue.NullString() == "3")// MONTH
+                {
+                    dateMonthTo.Enabled = false;
+                }
+                else
+                if (rdoChoose.EditValue.NullString() == "4")// QUARTER
+                {
+                    QuaterTo.Enabled = false;
+                }
+            }
         }
 
         /// <summary>
@@ -154,13 +187,88 @@ namespace Wisol.MES.Forms.REPORT
                 }
                 else
                 {
-                    vnd_kwr = "K." + vnd_kwr;
+                    if (cboChooseData.SelectedIndex == 0)
+                    {
+                        vnd_kwr = "100K." + vnd_kwr;
+                        unitType = vnd_kwr;
+                    }
+                    else
+                    {
+                        vnd_kwr = "K." + vnd_kwr;
+                    }
                 }
 
                 string unitLine = "";
                 if (Consts.DEPARTMENT == Consts.SMT_DEPT)
                 {
                     unitLine = "K.Point";
+                }
+
+                if (cboChooseData.SelectedIndex == 0 || cboChooseData.SelectedIndex == 3 || cboChooseData.SelectedIndex == 2) // Category
+                {
+                    string argData = cboChooseData.SelectedIndex == 0 ? "STAGE" : "TIME_VALUE";
+
+                    if (cheReceive.Checked)
+                    {
+
+                        Series series_in = new Series("Receive", ViewType.Bar);
+                        series_in.DataSource = datas[0].Copy();
+                        series_in.ArgumentDataMember = argData;
+                        series_in.ValueDataMembers.AddRange("IN_VALUE");
+
+                        series_in.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+                        series_in.Label.ResolveOverlappingMode = ResolveOverlappingMode.HideOverlapped;
+                        series_in.Label.TextPattern = "{V:n0}";
+
+                        chartMain.Series.Add(series_in);
+                    }
+
+                    if (cheDelivery.Checked)
+                    {
+                        Series series_out = new Series("Delivery", ViewType.Bar);
+                        series_out.DataSource = datas[0].Copy();
+                        series_out.ArgumentDataMember = argData;
+                        series_out.ValueDataMembers.AddRange("OUT_VALUE");
+
+                        series_out.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+                        series_out.Label.ResolveOverlappingMode = ResolveOverlappingMode.HideOverlapped;
+                        series_out.Label.TextPattern = "{V:n0}";
+
+                        chartMain.Series.Add(series_out);
+                    }
+
+                    if (cheStock.Checked)
+                    {
+
+                        Series series_iv = new Series("Stock", ViewType.Bar);
+                        series_iv.DataSource = datas[0];
+                        series_iv.ArgumentDataMember = argData;
+                        series_iv.ValueDataMembers.AddRange("INVENTORY");
+
+                        series_iv.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+                        series_iv.Label.ResolveOverlappingMode = ResolveOverlappingMode.HideOverlapped;
+                        series_iv.Label.TextPattern = "{V:n0}";
+
+                        chartMain.Series.Add(series_iv);
+                    }
+
+                    // Create a chart title.
+                    ChartTitle chartTitle1 = new ChartTitle();
+                    chartTitle1.Text = "TỔNG HỢP XUẤT NHẬP TỒN -재고 보고서" + (vnd_kwr != "" ? "(" + vnd_kwr + ")" : "");
+                    chartMain.Titles.Add(chartTitle1);
+
+                    string text2 = cboChooseData.SelectedIndex == 0 ? "Công đoạn SX- 생산 공정" : (cboChooseData.SelectedIndex == 3 ? "Consumable parts" : "Spare parts");
+                    Font font = new Font("Arial", 18.0F);
+                    // 
+                    chartMain.Titles.Add(new ChartTitle() { Text = text2, Font = font });
+
+                    XYDiagram diagram1 = chartMain.Diagram as XYDiagram;
+                    diagram1.AxisY.Label.TextPattern = "{V:n0}";
+                    diagram1.AxisY.Title.Text = unitType;
+                    diagram1.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
+                    diagram1.AxisY.Title.TextColor = Color.FromArgb(36, 113, 163);
+
+                    return;
                 }
 
                 Series series_Prd = new Series("Product " + unitLine, ViewType.Line);
@@ -345,7 +453,7 @@ namespace Wisol.MES.Forms.REPORT
                     chartControlPieSingle.Series.Add(seriesPieSingle);
                     seriesPieSingle.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
                     seriesPieSingle.Label.ResolveOverlappingMode = ResolveOverlappingMode.Default;
-                    seriesPieSingle.Label.TextPattern = "{VP:p2} ({V:n0} " +"K."+ cboVNDKWR.EditValue.NullString() + ")";
+                    seriesPieSingle.Label.TextPattern = "{VP:p2} ({V:n0} " + "K." + cboVNDKWR.EditValue.NullString() + ")";
 
                     // Format the series legend items.
                     seriesPieSingle.LegendTextPattern = "{A}";
@@ -385,7 +493,7 @@ namespace Wisol.MES.Forms.REPORT
                         total += float.Parse(row["INVENTORY_VALUE"].NullString());
                     }
 
-                    chartControlSparepartPart.Titles.Add(new ChartTitle() { Text = "Total: " + total.ToString("N", CultureInfo.InvariantCulture) + " K."+cboVNDKWR.EditValue.NullString(), Font = font });
+                    chartControlSparepartPart.Titles.Add(new ChartTitle() { Text = "Total: " + total.ToString("N", CultureInfo.InvariantCulture) + " K." + cboVNDKWR.EditValue.NullString(), Font = font });
 
                     Series seriesSparepartPart = new Series("Value by month", ViewType.Pie);
 
@@ -417,80 +525,152 @@ namespace Wisol.MES.Forms.REPORT
         {
             try
             {
+                splashScreenManager1.ShowWaitForm();
                 string typeView = "";
                 string from = "";
                 string to = "";
+                string typeValue = "";
+                string lstCode = "";
                 if (cboQty_Money.EditValue.NullString() == "" || rdoChoose.EditValue.NullString() == "" || stlDeptCode.EditValue.NullString() == "")
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
                 }
 
-                if(cheCboSparepart.EditValue.NullString() == "")
+                if (cboChooseData.SelectedIndex == 1 || cboChooseData.SelectedIndex == 3 || cboChooseData.SelectedIndex == 2) // 1: theo mã   3: theo hàng consumable
                 {
-                    if(!(cboQty_Money.EditValue.NullString() == "MONEY" && (new string[] {"3","2","4" }).Contains(rdoChoose.EditValue.NullString())))
+                    if (cheCboSparepart.EditValue.NullString() == "" && cboChooseData.SelectedIndex == 1)
                     {
-                        MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
-                        return;
-                    }
-                }
-
-                if (rdoChoose.EditValue.NullString() == "1") // DAY
-                {
-                    if (dateFrom.EditValue.NullString() == "" || dateTo.EditValue.NullString() == "")
-                    {
-                        MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
-                        return;
+                        if (!(cboQty_Money.EditValue.NullString() == "MONEY" && (new string[] { "3", "2", "4" }).Contains(rdoChoose.EditValue.NullString())))
+                        {
+                            MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                            return;
+                        }
                     }
 
-                    typeView = "DAY";
-                    from = dateFrom.EditValue.NullString();
-                    to = dateTo.EditValue.NullString();
-                }
-                else if (rdoChoose.EditValue.NullString() == "2")// WEEK
-                {
-
-                    if (spWeekFrom.EditValue.NullString() == "" || spWeekTo.EditValue.NullString() == "")
+                    if (rdoChoose.EditValue.NullString() == "1") // DAY
                     {
-                        MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
-                        return;
+                        if (dateFrom.EditValue.NullString() == "" || dateTo.EditValue.NullString() == "")
+                        {
+                            MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                            return;
+                        }
+
+                        typeView = "DAY";
+                        from = dateFrom.EditValue.NullString();
+                        to = dateTo.EditValue.NullString();
+                    }
+                    else if (rdoChoose.EditValue.NullString() == "2")// WEEK
+                    {
+
+                        if (spWeekFrom.EditValue.NullString() == "" || spWeekTo.EditValue.NullString() == "")
+                        {
+                            MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                            return;
+                        }
+
+                        typeView = "WEEK";
+                        from = spWeekFrom.EditValue.NullString();
+                        to = spWeekTo.EditValue.NullString();
+                    }
+                    else if (rdoChoose.EditValue.NullString() == "3") // month
+                    {
+                        if (dateMonthFrom.EditValue.NullString() == "" || dateMonthTo.EditValue.NullString() == "")
+                        {
+                            MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                            return;
+                        }
+
+                        typeView = "MONTH";
+                        from = dateMonthFrom.EditValue.NullString();
+                        to = dateMonthTo.EditValue.NullString();
+                    }
+                    else if (rdoChoose.EditValue.NullString() == "4") // quarter
+                    {
+                        if (QuaterFrom.EditValue.NullString() == "" || QuaterTo.EditValue.NullString() == "")
+                        {
+                            MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                            return;
+                        }
+
+                        typeView = "QUARTER";
+                        from = QuaterFrom.EditValue.NullString();
+                        to = QuaterTo.EditValue.NullString();
                     }
 
-                    typeView = "WEEK";
-                    from = spWeekFrom.EditValue.NullString();
-                    to = spWeekTo.EditValue.NullString();
-                }
-                else if (rdoChoose.EditValue.NullString() == "3") // month
-                {
-                    if (dateMonthFrom.EditValue.NullString() == "" || dateMonthTo.EditValue.NullString() == "")
+                    typeValue = cboQty_Money.EditValue.NullString() == "MONEY" ? "M" : "QTY";
+
+                    if (cboChooseData.SelectedIndex == 1) // theo mã
                     {
-                        MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
-                        return;
+                        lstCode = cheCboSparepart.EditValue.NullString().Replace(",", "$");
                     }
-
-                    typeView = "MONTH";
-                    from = dateMonthFrom.EditValue.NullString();
-                    to = dateMonthTo.EditValue.NullString();
-                }
-                else if (rdoChoose.EditValue.NullString() == "4") // quarter
-                {
-                    if (QuaterFrom.EditValue.NullString() == "" || QuaterTo.EditValue.NullString() == "")
+                    else
                     {
-                        MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
-                        return;
+                        lstCode = "";
                     }
-
-                    typeView = "QUARTER";
-                    from = QuaterFrom.EditValue.NullString();
-                    to = QuaterTo.EditValue.NullString();
                 }
+                else // công đoạn
+                {
+                    if (rdoChoose.EditValue.NullString() == "1") // DAY
+                    {
+                        if (dateFrom.EditValue.NullString() == "")
+                        {
+                            MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                            dateFrom.Focus();
+                            return;
+                        }
 
-                string typeValue = cboQty_Money.EditValue.NullString() == "MONEY" ? "M" : "QTY";
-                var lstCode = cheCboSparepart.EditValue.NullString().Replace(",", "$");
+                        typeView = "DAY";
+                        from = dateFrom.EditValue.NullString();
+                        to = "";
+                    }
+                    else if (rdoChoose.EditValue.NullString() == "2")// WEEK
+                    {
+
+                        if (spWeekFrom.EditValue.NullString() == "")
+                        {
+                            MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                            spWeekFrom.Focus();
+                            return;
+                        }
+
+                        typeView = "WEEK";
+                        from = spWeekFrom.EditValue.NullString();
+                        to = "";
+                    }
+                    else if (rdoChoose.EditValue.NullString() == "3") // month
+                    {
+                        if (dateMonthFrom.EditValue.NullString() == "")
+                        {
+                            MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                            dateMonthFrom.Focus();
+                            return;
+                        }
+
+                        typeView = "MONTH";
+                        from = dateMonthFrom.EditValue.NullString();
+                        to = "";
+                    }
+                    else if (rdoChoose.EditValue.NullString() == "4") // quarter
+                    {
+                        if (QuaterFrom.EditValue.NullString() == "")
+                        {
+                            MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                            QuaterFrom.Focus();
+                            return;
+                        }
+
+                        typeView = "QUARTER";
+                        from = QuaterFrom.EditValue.NullString();
+                        to = "";
+                    }
+                    typeValue = cboQty_Money.EditValue.NullString() == "MONEY" ? "M" : "QTY";
+                    lstCode = "";
+                }
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_CHART_IN_OUT_STOCK.GETDATA",
-                    new string[] { "A_TYPE_VALUE", "A_TYPE_VIEW", "A_DEPARTMENT", "A_SPARE_PART_CODE", "A_FROM", "A_TO", "A_MONTH_COMPARE", "A_KRW_VND" },
-                    new string[] { typeValue, typeView, stlDeptCode.EditValue.NullString(), lstCode, from, to, dateMonthCompare.EditValue.NullString(), cboVNDKWR.EditValue.NullString() });
+                    new string[] { "A_TYPE_VALUE", "A_TYPE_VIEW", "A_DEPARTMENT", "A_SPARE_PART_CODE", "A_FROM", "A_TO", "A_MONTH_COMPARE", "A_KRW_VND", "A_CATEGORY" },
+                    new string[] { typeValue, typeView, stlDeptCode.EditValue.NullString(), lstCode, from, to, dateMonthCompare.EditValue.NullString(), cboVNDKWR.EditValue.NullString(), cboChooseData.SelectedIndex.NullString() });
 
                 if (m_ResultDB.ReturnInt == 0)
                 {
@@ -506,6 +686,10 @@ namespace Wisol.MES.Forms.REPORT
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
+            finally
+            {
+                splashScreenManager1.CloseWaitForm();
+            }
         }
 
         private string vnd_kwr = "";
@@ -517,11 +701,14 @@ namespace Wisol.MES.Forms.REPORT
             {
                 vnd_kwr = cboVNDKWR.EditValue.NullString();
                 cboVNDKWR.Enabled = true;
+                cboChooseData.Enabled = true;
             }
             else
             {
                 vnd_kwr = "";
                 cboVNDKWR.Enabled = false;
+                cboChooseData.Enabled = false;
+                cboChooseData.SelectedIndex = 1;//sparepart code
             }
         }
 
@@ -583,6 +770,123 @@ namespace Wisol.MES.Forms.REPORT
             }
 
             lstBoxSparepart.DataSource = lstSparepart;
+        }
+
+        private void cboChooseData_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboChooseData.SelectedIndex == 0)
+            {
+                cheCboSparepart.Enabled = false;
+                if (rdoChoose.EditValue.NullString() == "1") // DAY
+                {
+                    dateTo.Enabled = false;
+                }
+                else
+                if (rdoChoose.EditValue.NullString() == "2")// WEEK
+                {
+                    spWeekTo.Enabled = false;
+                }
+                else
+                if (rdoChoose.EditValue.NullString() == "3")// MONTH
+                {
+                    dateMonthTo.Enabled = false;
+                }
+                else
+                if (rdoChoose.EditValue.NullString() == "4")// QUARTER
+                {
+                    QuaterTo.Enabled = false;
+                }
+            }
+            else
+            {
+                if(cboChooseData.SelectedIndex == 2 || cboChooseData.SelectedIndex == 3)
+                {
+                    cheCboSparepart.Enabled = false;
+                }
+                else
+                {
+                    cheCboSparepart.Enabled = true;
+                }
+               
+                if (rdoChoose.EditValue.NullString() == "1") // DAY
+                {
+                    dateTo.Enabled = true;
+                }
+                else
+               if (rdoChoose.EditValue.NullString() == "2")// WEEK
+                {
+                    spWeekTo.Enabled = true;
+                }
+                else
+               if (rdoChoose.EditValue.NullString() == "3")// MONTH
+                {
+                    dateMonthTo.Enabled = true;
+                }
+                else
+               if (rdoChoose.EditValue.NullString() == "4")// QUARTER
+                {
+                    QuaterTo.Enabled = true;
+                }
+            }
+        }
+
+        private DataTable DATA_SPARE_PART;
+        private void btnSearchSparepart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DATA_SPARE_PART == null) return;
+
+                MAINTAIN.POP.SPARE_PARTS pop = new MAINTAIN.POP.SPARE_PARTS();
+                pop.DATA = DATA_SPARE_PART;
+                pop.ShowDialog();
+                DATA_SPARE_PART = pop.DATA;
+
+                List<string> lstSparepart = new List<string>();
+                string newCodes = "";
+                foreach (DataRow row in DATA_SPARE_PART.Rows)
+                {
+                    newCodes += row["CODE"].NullString() + ",";
+                    lstSparepart.Add(row["CODE"].NullString() + ":" + row["NAME_VI"].NullString());
+                }
+
+                if(newCodes != "")
+                {
+                    newCodes = newCodes.Substring(0, newCodes.Length - 1);
+                    cheCboSparepart.EditValue = "";
+                    cheCboSparepart.EditValue = newCodes;
+                    lstBoxSparepart.DataSource = lstSparepart;
+                    btnDraw.PerformClick();
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void cheCboSparepart_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (DATA_SPARE_PART == null) return;
+
+                var strCodes = cheCboSparepart.EditValue.NullString();
+                DATA_SPARE_PART.Rows.Clear();
+
+                string[] arrCode = strCodes.Split(',');
+                DataRow row;
+                foreach (string item in arrCode)
+                {
+                    row = DATA_SPARE_PART.NewRow();
+                    row["CODE"] = item.NullString();
+                    DATA_SPARE_PART.Rows.Add(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
         }
     }
 }
