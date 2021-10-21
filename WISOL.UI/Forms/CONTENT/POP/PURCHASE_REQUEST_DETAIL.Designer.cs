@@ -92,6 +92,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.col_Rate = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
@@ -174,7 +175,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             this.txtTotalMoney_US.Enabled = false;
             this.txtTotalMoney_US.IsRequire = false;
-            this.txtTotalMoney_US.Location = new System.Drawing.Point(1297, 38);
+            this.txtTotalMoney_US.Location = new System.Drawing.Point(1306, 38);
             this.txtTotalMoney_US.Name = "txtTotalMoney_US";
             this.txtTotalMoney_US.NullBackColor = System.Drawing.Color.Lime;
             this.txtTotalMoney_US.NullValidation = false;
@@ -182,7 +183,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.txtTotalMoney_US.Properties.Appearance.Options.UseBackColor = true;
             this.txtTotalMoney_US.Properties.Mask.EditMask = "c3";
             this.txtTotalMoney_US.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtTotalMoney_US.Size = new System.Drawing.Size(162, 20);
+            this.txtTotalMoney_US.Size = new System.Drawing.Size(153, 20);
             this.txtTotalMoney_US.StyleController = this.xLayoutControl1;
             this.txtTotalMoney_US.TabIndex = 18;
             // 
@@ -206,7 +207,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // btnClear
             // 
+            this.btnClear.FormId = null;
             this.btnClear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.ImageOptions.Image")));
+            this.btnClear.isFormType = false;
             this.btnClear.Location = new System.Drawing.Point(145, 86);
             this.btnClear.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClear.MinimumSize = new System.Drawing.Size(129, 30);
@@ -219,7 +222,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // btnSave
             // 
+            this.btnSave.FormId = null;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
+            this.btnSave.isFormType = false;
             this.btnSave.Location = new System.Drawing.Point(12, 86);
             this.btnSave.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSave.MinimumSize = new System.Drawing.Size(129, 30);
@@ -233,13 +238,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // txtPurposeBuy
             // 
             this.txtPurposeBuy.IsRequire = false;
-            this.txtPurposeBuy.Location = new System.Drawing.Point(142, 62);
+            this.txtPurposeBuy.Location = new System.Drawing.Point(151, 62);
             this.txtPurposeBuy.Name = "txtPurposeBuy";
             this.txtPurposeBuy.NullBackColor = System.Drawing.Color.Lime;
             this.txtPurposeBuy.NullValidation = false;
             this.txtPurposeBuy.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtPurposeBuy.Properties.Appearance.Options.UseBackColor = true;
-            this.txtPurposeBuy.Size = new System.Drawing.Size(1317, 20);
+            this.txtPurposeBuy.Size = new System.Drawing.Size(1308, 20);
             this.txtPurposeBuy.StyleController = this.xLayoutControl1;
             this.txtPurposeBuy.TabIndex = 13;
             // 
@@ -247,7 +252,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             this.txtTotalMoney.Enabled = false;
             this.txtTotalMoney.IsRequire = false;
-            this.txtTotalMoney.Location = new System.Drawing.Point(983, 38);
+            this.txtTotalMoney.Location = new System.Drawing.Point(992, 38);
             this.txtTotalMoney.Name = "txtTotalMoney";
             this.txtTotalMoney.NullBackColor = System.Drawing.Color.Lime;
             this.txtTotalMoney.NullValidation = false;
@@ -255,27 +260,27 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.txtTotalMoney.Properties.Appearance.Options.UseBackColor = true;
             this.txtTotalMoney.Properties.Mask.EditMask = "c3";
             this.txtTotalMoney.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtTotalMoney.Size = new System.Drawing.Size(180, 20);
+            this.txtTotalMoney.Size = new System.Drawing.Size(171, 20);
             this.txtTotalMoney.StyleController = this.xLayoutControl1;
             this.txtTotalMoney.TabIndex = 12;
             // 
             // dateDelivery
             // 
             this.dateDelivery.EditValue = null;
-            this.dateDelivery.Location = new System.Drawing.Point(588, 36);
+            this.dateDelivery.Location = new System.Drawing.Point(597, 36);
             this.dateDelivery.Name = "dateDelivery";
             this.dateDelivery.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateDelivery.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateDelivery.Size = new System.Drawing.Size(261, 20);
+            this.dateDelivery.Size = new System.Drawing.Size(252, 20);
             this.dateDelivery.StyleController = this.xLayoutControl1;
             this.dateDelivery.TabIndex = 11;
             // 
             // stlMRP_Code
             // 
             this.stlMRP_Code.EditValue = "";
-            this.stlMRP_Code.Location = new System.Drawing.Point(142, 36);
+            this.stlMRP_Code.Location = new System.Drawing.Point(151, 36);
             this.stlMRP_Code.Name = "stlMRP_Code";
             this.stlMRP_Code.Properties.Appearance.Options.UseTextOptions = true;
             this.stlMRP_Code.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -284,7 +289,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.stlMRP_Code.Properties.ImmediatePopup = true;
             this.stlMRP_Code.Properties.NullText = "";
             this.stlMRP_Code.Properties.PopupView = this.aceGridLookUpEdit2View;
-            this.stlMRP_Code.Size = new System.Drawing.Size(312, 20);
+            this.stlMRP_Code.Size = new System.Drawing.Size(303, 20);
             this.stlMRP_Code.StyleController = this.xLayoutControl1;
             this.stlMRP_Code.TabIndex = 10;
             this.stlMRP_Code.EditValueChanged += new System.EventHandler(this.stlMRP_Code_EditValueChanged);
@@ -311,20 +316,20 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // dateCreate
             // 
             this.dateCreate.EditValue = null;
-            this.dateCreate.Location = new System.Drawing.Point(142, 12);
+            this.dateCreate.Location = new System.Drawing.Point(151, 12);
             this.dateCreate.Name = "dateCreate";
             this.dateCreate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateCreate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateCreate.Size = new System.Drawing.Size(312, 20);
+            this.dateCreate.Size = new System.Drawing.Size(303, 20);
             this.dateCreate.StyleController = this.xLayoutControl1;
             this.dateCreate.TabIndex = 8;
             // 
             // stlStatus
             // 
             this.stlStatus.EditValue = "";
-            this.stlStatus.Location = new System.Drawing.Point(1150, 12);
+            this.stlStatus.Location = new System.Drawing.Point(1159, 12);
             this.stlStatus.Name = "stlStatus";
             this.stlStatus.Properties.Appearance.Options.UseTextOptions = true;
             this.stlStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -333,7 +338,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.stlStatus.Properties.ImmediatePopup = true;
             this.stlStatus.Properties.NullText = "";
             this.stlStatus.Properties.PopupView = this.aceGridLookUpEdit1View;
-            this.stlStatus.Size = new System.Drawing.Size(309, 20);
+            this.stlStatus.Size = new System.Drawing.Size(300, 20);
             this.stlStatus.StyleController = this.xLayoutControl1;
             this.stlStatus.TabIndex = 7;
             // 
@@ -349,13 +354,13 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             this.txtPR_Code.Enabled = false;
             this.txtPR_Code.IsRequire = false;
-            this.txtPR_Code.Location = new System.Drawing.Point(588, 12);
+            this.txtPR_Code.Location = new System.Drawing.Point(597, 12);
             this.txtPR_Code.Name = "txtPR_Code";
             this.txtPR_Code.NullBackColor = System.Drawing.Color.Lime;
             this.txtPR_Code.NullValidation = false;
             this.txtPR_Code.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtPR_Code.Properties.Appearance.Options.UseBackColor = true;
-            this.txtPR_Code.Size = new System.Drawing.Size(261, 20);
+            this.txtPR_Code.Size = new System.Drawing.Size(252, 20);
             this.txtPR_Code.StyleController = this.xLayoutControl1;
             this.txtPR_Code.TabIndex = 5;
             // 
@@ -386,6 +391,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_NAME_KR,
             this.col_IMAGE,
             this.col_UNIT,
+            this.col_Rate,
             this.col_QUANTITY_NEED_BUY,
             this.col_EXPECTED_PRICE_VN,
             this.col_PRICE_VN,
@@ -503,7 +509,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_QUANTITY_NEED_BUY.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "QUANTITY_NEED_BUY", "SUM={0:0.##}")});
             this.col_QUANTITY_NEED_BUY.Visible = true;
-            this.col_QUANTITY_NEED_BUY.VisibleIndex = 7;
+            this.col_QUANTITY_NEED_BUY.VisibleIndex = 8;
             this.col_QUANTITY_NEED_BUY.Width = 92;
             // 
             // col_EXPECTED_PRICE_VN
@@ -516,7 +522,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_EXPECTED_PRICE_VN.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "EXPECTED_PRICE_VN", "SUM={0:0.##}")});
             this.col_EXPECTED_PRICE_VN.Visible = true;
-            this.col_EXPECTED_PRICE_VN.VisibleIndex = 8;
+            this.col_EXPECTED_PRICE_VN.VisibleIndex = 9;
             this.col_EXPECTED_PRICE_VN.Width = 92;
             // 
             // col_PRICE_VN
@@ -529,7 +535,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_PRICE_VN.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PRICE_VN", "SUM={0:0.##}")});
             this.col_PRICE_VN.Visible = true;
-            this.col_PRICE_VN.VisibleIndex = 9;
+            this.col_PRICE_VN.VisibleIndex = 10;
             this.col_PRICE_VN.Width = 92;
             // 
             // col_EXPECTED_PRICE_US
@@ -542,7 +548,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_EXPECTED_PRICE_US.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "EXPECTED_PRICE_US", "SUM={0:0.##}")});
             this.col_EXPECTED_PRICE_US.Visible = true;
-            this.col_EXPECTED_PRICE_US.VisibleIndex = 10;
+            this.col_EXPECTED_PRICE_US.VisibleIndex = 11;
             this.col_EXPECTED_PRICE_US.Width = 92;
             // 
             // col_PRICE_US
@@ -555,7 +561,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_PRICE_US.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "PRICE_US", "SUM={0:0.##}")});
             this.col_PRICE_US.Visible = true;
-            this.col_PRICE_US.VisibleIndex = 11;
+            this.col_PRICE_US.VisibleIndex = 12;
             this.col_PRICE_US.Width = 92;
             // 
             // col_TOTAL_MONEY_VN
@@ -568,7 +574,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_TOTAL_MONEY_VN.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL_MONEY_VN", "SUM={0:0.##}")});
             this.col_TOTAL_MONEY_VN.Visible = true;
-            this.col_TOTAL_MONEY_VN.VisibleIndex = 12;
+            this.col_TOTAL_MONEY_VN.VisibleIndex = 13;
             this.col_TOTAL_MONEY_VN.Width = 92;
             // 
             // col_TOTAL_MONEY_US
@@ -581,7 +587,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_TOTAL_MONEY_US.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TOTAL_MONEY_US", "SUM={0:0.##}")});
             this.col_TOTAL_MONEY_US.Visible = true;
-            this.col_TOTAL_MONEY_US.VisibleIndex = 13;
+            this.col_TOTAL_MONEY_US.VisibleIndex = 14;
             this.col_TOTAL_MONEY_US.Width = 92;
             // 
             // col_VENDOR_ID
@@ -591,7 +597,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_VENDOR_ID.FieldName = "VENDOR_ID";
             this.col_VENDOR_ID.Name = "col_VENDOR_ID";
             this.col_VENDOR_ID.Visible = true;
-            this.col_VENDOR_ID.VisibleIndex = 14;
+            this.col_VENDOR_ID.VisibleIndex = 15;
             this.col_VENDOR_ID.Width = 92;
             // 
             // repositoryItemGridLookUpEdit2
@@ -615,7 +621,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_DATE_NEED_FINISH.FieldName = "DATE_NEED_FINISH";
             this.col_DATE_NEED_FINISH.Name = "col_DATE_NEED_FINISH";
             this.col_DATE_NEED_FINISH.Visible = true;
-            this.col_DATE_NEED_FINISH.VisibleIndex = 15;
+            this.col_DATE_NEED_FINISH.VisibleIndex = 16;
             this.col_DATE_NEED_FINISH.Width = 97;
             // 
             // col_Delete
@@ -625,7 +631,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_Delete.FieldName = "DELETE";
             this.col_Delete.Name = "col_Delete";
             this.col_Delete.Visible = true;
-            this.col_Delete.VisibleIndex = 16;
+            this.col_Delete.VisibleIndex = 17;
             this.col_Delete.Width = 30;
             // 
             // repositoryItemButtonEdit1
@@ -642,7 +648,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_STT_MRP.FieldName = "STT_MRP";
             this.col_STT_MRP.Name = "col_STT_MRP";
             this.col_STT_MRP.Visible = true;
-            this.col_STT_MRP.VisibleIndex = 17;
+            this.col_STT_MRP.VisibleIndex = 18;
             // 
             // col_DATE_END_ACTUAL
             // 
@@ -650,7 +656,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_DATE_END_ACTUAL.FieldName = "DATE_END_ACTUAL";
             this.col_DATE_END_ACTUAL.Name = "col_DATE_END_ACTUAL";
             this.col_DATE_END_ACTUAL.Visible = true;
-            this.col_DATE_END_ACTUAL.VisibleIndex = 18;
+            this.col_DATE_END_ACTUAL.VisibleIndex = 19;
             // 
             // col_DATE_CREATE
             // 
@@ -658,7 +664,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_DATE_CREATE.FieldName = "DATE_CREATE";
             this.col_DATE_CREATE.Name = "col_DATE_CREATE";
             this.col_DATE_CREATE.Visible = true;
-            this.col_DATE_CREATE.VisibleIndex = 19;
+            this.col_DATE_CREATE.VisibleIndex = 20;
             // 
             // repositoryItemXGridLookUpEdit1
             // 
@@ -813,6 +819,14 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem13.Text = "Tổng giá trị đơn(usd)";
             this.layoutControlItem13.TextSize = new System.Drawing.Size(127, 13);
             // 
+            // col_Rate
+            // 
+            this.col_Rate.Caption = "Tỉ lệ";
+            this.col_Rate.FieldName = "RATE";
+            this.col_Rate.Name = "col_Rate";
+            this.col_Rate.Visible = true;
+            this.col_Rate.VisibleIndex = 7;
+            // 
             // PURCHASE_REQUEST_DETAIL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -935,5 +949,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private XTextEdit txtTotalMoney_US;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
+        private DevExpress.XtraGrid.Columns.GridColumn col_Rate;
     }
 }

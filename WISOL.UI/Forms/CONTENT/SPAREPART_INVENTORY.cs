@@ -572,11 +572,24 @@ namespace Wisol.MES.Forms.CONTENT
             if (!string.IsNullOrEmpty(cboReportType.SelectedItem.NullString()))
             {
                 POP.EXPORT_EXCEL popup = new POP.EXPORT_EXCEL();
-                popup.ReportType = cboReportType.SelectedIndex == 0 ? "1" : "2";
+
+                if(cboReportType.SelectedIndex == 0)
+                {
+                    popup.ReportType = "1";
+                }
+                else if(cboReportType.SelectedIndex == 1)
+                {
+                    popup.ReportType = "2";
+                }
+                else
+                {
+                    popup.ReportType = "3";
+                }
+                
                 popup.ReportTitle = cboReportType.Text;
                 popup.Kho = stlKho.EditValue.NullString();
 
-                if (cboReportType.SelectedIndex == 1)
+                if (cboReportType.SelectedIndex == 1 || cboReportType.SelectedIndex == 2)
                 {
                     if (string.IsNullOrEmpty(dateFrom.EditValue.NullString()) || string.IsNullOrEmpty(dateTo.EditValue.NullString()))
                     {

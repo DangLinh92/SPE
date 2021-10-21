@@ -254,7 +254,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnValueInventory
             // 
+            this.btnValueInventory.FormId = null;
             this.btnValueInventory.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnValueInventory.ImageOptions.Image")));
+            this.btnValueInventory.isFormType = false;
             this.btnValueInventory.Location = new System.Drawing.Point(686, 61);
             this.btnValueInventory.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnValueInventory.MinimumSize = new System.Drawing.Size(129, 30);
@@ -282,11 +284,13 @@ namespace Wisol.MES.Forms.CONTENT
             this.lblKiemKeDate.Name = "lblKiemKeDate";
             this.lblKiemKeDate.Size = new System.Drawing.Size(65, 13);
             this.lblKiemKeDate.TabIndex = 0;
-            this.lblKiemKeDate.Text = "Ngay Kiem Ke";
+            this.lblKiemKeDate.Text = "Ngày Kiểm Kê";
             // 
             // btnBalance
             // 
+            this.btnBalance.FormId = null;
             this.btnBalance.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnBalance.ImageOptions.Image")));
+            this.btnBalance.isFormType = false;
             this.btnBalance.Location = new System.Drawing.Point(819, 61);
             this.btnBalance.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnBalance.MinimumSize = new System.Drawing.Size(129, 30);
@@ -317,7 +321,9 @@ namespace Wisol.MES.Forms.CONTENT
             // btnReport
             // 
             this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReport.FormId = null;
             this.btnReport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReport.ImageOptions.Image")));
+            this.btnReport.isFormType = false;
             this.btnReport.Location = new System.Drawing.Point(426, 12);
             this.btnReport.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnReport.MinimumSize = new System.Drawing.Size(129, 30);
@@ -359,7 +365,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.cboReportType.FormattingEnabled = true;
             this.cboReportType.Items.AddRange(new object[] {
             "Báo cáo tồn kho-재고 보고서",
-            "Báo cáo tổng hợp nhập xuất tồn-월별 보고서"});
+            "Báo cáo tổng hợp nhập xuất tồn-월별 보고서",
+            "Báo cáo tồn kho theo ngày"});
             this.cboReportType.Location = new System.Drawing.Point(631, 12);
             this.cboReportType.Name = "cboReportType";
             this.cboReportType.Size = new System.Drawing.Size(317, 21);
@@ -557,7 +564,9 @@ namespace Wisol.MES.Forms.CONTENT
             // btnImport
             // 
             this.btnImport.Enabled = false;
+            this.btnImport.FormId = null;
             this.btnImport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnImport.ImageOptions.Image")));
+            this.btnImport.isFormType = false;
             this.btnImport.Location = new System.Drawing.Point(153, 525);
             this.btnImport.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnImport.MinimumSize = new System.Drawing.Size(129, 30);
@@ -571,7 +580,9 @@ namespace Wisol.MES.Forms.CONTENT
             // btnInventoryOfAssets
             // 
             this.btnInventoryOfAssets.Enabled = false;
+            this.btnInventoryOfAssets.FormId = null;
             this.btnInventoryOfAssets.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnInventoryOfAssets.ImageOptions.Image")));
+            this.btnInventoryOfAssets.isFormType = false;
             this.btnInventoryOfAssets.Location = new System.Drawing.Point(12, 525);
             this.btnInventoryOfAssets.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnInventoryOfAssets.MinimumSize = new System.Drawing.Size(129, 30);
@@ -616,7 +627,9 @@ namespace Wisol.MES.Forms.CONTENT
             // btnClearReal
             // 
             this.btnClearReal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClearReal.FormId = null;
             this.btnClearReal.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClearReal.ImageOptions.Image")));
+            this.btnClearReal.isFormType = false;
             this.btnClearReal.Location = new System.Drawing.Point(286, 491);
             this.btnClearReal.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClearReal.MinimumSize = new System.Drawing.Size(129, 30);
@@ -630,7 +643,9 @@ namespace Wisol.MES.Forms.CONTENT
             // btnSaveReal
             // 
             this.btnSaveReal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveReal.FormId = null;
             this.btnSaveReal.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveReal.ImageOptions.Image")));
+            this.btnSaveReal.isFormType = false;
             this.btnSaveReal.Location = new System.Drawing.Point(12, 491);
             this.btnSaveReal.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSaveReal.MinimumSize = new System.Drawing.Size(129, 30);
@@ -644,7 +659,9 @@ namespace Wisol.MES.Forms.CONTENT
             // btnDeleteReal
             // 
             this.btnDeleteReal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteReal.FormId = null;
             this.btnDeleteReal.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteReal.ImageOptions.Image")));
+            this.btnDeleteReal.isFormType = false;
             this.btnDeleteReal.Location = new System.Drawing.Point(153, 491);
             this.btnDeleteReal.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnDeleteReal.MinimumSize = new System.Drawing.Size(129, 30);
@@ -793,7 +810,9 @@ namespace Wisol.MES.Forms.CONTENT
             // btnClear
             // 
             this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.FormId = null;
             this.btnClear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.ImageOptions.Image")));
+            this.btnClear.isFormType = false;
             this.btnClear.Location = new System.Drawing.Point(278, 313);
             this.btnClear.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClear.MinimumSize = new System.Drawing.Size(129, 30);
@@ -807,7 +826,9 @@ namespace Wisol.MES.Forms.CONTENT
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.FormId = null;
             this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
+            this.btnDelete.isFormType = false;
             this.btnDelete.Location = new System.Drawing.Point(145, 313);
             this.btnDelete.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnDelete.MinimumSize = new System.Drawing.Size(129, 30);
@@ -821,7 +842,9 @@ namespace Wisol.MES.Forms.CONTENT
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.FormId = null;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
+            this.btnSave.isFormType = false;
             this.btnSave.Location = new System.Drawing.Point(12, 313);
             this.btnSave.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSave.MinimumSize = new System.Drawing.Size(129, 30);

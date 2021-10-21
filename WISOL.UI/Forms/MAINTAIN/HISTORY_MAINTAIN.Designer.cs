@@ -36,6 +36,10 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.btnReload = new Wisol.XSimpleButton(this.components);
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.separatorControl4 = new DevExpress.XtraEditors.SeparatorControl();
+            this.separatorControl3 = new DevExpress.XtraEditors.SeparatorControl();
+            this.txtSegmentID = new Wisol.XTextEdit();
+            this.txtGantryId = new Wisol.XTextEdit();
             this.dateSuccess = new DevExpress.XtraEditors.DateEdit();
             this.spTimeMaintain = new DevExpress.XtraEditors.SpinEdit();
             this.txtID = new Wisol.XTextEdit();
@@ -82,6 +86,10 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.gcList = new Wisol.XGridControl();
             this.gvList = new Wisol.XGridView();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -97,6 +105,10 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).BeginInit();
             this.xLayoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSegmentID.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGantryId.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateSuccess.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateSuccess.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spTimeMaintain.Properties)).BeginInit();
@@ -144,6 +156,10 @@ namespace Wisol.MES.Forms.MAINTAIN
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
@@ -200,6 +216,10 @@ namespace Wisol.MES.Forms.MAINTAIN
             // 
             // xLayoutControl2
             // 
+            this.xLayoutControl2.Controls.Add(this.separatorControl4);
+            this.xLayoutControl2.Controls.Add(this.separatorControl3);
+            this.xLayoutControl2.Controls.Add(this.txtSegmentID);
+            this.xLayoutControl2.Controls.Add(this.txtGantryId);
             this.xLayoutControl2.Controls.Add(this.dateSuccess);
             this.xLayoutControl2.Controls.Add(this.spTimeMaintain);
             this.xLayoutControl2.Controls.Add(this.txtID);
@@ -229,10 +249,50 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.xLayoutControl2.TabIndex = 0;
             this.xLayoutControl2.Text = "xLayoutControl2";
             // 
+            // separatorControl4
+            // 
+            this.separatorControl4.Location = new System.Drawing.Point(145, 372);
+            this.separatorControl4.Name = "separatorControl4";
+            this.separatorControl4.Size = new System.Drawing.Size(273, 20);
+            this.separatorControl4.TabIndex = 29;
+            // 
+            // separatorControl3
+            // 
+            this.separatorControl3.Location = new System.Drawing.Point(145, 300);
+            this.separatorControl3.Name = "separatorControl3";
+            this.separatorControl3.Size = new System.Drawing.Size(273, 20);
+            this.separatorControl3.TabIndex = 28;
+            // 
+            // txtSegmentID
+            // 
+            this.txtSegmentID.IsRequire = false;
+            this.txtSegmentID.Location = new System.Drawing.Point(145, 348);
+            this.txtSegmentID.Name = "txtSegmentID";
+            this.txtSegmentID.NullBackColor = System.Drawing.Color.Lime;
+            this.txtSegmentID.NullValidation = false;
+            this.txtSegmentID.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtSegmentID.Properties.Appearance.Options.UseBackColor = true;
+            this.txtSegmentID.Size = new System.Drawing.Size(273, 20);
+            this.txtSegmentID.StyleController = this.xLayoutControl2;
+            this.txtSegmentID.TabIndex = 27;
+            // 
+            // txtGantryId
+            // 
+            this.txtGantryId.IsRequire = false;
+            this.txtGantryId.Location = new System.Drawing.Point(145, 324);
+            this.txtGantryId.Name = "txtGantryId";
+            this.txtGantryId.NullBackColor = System.Drawing.Color.Lime;
+            this.txtGantryId.NullValidation = false;
+            this.txtGantryId.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtGantryId.Properties.Appearance.Options.UseBackColor = true;
+            this.txtGantryId.Size = new System.Drawing.Size(273, 20);
+            this.txtGantryId.StyleController = this.xLayoutControl2;
+            this.txtGantryId.TabIndex = 26;
+            // 
             // dateSuccess
             // 
             this.dateSuccess.EditValue = null;
-            this.dateSuccess.Location = new System.Drawing.Point(145, 348);
+            this.dateSuccess.Location = new System.Drawing.Point(145, 444);
             this.dateSuccess.Name = "dateSuccess";
             this.dateSuccess.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -249,7 +309,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             0,
             0,
             0});
-            this.spTimeMaintain.Location = new System.Drawing.Point(145, 324);
+            this.spTimeMaintain.Location = new System.Drawing.Point(145, 420);
             this.spTimeMaintain.Name = "spTimeMaintain";
             this.spTimeMaintain.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -273,26 +333,26 @@ namespace Wisol.MES.Forms.MAINTAIN
             // 
             // picError
             // 
-            this.picError.Location = new System.Drawing.Point(72, 584);
+            this.picError.Location = new System.Drawing.Point(72, 628);
             this.picError.Name = "picError";
             this.picError.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.picError.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.picError.Size = new System.Drawing.Size(346, 134);
+            this.picError.Size = new System.Drawing.Size(346, 90);
             this.picError.StyleController = this.xLayoutControl2;
             this.picError.TabIndex = 22;
             // 
             // memoCause
             // 
-            this.memoCause.Location = new System.Drawing.Point(145, 372);
+            this.memoCause.Location = new System.Drawing.Point(145, 468);
             this.memoCause.Name = "memoCause";
-            this.memoCause.Size = new System.Drawing.Size(273, 75);
+            this.memoCause.Size = new System.Drawing.Size(273, 55);
             this.memoCause.StyleController = this.xLayoutControl2;
             this.memoCause.TabIndex = 21;
             // 
             // txtUser
             // 
             this.txtUser.IsRequire = false;
-            this.txtUser.Location = new System.Drawing.Point(145, 300);
+            this.txtUser.Location = new System.Drawing.Point(145, 396);
             this.txtUser.Name = "txtUser";
             this.txtUser.NullBackColor = System.Drawing.Color.Lime;
             this.txtUser.NullValidation = false;
@@ -304,11 +364,11 @@ namespace Wisol.MES.Forms.MAINTAIN
             // 
             // picImage
             // 
-            this.picImage.Location = new System.Drawing.Point(72, 451);
+            this.picImage.Location = new System.Drawing.Point(72, 527);
             this.picImage.Name = "picImage";
             this.picImage.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.picImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.picImage.Size = new System.Drawing.Size(346, 129);
+            this.picImage.Size = new System.Drawing.Size(346, 97);
             this.picImage.StyleController = this.xLayoutControl2;
             this.picImage.TabIndex = 19;
             // 
@@ -461,6 +521,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.txtSerialPre.Size = new System.Drawing.Size(273, 20);
             this.txtSerialPre.StyleController = this.xLayoutControl2;
             this.txtSerialPre.TabIndex = 6;
+            this.txtSerialPre.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSerialPre_KeyDown);
             // 
             // stlCodeSparepart
             // 
@@ -537,7 +598,11 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.layoutControlItem20,
             this.layoutControlItem21,
             this.layoutControlItem22,
-            this.layoutControlItem23});
+            this.layoutControlItem23,
+            this.layoutControlItem25,
+            this.layoutControlItem26,
+            this.layoutControlItem27,
+            this.layoutControlItem28});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(430, 774);
             this.layoutControlGroup1.TextVisible = false;
@@ -548,7 +613,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 24);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(410, 24);
-            this.layoutControlItem3.Text = "Mã máy";
+            this.layoutControlItem3.Text = "Mã máy(*)";
             this.layoutControlItem3.TextSize = new System.Drawing.Size(121, 13);
             // 
             // emptySpaceItem1
@@ -565,7 +630,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.layoutControlItem4.Location = new System.Drawing.Point(0, 48);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(410, 24);
-            this.layoutControlItem4.Text = "Mã vật tư";
+            this.layoutControlItem4.Text = "Mã vật tư(*)";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(121, 13);
             // 
             // layoutControlItem5
@@ -574,7 +639,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.layoutControlItem5.Location = new System.Drawing.Point(0, 120);
             this.layoutControlItem5.Name = "layoutControlItem5";
             this.layoutControlItem5.Size = new System.Drawing.Size(410, 24);
-            this.layoutControlItem5.Text = "Số Serial";
+            this.layoutControlItem5.Text = "Số Serial(Scan barcode)";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(121, 13);
             // 
             // layoutControlItem6
@@ -679,9 +744,9 @@ namespace Wisol.MES.Forms.MAINTAIN
             // layoutControlItem17
             // 
             this.layoutControlItem17.Control = this.picImage;
-            this.layoutControlItem17.Location = new System.Drawing.Point(0, 439);
+            this.layoutControlItem17.Location = new System.Drawing.Point(0, 515);
             this.layoutControlItem17.Name = "layoutControlItem17";
-            this.layoutControlItem17.Size = new System.Drawing.Size(410, 133);
+            this.layoutControlItem17.Size = new System.Drawing.Size(410, 101);
             this.layoutControlItem17.Text = "Ảnh thiết bị";
             this.layoutControlItem17.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem17.TextSize = new System.Drawing.Size(55, 13);
@@ -690,7 +755,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // layoutControlItem18
             // 
             this.layoutControlItem18.Control = this.txtUser;
-            this.layoutControlItem18.Location = new System.Drawing.Point(0, 288);
+            this.layoutControlItem18.Location = new System.Drawing.Point(0, 384);
             this.layoutControlItem18.Name = "layoutControlItem18";
             this.layoutControlItem18.Size = new System.Drawing.Size(410, 24);
             this.layoutControlItem18.Text = "Người tiến hành";
@@ -699,18 +764,18 @@ namespace Wisol.MES.Forms.MAINTAIN
             // layoutControlItem19
             // 
             this.layoutControlItem19.Control = this.memoCause;
-            this.layoutControlItem19.Location = new System.Drawing.Point(0, 360);
+            this.layoutControlItem19.Location = new System.Drawing.Point(0, 456);
             this.layoutControlItem19.Name = "layoutControlItem19";
-            this.layoutControlItem19.Size = new System.Drawing.Size(410, 79);
+            this.layoutControlItem19.Size = new System.Drawing.Size(410, 59);
             this.layoutControlItem19.Text = "Nguyên nhân-giải quyết";
             this.layoutControlItem19.TextSize = new System.Drawing.Size(121, 13);
             // 
             // layoutControlItem20
             // 
             this.layoutControlItem20.Control = this.picError;
-            this.layoutControlItem20.Location = new System.Drawing.Point(0, 572);
+            this.layoutControlItem20.Location = new System.Drawing.Point(0, 616);
             this.layoutControlItem20.Name = "layoutControlItem20";
-            this.layoutControlItem20.Size = new System.Drawing.Size(410, 138);
+            this.layoutControlItem20.Size = new System.Drawing.Size(410, 94);
             this.layoutControlItem20.Text = "Hình ảnh lỗi";
             this.layoutControlItem20.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem20.TextSize = new System.Drawing.Size(55, 13);
@@ -728,7 +793,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // layoutControlItem22
             // 
             this.layoutControlItem22.Control = this.spTimeMaintain;
-            this.layoutControlItem22.Location = new System.Drawing.Point(0, 312);
+            this.layoutControlItem22.Location = new System.Drawing.Point(0, 408);
             this.layoutControlItem22.Name = "layoutControlItem22";
             this.layoutControlItem22.Size = new System.Drawing.Size(410, 24);
             this.layoutControlItem22.Text = "Thời gian bảo dưỡng(Giờ)";
@@ -737,11 +802,47 @@ namespace Wisol.MES.Forms.MAINTAIN
             // layoutControlItem23
             // 
             this.layoutControlItem23.Control = this.dateSuccess;
-            this.layoutControlItem23.Location = new System.Drawing.Point(0, 336);
+            this.layoutControlItem23.Location = new System.Drawing.Point(0, 432);
             this.layoutControlItem23.Name = "layoutControlItem23";
             this.layoutControlItem23.Size = new System.Drawing.Size(410, 24);
             this.layoutControlItem23.Text = "Ngày hoàn thành";
             this.layoutControlItem23.TextSize = new System.Drawing.Size(121, 13);
+            // 
+            // layoutControlItem25
+            // 
+            this.layoutControlItem25.Control = this.txtGantryId;
+            this.layoutControlItem25.Location = new System.Drawing.Point(0, 312);
+            this.layoutControlItem25.Name = "layoutControlItem25";
+            this.layoutControlItem25.Size = new System.Drawing.Size(410, 24);
+            this.layoutControlItem25.Text = "Location";
+            this.layoutControlItem25.TextSize = new System.Drawing.Size(121, 13);
+            // 
+            // layoutControlItem26
+            // 
+            this.layoutControlItem26.Control = this.txtSegmentID;
+            this.layoutControlItem26.Location = new System.Drawing.Point(0, 336);
+            this.layoutControlItem26.Name = "layoutControlItem26";
+            this.layoutControlItem26.Size = new System.Drawing.Size(410, 24);
+            this.layoutControlItem26.Text = "Sublocation";
+            this.layoutControlItem26.TextSize = new System.Drawing.Size(121, 13);
+            // 
+            // layoutControlItem27
+            // 
+            this.layoutControlItem27.Control = this.separatorControl3;
+            this.layoutControlItem27.Location = new System.Drawing.Point(0, 288);
+            this.layoutControlItem27.Name = "layoutControlItem27";
+            this.layoutControlItem27.Size = new System.Drawing.Size(410, 24);
+            this.layoutControlItem27.Text = "Vị trí trong máy";
+            this.layoutControlItem27.TextSize = new System.Drawing.Size(121, 13);
+            // 
+            // layoutControlItem28
+            // 
+            this.layoutControlItem28.Control = this.separatorControl4;
+            this.layoutControlItem28.Location = new System.Drawing.Point(0, 360);
+            this.layoutControlItem28.Name = "layoutControlItem28";
+            this.layoutControlItem28.Size = new System.Drawing.Size(410, 24);
+            this.layoutControlItem28.Text = "Thông tin khác";
+            this.layoutControlItem28.TextSize = new System.Drawing.Size(121, 13);
             // 
             // gcList
             // 
@@ -818,6 +919,10 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).EndInit();
             this.xLayoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorControl3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSegmentID.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGantryId.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateSuccess.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateSuccess.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spTimeMaintain.Properties)).EndInit();
@@ -865,6 +970,10 @@ namespace Wisol.MES.Forms.MAINTAIN
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
@@ -936,5 +1045,13 @@ namespace Wisol.MES.Forms.MAINTAIN
         private XSimpleButton btnReload;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
+        private XTextEdit txtSegmentID;
+        private XTextEdit txtGantryId;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem26;
+        private DevExpress.XtraEditors.SeparatorControl separatorControl3;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem27;
+        private DevExpress.XtraEditors.SeparatorControl separatorControl4;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
     }
 }

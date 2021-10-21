@@ -1,8 +1,10 @@
-﻿using System;
+﻿using DevExpress.XtraEditors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,6 +31,14 @@ namespace Wisol.MES.Forms.MAINTAIN
             dateSuccess.EditValue = DateTime.Now;
             txtCondition_After.EditValue = "OK";
 
+            if (EQUIPMENT_DATA == null)
+            {
+                EQUIPMENT_DATA = new DataTable();
+                EQUIPMENT_DATA.Columns.Add("EQUIPMENT_ID");
+                EQUIPMENT_DATA.Columns.Add("EQUIPMENT_NAME");
+                EQUIPMENT_DATA.Columns.Add("EQUIPMENT_TYPE");
+            }
+
             InitData();
 
             if (MainID.NullString() != "")
@@ -36,6 +46,8 @@ namespace Wisol.MES.Forms.MAINTAIN
                 gvList.ActiveFilterString = "[EQUIPMENT_ID] = '" + MainID.NullString() + "'";
             }
         }
+
+        DataTable EQUIPMENT_DATA;
 
         private void InitData()
         {
@@ -52,6 +64,7 @@ namespace Wisol.MES.Forms.MAINTAIN
                     m_BindData.BindGridView(gcList, datas[2], false, "IMAGE_ERROR,MAINTAIN_ID");
                     gvList.Columns.Where(x => x.VisibleIndex <= gvList.Columns["EQUIPMENT_ID"].VisibleIndex).ToList().ForEach(x => x.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left);
 
+                    EQUIPMENT_DATA = datas[0];
                 }
                 else
                 {
@@ -68,7 +81,7 @@ namespace Wisol.MES.Forms.MAINTAIN
         {
             try
             {
-                if (stlCodeSparepart.EditValue.NullString() == "")
+                if (stlCodeSparepart.EditValue.NullString() == "" || stlCodeEquipment.EditValue.NullString() == "")
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
@@ -94,7 +107,9 @@ namespace Wisol.MES.Forms.MAINTAIN
                         "A_USER_UPDATE",
                         "A_CAUSE_MAINTAIN",
                         "A_IMG_ERROR",
-                        "A_DATE_SUCCESS"
+                        "A_DATE_SUCCESS",
+                        "A_GANTRY_ID",
+                        "A_SEGMENT_ID"
                     },
                     new string[]
                     { txtID.EditValue.NullString(),
@@ -113,7 +128,9 @@ namespace Wisol.MES.Forms.MAINTAIN
                         Consts.USER_INFO.Id,
                         memoCause.EditValue.NullString(),
                         img,
-                        dateSuccess.EditValue.NullString()
+                        dateSuccess.EditValue.NullString(),
+                        txtGantryId.EditValue.NullString(),
+                        txtSegmentID.EditValue.NullString()
                     });
 
                 if (m_ResultDB.ReturnInt == 0)
@@ -189,7 +206,7 @@ namespace Wisol.MES.Forms.MAINTAIN
                 stlCodeEquipment.EditValue = gvList.GetRowCellValue(e.RowHandle, "EQUIPMENT_ID").NullString();
                 stlCodeSparepart.EditValue = gvList.GetRowCellValue(e.RowHandle, "SPARE_PART_CODE").NullString();
 
-                if (gvList.GetRowCellValue(e.RowHandle, "DATE_MAINTAIN").NullString() == "1900-01-01")
+                if (gvList.GetRowCellValue(e.RowHandle, "DATE_MAINTAIN").NullString() != "1900-01-01")
                 {
                     dateMaintain.EditValue = gvList.GetRowCellValue(e.RowHandle, "DATE_MAINTAIN").NullString();
                 }
@@ -225,6 +242,9 @@ namespace Wisol.MES.Forms.MAINTAIN
                 spTimeMaintain.EditValue = gvList.GetRowCellValue(e.RowHandle, "TIME_MAINTAIN").NullString();
                 dateSuccess.EditValue = gvList.GetRowCellValue(e.RowHandle, "DATE_SUCCESS").NullString();
                 memoCause.EditValue = gvList.GetRowCellValue(e.RowHandle, "CAUSE_MAINTAIN").NullString();
+                txtSegmentID.EditValue = gvList.GetRowCellValue(e.RowHandle, "SEGMENT_ID").NullString();
+                txtGantryId.EditValue = gvList.GetRowCellValue(e.RowHandle, "GANTRY_ID").NullString();
+
                 string img = gvList.GetRowCellValue(e.RowHandle, "IMAGE_ERROR").NullString();
 
                 if (img != "")
@@ -310,6 +330,53 @@ namespace Wisol.MES.Forms.MAINTAIN
             splashScreenManager1.ShowWaitForm();
             InitData();
             splashScreenManager1.CloseWaitForm();
+        }
+
+        private void txtSerialPre_KeyDown(object sender, KeyEventArgs e)
+        {
+            try
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    m_DBaccess.connectionStringParam = 1;// using WHNP1 DB
+                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_ASM.ASM_SEGMENT_SPAREPART", new string[] { "A_SerialNumber" }, new string[] { txtSerialPre.EditValue.NullString() });
+
+                    if (m_ResultDB.ReturnInt == 0)
+                    {
+                        DataTable data = m_ResultDB.ReturnDataSet.Tables[0];
+
+                        if (data.Rows.Count > 0)
+                        {
+                            string machineName = data.Rows[0]["MachineName"].NullString();
+                            string machineId = "";
+                            foreach (DataRow row in EQUIPMENT_DATA.Rows)
+                            {
+                                if(row["EQUIPMENT_NAME"].NullString() == machineName)
+                                {
+                                    machineId = row["EQUIPMENT_ID"].NullString();
+                                    break;
+                                }
+                            }
+
+                            stlCodeEquipment.EditValue = machineId;
+
+                            string dataInPre = data.Rows[0]["DateOfLastMaintenance"].NullString().Replace(".", "/");
+
+                            dateIn_Pre.EditValue = DateTime.ParseExact(dataInPre, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                            txtGantryId.EditValue = data.Rows[0]["GantryID"].NullString();
+                            txtSegmentID.EditValue = data.Rows[0]["SegmentID"].NullString();
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
         }
     }
 }

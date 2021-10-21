@@ -214,6 +214,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             gvList.Columns["IMAGE64"].OptionsColumn.AllowEdit = false;
             gvList.Columns["DELETE"].OptionsColumn.AllowEdit = false;
             gvList.Columns["SPAREPART_CODE"].OptionsColumn.AllowEdit = false;
+            gvList.Columns["RATE"].OptionsColumn.AllowEdit = false;
 
             gvList.Columns["EXPECTED_PRICE_VN"].OptionsColumn.AllowEdit = false;
             gvList.Columns["EXPECTED_PRICE_US"].OptionsColumn.AllowEdit = false;

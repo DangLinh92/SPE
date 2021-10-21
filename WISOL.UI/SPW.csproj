@@ -109,6 +109,7 @@
     <Reference Include="DevExpress.Mvvm.v21.1, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Office.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Pdf.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v21.1.Drawing, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v21.1.Core, Version=21.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -581,6 +582,12 @@
     </Compile>
     <Compile Include="Forms\CONTENT\COST_GLACCOUNT.Designer.cs">
       <DependentUpon>COST_GLACCOUNT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MAINTAIN\DOCUMENT_VIEWER.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\MAINTAIN\DOCUMENT_VIEWER.Designer.cs">
+      <DependentUpon>DOCUMENT_VIEWER.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MAINTAIN\EQUIPMENT.cs">
       <SubType>UserControl</SubType>
@@ -1071,6 +1078,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\COST_GLACCOUNT.resx">
       <DependentUpon>COST_GLACCOUNT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MAINTAIN\DOCUMENT_VIEWER.resx">
+      <DependentUpon>DOCUMENT_VIEWER.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MAINTAIN\EQUIPMENT.resx">
       <DependentUpon>EQUIPMENT.cs</DependentUpon>

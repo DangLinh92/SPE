@@ -71,9 +71,25 @@ namespace Wisol
             mi.Invoke(gv, null);
         }
 
+        public void QueryAsync1(string text)
+        {
+            DevExpress.XtraEditors.GridLookUpEdit edit = this;
+            DevExpress.XtraGrid.Views.Grid.GridView gv = edit.Properties.View as DevExpress.XtraGrid.Views.Grid.GridView;
+
+            FieldInfo fi = gv.GetType().GetField("extraFilter", BindingFlags.NonPublic | BindingFlags.Instance);
+            var op2 = new FunctionOperator("Like", new OperandProperty(base.Properties.ValueMember), new OperandValue("%" + text + "%"));
+            var op1 = new FunctionOperator("Like", new OperandProperty(base.Properties.DisplayMember), new OperandValue("%" + text + "%"));
+            string filterCondition = new GroupOperator(GroupOperatorType.Or, new CriteriaOperator[] { op1, op2 }).ToString();
+            fi.SetValue(gv, filterCondition);
+
+            MethodInfo mi = gv.GetType().GetMethod("ApplyColumnsFilterEx", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            mi.Invoke(gv, null);
+        }
+
         public Task<ICollection> QueryAsync(string text, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

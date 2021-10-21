@@ -204,11 +204,11 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-                if(sltVender.EditValue.NullString() == "OTHER")
-                {
-                    MsgBox.Show("HÃY CHỌN NHÀ CUNG CẤP PHÙ HỢP!".Translation(), MsgType.Warning);
-                    return;
-                }
+                //if(sltVender.EditValue.NullString() == "OTHER")
+                //{
+                //    MsgBox.Show("HÃY CHỌN NHÀ CUNG CẤP PHÙ HỢP!".Translation(), MsgType.Warning);
+                //    return;
+                //}
 
                 if (string.IsNullOrEmpty(sltSparePartType.EditValue.NullString())) // && cbGenCode.Checked)
                 {

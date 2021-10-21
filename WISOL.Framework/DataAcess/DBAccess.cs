@@ -21,6 +21,7 @@ namespace Wisol.DataAcess
         //private string connectionString = "Data Source = 172.22.100.150\\SQLEXPRESS;Initial Catalog = WHNP1;Persist Security Info=True;User id = sa;Password = 123456@a;Connect Timeout=90";
         //private string connectionString = "Data Source = 10.70.21.72\\SQLEXPRESS;Initial Catalog = WHNP_TEST;Persist Security Info=True;User id = sa;Password = 123456;Connect Timeout=3";
         private string connectionString = "Data Source = 10.70.10.97;Initial Catalog = SPARE_PART_UPDATE;User Id = sa;Password = Wisol@123;Connect Timeout=3";
+        private string connectionString1 = "Data Source = 10.70.10.97;Initial Catalog = WHNP1;User Id = sa;Password = Wisol@123;Connect Timeout=3";
         public DBAccess(string _connectionString)
         {
             this.connectionString = _connectionString;
@@ -112,6 +113,9 @@ namespace Wisol.DataAcess
                 port = value;
             }
         }
+
+        public int connectionStringParam = 0;// 0 default
+
         public ResultDB ExcuteQuery(string query)
         {
             System.Net.Sockets.TcpClient clientSocket = new System.Net.Sockets.TcpClient();
@@ -276,9 +280,15 @@ namespace Wisol.DataAcess
         {
             try
             {
+                string connection = connectionString;
+                if (connectionStringParam == 1)
+                {
+                    connection = connectionString1;
+                }
+
                 ResultDB resultDb = new ResultDB();
                 DataSet dataSet = new DataSet();
-                SqlConnection con = new SqlConnection(connectionString);
+                SqlConnection con = new SqlConnection(connection);
                 SqlCommand cmd = new SqlCommand();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataSet ds = new DataSet();
@@ -299,6 +309,7 @@ namespace Wisol.DataAcess
                 cmd.Parameters.Add(V_RETURN);
 
                 da = new SqlDataAdapter(cmd);
+                da.SelectCommand.CommandTimeout = 60;
                 da.Fill(ds);
                 con.Close();
                 resultDb.ReturnDataSet = ds;
@@ -313,15 +324,25 @@ namespace Wisol.DataAcess
                 result.ReturnString = "서버 연결이 불가능합니다. Không kết nối được đến máy chủ.";
                 return result;
             }
+            finally
+            {
+                connectionStringParam = 0;
+            }
         }
 
         public ResultDB ExcuteProcWithBytes(string ProcName, Dictionary<string, string> Dictionary,string byteParam,byte[] bytes, DBAccessType dbAccesstype = DBAccessType.DB, int rfcTableCount = 0)
         {
             try
             {
+                string connection = connectionString;
+                if (connectionStringParam == 1)
+                {
+                    connection = connectionString1;
+                }
+
                 ResultDB resultDb = new ResultDB();
                 DataSet dataSet = new DataSet();
-                SqlConnection con = new SqlConnection(connectionString);
+                SqlConnection con = new SqlConnection(connection);
                 SqlCommand cmd = new SqlCommand();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataSet ds = new DataSet();
@@ -358,15 +379,25 @@ namespace Wisol.DataAcess
                 result.ReturnString = "서버 연결이 불가능합니다. Không kết nối được đến máy chủ.";
                 return result;
             }
+            finally
+            {
+                connectionStringParam = 0;
+            }
         }
 
         public ResultDB ExcuteProcWithTableParam(string ProcName, Dictionary<string, string> Dictionary,string tableParam,DataTable table, DBAccessType dbAccesstype = DBAccessType.DB, int rfcTableCount = 0)
         {
             try
             {
+                string connection = connectionString;
+                if (connectionStringParam == 1)
+                {
+                    connection = connectionString1;
+                }
+
                 ResultDB resultDb = new ResultDB();
                 DataSet dataSet = new DataSet();
-                SqlConnection con = new SqlConnection(connectionString);
+                SqlConnection con = new SqlConnection(connection);
                 SqlCommand cmd = new SqlCommand();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataSet ds = new DataSet();
@@ -404,15 +435,25 @@ namespace Wisol.DataAcess
                 result.ReturnString = "서버 연결이 불가능합니다. Không kết nối được đến máy chủ.";
                 return result;
             }
+            finally
+            {
+                connectionStringParam = 0;
+            }
         }
 
         public ResultDB ExcuteProc(string ProcName)
         {
             try
             {
+                string connection = connectionString;
+                if (connectionStringParam == 1)
+                {
+                    connection = connectionString1;
+                }
+
                 ResultDB resultDb = new ResultDB();
                 DataSet dataSet = new DataSet();
-                SqlConnection con = new SqlConnection(connectionString);
+                SqlConnection con = new SqlConnection(connection);
                 SqlCommand cmd = new SqlCommand();
                 SqlDataAdapter da = new SqlDataAdapter();
                 DataSet ds = new DataSet();
@@ -441,6 +482,10 @@ namespace Wisol.DataAcess
                 result.ReturnInt = -1;
                 result.ReturnString = "서버 연결이 불가능합니다. Không kết nối được đến máy chủ.";
                 return result;
+            }
+            finally
+            {
+                connectionStringParam = 0;
             }
         }
 

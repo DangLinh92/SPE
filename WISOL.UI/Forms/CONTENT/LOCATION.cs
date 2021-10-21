@@ -92,6 +92,10 @@ namespace Wisol.MES.Forms.CONTENT
 
                     GetLabelTemplate();
                 }
+                else
+                {
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -103,11 +107,16 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_INIT.GET", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_INIT.GET", new string[] { "A_DEPARTMENT", "A_STOCK_CODE" }, new string[] { Consts.DEPARTMENT, stlKho.EditValue.NullString() });
 
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
-                    base.m_BindData.BindGridLookEdit(stlPosition, base.m_ResultDB.ReturnDataSet.Tables[0], "CODE", "CODE");
+                    DataTable data = base.m_ResultDB.ReturnDataSet.Tables[0];
+                    base.m_BindData.BindGridLookEdit(stlPosition, data, "CODE", "CODE");
+                    base.m_BindData.BindGridLookEdit(stlNew_Location, data, "CODE", "CODE");
+                }
+                else{
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
                 }
             }
             catch (Exception ex)
@@ -1368,6 +1377,14 @@ namespace Wisol.MES.Forms.CONTENT
                 {
                     DateExpired = dateExpired_Move.EditValue.NullString();
                 }
+
+                if(txtOld_Location.EditValue.NullString() == stlNew_Location.EditValue.NullString())
+                {
+                    MsgBox.Show("VỊ TRÍ BỊ TRÙNG NHAU!!!".Translation(), MsgType.Warning);
+                    stlNew_Location.Focus();
+                    return;
+                }
+
                 string barcode = string.Empty;
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION_SPAREPART.MOVE_SPARE_PART_TO_LOCATION",

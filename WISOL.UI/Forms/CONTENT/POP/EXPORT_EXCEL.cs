@@ -1,6 +1,8 @@
 ﻿using DevExpress.Export;
+using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraPrinting;
 using System;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -38,6 +40,11 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 groupControl1.Text = ReportTitle;
                 GetData("PKG_BUSINESS_SP_INVENTORY.REPORT_BY_SPAREPART_IN_OUT", new string[] { "A_DEPARTMENT", "A_TIME_FROM", "A_TIME_TO" }, new string[] { Consts.DEPARTMENT, TimeFrom, TimeTo });
             }
+            else if (Consts.INVENTORY_IN_OUT_REPORT_BY_DAY.Equals(ReportType))
+            {
+                groupControl1.Text = ReportTitle;
+                GetData("PKG_BUSINESS_SP_INVENTORY.REPORT_BY_DAY_INVENTORY", new string[] { "A_DEPARTMENT", "A_TIME_FROM", "A_TIME_TO" }, new string[] { Consts.DEPARTMENT, TimeFrom, TimeTo });
+            }
             else if (ReportType == Consts.ZERO) // Kiem ke
             {
                 groupControl1.Text = ReportTitle;
@@ -53,12 +60,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             try
             {
+                splashScreenManager1.ShowWaitForm();
                 base.mResultDB = base.mDBaccess.ExcuteProc(storeProcedureName, param, values);
                 if (mResultDB.ReturnInt == 0)
                 {
                     if (mResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
                     {
-                        base.mBindData.BindGridView(gcList, mResultDB.ReturnDataSet.Tables[0]);
+                        DataTable data = mResultDB.ReturnDataSet.Tables[0];
+
+                        base.mBindData.BindGridView(gcList, data);
 
                         if (ReportType == Consts.INVENTORY_REPORT || ReportType == Consts.INVENTORY_IN_OUT_REPORT)
                         {
@@ -70,13 +80,37 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                 gvList.Columns["PRICE_VN"].Visible = false;
                                 gvList.Columns["PRICE_US"].Visible = false;
                             }
+
+                            if (ReportType == Consts.INVENTORY_IN_OUT_REPORT)
+                            {
+                                foreach (GridColumn item in gvList.Columns)
+                                {
+                                    if(!new string[] { "STT", "CODE", "NAME_VI", "DESCRIPTION", "PRICE_VN", "PRICE_US", "VENDER_NAME","UNIT", "SPARE_PART_TYPE", "STOCK_CODE", "MIN_STOCK" }.Contains(item.Caption))
+                                    {
+
+                                        string[] arr = item.Caption.Split('_');
+                                        if(arr.Length > 2)
+                                        {
+                                            item.Caption = arr[0] + "_" + arr[1];
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
+                }
+                else
+                {
+                    MsgBox.Show(mResultDB.ReturnString.Translation(), MsgType.Error);
                 }
             }
             catch (Exception ex)
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
+            }
+            finally
+            {
+                splashScreenManager1.CloseWaitForm();
             }
         }
 

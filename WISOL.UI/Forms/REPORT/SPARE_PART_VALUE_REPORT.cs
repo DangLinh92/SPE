@@ -134,8 +134,8 @@ namespace Wisol.MES.Forms.REPORT
                 }
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_CHART_SPARE_PART_VALUES.GETDATA",
-                 new string[] { "A_DEPARTMENT", "A_TYPE", "A_TIME", "A_KRW_VND", "A_TOP" },
-                 new string[] { stlDeptCode.EditValue.NullString(), typeView, time, cboVNDKWR.EditValue.NullString(), spTopNValue.EditValue.NullString() });
+                 new string[] { "A_DEPARTMENT", "A_TYPE", "A_TIME", "A_KRW_VND", "A_TOP", "A_TYPE_CATEGORY" },
+                 new string[] { stlDeptCode.EditValue.NullString(), typeView, time, cboVNDKWR.EditValue.NullString(), spTopNValue.EditValue.NullString(),cboCategory.SelectedIndex.NullString() });
 
                 if (m_ResultDB.ReturnInt == 0)
                 {

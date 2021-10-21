@@ -175,6 +175,16 @@ namespace Wisol.MES.Forms.REPORT
             {
                 chartMain.Series.Clear();
                 chartMain.Titles.Clear();
+
+                chartControlPieSingle.Series.Clear();
+                chartControlPieSingle.Titles.Clear();
+
+                chartControlPieIntergrate.Series.Clear();
+                chartControlPieIntergrate.Titles.Clear();
+
+                chartControlSparepartPart.Series.Clear();
+                chartControlSparepartPart.Titles.Clear();
+
                 vnd_kwr = cboVNDKWR.EditValue.NullString();
 
                 GetNamesSparepart();
@@ -267,6 +277,30 @@ namespace Wisol.MES.Forms.REPORT
                     diagram1.AxisY.Title.Text = unitType;
                     diagram1.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
                     diagram1.AxisY.Title.TextColor = Color.FromArgb(36, 113, 163);
+
+                    if(datas.Count > 1)
+                    {
+                        Series series_total_in = new Series("", ViewType.Bar);
+                        series_total_in.DataSource = datas[1].Copy();
+                        series_total_in.ArgumentDataMember = "TOTAL_NAME";
+                        series_total_in.ValueDataMembers.AddRange("TOTAL_VALUE");
+
+                        series_total_in.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+                        series_total_in.Label.ResolveOverlappingMode = ResolveOverlappingMode.HideOverlapped;
+                        series_total_in.Label.TextPattern = "{V:n0}";
+
+                        chartControlPieIntergrate.Series.Add(series_total_in);
+
+                        ChartTitle chartTitleTotal = new ChartTitle();
+                        chartTitleTotal.Text = "Công đoạn SX- 생산 공정" + (vnd_kwr != "" ? "(" + vnd_kwr + ")" : "");
+                        chartControlPieIntergrate.Titles.Add(chartTitleTotal);
+
+                        XYDiagram diagramTotal = chartControlPieIntergrate.Diagram as XYDiagram;
+                        diagramTotal.AxisY.Label.TextPattern = "{V:n0}";
+                        diagramTotal.AxisY.Title.Text = unitType;
+                        diagramTotal.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
+                        diagramTotal.AxisY.Title.TextColor = Color.FromArgb(36, 113, 163);
+                    }
 
                     return;
                 }
@@ -436,7 +470,7 @@ namespace Wisol.MES.Forms.REPORT
                 chartControlSparepartPart.Series.Clear();
                 chartControlSparepartPart.Titles.Clear();
 
-                if (dateMonthCompare.EditValue.NullString() != "")
+                if (dateMonthCompare.EditValue.NullString() != "" && cboChooseData.SelectedIndex == 1)
                 {
                     Font font = new Font("Arial", 12.0F);
                     // 
@@ -541,7 +575,7 @@ namespace Wisol.MES.Forms.REPORT
                 {
                     if (cheCboSparepart.EditValue.NullString() == "" && cboChooseData.SelectedIndex == 1)
                     {
-                        if (!(cboQty_Money.EditValue.NullString() == "MONEY" && (new string[] { "3", "2", "4" }).Contains(rdoChoose.EditValue.NullString())))
+                        if (!(cboQty_Money.EditValue.NullString() == "MONEY" && (new string[] { "1","3", "2", "4" }).Contains(rdoChoose.EditValue.NullString())))
                         {
                             MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                             return;
@@ -855,7 +889,18 @@ namespace Wisol.MES.Forms.REPORT
                     newCodes = newCodes.Substring(0, newCodes.Length - 1);
                     cheCboSparepart.EditValue = "";
                     cheCboSparepart.EditValue = newCodes;
+                    cheCboSparepart.ShowPopup();
+                    cheCboSparepart.ClosePopup();
                     lstBoxSparepart.DataSource = lstSparepart;
+                    btnDraw.PerformClick();
+                }
+                else
+                {
+                    cheCboSparepart.EditValue = "";
+                    cheCboSparepart.Text = "";
+                    cheCboSparepart.ShowPopup();
+                    cheCboSparepart.ClosePopup();
+                    lstBoxSparepart.DataSource = null;
                     btnDraw.PerformClick();
                 }
             }

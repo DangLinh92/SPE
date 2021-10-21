@@ -88,6 +88,7 @@ namespace Wisol.MES
 
         public static string INVENTORY_REPORT = "1";
         public static string INVENTORY_IN_OUT_REPORT = "2";
+        public static string INVENTORY_IN_OUT_REPORT_BY_DAY = "3";
 
         public static string MODE_NEW = "NEW";
         public static string MODE_UPDATE = "UPDATE";
