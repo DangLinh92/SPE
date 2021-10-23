@@ -696,10 +696,14 @@ namespace Wisol.MES.Forms.CONTENT
             //}
             #endregion
 
+            splashScreenManager1.ShowWaitForm();
+
             GetData();
 
             btnClear.PerformClick();
             btnClearReal.PerformClick();
+
+            splashScreenManager1.CloseWaitForm();
         }
         private void btnInventoryOfAssets_Click(object sender, EventArgs e)
         {

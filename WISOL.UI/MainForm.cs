@@ -1184,8 +1184,8 @@ namespace Wisol.MES
                 {
                     if (result.ReturnDataSet.Tables[0].Rows.Count > 0)
                     {
-                        SoundPlayer soundPlayer = new SoundPlayer(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "answer-tone.wav"));
-                        soundPlayer.Play();
+                        //SoundPlayer soundPlayer = new SoundPlayer(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "answer-tone.wav"));
+                        //soundPlayer.Play();
                         string url = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Images/storage.png");
                         Image img = Image.FromFile(url);
                         AlertInfo info = new AlertInfo("Tồn kho", "Một số thiết bị tồn kho tới ngưỡng  Click để kiểm tra!", img);

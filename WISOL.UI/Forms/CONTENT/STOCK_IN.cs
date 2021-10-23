@@ -26,9 +26,9 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void STOCK_IN_Load(object sender, EventArgs e)
         {
+            Classes.Common.SetFormIdToButton(this, "STOCK_IN");
             Init_Control();
             LoadData();
-            Classes.Common.SetFormIdToButton(this, "STOCK_IN");
             //firstLoad = false;
         }
 
@@ -59,6 +59,7 @@ namespace Wisol.MES.Forms.CONTENT
                 cboPhieu.SelectedIndex = 0;
                 cboTrangThai.SelectedIndex = 0;
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_KHO.GET", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
+
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
                     DataTable kho = m_ResultDB.ReturnDataSet.Tables[0];
