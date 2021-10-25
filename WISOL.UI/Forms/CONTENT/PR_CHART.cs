@@ -102,7 +102,7 @@ namespace Wisol.MES.Forms.CONTENT
                         sheet["F" + (13 + i)].Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
                         sheet["F" + (13 + i)].Alignment.Vertical = SpreadsheetVerticalAlignment.Center;
                         pic.Placement = Placement.MoveAndSize;
-                       
+
                         pic.Width = (float)sheet["F" + (13 + i)].ColumnWidth - 80;
                         pic.Height = (float)sheet["F" + (13 + i)].RowHeight - 80;
                         pic.Move(40, 40);
@@ -218,7 +218,7 @@ namespace Wisol.MES.Forms.CONTENT
                         DataDraw.Rows.Add(row1);
                     }
                     DataRow row2 = DataDraw.NewRow();
-                    row2[0] = "생산계획(K point)";
+                    row2[0] = Consts.DEPARTMENT == Consts.SMT_DEPT ? "생산계획(K point)" : "생산계획";
                     DataDraw.Rows.Add(row2);
 
                     // AVG mua hang
@@ -289,6 +289,34 @@ namespace Wisol.MES.Forms.CONTENT
                         }
                     }
 
+                    // K POINT 
+                    if (Consts.DEPARTMENT == Consts.SMT_DEPT)
+                    {
+                        foreach (DataRow row in DataDraw.Rows)
+                        {
+                            if (row[0].NullString().Contains("생산계획"))
+                            {
+                                foreach (DataRow item in tableCollection[4].Rows)
+                                {
+                                    row[1] = float.Parse(item["PRE_YEAR"].IfNullIsZero());
+                                    row[2] = float.Parse(item["YEAR_POINT"].IfNullIsZero());
+
+                                    foreach (DataColumn col in DataDraw.Columns)
+                                    {
+                                        if(col.Caption != "Column1")
+                                        {
+                                            if(col.Caption.Contains("월") && col.Caption.Contains(item["TIME_VALUE"].NullString()))
+                                            {
+                                                row[item["TIME_VALUE"].NullString()+"월"] = float.Parse(item["PLANT"].IfNullIsZero());
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
                     foreach (DataRow row in DataDraw.Rows)
                     {
                         for (int k = 1; k < DataDraw.Columns.Count; k++)
@@ -442,7 +470,7 @@ namespace Wisol.MES.Forms.CONTENT
                     rangeFormatting.Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center;
                     chartsheet[range].EndUpdateFormatting(rangeFormatting);
 
-                    Formatting rangeFormatting1 = chartsheet["B29:B"+ (29 + totalRow)].BeginUpdateFormatting();
+                    Formatting rangeFormatting1 = chartsheet["B29:B" + (29 + totalRow)].BeginUpdateFormatting();
                     rangeFormatting1.Alignment.Vertical = SpreadsheetVerticalAlignment.Center;
                     rangeFormatting1.Alignment.Horizontal = SpreadsheetHorizontalAlignment.Left;
                     chartsheet[range].EndUpdateFormatting(rangeFormatting1);
