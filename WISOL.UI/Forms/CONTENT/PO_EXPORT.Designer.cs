@@ -41,9 +41,9 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtPO_Example = new Wisol.XTextEdit();
             this.txtPO_ID = new Wisol.XTextEdit();
             this.lblPO = new System.Windows.Forms.Label();
-            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddSapPO = new DevExpress.XtraEditors.SimpleButton();
             this.btnMerge = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnCreateExcel = new Wisol.XSimpleButton(this.components);
             this.spreadsheet_PO = new DevExpress.XtraSpreadsheet.SpreadsheetControl();
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
@@ -205,16 +205,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.lblPO.TabIndex = 1;
             this.lblPO.Text = "PO Number";
             // 
-            // btnSave
-            // 
-            this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
-            this.btnSave.Location = new System.Drawing.Point(307, 3);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(139, 23);
-            this.btnSave.TabIndex = 8;
-            this.btnSave.Text = "Xác nhận hoàn thành";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // btnAddSapPO
             // 
             this.btnAddSapPO.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddSapPO.ImageOptions.Image")));
@@ -235,6 +225,16 @@ namespace Wisol.MES.Forms.CONTENT
             this.btnMerge.Text = "Merge code";
             this.btnMerge.Click += new System.EventHandler(this.btnMerge_Click);
             // 
+            // btnSave
+            // 
+            this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
+            this.btnSave.Location = new System.Drawing.Point(307, 3);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(139, 23);
+            this.btnSave.TabIndex = 8;
+            this.btnSave.Text = "Xác nhận hoàn thành";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // btnCreateExcel
             // 
             this.btnCreateExcel.FormId = null;
@@ -254,6 +254,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.spreadsheet_PO.Location = new System.Drawing.Point(12, 98);
             this.spreadsheet_PO.Name = "spreadsheet_PO";
+            this.spreadsheet_PO.Options.Culture = new System.Globalization.CultureInfo("en-US");
             this.spreadsheet_PO.Size = new System.Drawing.Size(1694, 727);
             this.spreadsheet_PO.TabIndex = 5;
             this.spreadsheet_PO.Text = "spreadsheetControl1";

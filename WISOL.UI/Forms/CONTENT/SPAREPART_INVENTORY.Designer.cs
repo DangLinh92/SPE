@@ -366,7 +366,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.cboReportType.Items.AddRange(new object[] {
             "Báo cáo tồn kho-재고 보고서",
             "Báo cáo tổng hợp nhập xuất tồn-월별 보고서",
-            "Báo cáo tồn kho theo ngày"});
+            "Báo cáo tồn kho theo ngày-일별 재고 보고서"});
             this.cboReportType.Location = new System.Drawing.Point(631, 12);
             this.cboReportType.Name = "cboReportType";
             this.cboReportType.Size = new System.Drawing.Size(317, 21);

@@ -168,7 +168,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnListSparepartLend
             // 
+            this.btnListSparepartLend.FormId = null;
             this.btnListSparepartLend.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnListSparepartLend.ImageOptions.Image")));
+            this.btnListSparepartLend.isFormType = false;
             this.btnListSparepartLend.Location = new System.Drawing.Point(677, 60);
             this.btnListSparepartLend.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnListSparepartLend.MinimumSize = new System.Drawing.Size(129, 30);
@@ -181,7 +183,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnHistory
             // 
+            this.btnHistory.FormId = null;
             this.btnHistory.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnHistory.ImageOptions.Image")));
+            this.btnHistory.isFormType = false;
             this.btnHistory.Location = new System.Drawing.Point(544, 60);
             this.btnHistory.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnHistory.MinimumSize = new System.Drawing.Size(129, 30);
@@ -194,7 +198,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnReloadData
             // 
+            this.btnReloadData.FormId = null;
             this.btnReloadData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReloadData.ImageOptions.Image")));
+            this.btnReloadData.isFormType = false;
             this.btnReloadData.Location = new System.Drawing.Point(411, 60);
             this.btnReloadData.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnReloadData.MinimumSize = new System.Drawing.Size(129, 30);
@@ -208,7 +214,7 @@ namespace Wisol.MES.Forms.CONTENT
             // stlKho
             // 
             this.stlKho.EditValue = "";
-            this.stlKho.Location = new System.Drawing.Point(828, 36);
+            this.stlKho.Location = new System.Drawing.Point(837, 36);
             this.stlKho.Name = "stlKho";
             this.stlKho.Properties.Appearance.Options.UseTextOptions = true;
             this.stlKho.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -217,7 +223,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.stlKho.Properties.ImmediatePopup = true;
             this.stlKho.Properties.NullText = "";
             this.stlKho.Properties.PopupView = this.aceGridLookUpEdit1View;
-            this.stlKho.Size = new System.Drawing.Size(255, 20);
+            this.stlKho.Size = new System.Drawing.Size(246, 20);
             this.stlKho.StyleController = this.xLayoutControl2;
             this.stlKho.TabIndex = 9;
             this.stlKho.EditValueChanged += new System.EventHandler(this.stlKho_EditValueChanged);
@@ -232,7 +238,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnSearch
             // 
+            this.btnSearch.FormId = null;
             this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
+            this.btnSearch.isFormType = false;
             this.btnSearch.Location = new System.Drawing.Point(12, 60);
             this.btnSearch.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSearch.MinimumSize = new System.Drawing.Size(129, 30);
@@ -245,7 +253,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnClear
             // 
+            this.btnClear.FormId = null;
             this.btnClear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.ImageOptions.Image")));
+            this.btnClear.isFormType = false;
             this.btnClear.Location = new System.Drawing.Point(810, 60);
             this.btnClear.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClear.MinimumSize = new System.Drawing.Size(129, 30);
@@ -258,7 +268,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnAddNewDelivery
             // 
+            this.btnAddNewDelivery.FormId = null;
             this.btnAddNewDelivery.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddNewDelivery.ImageOptions.Image")));
+            this.btnAddNewDelivery.isFormType = false;
             this.btnAddNewDelivery.Location = new System.Drawing.Point(278, 60);
             this.btnAddNewDelivery.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnAddNewDelivery.MinimumSize = new System.Drawing.Size(129, 30);
@@ -266,12 +278,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.btnAddNewDelivery.Size = new System.Drawing.Size(129, 30);
             this.btnAddNewDelivery.StyleController = this.xLayoutControl2;
             this.btnAddNewDelivery.TabIndex = 7;
-            this.btnAddNewDelivery.Text = "New Delivery";
+            this.btnAddNewDelivery.Text = "New Delivery_출고";
             this.btnAddNewDelivery.Click += new System.EventHandler(this.btnAddNewDelivery_Click);
             // 
             // btnAddNewReceive
             // 
+            this.btnAddNewReceive.FormId = null;
             this.btnAddNewReceive.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnAddNewReceive.ImageOptions.Image")));
+            this.btnAddNewReceive.isFormType = false;
             this.btnAddNewReceive.Location = new System.Drawing.Point(145, 60);
             this.btnAddNewReceive.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnAddNewReceive.MinimumSize = new System.Drawing.Size(129, 30);
@@ -279,12 +293,12 @@ namespace Wisol.MES.Forms.CONTENT
             this.btnAddNewReceive.Size = new System.Drawing.Size(129, 30);
             this.btnAddNewReceive.StyleController = this.xLayoutControl2;
             this.btnAddNewReceive.TabIndex = 6;
-            this.btnAddNewReceive.Text = "New Receive";
+            this.btnAddNewReceive.Text = "New Receive_입고";
             this.btnAddNewReceive.Click += new System.EventHandler(this.btnAddNewReceive_Click);
             // 
             // cboPhieu
             // 
-            this.cboPhieu.Location = new System.Drawing.Point(64, 36);
+            this.cboPhieu.Location = new System.Drawing.Point(73, 36);
             this.cboPhieu.Name = "cboPhieu";
             this.cboPhieu.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -292,14 +306,14 @@ namespace Wisol.MES.Forms.CONTENT
             "ALL(Tất cả)",
             "IN(Nhập)",
             "OUT(Xuất)"});
-            this.cboPhieu.Size = new System.Drawing.Size(398, 20);
+            this.cboPhieu.Size = new System.Drawing.Size(389, 20);
             this.cboPhieu.StyleController = this.xLayoutControl2;
             this.cboPhieu.TabIndex = 3;
             this.cboPhieu.SelectedIndexChanged += new System.EventHandler(this.cboPhieu_SelectedIndexChanged);
             // 
             // cboTrangThai
             // 
-            this.cboTrangThai.Location = new System.Drawing.Point(518, 36);
+            this.cboTrangThai.Location = new System.Drawing.Point(527, 36);
             this.cboTrangThai.Name = "cboTrangThai";
             this.cboTrangThai.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -308,7 +322,7 @@ namespace Wisol.MES.Forms.CONTENT
             "NEW",
             "INPROGRESS",
             "COMPLETE"});
-            this.cboTrangThai.Size = new System.Drawing.Size(254, 20);
+            this.cboTrangThai.Size = new System.Drawing.Size(245, 20);
             this.cboTrangThai.StyleController = this.xLayoutControl2;
             this.cboTrangThai.TabIndex = 4;
             this.cboTrangThai.SelectedIndexChanged += new System.EventHandler(this.cboTrangThai_SelectedIndexChanged);
@@ -316,13 +330,13 @@ namespace Wisol.MES.Forms.CONTENT
             // dateFrom
             // 
             this.dateFrom.EditValue = null;
-            this.dateFrom.Location = new System.Drawing.Point(64, 12);
+            this.dateFrom.Location = new System.Drawing.Point(73, 12);
             this.dateFrom.Name = "dateFrom";
             this.dateFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateFrom.Size = new System.Drawing.Size(398, 20);
+            this.dateFrom.Size = new System.Drawing.Size(389, 20);
             this.dateFrom.StyleController = this.xLayoutControl2;
             this.dateFrom.TabIndex = 1;
             this.dateFrom.EditValueChanged += new System.EventHandler(this.dateFrom_EditValueChanged);
@@ -330,13 +344,13 @@ namespace Wisol.MES.Forms.CONTENT
             // dateTo
             // 
             this.dateTo.EditValue = null;
-            this.dateTo.Location = new System.Drawing.Point(518, 12);
+            this.dateTo.Location = new System.Drawing.Point(527, 12);
             this.dateTo.Name = "dateTo";
             this.dateTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateTo.Size = new System.Drawing.Size(565, 20);
+            this.dateTo.Size = new System.Drawing.Size(556, 20);
             this.dateTo.StyleController = this.xLayoutControl2;
             this.dateTo.TabIndex = 2;
             // 
