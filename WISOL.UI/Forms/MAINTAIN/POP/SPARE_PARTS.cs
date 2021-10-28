@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -51,7 +53,7 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
                     {
                         foreach (DataRow item in DATA.Rows)
                         {
-                            if(item["CODE"].NullString() == gvList.GetRowCellValue(i, "CODE").NullString())
+                            if (item["CODE"].NullString() == gvList.GetRowCellValue(i, "CODE").NullString())
                             {
                                 gvList.SelectRow(i);
                             }
@@ -132,10 +134,10 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
         {
             try
             {
-                if(e.RowHandle < 0)
+                if (e.RowHandle < 0)
                     return;
 
-                if(e.Column.Caption == "Selection")
+                if (e.Column.Caption == "Selection")
                 {
                     string Ischecked = e.CellValue.NullString();
 
@@ -146,7 +148,7 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
                         DATA.Columns.Add("NAME_VI");
                     }
 
-                    if(Ischecked == "True")
+                    if (Ischecked == "True")
                     {
                         DataRow row = DATA.NewRow();
                         row["CODE"] = gvList.GetRowCellValue(e.RowHandle, "CODE").NullString();
@@ -164,13 +166,60 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
                                 break;
                             }
                         }
-                       
+
                     }
                 }
             }
             catch (Exception ex)
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void gvList_MouseDown(object sender, MouseEventArgs e)
+        {
+            GridHitInfo info = gvList.CalcHitInfo(e.Location);
+            Console.WriteLine(info.HitTest);
+            if (info.Column != null && info.HitTest == GridHitTest.Column && info.Column.FieldName == DevExpress.XtraGrid.Views.Grid.GridView.CheckBoxSelectorColumnName)
+            {
+
+            }
+        }
+
+        private void gvList_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            int controllerRow = e.ControllerRow;
+            if (controllerRow == GridControl.InvalidRowHandle)
+            {
+                if (gvList.GetSelectedRows().Length == 0)
+                {
+                    DATA.Rows.Clear();
+                    return;
+                }
+
+                string code = "";
+                bool isOke = false;
+                foreach (int i in gvList.GetSelectedRows())
+                {
+                    code = gvList.GetRowCellValue(i, "CODE").NullString();
+                    foreach (DataRow item in DATA.Rows)
+                    {
+                        if (item["CODE"].NullString() == code)
+                        {
+                            isOke = true;
+                            break;
+                        }
+                    }
+
+                    if (!isOke)
+                    {
+                        DataRow slRow = gvList.GetDataRow(i);
+                        DataRow row = DATA.NewRow();
+                        row["CODE"] = slRow["CODE"];
+                        row["NAME_VI"] = slRow["NAME_VI"];
+                        DATA.Rows.Add(row);
+                    }
+                }
             }
         }
     }

@@ -204,13 +204,14 @@ namespace Wisol.MES.Forms.MAINTAIN
                     sparepartList += row["CODE"].NullString() + "^";
                 }
 
-                sparepartList = sparepartList.Substring(0, sparepartList.Length - 1);
+                if (sparepartList.Trim() != "" && sparepartList.Trim().Length > 0)
+                    sparepartList = sparepartList.Substring(0, sparepartList.Length - 1);
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP_EQUIPMENT.PUT",
                     new string[] { "A_CODE", "A_EQ_NAME", "A_EQ_TYPE", "A_EQ_YEAR", "A_EQ_LOCATION", "A_EQ_SERIAL", "A_EQ_ORIGIN", "A_EQ_MODEL", "A_DETAIL_INFO", "A_IMAGE", "A_USER", "A_DEPARTMENT", "A_DATA_SPARE", "A_STATUS", "A_DATE_IN", "A_SUB_LOCATION" },
                     new string[] { txtEquipmentId.EditValue.NullString(),txtEquipmentName.EditValue.NullString(),stlEquipmentType.EditValue.NullString(),
                                    dateEQ_Year.EditValue.NullString(),stlLocationEQ.EditValue.NullString(),txtEQ_Serial.EditValue.NullString(),txtEQ_Origin.EditValue.NullString(),
-                                   txtEQ_Model.EditValue.NullString(),memoEq.EditValue.NullString(),img,Consts.USER_INFO.Id,Consts.DEPARTMENT,sparepartList,cboStatus.EditValue.NullString(),dateIn.EditValue.NullString(),txtSubLocation.EditValue.NullString() }) ;
+                                   txtEQ_Model.EditValue.NullString(),memoEq.EditValue.NullString(),img,Consts.USER_INFO.Id,Consts.DEPARTMENT,sparepartList,cboStatus.EditValue.NullString(),dateIn.EditValue.NullString(),txtSubLocation.EditValue.NullString() });
 
                 if (m_ResultDB.ReturnInt == 0)
                 {
@@ -357,10 +358,10 @@ namespace Wisol.MES.Forms.MAINTAIN
                     txtEquipmentId.EditValue = gvList.GetRowCellValue(e.RowHandle, "EQUIPMENT_ID").NullString();
                     txtEquipmentName.EditValue = gvList.GetRowCellValue(e.RowHandle, "EQUIPMENT_NAME").NullString();
 
-                    if(datas[0].Rows.Count > 0)
+                    if (datas[0].Rows.Count > 0)
                     {
                         stlEquipmentType.EditValue = datas[0].Rows[0]["EQUIPMENT_TYPE"].NullString();
-                        dateEQ_Year.EditValue = "01-01-" + datas[0].Rows[0]["EQ_MANUFACTURING_YEAR"].NullString();
+                        dateEQ_Year.EditValue = datas[0].Rows[0]["EQ_MANUFACTURING_YEAR"].NullString() == "" ? null : "01-01-" + datas[0].Rows[0]["EQ_MANUFACTURING_YEAR"].NullString();
                         txtEQ_Serial.EditValue = datas[0].Rows[0]["EQ_SERIAL"].NullString();
                         txtEQ_Origin.EditValue = datas[0].Rows[0]["EQ_ORIGIN"].NullString();
                         txtEQ_Model.EditValue = datas[0].Rows[0]["EQ_MODEL"].NullString();
@@ -379,8 +380,8 @@ namespace Wisol.MES.Forms.MAINTAIN
                         cboStatus.EditValue = "";
                         dateIn.EditValue = "";
                     }
-                  
-                    if(datas[3].Rows.Count > 0)
+
+                    if (datas[3].Rows.Count > 0)
                     {
                         stlLocationEQ.EditValue = datas[3].Rows[0]["EQ_LOCATION_ID"].NullString();
                         txtSubLocation.EditValue = datas[3].Rows[0]["SUB_LOCATION"].NullString();

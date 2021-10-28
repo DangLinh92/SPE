@@ -122,6 +122,8 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             this.gvList.Name = "gvList";
             this.gvList.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gvList_RowCellClick);
             this.gvList.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gvList_RowCellStyle);
+            this.gvList.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.gvList_SelectionChanged);
+            this.gvList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gvList_MouseDown);
             // 
             // Root
             // 
