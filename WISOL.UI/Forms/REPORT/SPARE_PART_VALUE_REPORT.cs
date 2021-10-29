@@ -26,7 +26,7 @@ namespace Wisol.MES.Forms.REPORT
         {
             try
             {
-                loChartSecond.Visibility =DevExpress.XtraLayout.Utils.LayoutVisibility.Never ;
+                loChartSecond.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
                 cboVNDKWR.SelectedIndex = 0;
                 Classes.Common.SetFormIdToButton(this, "SPARE_PART_VALUE_REPORT");
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_CHART_IN_OUT_STOCK.INIT_SPAREPART", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
@@ -135,7 +135,7 @@ namespace Wisol.MES.Forms.REPORT
 
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_CHART_SPARE_PART_VALUES.GETDATA",
                  new string[] { "A_DEPARTMENT", "A_TYPE", "A_TIME", "A_KRW_VND", "A_TOP", "A_TYPE_CATEGORY" },
-                 new string[] { stlDeptCode.EditValue.NullString(), typeView, time, cboVNDKWR.EditValue.NullString(), spTopNValue.EditValue.NullString(),cboCategory.SelectedIndex.NullString() });
+                 new string[] { stlDeptCode.EditValue.NullString(), typeView, time, cboVNDKWR.EditValue.NullString(), spTopNValue.EditValue.NullString(), cboCategory.SelectedIndex.NullString() });
 
                 if (m_ResultDB.ReturnInt == 0)
                 {
@@ -146,15 +146,15 @@ namespace Wisol.MES.Forms.REPORT
                     {
                         loChartSecond.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                         base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_CHART_SPARE_PART_VALUES.GETDATA",
-                                        new string[] { "A_DEPARTMENT", "A_TYPE", "A_TIME", "A_KRW_VND", "A_TOP" },
-                                        new string[] { stlDeptCode.EditValue.NullString(), typeView, dateMonth2.EditValue.NullString(), cboVNDKWR.EditValue.NullString(), spTopNValue.EditValue.NullString() });
+                                        new string[] { "A_DEPARTMENT", "A_TYPE", "A_TIME", "A_KRW_VND", "A_TOP", "A_TYPE_CATEGORY" },
+                                        new string[] { stlDeptCode.EditValue.NullString(), typeView, dateMonth2.EditValue.NullString(), cboVNDKWR.EditValue.NullString(), spTopNValue.EditValue.NullString(), cboCategory.SelectedIndex.NullString() });
 
                         if (m_ResultDB.ReturnInt == 0)
                         {
                             DataTableCollection datas1 = m_ResultDB.ReturnDataSet.Tables;
 
                             text = typeView + " " + DateTime.Parse(dateMonth2.EditValue.NullString()).Month;
-                            DrawChart(datas1, chartSecond,text);
+                            DrawChart(datas1, chartSecond, text);
                         }
                         else
                         {
@@ -173,7 +173,7 @@ namespace Wisol.MES.Forms.REPORT
             }
         }
 
-        private void DrawChart(DataTableCollection datas, ChartControl chartControl,string text)
+        private void DrawChart(DataTableCollection datas, ChartControl chartControl, string text)
         {
             chartControl.Series.Clear();
             chartControl.Titles.Clear();
@@ -299,7 +299,7 @@ namespace Wisol.MES.Forms.REPORT
                 dateMonth.Enabled = false;
                 dateYear.Enabled = false;
                 spQuarter.Enabled = true;
-                dateMonth2.Enabled =false;
+                dateMonth2.Enabled = false;
                 dateMonth2.EditValue = null;
                 loChartSecond.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
 

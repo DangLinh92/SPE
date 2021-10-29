@@ -368,5 +368,17 @@ namespace Wisol.MES.Forms.CONTENT.POP
             //    }
             //}
         }
+
+        private void rdoGroupFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(rdoGroupFilter.EditValue.NullString() == "DIFF")
+            {
+                gvList.ActiveFilterString = "[DIFF] > 0";
+            }
+            else
+            {
+                gvList.ClearColumnsFilter();
+            }
+        }
     }
 }

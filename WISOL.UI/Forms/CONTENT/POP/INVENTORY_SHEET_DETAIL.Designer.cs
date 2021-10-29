@@ -34,6 +34,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.xLayoutControl1 = new Wisol.XLayoutControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.rdoGroupFilter = new DevExpress.XtraEditors.RadioGroup();
             this.dateMonthSheetDetail = new DevExpress.XtraEditors.DateEdit();
             this.lblCountPosition = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -60,6 +61,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dateTimeChartRangeControlClient1 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
@@ -69,6 +71,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).BeginInit();
             this.xLayoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rdoGroupFilter.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateMonthSheetDetail.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateMonthSheetDetail.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScanbarcode.Properties)).BeginInit();
@@ -93,6 +96,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).BeginInit();
@@ -120,6 +124,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // xLayoutControl2
             // 
+            this.xLayoutControl2.Controls.Add(this.rdoGroupFilter);
             this.xLayoutControl2.Controls.Add(this.dateMonthSheetDetail);
             this.xLayoutControl2.Controls.Add(this.lblCountPosition);
             this.xLayoutControl2.Controls.Add(this.label1);
@@ -139,6 +144,19 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.xLayoutControl2.Size = new System.Drawing.Size(1257, 723);
             this.xLayoutControl2.TabIndex = 0;
             this.xLayoutControl2.Text = "xLayoutControl2";
+            // 
+            // rdoGroupFilter
+            // 
+            this.rdoGroupFilter.Location = new System.Drawing.Point(930, 86);
+            this.rdoGroupFilter.Name = "rdoGroupFilter";
+            this.rdoGroupFilter.Properties.Columns = 2;
+            this.rdoGroupFilter.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("ALL", "Tất cả", true, "ALL", ""),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem("DIFF", "DIFF", true, "DIFF")});
+            this.rdoGroupFilter.Size = new System.Drawing.Size(315, 34);
+            this.rdoGroupFilter.StyleController = this.xLayoutControl2;
+            this.rdoGroupFilter.TabIndex = 17;
+            this.rdoGroupFilter.SelectedIndexChanged += new System.EventHandler(this.rdoGroupFilter_SelectedIndexChanged);
             // 
             // dateMonthSheetDetail
             // 
@@ -163,7 +181,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.lblCountPosition.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.lblCountPosition.Location = new System.Drawing.Point(413, 86);
             this.lblCountPosition.Name = "lblCountPosition";
-            this.lblCountPosition.Size = new System.Drawing.Size(832, 30);
+            this.lblCountPosition.Size = new System.Drawing.Size(414, 34);
             this.lblCountPosition.TabIndex = 15;
             this.lblCountPosition.Text = "0";
             this.lblCountPosition.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -173,14 +191,16 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(278, 86);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 30);
+            this.label1.Size = new System.Drawing.Size(131, 34);
             this.label1.TabIndex = 13;
             this.label1.Text = "Số vị trí đã kiểm tra:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnClearSelected
             // 
+            this.btnClearSelected.FormId = null;
             this.btnClearSelected.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClearSelected.ImageOptions.Image")));
+            this.btnClearSelected.isFormType = false;
             this.btnClearSelected.Location = new System.Drawing.Point(145, 86);
             this.btnClearSelected.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClearSelected.MinimumSize = new System.Drawing.Size(129, 30);
@@ -193,7 +213,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // btnSave
             // 
+            this.btnSave.FormId = null;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
+            this.btnSave.isFormType = false;
             this.btnSave.Location = new System.Drawing.Point(12, 86);
             this.btnSave.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSave.MinimumSize = new System.Drawing.Size(129, 30);
@@ -284,10 +306,10 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // gcList
             // 
-            this.gcList.Location = new System.Drawing.Point(12, 120);
+            this.gcList.Location = new System.Drawing.Point(12, 124);
             this.gcList.MainView = this.gvList;
             this.gcList.Name = "gcList";
-            this.gcList.Size = new System.Drawing.Size(1233, 591);
+            this.gcList.Size = new System.Drawing.Size(1233, 587);
             this.gcList.TabIndex = 4;
             this.gcList.UseEmbeddedNavigator = true;
             this.gcList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -320,7 +342,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem10,
             this.layoutControlItem11,
             this.layoutControlItem13,
-            this.layoutControlItem12});
+            this.layoutControlItem12,
+            this.layoutControlItem14});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1257, 723);
             this.layoutControlGroup1.TextVisible = false;
@@ -328,9 +351,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.gcList;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 108);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 112);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(1237, 595);
+            this.layoutControlItem2.Size = new System.Drawing.Size(1237, 591);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
@@ -394,7 +417,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem9.Control = this.btnSave;
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 74);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem9.Size = new System.Drawing.Size(133, 38);
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
@@ -403,7 +426,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem10.Control = this.btnClearSelected;
             this.layoutControlItem10.Location = new System.Drawing.Point(133, 74);
             this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem10.Size = new System.Drawing.Size(133, 38);
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
@@ -412,7 +435,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem11.Control = this.label1;
             this.layoutControlItem11.Location = new System.Drawing.Point(266, 74);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(135, 34);
+            this.layoutControlItem11.Size = new System.Drawing.Size(135, 38);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
@@ -421,7 +444,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem13.Control = this.lblCountPosition;
             this.layoutControlItem13.Location = new System.Drawing.Point(401, 74);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(836, 34);
+            this.layoutControlItem13.Size = new System.Drawing.Size(418, 38);
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
@@ -433,6 +456,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem12.Size = new System.Drawing.Size(619, 24);
             this.layoutControlItem12.Text = "Kiểm kê cho tháng";
             this.layoutControlItem12.TextSize = new System.Drawing.Size(87, 13);
+            // 
+            // layoutControlItem14
+            // 
+            this.layoutControlItem14.Control = this.rdoGroupFilter;
+            this.layoutControlItem14.Location = new System.Drawing.Point(819, 74);
+            this.layoutControlItem14.Name = "layoutControlItem14";
+            this.layoutControlItem14.Size = new System.Drawing.Size(418, 38);
+            this.layoutControlItem14.Text = "Lọc kết quả";
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(87, 13);
             // 
             // Root
             // 
@@ -470,6 +502,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).EndInit();
             this.xLayoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.rdoGroupFilter.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateMonthSheetDetail.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateMonthSheetDetail.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtScanbarcode.Properties)).EndInit();
@@ -494,6 +527,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).EndInit();
@@ -536,5 +570,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private DevExpress.XtraEditors.DateEdit dateMonthSheetDetail;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraEditors.DateTimeChartRangeControlClient dateTimeChartRangeControlClient1;
+        private DevExpress.XtraEditors.RadioGroup rdoGroupFilter;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
     }
 }
