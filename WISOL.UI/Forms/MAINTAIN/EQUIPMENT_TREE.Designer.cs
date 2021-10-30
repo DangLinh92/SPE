@@ -34,6 +34,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EQUIPMENT_TREE));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.stlEquipment = new Wisol.AceGridLookUpEdit(this.components);
             this.aceGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.tabControl = new DevExpress.XtraTab.XtraTabControl();
@@ -83,7 +84,8 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.DocumentTab = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.treeListEquipment = new DevExpress.XtraTreeList.TreeList();
-            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.txtManuafacturer = new Wisol.XTextEdit();
+            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stlEquipment.Properties)).BeginInit();
@@ -120,6 +122,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListEquipment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtManuafacturer.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -134,6 +137,14 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.groupControl1.Size = new System.Drawing.Size(1678, 846);
             this.groupControl1.TabIndex = 1;
             this.groupControl1.Text = "Cây thiết bị";
+            // 
+            // labelControl14
+            // 
+            this.labelControl14.Location = new System.Drawing.Point(14, 29);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(49, 13);
+            this.labelControl14.TabIndex = 2;
+            this.labelControl14.Text = "Mã tài sản";
             // 
             // stlEquipment
             // 
@@ -180,6 +191,8 @@ namespace Wisol.MES.Forms.MAINTAIN
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.txtManuafacturer);
+            this.panelControl3.Controls.Add(this.labelControl15);
             this.panelControl3.Controls.Add(this.btnUpLoadFile);
             this.panelControl3.Controls.Add(this.gcList);
             this.panelControl3.Controls.Add(this.memoDes);
@@ -210,7 +223,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.btnUpLoadFile.FormId = null;
             this.btnUpLoadFile.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUpLoadFile.ImageOptions.Image")));
             this.btnUpLoadFile.isFormType = false;
-            this.btnUpLoadFile.Location = new System.Drawing.Point(425, 502);
+            this.btnUpLoadFile.Location = new System.Drawing.Point(425, 300);
             this.btnUpLoadFile.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnUpLoadFile.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnUpLoadFile.Name = "btnUpLoadFile";
@@ -227,7 +240,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.gcList.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1,
             this.repositoryItemButtonEdit2});
-            this.gcList.Size = new System.Drawing.Size(451, 486);
+            this.gcList.Size = new System.Drawing.Size(409, 284);
             this.gcList.TabIndex = 20;
             this.gcList.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvList});
@@ -293,9 +306,9 @@ namespace Wisol.MES.Forms.MAINTAIN
             // 
             // memoDes
             // 
-            this.memoDes.Location = new System.Drawing.Point(98, 305);
+            this.memoDes.Location = new System.Drawing.Point(98, 343);
             this.memoDes.Name = "memoDes";
-            this.memoDes.Size = new System.Drawing.Size(312, 191);
+            this.memoDes.Size = new System.Drawing.Size(736, 436);
             this.memoDes.TabIndex = 19;
             // 
             // labelControl13
@@ -309,7 +322,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // txtWeight
             // 
             this.txtWeight.IsRequire = false;
-            this.txtWeight.Location = new System.Drawing.Point(98, 271);
+            this.txtWeight.Location = new System.Drawing.Point(98, 305);
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.NullBackColor = System.Drawing.Color.Lime;
             this.txtWeight.NullValidation = false;
@@ -320,7 +333,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // 
             // labelControl12
             // 
-            this.labelControl12.Location = new System.Drawing.Point(10, 274);
+            this.labelControl12.Location = new System.Drawing.Point(10, 308);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(58, 13);
             this.labelControl12.TabIndex = 16;
@@ -329,7 +342,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // txtSize
             // 
             this.txtSize.IsRequire = false;
-            this.txtSize.Location = new System.Drawing.Point(98, 233);
+            this.txtSize.Location = new System.Drawing.Point(98, 267);
             this.txtSize.Name = "txtSize";
             this.txtSize.NullBackColor = System.Drawing.Color.Lime;
             this.txtSize.NullValidation = false;
@@ -340,7 +353,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // 
             // labelControl11
             // 
-            this.labelControl11.Location = new System.Drawing.Point(10, 236);
+            this.labelControl11.Location = new System.Drawing.Point(10, 270);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(50, 13);
             this.labelControl11.TabIndex = 14;
@@ -349,7 +362,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // txtMaterial
             // 
             this.txtMaterial.IsRequire = false;
-            this.txtMaterial.Location = new System.Drawing.Point(98, 192);
+            this.txtMaterial.Location = new System.Drawing.Point(98, 226);
             this.txtMaterial.Name = "txtMaterial";
             this.txtMaterial.NullBackColor = System.Drawing.Color.Lime;
             this.txtMaterial.NullValidation = false;
@@ -360,7 +373,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // 
             // labelControl10
             // 
-            this.labelControl10.Location = new System.Drawing.Point(10, 195);
+            this.labelControl10.Location = new System.Drawing.Point(10, 229);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(42, 13);
             this.labelControl10.TabIndex = 12;
@@ -369,7 +382,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // txtStatus
             // 
             this.txtStatus.IsRequire = false;
-            this.txtStatus.Location = new System.Drawing.Point(98, 153);
+            this.txtStatus.Location = new System.Drawing.Point(98, 187);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.NullBackColor = System.Drawing.Color.Lime;
             this.txtStatus.NullValidation = false;
@@ -380,7 +393,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // 
             // labelControl9
             // 
-            this.labelControl9.Location = new System.Drawing.Point(10, 156);
+            this.labelControl9.Location = new System.Drawing.Point(10, 190);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(51, 13);
             this.labelControl9.TabIndex = 10;
@@ -389,7 +402,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // txtMadeIn
             // 
             this.txtMadeIn.IsRequire = false;
-            this.txtMadeIn.Location = new System.Drawing.Point(98, 116);
+            this.txtMadeIn.Location = new System.Drawing.Point(98, 150);
             this.txtMadeIn.Name = "txtMadeIn";
             this.txtMadeIn.NullBackColor = System.Drawing.Color.Lime;
             this.txtMadeIn.NullValidation = false;
@@ -400,7 +413,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // 
             // labelControl7
             // 
-            this.labelControl7.Location = new System.Drawing.Point(10, 119);
+            this.labelControl7.Location = new System.Drawing.Point(10, 153);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(38, 13);
             this.labelControl7.TabIndex = 8;
@@ -409,7 +422,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // txtModel
             // 
             this.txtModel.IsRequire = false;
-            this.txtModel.Location = new System.Drawing.Point(98, 81);
+            this.txtModel.Location = new System.Drawing.Point(98, 115);
             this.txtModel.Name = "txtModel";
             this.txtModel.NullBackColor = System.Drawing.Color.Lime;
             this.txtModel.NullValidation = false;
@@ -420,7 +433,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(10, 84);
+            this.labelControl3.Location = new System.Drawing.Point(10, 118);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(28, 13);
             this.labelControl3.TabIndex = 6;
@@ -429,7 +442,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // txtSerial
             // 
             this.txtSerial.IsRequire = false;
-            this.txtSerial.Location = new System.Drawing.Point(98, 45);
+            this.txtSerial.Location = new System.Drawing.Point(98, 79);
             this.txtSerial.Name = "txtSerial";
             this.txtSerial.NullBackColor = System.Drawing.Color.Lime;
             this.txtSerial.NullValidation = false;
@@ -440,7 +453,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // 
             // labelControl2
             // 
-            this.labelControl2.Location = new System.Drawing.Point(10, 48);
+            this.labelControl2.Location = new System.Drawing.Point(10, 82);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(26, 13);
             this.labelControl2.TabIndex = 4;
@@ -449,7 +462,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // txtYearManual
             // 
             this.txtYearManual.IsRequire = false;
-            this.txtYearManual.Location = new System.Drawing.Point(98, 7);
+            this.txtYearManual.Location = new System.Drawing.Point(98, 47);
             this.txtYearManual.Name = "txtYearManual";
             this.txtYearManual.NullBackColor = System.Drawing.Color.Lime;
             this.txtYearManual.NullValidation = false;
@@ -460,7 +473,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(10, 10);
+            this.labelControl5.Location = new System.Drawing.Point(10, 50);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(66, 13);
             this.labelControl5.TabIndex = 2;
@@ -642,13 +655,25 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.treeListEquipment.TabIndex = 0;
             this.treeListEquipment.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeListEquipment_FocusedNodeChanged);
             // 
-            // labelControl14
+            // txtManuafacturer
             // 
-            this.labelControl14.Location = new System.Drawing.Point(14, 29);
-            this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(49, 13);
-            this.labelControl14.TabIndex = 2;
-            this.labelControl14.Text = "Mã tài sản";
+            this.txtManuafacturer.IsRequire = false;
+            this.txtManuafacturer.Location = new System.Drawing.Point(98, 14);
+            this.txtManuafacturer.Name = "txtManuafacturer";
+            this.txtManuafacturer.NullBackColor = System.Drawing.Color.Lime;
+            this.txtManuafacturer.NullValidation = false;
+            this.txtManuafacturer.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtManuafacturer.Properties.Appearance.Options.UseBackColor = true;
+            this.txtManuafacturer.Size = new System.Drawing.Size(312, 20);
+            this.txtManuafacturer.TabIndex = 23;
+            // 
+            // labelControl15
+            // 
+            this.labelControl15.Location = new System.Drawing.Point(10, 17);
+            this.labelControl15.Name = "labelControl15";
+            this.labelControl15.Size = new System.Drawing.Size(64, 13);
+            this.labelControl15.TabIndex = 22;
+            this.labelControl15.Text = "Nhà sản xuất";
             // 
             // EQUIPMENT_TREE
             // 
@@ -697,6 +722,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeListEquipment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtManuafacturer.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -755,5 +781,7 @@ namespace Wisol.MES.Forms.MAINTAIN
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraGrid.Columns.GridColumn col_Type;
         private LabelControl labelControl14;
+        private XTextEdit txtManuafacturer;
+        private LabelControl labelControl15;
     }
 }

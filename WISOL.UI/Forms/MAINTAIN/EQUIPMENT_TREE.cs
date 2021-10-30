@@ -158,6 +158,7 @@ namespace Wisol.MES.Forms.MAINTAIN
                     txtSize.Text = datas[0].Rows[0]["SIZE"].NullString();
                     txtWeight.Text = datas[0].Rows[0]["WEIGHT"].NullString();
                     memoDes.EditValue = datas[0].Rows[0]["DETAIL_INFO"].NullString();
+                    txtManuafacturer.EditValue = datas[0].Rows[0]["MANUFACTURER"].NullString();
 
                     gcList.DataSource = datas[1];
 
