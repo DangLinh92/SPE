@@ -54,7 +54,7 @@ namespace Wisol.MES.Forms.REPORT
                 }
                 stlDeptCode.EditValue = Consts.DEPARTMENT;
 
-                
+
             }
             catch (Exception ex)
             {
@@ -278,7 +278,7 @@ namespace Wisol.MES.Forms.REPORT
                     diagram1.AxisY.Title.Visibility = DevExpress.Utils.DefaultBoolean.True;
                     diagram1.AxisY.Title.TextColor = Color.FromArgb(36, 113, 163);
 
-                    if(datas.Count > 1)
+                    if (datas.Count > 1)
                     {
                         Series series_total_in = new Series("", ViewType.Bar);
                         series_total_in.DataSource = datas[1].Copy();
@@ -575,7 +575,7 @@ namespace Wisol.MES.Forms.REPORT
                 {
                     if (cheCboSparepart.EditValue.NullString() == "" && cboChooseData.SelectedIndex == 1)
                     {
-                        if (!(cboQty_Money.EditValue.NullString() == "MONEY" && (new string[] { "1","3", "2", "4" }).Contains(rdoChoose.EditValue.NullString())))
+                        if (!(cboQty_Money.EditValue.NullString() == "MONEY" && (new string[] { "1", "3", "2", "4" }).Contains(rdoChoose.EditValue.NullString())))
                         {
                             MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                             return;
@@ -833,7 +833,7 @@ namespace Wisol.MES.Forms.REPORT
             }
             else
             {
-                if(cboChooseData.SelectedIndex == 2 || cboChooseData.SelectedIndex == 3)
+                if (cboChooseData.SelectedIndex == 2 || cboChooseData.SelectedIndex == 3)
                 {
                     cheCboSparepart.Enabled = false;
                 }
@@ -841,7 +841,7 @@ namespace Wisol.MES.Forms.REPORT
                 {
                     cheCboSparepart.Enabled = true;
                 }
-               
+
                 if (rdoChoose.EditValue.NullString() == "1") // DAY
                 {
                     dateTo.Enabled = true;
@@ -884,7 +884,7 @@ namespace Wisol.MES.Forms.REPORT
                     lstSparepart.Add(row["CODE"].NullString() + ":" + row["NAME_VI"].NullString());
                 }
 
-                if(newCodes != "")
+                if (newCodes != "")
                 {
                     newCodes = newCodes.Substring(0, newCodes.Length - 1);
                     cheCboSparepart.EditValue = "";
@@ -926,6 +926,32 @@ namespace Wisol.MES.Forms.REPORT
                     row = DATA_SPARE_PART.NewRow();
                     row["CODE"] = item.NullString();
                     DATA_SPARE_PART.Rows.Add(row);
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void btnSyncData_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult dialogResult = MsgBox.Show("DO YOU WANT TO SYNC NEW DATA?".Translation(), MsgType.Warning, DialogType.OkCancel);
+                if (dialogResult == DialogResult.OK)
+                {
+                    splashScreenManager1.ShowWaitForm();
+                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_LOCATION.BASE_LINE_RUN_TIME", new string[] { "A_DEPT_CODE" }, new string[] { stlDeptCode.EditValue.NullString() });
+                    if (m_ResultDB.ReturnInt == 0)
+                    {
+                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                    }
+                    else
+                    {
+                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                    }
+                    splashScreenManager1.CloseWaitForm();
                 }
             }
             catch (Exception ex)

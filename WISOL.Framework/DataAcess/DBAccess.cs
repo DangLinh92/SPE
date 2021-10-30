@@ -309,7 +309,7 @@ namespace Wisol.DataAcess
                 cmd.Parameters.Add(V_RETURN);
 
                 da = new SqlDataAdapter(cmd);
-                da.SelectCommand.CommandTimeout = 60;
+                da.SelectCommand.CommandTimeout = 150;
                 da.Fill(ds);
                 con.Close();
                 resultDb.ReturnDataSet = ds;
