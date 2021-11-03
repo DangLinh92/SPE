@@ -36,6 +36,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.xLayoutControl2 = new Wisol.XLayoutControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl3 = new Wisol.XLayoutControl();
+            this.txtManuFacturer = new Wisol.XTextEdit();
             this.txtSubLocation = new Wisol.XTextEdit();
             this.dateIn = new DevExpress.XtraEditors.DateEdit();
             this.cboStatus = new DevExpress.XtraEditors.ComboBoxEdit();
@@ -92,6 +93,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.gcList = new Wisol.XGridControl();
             this.gvList = new Wisol.XGridView();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -99,8 +101,6 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtManuFacturer = new Wisol.XTextEdit();
-            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -111,6 +111,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl3)).BeginInit();
             this.xLayoutControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtManuFacturer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSubLocation.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateIn.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateIn.Properties)).BeginInit();
@@ -157,6 +158,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
@@ -164,8 +166,6 @@ namespace Wisol.MES.Forms.MAINTAIN
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtManuFacturer.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             this.SuspendLayout();
             // 
             // xLayoutControl1
@@ -239,6 +239,19 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.xLayoutControl3.Size = new System.Drawing.Size(725, 757);
             this.xLayoutControl3.TabIndex = 0;
             this.xLayoutControl3.Text = "xLayoutControl3";
+            // 
+            // txtManuFacturer
+            // 
+            this.txtManuFacturer.IsRequire = false;
+            this.txtManuFacturer.Location = new System.Drawing.Point(515, 84);
+            this.txtManuFacturer.Name = "txtManuFacturer";
+            this.txtManuFacturer.NullBackColor = System.Drawing.Color.Lime;
+            this.txtManuFacturer.NullValidation = false;
+            this.txtManuFacturer.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtManuFacturer.Properties.Appearance.Options.UseBackColor = true;
+            this.txtManuFacturer.Size = new System.Drawing.Size(198, 20);
+            this.txtManuFacturer.StyleController = this.xLayoutControl3;
+            this.txtManuFacturer.TabIndex = 27;
             // 
             // txtSubLocation
             // 
@@ -859,6 +872,15 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.layoutControlItem23.Text = "SUB LOCATION";
             this.layoutControlItem23.TextSize = new System.Drawing.Size(139, 13);
             // 
+            // layoutControlItem24
+            // 
+            this.layoutControlItem24.Control = this.txtManuFacturer;
+            this.layoutControlItem24.Location = new System.Drawing.Point(352, 72);
+            this.layoutControlItem24.Name = "layoutControlItem24";
+            this.layoutControlItem24.Size = new System.Drawing.Size(353, 24);
+            this.layoutControlItem24.Text = "MANUFACTURER";
+            this.layoutControlItem24.TextSize = new System.Drawing.Size(139, 13);
+            // 
             // gcList
             // 
             this.gcList.Location = new System.Drawing.Point(12, 12);
@@ -924,28 +946,6 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
-            // txtManuFacturer
-            // 
-            this.txtManuFacturer.IsRequire = false;
-            this.txtManuFacturer.Location = new System.Drawing.Point(515, 84);
-            this.txtManuFacturer.Name = "txtManuFacturer";
-            this.txtManuFacturer.NullBackColor = System.Drawing.Color.Lime;
-            this.txtManuFacturer.NullValidation = false;
-            this.txtManuFacturer.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtManuFacturer.Properties.Appearance.Options.UseBackColor = true;
-            this.txtManuFacturer.Size = new System.Drawing.Size(198, 20);
-            this.txtManuFacturer.StyleController = this.xLayoutControl3;
-            this.txtManuFacturer.TabIndex = 27;
-            // 
-            // layoutControlItem24
-            // 
-            this.layoutControlItem24.Control = this.txtManuFacturer;
-            this.layoutControlItem24.Location = new System.Drawing.Point(352, 72);
-            this.layoutControlItem24.Name = "layoutControlItem24";
-            this.layoutControlItem24.Size = new System.Drawing.Size(353, 24);
-            this.layoutControlItem24.Text = "MANUFACTURER";
-            this.layoutControlItem24.TextSize = new System.Drawing.Size(139, 13);
-            // 
             // EQUIPMENT
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -964,6 +964,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl3)).EndInit();
             this.xLayoutControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtManuFacturer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSubLocation.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateIn.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateIn.Properties)).EndInit();
@@ -1010,6 +1011,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -1017,8 +1019,6 @@ namespace Wisol.MES.Forms.MAINTAIN
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtManuFacturer.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

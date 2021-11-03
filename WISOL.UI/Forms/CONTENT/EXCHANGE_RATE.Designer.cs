@@ -90,6 +90,8 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnSave
             // 
+            this.btnSave.FormId = null;
+            this.btnSave.isFormType = false;
             this.btnSave.Location = new System.Drawing.Point(1079, 740);
             this.btnSave.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSave.MinimumSize = new System.Drawing.Size(129, 30);
@@ -102,7 +104,8 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // txtRate
             // 
-            this.txtRate.Location = new System.Drawing.Point(966, 117);
+            this.txtRate.IsRequire = false;
+            this.txtRate.Location = new System.Drawing.Point(975, 117);
             this.txtRate.Name = "txtRate";
             this.txtRate.NullBackColor = System.Drawing.Color.Lime;
             this.txtRate.NullValidation = false;
@@ -110,33 +113,35 @@ namespace Wisol.MES.Forms.CONTENT
             this.txtRate.Properties.Appearance.Options.UseBackColor = true;
             this.txtRate.Properties.Mask.EditMask = "n2";
             this.txtRate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtRate.Size = new System.Drawing.Size(230, 20);
+            this.txtRate.Size = new System.Drawing.Size(221, 20);
             this.txtRate.StyleController = this.xLayoutControl1;
             this.txtRate.TabIndex = 4;
             // 
             // txtFrom
             // 
-            this.txtFrom.Location = new System.Drawing.Point(966, 69);
+            this.txtFrom.IsRequire = false;
+            this.txtFrom.Location = new System.Drawing.Point(975, 69);
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.NullBackColor = System.Drawing.Color.Lime;
             this.txtFrom.NullValidation = false;
             this.txtFrom.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtFrom.Properties.Appearance.Options.UseBackColor = true;
             this.txtFrom.Properties.ReadOnly = true;
-            this.txtFrom.Size = new System.Drawing.Size(230, 20);
+            this.txtFrom.Size = new System.Drawing.Size(221, 20);
             this.txtFrom.StyleController = this.xLayoutControl1;
             this.txtFrom.TabIndex = 2;
             // 
             // txtTo
             // 
-            this.txtTo.Location = new System.Drawing.Point(966, 93);
+            this.txtTo.IsRequire = false;
+            this.txtTo.Location = new System.Drawing.Point(975, 93);
             this.txtTo.Name = "txtTo";
             this.txtTo.NullBackColor = System.Drawing.Color.Lime;
             this.txtTo.NullValidation = false;
             this.txtTo.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtTo.Properties.Appearance.Options.UseBackColor = true;
             this.txtTo.Properties.ReadOnly = true;
-            this.txtTo.Size = new System.Drawing.Size(230, 20);
+            this.txtTo.Size = new System.Drawing.Size(221, 20);
             this.txtTo.StyleController = this.xLayoutControl1;
             this.txtTo.TabIndex = 3;
             // 
@@ -161,7 +166,7 @@ namespace Wisol.MES.Forms.CONTENT
             // dtMonth
             // 
             this.dtMonth.EditValue = null;
-            this.dtMonth.Location = new System.Drawing.Point(966, 45);
+            this.dtMonth.Location = new System.Drawing.Point(975, 45);
             this.dtMonth.Name = "dtMonth";
             this.dtMonth.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.dtMonth.Properties.Appearance.Options.UseBackColor = true;
@@ -174,7 +179,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.dtMonth.Properties.EditFormat.FormatString = "";
             this.dtMonth.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dtMonth.Properties.Mask.EditMask = "y";
-            this.dtMonth.Size = new System.Drawing.Size(230, 20);
+            this.dtMonth.Size = new System.Drawing.Size(221, 20);
             this.dtMonth.StyleController = this.xLayoutControl1;
             this.dtMonth.TabIndex = 1;
             this.dtMonth.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;

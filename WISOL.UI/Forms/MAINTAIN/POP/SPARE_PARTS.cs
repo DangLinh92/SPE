@@ -82,6 +82,8 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
                 //    DATA.Rows.Clear();
                 //}
 
+                gvList.ClearColumnsFilter();
+
                 //foreach (int index in gvList.GetSelectedRows())
                 //{
                 //    DataRow row = DATA.NewRow();
@@ -89,7 +91,6 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
                 //    row["NAME_VI"] = gvList.GetRowCellValue(index, "NAME_VI").NullString();
                 //    DATA.Rows.Add(row);
                 //}
-                gvList.ClearColumnsFilter();
 
                 for (int i = 0; i < gvList.RowCount; i++)
                 {
@@ -176,20 +177,21 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             }
         }
 
+        bool isSelectAll = false;
         private void gvList_MouseDown(object sender, MouseEventArgs e)
         {
             GridHitInfo info = gvList.CalcHitInfo(e.Location);
             Console.WriteLine(info.HitTest);
             if (info.Column != null && info.HitTest == GridHitTest.Column && info.Column.FieldName == DevExpress.XtraGrid.Views.Grid.GridView.CheckBoxSelectorColumnName)
             {
-
+                isSelectAll = true;
             }
         }
 
         private void gvList_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
         {
             int controllerRow = e.ControllerRow;
-            if (controllerRow == GridControl.InvalidRowHandle)
+            if (controllerRow == GridControl.InvalidRowHandle && isSelectAll)
             {
                 if (gvList.GetSelectedRows().Length == 0)
                 {
@@ -220,6 +222,8 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
                         DATA.Rows.Add(row);
                     }
                 }
+
+                isSelectAll = false;
             }
         }
     }
