@@ -151,7 +151,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             else
             {
                 cheIsReturn.Enabled = true;
-                txtQuantity_NG.Enabled = true;
+                txtQuantity_NG.Enabled = false;
                 dateExpired.Enabled = true;
                 loNote.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
                 mmNote.Enabled = true;
@@ -1899,7 +1899,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void cheIsIntegrated_CheckedChanged(object sender, EventArgs e)
         {
-            txtQuantity_NG.Enabled = !cheIsIntegrated.Checked;
+            txtQuantity_NG.Enabled = false;//= !cheIsIntegrated.Checked;
         }
 
         private void cheIsReturn_CheckedChanged(object sender, EventArgs e)
