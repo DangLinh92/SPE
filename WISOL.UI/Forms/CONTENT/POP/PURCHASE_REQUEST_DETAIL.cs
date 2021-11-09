@@ -286,10 +286,16 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     string.IsNullOrEmpty(txtPR_Code.EditValue.NullString()) ||
                     string.IsNullOrEmpty(stlStatus.EditValue.NullString()) ||
                     string.IsNullOrEmpty(stlMRP_Code.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(dateDelivery.EditValue.NullString()) || DataItem.Rows.Count == DeleteItem.Count)
+                    string.IsNullOrEmpty(dateDelivery.EditValue.NullString()) || 
+                    DataItem.Rows.Count == DeleteItem.Count)
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
+                }
+
+                if(stlStatus.EditValue.NullString() == Consts.STATUS_NEW)
+                {
+                    stlStatus.EditValue = Consts.STATUS_ACCEPT;
                 }
 
                 int count = 0;

@@ -109,6 +109,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_NEED_BUY = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DATE_NEED_FINISH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DATE_END_ACTUAL = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_SUB_QTY_NEED_BUY = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_SUB_DATE_NEED_FINISH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DEPT_CODE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_USER_UPDATE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_STATUS = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -329,7 +331,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnClear
             // 
+            this.btnClear.FormId = null;
             this.btnClear.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClear.ImageOptions.Image")));
+            this.btnClear.isFormType = false;
             this.btnClear.Location = new System.Drawing.Point(278, 508);
             this.btnClear.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClear.MinimumSize = new System.Drawing.Size(129, 30);
@@ -342,7 +346,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnSave
             // 
+            this.btnSave.FormId = null;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
+            this.btnSave.isFormType = false;
             this.btnSave.Location = new System.Drawing.Point(12, 508);
             this.btnSave.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSave.MinimumSize = new System.Drawing.Size(129, 30);
@@ -355,7 +361,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnDelete
             // 
+            this.btnDelete.FormId = null;
             this.btnDelete.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.ImageOptions.Image")));
+            this.btnDelete.isFormType = false;
             this.btnDelete.Location = new System.Drawing.Point(145, 508);
             this.btnDelete.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnDelete.MinimumSize = new System.Drawing.Size(129, 30);
@@ -687,7 +695,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnReloadData
             // 
+            this.btnReloadData.FormId = null;
             this.btnReloadData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReloadData.ImageOptions.Image")));
+            this.btnReloadData.isFormType = false;
             this.btnReloadData.Location = new System.Drawing.Point(858, 12);
             this.btnReloadData.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnReloadData.MinimumSize = new System.Drawing.Size(129, 30);
@@ -700,7 +710,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnNextPagePR
             // 
+            this.btnNextPagePR.FormId = null;
             this.btnNextPagePR.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNextPagePR.ImageOptions.Image")));
+            this.btnNextPagePR.isFormType = false;
             this.btnNextPagePR.Location = new System.Drawing.Point(725, 12);
             this.btnNextPagePR.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnNextPagePR.MinimumSize = new System.Drawing.Size(129, 30);
@@ -900,7 +912,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnMRP_List
             // 
+            this.btnMRP_List.FormId = null;
             this.btnMRP_List.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnMRP_List.ImageOptions.Image")));
+            this.btnMRP_List.isFormType = false;
             this.btnMRP_List.Location = new System.Drawing.Point(592, 12);
             this.btnMRP_List.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnMRP_List.MinimumSize = new System.Drawing.Size(129, 30);
@@ -913,7 +927,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnMrpCode
             // 
+            this.btnMrpCode.FormId = null;
             this.btnMrpCode.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnMrpCode.ImageOptions.Image")));
+            this.btnMrpCode.isFormType = false;
             this.btnMrpCode.Location = new System.Drawing.Point(459, 12);
             this.btnMrpCode.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnMrpCode.MinimumSize = new System.Drawing.Size(129, 30);
@@ -926,7 +942,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnCreateMRP
             // 
+            this.btnCreateMRP.FormId = null;
             this.btnCreateMRP.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCreateMRP.ImageOptions.Image")));
+            this.btnCreateMRP.isFormType = false;
             this.btnCreateMRP.Location = new System.Drawing.Point(858, 755);
             this.btnCreateMRP.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnCreateMRP.MinimumSize = new System.Drawing.Size(129, 30);
@@ -987,6 +1005,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_NEED_BUY,
             this.col_DATE_NEED_FINISH,
             this.col_DATE_END_ACTUAL,
+            this.col_SUB_QTY_NEED_BUY,
+            this.col_SUB_DATE_NEED_FINISH,
             this.col_DEPT_CODE,
             this.col_USER_UPDATE,
             this.col_STATUS,
@@ -1084,13 +1104,29 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_END_ACTUAL.VisibleIndex = 9;
             this.col_DATE_END_ACTUAL.Width = 58;
             // 
+            // col_SUB_QTY_NEED_BUY
+            // 
+            this.col_SUB_QTY_NEED_BUY.Caption = "Lượng mua gần nhất";
+            this.col_SUB_QTY_NEED_BUY.FieldName = "SUB_QTY_NEED_BUY";
+            this.col_SUB_QTY_NEED_BUY.Name = "col_SUB_QTY_NEED_BUY";
+            this.col_SUB_QTY_NEED_BUY.Visible = true;
+            this.col_SUB_QTY_NEED_BUY.VisibleIndex = 10;
+            // 
+            // col_SUB_DATE_NEED_FINISH
+            // 
+            this.col_SUB_DATE_NEED_FINISH.Caption = "Ngày cần kết thúc";
+            this.col_SUB_DATE_NEED_FINISH.FieldName = "SUB_DATE_NEED_FINISH";
+            this.col_SUB_DATE_NEED_FINISH.Name = "col_SUB_DATE_NEED_FINISH";
+            this.col_SUB_DATE_NEED_FINISH.Visible = true;
+            this.col_SUB_DATE_NEED_FINISH.VisibleIndex = 11;
+            // 
             // col_DEPT_CODE
             // 
             this.col_DEPT_CODE.Caption = "Bộ phận";
             this.col_DEPT_CODE.FieldName = "DEPT_CODE";
             this.col_DEPT_CODE.Name = "col_DEPT_CODE";
             this.col_DEPT_CODE.Visible = true;
-            this.col_DEPT_CODE.VisibleIndex = 10;
+            this.col_DEPT_CODE.VisibleIndex = 12;
             this.col_DEPT_CODE.Width = 58;
             // 
             // col_USER_UPDATE
@@ -1099,7 +1135,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_USER_UPDATE.FieldName = "USER";
             this.col_USER_UPDATE.Name = "col_USER_UPDATE";
             this.col_USER_UPDATE.Visible = true;
-            this.col_USER_UPDATE.VisibleIndex = 11;
+            this.col_USER_UPDATE.VisibleIndex = 13;
             this.col_USER_UPDATE.Width = 58;
             // 
             // col_STATUS
@@ -1108,7 +1144,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_STATUS.FieldName = "STATUS";
             this.col_STATUS.Name = "col_STATUS";
             this.col_STATUS.Visible = true;
-            this.col_STATUS.VisibleIndex = 12;
+            this.col_STATUS.VisibleIndex = 14;
             this.col_STATUS.Width = 58;
             // 
             // col_OFF_NOTI
@@ -1117,7 +1153,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_OFF_NOTI.FieldName = "OFF_NOTI";
             this.col_OFF_NOTI.Name = "col_OFF_NOTI";
             this.col_OFF_NOTI.Visible = true;
-            this.col_OFF_NOTI.VisibleIndex = 13;
+            this.col_OFF_NOTI.VisibleIndex = 15;
             this.col_OFF_NOTI.Width = 58;
             // 
             // col_ID
@@ -1126,7 +1162,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_ID.FieldName = "ID";
             this.col_ID.Name = "col_ID";
             this.col_ID.Visible = true;
-            this.col_ID.VisibleIndex = 14;
+            this.col_ID.VisibleIndex = 16;
             this.col_ID.Width = 58;
             // 
             // col_Add
@@ -1136,7 +1172,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_Add.FieldName = "ADD";
             this.col_Add.Name = "col_Add";
             this.col_Add.Visible = true;
-            this.col_Add.VisibleIndex = 15;
+            this.col_Add.VisibleIndex = 17;
             this.col_Add.Width = 25;
             // 
             // repositoryItemButtonEdit1
@@ -1467,5 +1503,7 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
         private XSimpleButton btnReloadData;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
+        private DevExpress.XtraGrid.Columns.GridColumn col_SUB_QTY_NEED_BUY;
+        private DevExpress.XtraGrid.Columns.GridColumn col_SUB_DATE_NEED_FINISH;
     }
 }

@@ -70,7 +70,7 @@ namespace Wisol.MES.Forms.CONTENT
 
                     foreach (GridColumn item in gvList.Columns)
                     {
-                        if(item.FieldName != "OFF_NOTI")
+                        if (item.FieldName != "OFF_NOTI")
                         {
                             item.OptionsColumn.AllowEdit = false;
                         }
@@ -349,7 +349,7 @@ namespace Wisol.MES.Forms.CONTENT
                     {
                         string isOff = gvlst.GetRowCellValue(rowHanle, "OFF_NOTI").NullString();
 
-                        if(!bool.TryParse(isOff,out _))
+                        if (!bool.TryParse(isOff, out _))
                         {
                             isOff = "False";
                         }
@@ -574,6 +574,11 @@ namespace Wisol.MES.Forms.CONTENT
                 if (status == Consts.STATUS_COMPLETE || isOff == "True")
                 {
                     e.Appearance.BackColor = Color.FromArgb(224, 224, 224);
+                }
+
+                if (e.Column.FieldName == "SUB_QTY_NEED_BUY" || e.Column.FieldName == "SUB_DATE_NEED_FINISH")
+                {
+                    e.Appearance.BackColor = Color.FromArgb(98, 167, 200);
                 }
             }
             catch (Exception ex)
