@@ -293,11 +293,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     return;
                 }
 
-                if(stlStatus.EditValue.NullString() == Consts.STATUS_NEW)
-                {
-                    stlStatus.EditValue = Consts.STATUS_ACCEPT;
-                }
-
                 int count = 0;
                 if (DataItem.Rows.Count > 0)
                 {
