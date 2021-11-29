@@ -207,6 +207,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         {
             gvList.OptionsView.ColumnAutoWidth = true;
             gvList.OptionsBehavior.Editable = EditAble;
+            gvList.Columns["STATUS"].OptionsColumn.AllowEdit = false;
             gvList.Columns["GL_ACCOUNT"].OptionsColumn.AllowEdit = false;
             gvList.Columns["COST_CTR"].OptionsColumn.AllowEdit = false;
             gvList.Columns["NAME_VI"].OptionsColumn.AllowEdit = false;

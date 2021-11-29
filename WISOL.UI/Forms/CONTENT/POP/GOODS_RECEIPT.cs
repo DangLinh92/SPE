@@ -88,16 +88,17 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_SP_INVENTORY.GET", new string[] { "A_DEPARTMENT" }, new string[] { Consts.DEPARTMENT });
                 if (mResultDB.ReturnInt == 0)
                 {
-                    SparePartData = base.mResultDB.ReturnDataSet.Tables[1];
-                    base.mBindData.BindGridLookEdit(stlSparePartCode, base.mResultDB.ReturnDataSet.Tables[1], "CODE", "NAME_VI");
-                    base.mBindData.BindGridLookEdit(stlKho, base.mResultDB.ReturnDataSet.Tables[2], "CODE", "NAME");
-                    base.mBindData.BindGridLookEdit(stlOrderCode, base.mResultDB.ReturnDataSet.Tables[4], "PO_ID", "PO_ID");
+                    DataTableCollection datas = base.mResultDB.ReturnDataSet.Tables;
+                    SparePartData = datas[1];
+                    base.mBindData.BindGridLookEdit(stlSparePartCode, datas[1], "CODE", "NAME_VI");
+                    base.mBindData.BindGridLookEdit(stlKho, datas[2], "CODE", "NAME");
+                    base.mBindData.BindGridLookEdit(stlOrderCode, datas[4], "PO_ID", "PO_ID");
 
                     DataTable tmp = new DataTable();
                     tmp.Columns.Add("CODE");
                     tmp.Columns.Add("NAME");
                     string selectedValueFirt = string.Empty;
-                    foreach (DataRow item in base.mResultDB.ReturnDataSet.Tables[5].Rows)
+                    foreach (DataRow item in datas[5].Rows)
                     {
                         if (INOUT == Consts.IN)
                         {
@@ -121,7 +122,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                     stlType.EditValue = selectedValueFirt;
 
-                    base.mBindData.BindGridLookEdit(stlUnit, base.mResultDB.ReturnDataSet.Tables[3], "CODE", "NAME");
+                    base.mBindData.BindGridLookEdit(stlUnit, datas[3], "CODE", "NAME");
 
                     stlKho.EditValue = StockCode;
                 }

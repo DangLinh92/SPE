@@ -76,6 +76,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl1 = new Wisol.XLayoutControl();
             this.dateTimeChartRangeControlClient1 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Wisol.MES.FrmWaitForm), true, true, typeof(System.Windows.Forms.UserControl));
+            this.btnOrderItem = new Wisol.XSimpleButton(this.components);
+            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -104,6 +106,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             this.SuspendLayout();
             // 
             // Root
@@ -136,6 +139,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // xLayoutControl2
             // 
+            this.xLayoutControl2.Controls.Add(this.btnOrderItem);
             this.xLayoutControl2.Controls.Add(this.btnDetailViewPO);
             this.xLayoutControl2.Controls.Add(this.txtPO_ID);
             this.xLayoutControl2.Controls.Add(this.btnGetAll);
@@ -212,26 +216,26 @@ namespace Wisol.MES.Forms.CONTENT
             // dateFromTime
             // 
             this.dateFromTime.EditValue = null;
-            this.dateFromTime.Location = new System.Drawing.Point(615, 12);
+            this.dateFromTime.Location = new System.Drawing.Point(748, 12);
             this.dateFromTime.Name = "dateFromTime";
             this.dateFromTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateFromTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateFromTime.Size = new System.Drawing.Size(289, 20);
+            this.dateFromTime.Size = new System.Drawing.Size(243, 20);
             this.dateFromTime.StyleController = this.xLayoutControl2;
             this.dateFromTime.TabIndex = 7;
             // 
             // dateToTime
             // 
             this.dateToTime.EditValue = null;
-            this.dateToTime.Location = new System.Drawing.Point(997, 12);
+            this.dateToTime.Location = new System.Drawing.Point(1084, 12);
             this.dateToTime.Name = "dateToTime";
             this.dateToTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateToTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateToTime.Size = new System.Drawing.Size(236, 20);
+            this.dateToTime.Size = new System.Drawing.Size(149, 20);
             this.dateToTime.StyleController = this.xLayoutControl2;
             this.dateToTime.TabIndex = 6;
             // 
@@ -487,7 +491,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem6,
             this.layoutControlItem7,
             this.layoutControlItem8,
-            this.layoutControlItem9});
+            this.layoutControlItem9,
+            this.layoutControlItem10});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(1644, 767);
             this.layoutControlGroup1.TextVisible = false;
@@ -513,18 +518,18 @@ namespace Wisol.MES.Forms.CONTENT
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.dateToTime;
-            this.layoutControlItem4.Location = new System.Drawing.Point(896, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(983, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(329, 34);
+            this.layoutControlItem4.Size = new System.Drawing.Size(242, 34);
             this.layoutControlItem4.Text = "TO_TIME";
             this.layoutControlItem4.TextSize = new System.Drawing.Size(77, 13);
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.dateFromTime;
-            this.layoutControlItem5.Location = new System.Drawing.Point(514, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(647, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(382, 34);
+            this.layoutControlItem5.Size = new System.Drawing.Size(336, 34);
             this.layoutControlItem5.Text = "FROM_TIME";
             this.layoutControlItem5.TextSize = new System.Drawing.Size(77, 13);
             // 
@@ -580,6 +585,30 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.splashScreenManager1.ClosingDelay = 500;
             // 
+            // btnOrderItem
+            // 
+            this.btnOrderItem.FormId = null;
+            this.btnOrderItem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("xSimpleButton1.ImageOptions.Image")));
+            this.btnOrderItem.isFormType = false;
+            this.btnOrderItem.Location = new System.Drawing.Point(526, 12);
+            this.btnOrderItem.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnOrderItem.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnOrderItem.Name = "btnOrderItem";
+            this.btnOrderItem.Size = new System.Drawing.Size(129, 30);
+            this.btnOrderItem.StyleController = this.xLayoutControl2;
+            this.btnOrderItem.TabIndex = 12;
+            this.btnOrderItem.Text = "ORDER ITEMS";
+            this.btnOrderItem.Click += new System.EventHandler(this.btnOrderItem_Click);
+            // 
+            // layoutControlItem10
+            // 
+            this.layoutControlItem10.Control = this.btnOrderItem;
+            this.layoutControlItem10.Location = new System.Drawing.Point(514, 0);
+            this.layoutControlItem10.Name = "layoutControlItem10";
+            this.layoutControlItem10.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem10.TextVisible = false;
+            // 
             // PURCHASE_REQUEST
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -616,6 +645,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).EndInit();
             this.xLayoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -667,5 +697,7 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem9;
         private DevExpress.XtraGrid.Columns.GridColumn col_PO_ID;
+        private XSimpleButton btnOrderItem;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
     }
 }

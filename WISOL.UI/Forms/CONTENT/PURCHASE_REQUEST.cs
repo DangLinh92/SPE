@@ -216,5 +216,17 @@ namespace Wisol.MES.Forms.CONTENT
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
+
+        private void btnOrderItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Consts.mainForm.NewPageFromOtherPage("ORDER_ITEMS", "Danh sách đặt hàng", "W", "Y", "");
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
     }
 }

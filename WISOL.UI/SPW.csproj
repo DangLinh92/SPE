@@ -325,6 +325,12 @@
     <Compile Include="Forms\CONTENT\MRP.Designer.cs">
       <DependentUpon>MRP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\ORDER_ITEMS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\ORDER_ITEMS.Designer.cs">
+      <DependentUpon>ORDER_ITEMS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\ORDER_JOURNEY.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -952,6 +958,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\MRP.resx">
       <DependentUpon>MRP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\ORDER_ITEMS.resx">
+      <DependentUpon>ORDER_ITEMS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\ORDER_JOURNEY.resx">
       <DependentUpon>ORDER_JOURNEY.cs</DependentUpon>

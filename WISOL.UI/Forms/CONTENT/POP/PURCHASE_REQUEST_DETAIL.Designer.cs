@@ -60,6 +60,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_UNIT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemGridLookUpEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
             this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.col_Rate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_QUANTITY_NEED_BUY = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_EXPECTED_PRICE_VN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_PRICE_VN = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -71,6 +72,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.repositoryItemGridLookUpEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
             this.repositoryItemGridLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.col_DATE_NEED_FINISH = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_STATUS = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_Delete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.col_STT_MRP = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -92,7 +94,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.col_Rate = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
@@ -401,6 +402,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_TOTAL_MONEY_US,
             this.col_VENDOR_ID,
             this.col_DATE_NEED_FINISH,
+            this.col_STATUS,
             this.col_Delete,
             this.col_STT_MRP,
             this.col_DATE_END_ACTUAL,
@@ -498,6 +500,14 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.repositoryItemGridLookUpEdit1View.Name = "repositoryItemGridLookUpEdit1View";
             this.repositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.repositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // col_Rate
+            // 
+            this.col_Rate.Caption = "Tỉ lệ";
+            this.col_Rate.FieldName = "RATE";
+            this.col_Rate.Name = "col_Rate";
+            this.col_Rate.Visible = true;
+            this.col_Rate.VisibleIndex = 7;
             // 
             // col_QUANTITY_NEED_BUY
             // 
@@ -624,6 +634,14 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_DATE_NEED_FINISH.VisibleIndex = 16;
             this.col_DATE_NEED_FINISH.Width = 97;
             // 
+            // col_STATUS
+            // 
+            this.col_STATUS.Caption = "STATUS";
+            this.col_STATUS.FieldName = "STATUS";
+            this.col_STATUS.Name = "col_STATUS";
+            this.col_STATUS.Visible = true;
+            this.col_STATUS.VisibleIndex = 17;
+            // 
             // col_Delete
             // 
             this.col_Delete.Caption = "DELETE";
@@ -631,7 +649,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_Delete.FieldName = "DELETE";
             this.col_Delete.Name = "col_Delete";
             this.col_Delete.Visible = true;
-            this.col_Delete.VisibleIndex = 17;
+            this.col_Delete.VisibleIndex = 18;
             this.col_Delete.Width = 30;
             // 
             // repositoryItemButtonEdit1
@@ -648,7 +666,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_STT_MRP.FieldName = "STT_MRP";
             this.col_STT_MRP.Name = "col_STT_MRP";
             this.col_STT_MRP.Visible = true;
-            this.col_STT_MRP.VisibleIndex = 18;
+            this.col_STT_MRP.VisibleIndex = 19;
             // 
             // col_DATE_END_ACTUAL
             // 
@@ -656,7 +674,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_DATE_END_ACTUAL.FieldName = "DATE_END_ACTUAL";
             this.col_DATE_END_ACTUAL.Name = "col_DATE_END_ACTUAL";
             this.col_DATE_END_ACTUAL.Visible = true;
-            this.col_DATE_END_ACTUAL.VisibleIndex = 19;
+            this.col_DATE_END_ACTUAL.VisibleIndex = 20;
             // 
             // col_DATE_CREATE
             // 
@@ -664,7 +682,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.col_DATE_CREATE.FieldName = "DATE_CREATE";
             this.col_DATE_CREATE.Name = "col_DATE_CREATE";
             this.col_DATE_CREATE.Visible = true;
-            this.col_DATE_CREATE.VisibleIndex = 20;
+            this.col_DATE_CREATE.VisibleIndex = 21;
             // 
             // repositoryItemXGridLookUpEdit1
             // 
@@ -819,14 +837,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem13.Text = "Tổng giá trị đơn(usd)";
             this.layoutControlItem13.TextSize = new System.Drawing.Size(127, 13);
             // 
-            // col_Rate
-            // 
-            this.col_Rate.Caption = "Tỉ lệ";
-            this.col_Rate.FieldName = "RATE";
-            this.col_Rate.Name = "col_Rate";
-            this.col_Rate.Visible = true;
-            this.col_Rate.VisibleIndex = 7;
-            // 
             // PURCHASE_REQUEST_DETAIL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -950,5 +960,6 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private XTextEdit txtTotalMoney_US;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraGrid.Columns.GridColumn col_Rate;
+        private DevExpress.XtraGrid.Columns.GridColumn col_STATUS;
     }
 }
