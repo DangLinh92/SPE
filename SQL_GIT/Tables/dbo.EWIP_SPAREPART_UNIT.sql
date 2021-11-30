@@ -1,0 +1,16 @@
+CREATE TABLE [dbo].[EWIP_SPAREPART_UNIT]
+(
+[ID] [int] NOT NULL IDENTITY(1, 1),
+[SPARE_PART_CODE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[UNIT_CODE] [varchar] (20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[UNIT_CODE_MIN] [varchar] (20) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[RATE] [float] NULL,
+[DEPT_CODE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[EWIP_SPAREPART_UNIT] ADD CONSTRAINT [PK_EWIP_SPAREPART_UNIT] PRIMARY KEY CLUSTERED ([ID]) ON [PRIMARY]
+GO
+EXEC sp_addextendedproperty N'MS_Description', N'ti le : 1 pac = 6 ea', 'SCHEMA', N'dbo', 'TABLE', N'EWIP_SPAREPART_UNIT', 'COLUMN', N'RATE'
+GO
+EXEC sp_addextendedproperty N'MS_Description', N'don vi nho nhat', 'SCHEMA', N'dbo', 'TABLE', N'EWIP_SPAREPART_UNIT', 'COLUMN', N'UNIT_CODE_MIN'
+GO

@@ -1,0 +1,12 @@
+CREATE TABLE [dbo].[EWIP_DAILY_ACTUAL_PROCD_SMT]
+(
+[PRODUCT_POINT] [float] NULL,
+[WEEK] [int] NULL,
+[MONTH] [int] NULL,
+[DATE] [date] NULL,
+[UPDATE_TIME_SYS] [datetime] NULL,
+[USER_UPDATE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[MODEL] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[LOT_NO] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+) ON [PRIMARY]
+GO

@@ -1,0 +1,19 @@
+CREATE TABLE [dbo].[EWIP_SPARE_PART_LOCATION_BASE_LINE_HISTORY]
+(
+[SPARE_PART_CODE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[LOCATION_CODE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[CONDITION_CODE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[IS_WAITE] [bit] NULL,
+[QUANTITY] [float] NULL,
+[DEPT_CODE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[STOCK_CODE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[UNIT_ID] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[EXPIRED_DATE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[TIME_IN] [date] NULL,
+[PO_NO] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[DATE_BASE_LINE] [date] NULL,
+[MONTH_BASE_LINE] [int] NULL,
+[YEAR_BASE_LINE] [int] NULL,
+[DATE_TIME_SYS] [datetime] NULL
+) ON [PRIMARY]
+GO

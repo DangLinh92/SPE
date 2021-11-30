@@ -1,0 +1,16 @@
+CREATE TYPE [dbo].[SPAREPART_LOCATION_INVENTORY_TYPE] AS TABLE
+(
+[SPARE_PART_CODE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[NAME_VI] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[CONDITION_CODE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[TIME_IN] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[EXPIRED_DATE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[INVENTORY_ASSETS_TIME] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[UNIT] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[LOCATION] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[QUANTITY] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[QUANTITY_REAL] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[DIFF] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[PO_NO] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+)
+GO

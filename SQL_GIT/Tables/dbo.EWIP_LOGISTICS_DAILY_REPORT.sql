@@ -1,0 +1,34 @@
+CREATE TABLE [dbo].[EWIP_LOGISTICS_DAILY_REPORT]
+(
+[ID] [int] NOT NULL IDENTITY(1, 1),
+[WAY] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[LH] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[MASTER_BL_MAWB_NO] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[HOUSE_BL_HAWB_NO] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[VESSEL_FLIGHT] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[ETD] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[ETA] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[ETA_WISOL] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[SHIPPER] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[INVOICE] [nvarchar] (200) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[QUANTITY_PAL] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[GW_KGS] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[CW_KGS] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[MEASUREME_NT] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[LCL_FCL] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[CONT_20] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[CONT_40] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[POL] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[POD] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[TERM] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[WARE_HOUSE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[TIME_DELIVERY] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[NO_CD] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[DESCRIPTION_OF_GOODS] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[NOTE] [nvarchar] (200) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[IMPORT_USER] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[IMPORT_DATE] [datetime] NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[EWIP_LOGISTICS_DAILY_REPORT] ADD CONSTRAINT [PK_EWIP_LOGISTICS_DAILY_REPORT] PRIMARY KEY CLUSTERED ([ID]) ON [PRIMARY]
+GO

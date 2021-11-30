@@ -1,0 +1,10 @@
+CREATE TYPE [dbo].[QUANITY_VALUE_BY_MONTH] AS TABLE
+(
+[IN_VALUE] [float] NULL,
+[OUT_VALUE] [float] NULL,
+[INVENTORY] [float] NULL,
+[MONTH_GET] [int] NULL,
+[YEAR_GET] [int] NULL,
+[SPARE_PART_CODE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+)
+GO

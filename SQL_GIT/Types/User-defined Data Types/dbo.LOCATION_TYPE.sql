@@ -1,0 +1,8 @@
+CREATE TYPE [dbo].[LOCATION_TYPE] AS TABLE
+(
+[CODE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[STOCK_CODE] [varchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[DEPT_CODE] [nvarchar] (100) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[RACK_CODE] [nchar] (10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+)
+GO

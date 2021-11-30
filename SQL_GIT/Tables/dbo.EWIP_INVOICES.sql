@@ -1,0 +1,37 @@
+CREATE TABLE [dbo].[EWIP_INVOICES]
+(
+[ID] [int] NOT NULL IDENTITY(1, 1),
+[INVOICE_DOC_NO] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[CONFIRM] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[POSTING] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[PO_NO] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[BENEFICIARY] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[BENEFICIARY_NAME] [nvarchar] (2000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[BASELINE_DATE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[ACCOUNTING_DOC] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[DOC_NO_OF_INVOICE_DOC_NO] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[MATERIAL_ID] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[MATERIAL_DESC] [nvarchar] (2000) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[EXCHANGE_RATE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[AMOUNT_LOCAL] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[PURCH_ORG] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[POSTING_DATE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[PURCH_GRP] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[BL_NO_HOUSE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[DOC_DATE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[QUANTITY] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[UNIT] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[INVOICE_AMOUNT] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[CURRENCY] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[BL_DOC_NO] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[LC_NO] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[IMPORT_REQUEST_NO] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[COMMERCIAL_INVOICE_NO] [nvarchar] (200) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[TRANSACTION] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[CREATE_BY] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[IMPORT_BY] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[IMPORT_DATE] [datetime] NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[EWIP_INVOICES] ADD CONSTRAINT [PK_EWIP_INVOICES] PRIMARY KEY CLUSTERED ([ID]) ON [PRIMARY]
+GO

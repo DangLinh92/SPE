@@ -1,0 +1,13 @@
+CREATE TYPE [dbo].[SPAREPART_LOCATION_TYPE] AS TABLE
+(
+[SPARE_PART_CODE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[LOCATION_CODE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[CONDITION_CODE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[IS_WAITE] [nvarchar] (10) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[QUANTITY] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[UNIT_ID] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[EXPIRED_DATE] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[TIME_IN] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL,
+[PO_NO] [nvarchar] (50) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+)
+GO
