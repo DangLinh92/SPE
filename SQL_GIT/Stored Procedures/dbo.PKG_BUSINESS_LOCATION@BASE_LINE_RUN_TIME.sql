@@ -22,8 +22,6 @@ BEGIN TRY
 			SET @A_YEAR = YEAR(@A_DATE)
 			SET @A_MONTH = MONTH(@A_DATE)
 
-
-			BEGIN TRAN
 			DECLARE cursorDept3 CURSOR LOCAL FOR
 			SELECT [CODE] FROM [dbo].[ESYSMSTDEPT]
 			WHERE [CODE] = @A_DEPT_CODE
@@ -94,8 +92,14 @@ BEGIN TRY
 												@N_RETURN = @N_RETURN	OUTPUT,
 												@V_RETURN =@V_RETURN	OUTPUT
 
-											   IF @N_RETURN <> 0 
-											THROW @N_RETURN, @V_RETURN, 1;
+											 IF @N_RETURN <> 0 
+										   BEGIN
+																	EXEC msdb.dbo.sp_send_dbmail 
+																		 @profile_name = 'sparepart mail',  
+																		 @recipients='whcpi1@wisol.co.kr',  
+																		 @subject = 'BASE_LINE_END_MONTH-PKG_BUSINESS_BASE_LINE_QTY_VALUE_BY_DAY_SPARE_PART.CALL',  
+																		 @body = @V_RETURN 
+                                           end
 
 								  --- LUU GIA TRI NHAP XUAT TON THEO THANG
 										EXEC [dbo].[PKG_BUSINESS_BASE_LINE_VALUE_BY_SPARE_PART@CALL]
@@ -108,8 +112,14 @@ BEGIN TRY
 											  @N_RETURN = @N_RETURN	OUTPUT,
 											  @V_RETURN =@V_RETURN	OUTPUT
 
-											   IF @N_RETURN <> 0 
-												THROW @N_RETURN, @V_RETURN, 1;
+											IF @N_RETURN <> 0 
+										   BEGIN
+												EXEC msdb.dbo.sp_send_dbmail 
+																		 @profile_name = 'sparepart mail',  
+																		 @recipients='whcpi1@wisol.co.kr',  
+																		 @subject = 'BASE_LINE_END_MONTH-PKG_PKG_BUSINESS_BASE_LINE_VALUE_BY_SPARE_PART.CALL',  
+																		 @body = @V_RETURN 
+                                           end
 
 											FETCH NEXT FROM cursorSparepart
 											INTO @SPARE_PART_CODE
@@ -131,9 +141,7 @@ BEGIN TRY
 			CLOSE cursorDept3
 			DEALLOCATE cursorDept3
 		END
-	COMMIT TRAN
 END TRY
 	BEGIN CATCH
-  ROLLBACK TRAN
 END CATCH
 GO
