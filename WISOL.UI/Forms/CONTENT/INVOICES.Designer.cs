@@ -80,7 +80,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnReload
             // 
+            this.btnReload.FormId = null;
             this.btnReload.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.Image")));
+            this.btnReload.isFormType = false;
             this.btnReload.Location = new System.Drawing.Point(12, 12);
             this.btnReload.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnReload.MinimumSize = new System.Drawing.Size(129, 30);
@@ -93,7 +95,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnImport
             // 
+            this.btnImport.FormId = null;
             this.btnImport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnImport.ImageOptions.Image")));
+            this.btnImport.isFormType = false;
             this.btnImport.Location = new System.Drawing.Point(145, 12);
             this.btnImport.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnImport.MinimumSize = new System.Drawing.Size(129, 30);

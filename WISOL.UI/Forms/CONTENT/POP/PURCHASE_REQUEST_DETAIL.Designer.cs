@@ -94,6 +94,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.dateAppove = new DevExpress.XtraEditors.DateEdit();
+            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
@@ -137,6 +139,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateAppove.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateAppove.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -151,6 +156,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // xLayoutControl1
             // 
+            this.xLayoutControl1.Controls.Add(this.dateAppove);
             this.xLayoutControl1.Controls.Add(this.txtTotalMoney_US);
             this.xLayoutControl1.Controls.Add(this.panelControl1);
             this.xLayoutControl1.Controls.Add(this.btnClear);
@@ -245,7 +251,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.txtPurposeBuy.NullValidation = false;
             this.txtPurposeBuy.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtPurposeBuy.Properties.Appearance.Options.UseBackColor = true;
-            this.txtPurposeBuy.Size = new System.Drawing.Size(1308, 20);
+            this.txtPurposeBuy.Size = new System.Drawing.Size(1012, 20);
             this.txtPurposeBuy.StyleController = this.xLayoutControl1;
             this.txtPurposeBuy.TabIndex = 13;
             // 
@@ -714,7 +720,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem11,
             this.layoutControlItem10,
             this.layoutControlItem12,
-            this.layoutControlItem13});
+            this.layoutControlItem13,
+            this.layoutControlItem14});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1471, 737);
             this.Root.TextVisible = false;
@@ -796,7 +803,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem9.Control = this.txtPurposeBuy;
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 50);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(1451, 24);
+            this.layoutControlItem9.Size = new System.Drawing.Size(1155, 24);
             this.layoutControlItem9.Text = "Mục đích mua";
             this.layoutControlItem9.TextSize = new System.Drawing.Size(127, 13);
             // 
@@ -836,6 +843,28 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.layoutControlItem13.Size = new System.Drawing.Size(296, 24);
             this.layoutControlItem13.Text = "Tổng giá trị đơn(usd)";
             this.layoutControlItem13.TextSize = new System.Drawing.Size(127, 13);
+            // 
+            // dateAppove
+            // 
+            this.dateAppove.EditValue = null;
+            this.dateAppove.Location = new System.Drawing.Point(1306, 62);
+            this.dateAppove.Name = "dateAppove";
+            this.dateAppove.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateAppove.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateAppove.Size = new System.Drawing.Size(153, 20);
+            this.dateAppove.StyleController = this.xLayoutControl1;
+            this.dateAppove.TabIndex = 19;
+            // 
+            // layoutControlItem14
+            // 
+            this.layoutControlItem14.Control = this.dateAppove;
+            this.layoutControlItem14.Location = new System.Drawing.Point(1155, 50);
+            this.layoutControlItem14.Name = "layoutControlItem14";
+            this.layoutControlItem14.Size = new System.Drawing.Size(296, 24);
+            this.layoutControlItem14.Text = "Ngày Approve";
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(127, 13);
             // 
             // PURCHASE_REQUEST_DETAIL
             // 
@@ -891,6 +920,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateAppove.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateAppove.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -961,5 +993,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraGrid.Columns.GridColumn col_Rate;
         private DevExpress.XtraGrid.Columns.GridColumn col_STATUS;
+        private DevExpress.XtraEditors.DateEdit dateAppove;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
     }
 }

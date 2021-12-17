@@ -553,6 +553,12 @@
     <Compile Include="Forms\CONTENT\SPARE_PART_EXPORT.Designer.cs">
       <DependentUpon>SPARE_PART_EXPORT.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\SPARE_PART_IN_OUT_NG.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\SPARE_PART_IN_OUT_NG.Designer.cs">
+      <DependentUpon>SPARE_PART_IN_OUT_NG.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\STOCKIN_CANCEL.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1072,6 +1078,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\SPARE_PART_EXPORT.resx">
       <DependentUpon>SPARE_PART_EXPORT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\SPARE_PART_IN_OUT_NG.resx">
+      <DependentUpon>SPARE_PART_IN_OUT_NG.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\STOCKIN_CANCEL.resx">
       <DependentUpon>STOCKIN_CANCEL.cs</DependentUpon>

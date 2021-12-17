@@ -153,6 +153,15 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         dateDelivery.EditValue = datas[1].Rows[0]["DATE_NEED_FINISH"].NullString();
                         dateCreate.EditValue = datas[1].Rows[0]["DATE_CREATE"].NullString();
 
+                        if(datas[1].Rows[0]["DATE_APROVED"].NullString() != "")
+                        {
+                            dateAppove.EditValue = datas[1].Rows[0]["DATE_APROVED"].NullString();
+                        }
+                        else
+                        {
+                            dateAppove.EditValue = DateTime.Now;
+                        }
+
                         txtTotalMoney.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
                         txtTotalMoney.Properties.DisplayFormat.FormatString = "c2";
                         txtTotalMoney_US.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -337,7 +346,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                                                      "A_TOTAL_VALUE_USD",
                                                                      "A_PURPOSE_OF_BUY",
                                                                      "A_DEPARTMENT",
-                                                                     "A_USER"
+                                                                     "A_USER",
+                                                                     "A_DATE_APPROVE"
                                                   },
                                                   "A_DATA",
                                                   new string[]
@@ -351,7 +361,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                                                      txtTotalMoney_US.EditValue.NullString(),
                                                                      txtPurposeBuy.EditValue.NullString(),
                                                                      Consts.DEPARTMENT,
-                                                                     Consts.USER_INFO.Id
+                                                                     Consts.USER_INFO.Id,
+                                                                     dateAppove.EditValue.NullString()
                                                   },
                                                   DataItem);
                     if (mResultDB.ReturnInt == 0)

@@ -177,6 +177,35 @@ namespace Wisol.MES.Classes
             return table;
         }
 
+        public static DataTable GetLocationBySparepart(string sparepartCode, AceGridLookUpEdit locationControl, BindData m_BindData)
+        {
+            DataTable table = new DataTable();
+            try
+            {
+                if (!string.IsNullOrEmpty(sparepartCode))
+                {
+                    ResultDB m_ResultDB = Program.dbAccess.ExcuteProc("PKG_BUSINESS_LOCATION_NG.GETBYSPAREPART",
+                        new string[] { "A_DEPARTMENT", "A_SPAREPARTS" },
+                        new string[] { Consts.DEPARTMENT, sparepartCode });
+
+                    if (m_ResultDB.ReturnInt == 0)
+                    {
+                        table = m_ResultDB.ReturnDataSet.Tables[0];
+                        m_BindData.BindGridLookEdit(locationControl, table, "LOCATION_CODE", "LOCATION_CODE");
+                    }
+                    else
+                    {
+                        MsgBox.Show("NOT FOUND LOCATION FOR SPAREPART", MsgType.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+            return table;
+        }
+
         public static void ShowImge(string image, DevExpress.XtraEditors.PictureEdit img)
         {
             if (!string.IsNullOrWhiteSpace(image))
