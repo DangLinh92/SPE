@@ -475,12 +475,10 @@ namespace Wisol.MES.Forms.CONTENT
                     MsgBox.Show("NOT FOUND UNIT FOR SPAREPART", MsgType.Error);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MsgBox.Show(ex.Message, MsgType.Error);
             }
-
         }
     }
 }

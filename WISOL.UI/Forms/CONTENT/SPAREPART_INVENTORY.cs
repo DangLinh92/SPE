@@ -269,35 +269,50 @@ namespace Wisol.MES.Forms.CONTENT
 
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
+                    DataTableCollection datas = base.m_ResultDB.ReturnDataSet.Tables;
+                    m_BindData.BindGridLookEdit(stlUnit, datas[2], "UNIT_CODE", "UNIT_CODE");
+
                     if ("1".Equals(radioInputType.EditValue.NullString()))
                     {
-                        if (base.m_ResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                        if (datas[0].Rows.Count > 0)
                         {
-                            txtQuantity.EditValue = base.m_ResultDB.ReturnDataSet.Tables[0].Rows[0]["QUANTITY"].NullString();
-                            txtQuantityReal.EditValue = base.m_ResultDB.ReturnDataSet.Tables[0].Rows[0]["QUANTITY_REAL"].NullString();
-                            stlUnit.EditValue = base.m_ResultDB.ReturnDataSet.Tables[0].Rows[0]["UNIT"].NullString();
-
-
-                            string image = base.m_ResultDB.ReturnDataSet.Tables[0].Rows[0]["IMAGE"].NullString();
+                            txtQuantity.EditValue = datas[0].Rows[0]["QUANTITY"].NullString();
+                            txtQuantityReal.EditValue = datas[0].Rows[0]["QUANTITY_REAL"].NullString();
+                           
+                            string image = datas[0].Rows[0]["IMAGE"].NullString();
                             ShowImge(image);
+                            stlUnit.EditValue = datas[0].Rows[0]["UNIT"].NullString();
+                            string result = Classes.Common.GetUnitMinBySparePart(stlSpare.EditValue.NullString(), stlUnit.EditValue.NullString());
+
+                            if (result.Contains('^'))
+                            {
+                                txtRate.EditValue = result.Split('^')[1];
+                                txtCodeMin.EditValue = result.Split('^')[0];
+                            }
                         }
                     }
                     else
                     {
-                        if (base.m_ResultDB.ReturnDataSet.Tables[1].Rows.Count > 0)
+                        if (datas[1].Rows.Count > 0)
                         {
-                            txtMinStock.EditValue = base.m_ResultDB.ReturnDataSet.Tables[1].Rows[0]["MIN_STOCK"].NullString();
-                            stlUnit.EditValue = base.m_ResultDB.ReturnDataSet.Tables[1].Rows[0]["UNIT"].NullString();
-                            txtRateAlarm.EditValue = base.m_ResultDB.ReturnDataSet.Tables[1].Rows[0]["RATE_ALARM"].NullString();
+                            txtMinStock.EditValue = datas[1].Rows[0]["MIN_STOCK"].NullString();
+                            txtRateAlarm.EditValue = datas[1].Rows[0]["RATE_ALARM"].NullString();
 
-                            string image = base.m_ResultDB.ReturnDataSet.Tables[1].Rows[0]["IMAGE"].NullString();
+                            string image = datas[1].Rows[0]["IMAGE"].NullString();
                             ShowImge(image);
+                            stlUnit.EditValue = datas[1].Rows[0]["UNIT"].NullString();
                         }
                         else
                         {
                             txtMinStock.EditValue = null;
                             stlUnit.EditValue = null;
                             txtRateAlarm.EditValue = 20;
+                        }
+                        string result = Classes.Common.GetUnitMinBySparePart(stlSpare.EditValue.NullString(), stlUnit.EditValue.NullString());
+                        if (result.Contains('^'))
+                        {
+                            txtRate.EditValue = result.Split('^')[1];
+                            txtCodeMin.EditValue = result.Split('^')[0];
                         }
                     }
                 }
@@ -743,6 +758,35 @@ namespace Wisol.MES.Forms.CONTENT
             splashScreenManager1.ShowWaitForm();
             Consts.mainForm.NewPageFromOtherPage("INVENTORY_VALUES", "재고의 현금 가치- Giá trị tồn kho", "W", "Y", stlKho.EditValue.NullString());
             splashScreenManager1.CloseWaitForm();
+        }
+
+        private void stlUnit_EditValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                base.m_ResultDB = Program.dbAccess.ExcuteProc("PKG_BUSINESS_UNIT_SPAREPART.GET_UNIT_MIN_BY_SPAREPART",
+                     new string[] { "A_DEPT_CODE", "A_SPARE_PART_CODE", "A_UNIT_CODE" },
+                     new string[] { Consts.DEPARTMENT, stlSpare.EditValue.NullString(), stlUnit.EditValue.NullString() });
+
+                if (m_ResultDB.ReturnInt == 0)
+                {
+                    DataTable table = m_ResultDB.ReturnDataSet.Tables[0];
+
+                    if (table.Rows.Count > 0)
+                    {
+                        txtCodeMin.Text = table.Rows[0]["UNIT_CODE_MIN"].NullString();
+                        txtRate.Text = table.Rows[0]["RATE"].NullString();
+                    }
+                }
+                else
+                {
+                    MsgBox.Show("NOT FOUND UNIT FOR SPAREPART", MsgType.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
         }
     }
 }

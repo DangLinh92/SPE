@@ -201,7 +201,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 newRow["USER_UPDATE"] = Consts.USER_INFO.Id;
                 newRow["DATE_UPDATE"] = DateTime.Now.ToString("yyyy-MM-dd");
                 newRow["DATE_CREATE"] = row["DATE_CREATE"];
-                newRow["STATUS"] = stlStatus.EditValue.NullString();
+                newRow["STATUS"] = row["STATUS"];//stlStatus.EditValue.NullString();
                 newRow["EXPECTED_PRICE_US"] = row["EXPECTED_PRICE_US"];
                 newRow["PRICE_US"] = row["PRICE_US"];
                 newRow["TOTAL_MONEY_US"] = row["TOTAL_MONEY_US"];
@@ -319,7 +319,11 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         }
 
                         row["PR_CODE"] = txtPR_Code.EditValue.NullString();
-                        row["STATUS"] = stlStatus.EditValue.NullString();
+                        if (row["STATUS"].NullString() != Consts.STATUS_COMPLETE)
+                        {
+                            row["STATUS"] = stlStatus.EditValue.NullString();
+                        }
+                       
                         row["MRP_CODE"] = stlMRP_Code.EditValue.NullString();
                         row["DATE_UPDATE"] = DateTime.Now.ToString("yyyy-MM-dd");
                     }

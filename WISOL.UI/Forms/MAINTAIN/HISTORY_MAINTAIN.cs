@@ -39,6 +39,13 @@ namespace Wisol.MES.Forms.MAINTAIN
                 EQUIPMENT_DATA.Columns.Add("EQUIPMENT_TYPE");
             }
 
+            if (DATA_DOCUMENT == null)
+            {
+                DATA_DOCUMENT = new DataTable();
+                DATA_DOCUMENT.Columns.Add("DOCUMENT_NAME");
+                DATA_DOCUMENT.Columns.Add("CONTENT_TYPE");
+            }
+
             InitData();
 
             if (MainID.NullString() != "")
@@ -65,6 +72,16 @@ namespace Wisol.MES.Forms.MAINTAIN
                     gvList.Columns.Where(x => x.VisibleIndex <= gvList.Columns["EQUIPMENT_ID"].VisibleIndex).ToList().ForEach(x => x.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left);
 
                     EQUIPMENT_DATA = datas[0];
+
+                    if (lstFiles == null)
+                    {
+                        lstFiles = new List<FileInfo>();
+                    }
+
+                    if (lstFilesAll == null)
+                    {
+                        lstFilesAll = new List<FileInfo>();
+                    }
                 }
                 else
                 {
@@ -135,9 +152,77 @@ namespace Wisol.MES.Forms.MAINTAIN
 
                 if (m_ResultDB.ReturnInt == 0)
                 {
-                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
-                    InitData();
-                    btnClear.PerformClick();
+                    bool isError = false;
+
+                    if (txtID.EditValue.NullString() == "")
+                    {
+                        base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_DOCUMENT_MAINTAIN.GET_NEXT_ID", new string[] { }, new string[] { });
+                        if (m_ResultDB.ReturnInt == 0)
+                        {
+                            if (m_ResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                            {
+                                txtID.EditValue = m_ResultDB.ReturnDataSet.Tables[0].Rows[0]["Current_Identity"];
+                            }
+                        }
+                    }
+
+                    if (lstFiles.Count == 0)
+                    {
+                        base.m_ResultDB = base.m_DBaccess.ExcuteProcWithBytes("PKG_BUSINESS_SP_DOCUMENT_MAINTAIN.UPLOAD",
+                        new string[] { "A_CODE", "A_NAME_FILE", "A_CONTENT_TYPE", "A_USER", "A_DEPARTMENT", "A_IS_DELETE" }, "A_DATA",
+                        new string[] { txtID.EditValue.NullString(), "", "", Consts.USER_INFO.Id, Consts.DEPARTMENT, "" }, new byte[] { });
+
+                        if (m_ResultDB.ReturnInt != 0)
+                        {
+                            isError = true;
+                            MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                        }
+                    }
+                    else
+                    {
+                        bool checkExist = false;
+                        string isDelete = "";
+                        foreach (FileInfo item in lstFilesAll)
+                        {
+                            checkExist = false;
+
+                            foreach (FileInfo file in lstFiles)
+                            {
+                                if (item.FileName == file.FileName && item.ContentType == file.ContentType)
+                                {
+                                    checkExist = true;
+                                    break;
+                                }
+                            }
+
+                            if (checkExist)
+                            {
+                                isDelete = "FALSE";
+                            }
+                            else
+                            {
+                                isDelete = "TRUE";
+                            }
+
+                            base.m_ResultDB = base.m_DBaccess.ExcuteProcWithBytes("PKG_BUSINESS_SP_DOCUMENT_MAINTAIN.UPLOAD",
+                              new string[] { "A_CODE", "A_NAME_FILE", "A_CONTENT_TYPE", "A_USER", "A_DEPARTMENT", "A_IS_DELETE" }, "A_DATA",
+                              new string[] { txtID.EditValue.NullString(), item.FileName, item.ContentType, Consts.USER_INFO.Id, Consts.DEPARTMENT, isDelete }, item.Bytes);
+
+                            if (m_ResultDB.ReturnInt != 0)
+                            {
+                                isError = true;
+                                MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!isError)
+                    {
+                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                        InitData();
+                        btnClear.PerformClick();
+                    }
                 }
                 else
                 {
@@ -261,6 +346,39 @@ namespace Wisol.MES.Forms.MAINTAIN
                 {
                     picError.Image = null;
                 }
+
+                base.m_ResultDB =
+                    base.m_DBaccess.ExcuteProc("PKG_BUSINESS_DOCUMENT_MAINTAIN.GET_FILES",
+                    new string[] { "A_CODE", "A_DEPARTMENT" },
+                    new string[] { txtID.EditValue.NullString(), Consts.DEPARTMENT });
+
+                DataTable dataFile = m_ResultDB.ReturnDataSet.Tables[0];
+                lstFiles.Clear();
+                DATA_DOCUMENT.Rows.Clear();
+                lstFilesAll.Clear();
+
+                foreach (DataRow item in dataFile.Rows)
+                {
+                    lstFiles.Add(new FileInfo()
+                    {
+                        FileName = item["DOCUMENT_NAME"].NullString(),
+                        ContentType = item["CONTENT_TYPE"].NullString(),
+                        Bytes = (byte[])item["DOCUMENT_FILE"]
+                    });
+
+                    lstFilesAll.Add(new FileInfo()
+                    {
+                        FileName = item["DOCUMENT_NAME"].NullString(),
+                        ContentType = item["CONTENT_TYPE"].NullString(),
+                        Bytes = (byte[])item["DOCUMENT_FILE"]
+                    });
+
+                    DataRow row = DATA_DOCUMENT.NewRow();
+                    row["DOCUMENT_NAME"] = item["DOCUMENT_NAME"].NullString();
+                    row["CONTENT_TYPE"] = item["CONTENT_TYPE"].NullString();
+                    DATA_DOCUMENT.Rows.Add(row);
+                }
+                gcDocumentList.DataSource = DATA_DOCUMENT;
             }
             catch (Exception ex)
             {
@@ -289,6 +407,9 @@ namespace Wisol.MES.Forms.MAINTAIN
 
                 picError.Image = null;
                 picImage.Image = null;
+
+                DATA_DOCUMENT.Rows.Clear();
+                gcDocumentList.DataSource = DATA_DOCUMENT;
             }
             catch (Exception ex)
             {
@@ -312,6 +433,7 @@ namespace Wisol.MES.Forms.MAINTAIN
                     {
                         MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
                         InitData();
+                        btnClear.PerformClick();
                     }
                     else
                     {
@@ -351,7 +473,7 @@ namespace Wisol.MES.Forms.MAINTAIN
                             string machineId = "";
                             foreach (DataRow row in EQUIPMENT_DATA.Rows)
                             {
-                                if(row["EQUIPMENT_NAME"].NullString() == machineName)
+                                if (row["EQUIPMENT_NAME"].NullString() == machineName)
                                 {
                                     machineId = row["EQUIPMENT_ID"].NullString();
                                     break;
@@ -370,6 +492,142 @@ namespace Wisol.MES.Forms.MAINTAIN
                     else
                     {
                         MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private List<FileInfo> lstFilesAll;
+        private List<FileInfo> lstFiles;
+        private DataTable DATA_DOCUMENT;
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.Multiselect = true;
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        foreach (string fileNames in openFileDialog.FileNames)
+                        {
+                            string contentType = "";
+                            switch (Path.GetExtension(fileNames).ToLower())
+                            {
+                                case ".jpg":
+                                    contentType = "image/jpeg";
+                                    break;
+                                case ".png":
+                                    contentType = "image/png";
+                                    break;
+                                case ".gif":
+                                    contentType = "image/gif";
+                                    break;
+                                case ".bmp":
+                                    contentType = "image/bmp";
+                                    break;
+                                case ".doc":
+                                    contentType = "application/msword";
+                                    break;
+                                case ".docx":
+                                    contentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                                    break;
+                                case ".xls":
+                                    contentType = "application/vnd.ms-excel";
+                                    break;
+                                case ".xlsx":
+                                    contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                                    break;
+                                case ".pdf":
+                                    contentType = "application/pdf";
+                                    break;
+                                case ".ppt":
+                                    contentType = "application/vnd.ms-powerpoint";
+                                    break;
+                                case ".pptx":
+                                    contentType = "application/vnd.openxmlformats-officedocument.presentationml.presentation";
+                                    break;
+                            }
+
+                            byte[] bytes = File.ReadAllBytes(fileNames);
+
+                            lstFiles.Add(new FileInfo()
+                            {
+                                FileName = Path.GetFileName(fileNames),
+                                ContentType = contentType,
+                                Bytes = bytes
+                            });
+
+                            lstFilesAll.Add(new FileInfo()
+                            {
+                                FileName = Path.GetFileName(fileNames),
+                                ContentType = contentType,
+                                Bytes = bytes
+                            });
+
+                            DataRow row = DATA_DOCUMENT.NewRow();
+                            row["DOCUMENT_NAME"] = Path.GetFileName(fileNames);
+                            row["CONTENT_TYPE"] = contentType;
+                            DATA_DOCUMENT.Rows.Add(row);
+                        }
+
+                        //m_BindData.BindGridView(gcListFiles, DATA_DOCUMENT);
+                        gcDocumentList.DataSource = DATA_DOCUMENT;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void gvDocumentList_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        {
+            try
+            {
+                if (e.Column.FieldName == "DELETE")
+                {
+                    DialogResult dialogResult = MsgBox.Show("MSG_COM_015".Translation(), MsgType.Warning, DialogType.OkCancel);
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        DataRow row = gvDocumentList.GetDataRow(e.RowHandle);
+                        lstFiles.RemoveAll(f => f.FileName == row["DOCUMENT_NAME"].NullString());
+                        DATA_DOCUMENT.Rows.Remove(row);
+                        gcDocumentList.DataSource = DATA_DOCUMENT;
+                    }
+                }
+                else if (e.Column.FieldName == "DOWNLOAD")
+                {
+                    string contentType = lstFiles.FindAll(f => f.FileName == gvDocumentList.GetRowCellValue(e.RowHandle, "DOCUMENT_NAME").NullString()).FirstOrDefault().ContentType.NullString();
+
+                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_DOCUMENT_MAINTAIN.DOWNLOAD",
+                        new string[] { "A_CODE", "A_DEPARTMENT", "A_FILE_NAME", "A_CONTENT_TYPE" },
+                        new string[] { txtID.EditValue.NullString(), Consts.DEPARTMENT, gvDocumentList.GetRowCellValue(e.RowHandle, "DOCUMENT_NAME").NullString(), contentType });
+
+                    if (m_ResultDB.ReturnInt == 0)
+                    {
+                        DataTable data = m_ResultDB.ReturnDataSet.Tables[0];
+                        byte[] bytes = (byte[])data.Rows[0]["DOCUMENT_FILE"];
+
+                        Stream stream;
+                        SaveFileDialog saveFileDialog = new SaveFileDialog();
+                        saveFileDialog.Filter = "All files (*.*)|*.*";
+                        saveFileDialog.FilterIndex = 1;
+                        saveFileDialog.RestoreDirectory = true;
+                        saveFileDialog.FileName = gvDocumentList.GetRowCellValue(e.RowHandle, "DOCUMENT_NAME").NullString();
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            stream = saveFileDialog.OpenFile();
+                            stream.Write(bytes, 0, bytes.Length);
+                            stream.Close();
+                            MsgBox.Show("Download File Success!", MsgType.Information);
+                        }
                     }
                 }
             }
