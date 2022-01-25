@@ -76,14 +76,14 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     {
                         base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_LOGISTICS_DAILY_REPORT.IMPORT", new string[] { "A_USER" }, "A_DATA", new string[] { Consts.USER_INFO.Id }, Data);
                     }
-                    else if(ImpportType == Consts.IMPORT_TYPE_GOC_PLAN)
+                    else if (ImpportType == Consts.IMPORT_TYPE_GOC_PLAN)
                     {
-                        if(Consts.DEPARTMENT == Consts.SMT_DEPT)
+                        if (Consts.DEPARTMENT == Consts.SMT_DEPT)
                         {
                             base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_GOC_PLAN.IMPORT_SMT", new string[] { "A_USER" }, "A_DATA", new string[] { Consts.USER_INFO.Id }, Data);
                         }
                     }
-                    else if(ImpportType == Consts.IMPORT_TYPE_ACTUAL_PRODUCT)
+                    else if (ImpportType == Consts.IMPORT_TYPE_ACTUAL_PRODUCT)
                     {
                         if (Consts.DEPARTMENT == Consts.SMT_DEPT)
                         {
@@ -208,6 +208,17 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                     row[3] = 1;
                                     row[4] = 0;
                                 }
+                            }
+                        }
+                    }
+                    else if (ImpportType == Consts.IMPORT_TYPE_GOC_PLAN)
+                    {
+                        DateTime monthTime;
+                        foreach (DataRow row in Data.Rows)
+                        {
+                            if (DateTime.TryParse(row[2] + "", out monthTime))
+                            {
+                                row[2] = monthTime.Month + "";
                             }
                         }
                     }
