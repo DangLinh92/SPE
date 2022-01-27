@@ -87,7 +87,7 @@ namespace Wisol.MES
         /// <param name="e"></param>
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (!loginFlag)
+            if (!loginFlag || Consts.DEPARTMENT == Consts.SMT_DEPT)
             {
                 return;
             }
