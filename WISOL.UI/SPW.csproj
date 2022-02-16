@@ -319,6 +319,12 @@
     <Compile Include="Forms\CONTENT\MAKER.Designer.cs">
       <DependentUpon>MAKER.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CONTENT\MRO_SUB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\MRO_SUB.Designer.cs">
+      <DependentUpon>MRO_SUB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CONTENT\MRP.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -462,6 +468,12 @@
     </Compile>
     <Compile Include="Forms\CONTENT\POP\SAP_PO_ADD.Designer.cs">
       <DependentUpon>SAP_PO_ADD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\SHOW_ORDER.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CONTENT\POP\SHOW_ORDER.Designer.cs">
+      <DependentUpon>SHOW_ORDER.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\CONTENT\POP\SPAREPART_LEND.cs">
       <SubType>Form</SubType>
@@ -962,6 +974,9 @@
     <EmbeddedResource Include="Forms\CONTENT\MAKER.resx">
       <DependentUpon>MAKER.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\MRO_SUB.resx">
+      <DependentUpon>MRO_SUB.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\MRP.resx">
       <DependentUpon>MRP.cs</DependentUpon>
     </EmbeddedResource>
@@ -1033,6 +1048,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\SAP_PO_ADD.resx">
       <DependentUpon>SAP_PO_ADD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CONTENT\POP\SHOW_ORDER.resx">
+      <DependentUpon>SHOW_ORDER.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CONTENT\POP\SPAREPART_LEND.resx">
       <DependentUpon>SPAREPART_LEND.cs</DependentUpon>

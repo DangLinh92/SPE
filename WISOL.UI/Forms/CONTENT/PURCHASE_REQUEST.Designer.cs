@@ -52,6 +52,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_TOTAL_VALUE_US = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DATE_CREATE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DATE_NEED_FINISH = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_DATE_APROVED = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DATE_END_ACTUAL = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_USER_CREATE = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_USER_UPDATE = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -78,7 +79,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl1 = new Wisol.XLayoutControl();
             this.dateTimeChartRangeControlClient1 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Wisol.MES.FrmWaitForm), true, true, typeof(System.Windows.Forms.UserControl));
-            this.col_DATE_APROVED = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_Draft = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -293,6 +294,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.gvList.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.col_PR_CODE,
             this.col_MRP_CODE,
+            this.col_Draft,
             this.col_PO_ID,
             this.col_TOTAL_VALUE,
             this.col_TOTAL_VALUE_US,
@@ -337,7 +339,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_PO_ID.FieldName = "PO_ID";
             this.col_PO_ID.Name = "col_PO_ID";
             this.col_PO_ID.Visible = true;
-            this.col_PO_ID.VisibleIndex = 2;
+            this.col_PO_ID.VisibleIndex = 3;
             // 
             // col_TOTAL_VALUE
             // 
@@ -345,7 +347,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_TOTAL_VALUE.FieldName = "TOTAL_VALUE";
             this.col_TOTAL_VALUE.Name = "col_TOTAL_VALUE";
             this.col_TOTAL_VALUE.Visible = true;
-            this.col_TOTAL_VALUE.VisibleIndex = 3;
+            this.col_TOTAL_VALUE.VisibleIndex = 4;
             this.col_TOTAL_VALUE.Width = 129;
             // 
             // col_TOTAL_VALUE_US
@@ -354,7 +356,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_TOTAL_VALUE_US.FieldName = "TOTAL_VALUE_US";
             this.col_TOTAL_VALUE_US.Name = "col_TOTAL_VALUE_US";
             this.col_TOTAL_VALUE_US.Visible = true;
-            this.col_TOTAL_VALUE_US.VisibleIndex = 4;
+            this.col_TOTAL_VALUE_US.VisibleIndex = 5;
             this.col_TOTAL_VALUE_US.Width = 129;
             // 
             // col_DATE_CREATE
@@ -363,7 +365,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_CREATE.FieldName = "DATE_CREATE";
             this.col_DATE_CREATE.Name = "col_DATE_CREATE";
             this.col_DATE_CREATE.Visible = true;
-            this.col_DATE_CREATE.VisibleIndex = 5;
+            this.col_DATE_CREATE.VisibleIndex = 6;
             this.col_DATE_CREATE.Width = 129;
             // 
             // col_DATE_NEED_FINISH
@@ -372,8 +374,16 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_NEED_FINISH.FieldName = "DATE_NEED_FINISH";
             this.col_DATE_NEED_FINISH.Name = "col_DATE_NEED_FINISH";
             this.col_DATE_NEED_FINISH.Visible = true;
-            this.col_DATE_NEED_FINISH.VisibleIndex = 6;
+            this.col_DATE_NEED_FINISH.VisibleIndex = 7;
             this.col_DATE_NEED_FINISH.Width = 129;
+            // 
+            // col_DATE_APROVED
+            // 
+            this.col_DATE_APROVED.Caption = "Ngày approved";
+            this.col_DATE_APROVED.FieldName = "DATE_APROVED";
+            this.col_DATE_APROVED.Name = "col_DATE_APROVED";
+            this.col_DATE_APROVED.Visible = true;
+            this.col_DATE_APROVED.VisibleIndex = 8;
             // 
             // col_DATE_END_ACTUAL
             // 
@@ -381,7 +391,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_END_ACTUAL.FieldName = "DATE_END_ACTUAL]";
             this.col_DATE_END_ACTUAL.Name = "col_DATE_END_ACTUAL";
             this.col_DATE_END_ACTUAL.Visible = true;
-            this.col_DATE_END_ACTUAL.VisibleIndex = 8;
+            this.col_DATE_END_ACTUAL.VisibleIndex = 9;
             this.col_DATE_END_ACTUAL.Width = 129;
             // 
             // col_USER_CREATE
@@ -390,7 +400,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_USER_CREATE.FieldName = "USER_CREATE";
             this.col_USER_CREATE.Name = "col_USER_CREATE";
             this.col_USER_CREATE.Visible = true;
-            this.col_USER_CREATE.VisibleIndex = 9;
+            this.col_USER_CREATE.VisibleIndex = 10;
             this.col_USER_CREATE.Width = 129;
             // 
             // col_USER_UPDATE
@@ -399,7 +409,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_USER_UPDATE.FieldName = "USER_UPDATE";
             this.col_USER_UPDATE.Name = "col_USER_UPDATE";
             this.col_USER_UPDATE.Visible = true;
-            this.col_USER_UPDATE.VisibleIndex = 10;
+            this.col_USER_UPDATE.VisibleIndex = 11;
             this.col_USER_UPDATE.Width = 129;
             // 
             // col_DATE_UPDATE
@@ -408,7 +418,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_UPDATE.FieldName = "DATE_UPDATE";
             this.col_DATE_UPDATE.Name = "col_DATE_UPDATE";
             this.col_DATE_UPDATE.Visible = true;
-            this.col_DATE_UPDATE.VisibleIndex = 11;
+            this.col_DATE_UPDATE.VisibleIndex = 12;
             this.col_DATE_UPDATE.Width = 129;
             // 
             // col_PR_STATUS
@@ -417,7 +427,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_PR_STATUS.FieldName = "PR_STATUS";
             this.col_PR_STATUS.Name = "col_PR_STATUS";
             this.col_PR_STATUS.Visible = true;
-            this.col_PR_STATUS.VisibleIndex = 12;
+            this.col_PR_STATUS.VisibleIndex = 13;
             this.col_PR_STATUS.Width = 129;
             // 
             // col_Chart
@@ -428,7 +438,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_Chart.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("col_Chart.ImageOptions.Image")));
             this.col_Chart.Name = "col_Chart";
             this.col_Chart.Visible = true;
-            this.col_Chart.VisibleIndex = 13;
+            this.col_Chart.VisibleIndex = 14;
             this.col_Chart.Width = 25;
             // 
             // repositoryItemButtonEdit4
@@ -447,7 +457,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_View.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("col_View.ImageOptions.Image")));
             this.col_View.Name = "col_View";
             this.col_View.Visible = true;
-            this.col_View.VisibleIndex = 14;
+            this.col_View.VisibleIndex = 15;
             this.col_View.Width = 25;
             // 
             // repositoryItemButtonEdit1
@@ -466,7 +476,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_EDIT.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("col_EDIT.ImageOptions.Image")));
             this.col_EDIT.Name = "col_EDIT";
             this.col_EDIT.Visible = true;
-            this.col_EDIT.VisibleIndex = 15;
+            this.col_EDIT.VisibleIndex = 16;
             this.col_EDIT.Width = 25;
             // 
             // repositoryItemButtonEdit2
@@ -485,7 +495,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DELETE.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("col_DELETE.ImageOptions.Image")));
             this.col_DELETE.Name = "col_DELETE";
             this.col_DELETE.Visible = true;
-            this.col_DELETE.VisibleIndex = 16;
+            this.col_DELETE.VisibleIndex = 17;
             this.col_DELETE.Width = 25;
             // 
             // repositoryItemButtonEdit3
@@ -611,13 +621,13 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.splashScreenManager1.ClosingDelay = 500;
             // 
-            // col_DATE_APROVED
+            // col_Draft
             // 
-            this.col_DATE_APROVED.Caption = "Ngày approved";
-            this.col_DATE_APROVED.FieldName = "DATE_APROVED";
-            this.col_DATE_APROVED.Name = "col_DATE_APROVED";
-            this.col_DATE_APROVED.Visible = true;
-            this.col_DATE_APROVED.VisibleIndex = 7;
+            this.col_Draft.Caption = "DRAFT CODE";
+            this.col_Draft.FieldName = "DRAF_CODE";
+            this.col_Draft.Name = "col_Draft";
+            this.col_Draft.Visible = true;
+            this.col_Draft.VisibleIndex = 2;
             // 
             // PURCHASE_REQUEST
             // 
@@ -710,5 +720,6 @@ namespace Wisol.MES.Forms.CONTENT
         private XSimpleButton btnOrderItem;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraGrid.Columns.GridColumn col_DATE_APROVED;
+        private DevExpress.XtraGrid.Columns.GridColumn col_Draft;
     }
 }

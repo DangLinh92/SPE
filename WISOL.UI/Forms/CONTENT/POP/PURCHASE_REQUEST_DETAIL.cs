@@ -18,6 +18,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
         public string Status { get; set; }
         public string MRPCode { get; set; }
 
+        public string DRAFT_CODE { get; set; }
+
         public DataTable DataItem { get; set; }
 
         public PURCHASE_REQUEST_DETAIL()
@@ -73,6 +75,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                 stlMRP_Code.EditValue = MRPCode;
                 btnCreatePRCode.Enabled = false;
                 togetVerify.EditValue = true;
+                txtDaftCode.EditValue = DRAFT_CODE;
 
                 if (Mode == Consts.MODE_VIEW)
                 {
@@ -351,7 +354,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                                                      "A_PURPOSE_OF_BUY",
                                                                      "A_DEPARTMENT",
                                                                      "A_USER",
-                                                                     "A_DATE_APPROVE"
+                                                                     "A_DATE_APPROVE",
+                                                                     "A_DRAF_CODE"
                                                   },
                                                   "A_DATA",
                                                   new string[]
@@ -366,7 +370,8 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                                                      txtPurposeBuy.EditValue.NullString(),
                                                                      Consts.DEPARTMENT,
                                                                      Consts.USER_INFO.Id,
-                                                                     dateAppove.EditValue.NullString()
+                                                                     dateAppove.EditValue.NullString(),
+                                                                     txtDaftCode.EditValue.NullString()
                                                   },
                                                   DataItem);
                     if (mResultDB.ReturnInt == 0)

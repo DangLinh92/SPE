@@ -68,6 +68,7 @@ namespace Wisol.MES.Forms.CONTENT
                     pop.Status = gvList.GetRowCellValue(e.RowHandle, "PR_STATUS").NullString();
                     pop.PRCode = gvList.GetRowCellValue(e.RowHandle, "PR_CODE").NullString();
                     pop.MRPCode = gvList.GetRowCellValue(e.RowHandle, "MRP_CODE").NullString();
+                    pop.DRAFT_CODE = gvList.GetRowCellValue(e.RowHandle, "DRAF_CODE").NullString();
                     pop.ShowDialog();
                     GetDataInit();
                 }
@@ -78,6 +79,7 @@ namespace Wisol.MES.Forms.CONTENT
                     pop.Status = gvList.GetRowCellValue(e.RowHandle, "PR_STATUS").NullString();
                     pop.PRCode = gvList.GetRowCellValue(e.RowHandle, "PR_CODE").NullString();
                     pop.MRPCode = gvList.GetRowCellValue(e.RowHandle, "MRP_CODE").NullString();
+                    pop.DRAFT_CODE = gvList.GetRowCellValue(e.RowHandle, "DRAF_CODE").NullString();
                     pop.ShowDialog();
                     GetDataInit();
                 }
