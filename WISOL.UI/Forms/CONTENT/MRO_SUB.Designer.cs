@@ -79,6 +79,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btnExportExcel = new Wisol.XSimpleButton(this.components);
+            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
@@ -118,6 +120,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -153,6 +156,7 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // xLayoutControl2
             // 
+            this.xLayoutControl2.Controls.Add(this.btnExportExcel);
             this.xLayoutControl2.Controls.Add(this.btnReloadData);
             this.xLayoutControl2.Controls.Add(this.txtId);
             this.xLayoutControl2.Controls.Add(this.btnDelete);
@@ -374,7 +378,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem11,
             this.layoutControlItem13,
             this.layoutControlItem14,
-            this.layoutControlItem15});
+            this.layoutControlItem15,
+            this.layoutControlItem16});
             this.layoutControlGroup1.Name = "layoutControlGroup1";
             this.layoutControlGroup1.Size = new System.Drawing.Size(419, 788);
             this.layoutControlGroup1.TextVisible = false;
@@ -500,7 +505,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem15.Control = this.btnReloadData;
             this.layoutControlItem15.Location = new System.Drawing.Point(0, 250);
             this.layoutControlItem15.Name = "layoutControlItem15";
-            this.layoutControlItem15.Size = new System.Drawing.Size(399, 34);
+            this.layoutControlItem15.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem15.TextVisible = false;
             // 
@@ -658,6 +663,30 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.FormId = null;
+            this.btnExportExcel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExportExcel.ImageOptions.Image")));
+            this.btnExportExcel.isFormType = false;
+            this.btnExportExcel.Location = new System.Drawing.Point(145, 262);
+            this.btnExportExcel.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnExportExcel.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(129, 30);
+            this.btnExportExcel.StyleController = this.xLayoutControl2;
+            this.btnExportExcel.TabIndex = 17;
+            this.btnExportExcel.Text = "Export Excel";
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
+            // layoutControlItem16
+            // 
+            this.layoutControlItem16.Control = this.btnExportExcel;
+            this.layoutControlItem16.Location = new System.Drawing.Point(133, 250);
+            this.layoutControlItem16.Name = "layoutControlItem16";
+            this.layoutControlItem16.Size = new System.Drawing.Size(266, 34);
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem16.TextVisible = false;
+            // 
             // MRO_SUB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -705,6 +734,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -760,5 +790,7 @@ namespace Wisol.MES.Forms.CONTENT
         private DevExpress.XtraGrid.Columns.GridColumn colId;
         private XSimpleButton btnReloadData;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
+        private XSimpleButton btnExportExcel;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;
     }
 }

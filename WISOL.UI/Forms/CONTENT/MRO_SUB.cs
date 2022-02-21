@@ -10,6 +10,11 @@ using System.Windows.Forms;
 using Wisol.Common;
 using Wisol.Components;
 using Wisol.MES.Inherit;
+using System.Runtime.InteropServices;
+using Excel = Microsoft.Office.Interop.Excel;
+using DevExpress.XtraSpreadsheet;
+using DevExpress.Spreadsheet;
+using System.Diagnostics;
 
 namespace Wisol.MES.Forms.CONTENT
 {
@@ -79,7 +84,7 @@ namespace Wisol.MES.Forms.CONTENT
                 if (e.RowHandle < 0)
                     return;
 
-                if(e.Column.FieldName != "DETAIL")
+                if (e.Column.FieldName != "DETAIL")
                 {
                     txtId.EditValue = gvList.GetRowCellValue(e.RowHandle, "Id").NullString();
                     dateMonthYear.EditValue = gvList.GetRowCellValue(e.RowHandle, "MONTH_YEAR").NullString();
@@ -126,7 +131,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-                if(txtId.EditValue.NullString() == "")
+                if (txtId.EditValue.NullString() == "")
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
@@ -157,7 +162,7 @@ namespace Wisol.MES.Forms.CONTENT
             try
             {
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_MRO_SUB@PUT",
-                    new string[] { "A_ID", "A_DEPT_CODE", "A_PLAN_MRO", "A_ACTUAL", "A_OLD", "A_ADD", "A_TOLTAL", "A_REMAIN", "A_TIME", "A_UNIT" }, 
+                    new string[] { "A_ID", "A_DEPT_CODE", "A_PLAN_MRO", "A_ACTUAL", "A_OLD", "A_ADD", "A_TOLTAL", "A_REMAIN", "A_TIME", "A_UNIT" },
                     new string[] {
                         txtId.EditValue.NullString(),
                         Consts.DEPARTMENT,
@@ -190,6 +195,94 @@ namespace Wisol.MES.Forms.CONTENT
         private void btnReloadData_Click(object sender, EventArgs e)
         {
             InitData();
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dateMonthYear.EditValue.NullString() == "" || !DateTime.TryParse(dateMonthYear.EditValue.NullString(),out _))
+                {
+                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                    return;
+                }
+
+                SpreadsheetControl spreadsheetMRO = new SpreadsheetControl();
+                IWorkbook workbook = spreadsheetMRO.Document;
+                workbook.BeginUpdate();
+                workbook.LoadDocument("Form_MRO bugget.xlsx");
+
+                Worksheet sheet1 = workbook.Worksheets[0];
+                var firstDayOfMonth = new DateTime(DateTime.Parse(dateMonthYear.EditValue.NullString()).Year, DateTime.Parse(dateMonthYear.EditValue.NullString()).Month, 1);
+                var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd");
+
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_MRO_SUB@INIT_DATA_EXCEL",
+                      new string[] { "A_DEPARTMENT", "A_FROM_TIME", "A_TO_TIME" },
+                      new string[] { Consts.DEPARTMENT, firstDayOfMonth.ToString("yyyy-MM-dd"), lastDayOfMonth });
+
+                if (m_ResultDB.ReturnInt == 0)
+                {
+                    DataTable data = m_ResultDB.ReturnDataSet.Tables[0];
+
+                    sheet1.Cells["C1"].Value = DateTime.Parse(dateMonthYear.EditValue.NullString()).Month;
+
+                    int i = 0;
+                    foreach (DataRow row in data.Rows)
+                    {
+                        if (i == 0)
+                        {
+                            sheet1.Cells["C6"].Value = row["PLANT"].NullString(); //PLAN 계획
+                            sheet1.Cells["D6"].Value = row["ACTUAL_PLAN"].NullString(); // ACTUAL PLANT
+                        }
+
+                        sheet1.Cells["B"+(i+6)].Value = row["TIME_HEADER"].NullString(); // TIME
+
+                        if (i > 0)
+                        {
+                            sheet1.Cells["F" + (i + 6)].Value = row["ADD_ORDER"].NullString();
+                        }
+                        i++;
+                    }
+                    CellRange sourceRange = sheet1["C" + (i + 6) + ":C25"];
+                    CellRange sourceRange1 = sheet1["D" + (i + 6) + ":D25"];
+                    CellRange sourceRange2 = sheet1["Q" + (i + 6) + ":Q25"];
+                    CellRange sourceRange3 = sheet1["E" + (i + 6) + ":E25"];
+
+                    sourceRange.Value = 0;
+                    sourceRange1.Value = 0;
+                    sourceRange2.Value = "";
+                    sourceRange3.Value = 0;
+
+                    workbook.EndUpdate();
+
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.Filter = "excel files (*.xlsx)|*.xlsx";
+                    saveFileDialog1.FileName = "Form_MRO bugget" + "-" + DateTime.Now.ToString("yyyy-MM-dd") + ".xlsx";
+                    saveFileDialog1.FilterIndex = 2;
+                    saveFileDialog1.RestoreDirectory = true;
+
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        string fileName = saveFileDialog1.FileName;
+
+                        // Save the modified document to a file.
+                        workbook.SaveDocument(fileName, DocumentFormat.Xlsx);
+
+                        Process.Start(fileName);
+                        MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                    }
+
+                }
+                else
+                {
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
         }
     }
 }
