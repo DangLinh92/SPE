@@ -15,6 +15,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using DevExpress.XtraSpreadsheet;
 using DevExpress.Spreadsheet;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace Wisol.MES.Forms.CONTENT
 {
@@ -201,7 +202,7 @@ namespace Wisol.MES.Forms.CONTENT
         {
             try
             {
-                if (dateMonthYear.EditValue.NullString() == "" || !DateTime.TryParse(dateMonthYear.EditValue.NullString(),out _))
+                if (dateMonthYear.EditValue.NullString() == "" || !DateTime.TryParse(dateMonthYear.EditValue.NullString(), out _))
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     return;
@@ -231,15 +232,42 @@ namespace Wisol.MES.Forms.CONTENT
                     {
                         if (i == 0)
                         {
-                            sheet1.Cells["C6"].Value = row["PLANT"].NullString(); //PLAN 계획
-                            sheet1.Cells["D6"].Value = row["ACTUAL_PLAN"].NullString(); // ACTUAL PLANT
+                            if (double.TryParse(row["PLANT"].NullString(), out double plantV))
+                            {
+                                sheet1.Cells["C6"].Value = plantV.ToString("N", CultureInfo.InvariantCulture); //PLAN 계획
+                            }
+                            else
+                            {
+                                sheet1.Cells["C6"].Value = row["PLANT"].NullString();
+                            }
+
+                            if (double.TryParse(row["ACTUAL_PLAN"].NullString(), out double actualPlantV))
+                            {
+                                sheet1.Cells["D6"].Value = actualPlantV.ToString("N", CultureInfo.InvariantCulture);
+                            }
+                            else
+                            {
+                                sheet1.Cells["D6"].Value = row["ACTUAL_PLAN"].NullString(); // ACTUAL PLANT
+                            }
+
+                            sheet1.Cells["C6"].NumberFormat = "#,#";
+                            sheet1.Cells["D6"].NumberFormat = "#,#";
                         }
 
-                        sheet1.Cells["B"+(i+6)].Value = row["TIME_HEADER"].NullString(); // TIME
+                        sheet1.Cells["B" + (i + 6)].Value = row["TIME_HEADER"].NullString(); // TIME
 
                         if (i > 0)
                         {
-                            sheet1.Cells["F" + (i + 6)].Value = row["ADD_ORDER"].NullString();
+                            if (double.TryParse(row["ADD_ORDER"].NullString(), out double addOrderV))
+                            {
+                                sheet1.Cells["F" + (i + 6)].Value = addOrderV.ToString("N", CultureInfo.InvariantCulture); ;
+                            }
+                            else
+                            {
+                                sheet1.Cells["F" + (i + 6)].Value = row["ADD_ORDER"].NullString();
+                            }
+
+                            sheet1.Cells["F" + (i + 6)].NumberFormat = "#,#";
                         }
                         i++;
                     }
@@ -277,7 +305,7 @@ namespace Wisol.MES.Forms.CONTENT
                 {
                     MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
                 }
-               
+
             }
             catch (Exception ex)
             {

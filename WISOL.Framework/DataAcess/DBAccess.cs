@@ -180,7 +180,7 @@ namespace Wisol.DataAcess
             }
         }
 
-        public ResultDB ExcuteProcWithBytes(string ProcName, string[] Parameter,string bytesParam, string[] Value,byte[] bytes, DBAccessType type = DBAccessType.DB, int rfcTableCount = 0)
+        public ResultDB ExcuteProcWithBytes(string ProcName, string[] Parameter, string bytesParam, string[] Value, byte[] bytes, DBAccessType type = DBAccessType.DB, int rfcTableCount = 0)
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
             try
@@ -197,7 +197,7 @@ namespace Wisol.DataAcess
                 {
                     dic.Add(Parameter[i], Value[i]);
                 }
-                return ExcuteProcWithBytes(ProcName, dic,bytesParam,bytes, type, rfcTableCount);
+                return ExcuteProcWithBytes(ProcName, dic, bytesParam, bytes, type, rfcTableCount);
             }
             catch (Exception ex)
             {
@@ -212,7 +212,7 @@ namespace Wisol.DataAcess
             }
         }
 
-        public ResultDB ExcuteProcWithTableParam(string ProcName, string[] Parameter,string tableParam, string[] Value,DataTable table, DBAccessType type = DBAccessType.DB, int rfcTableCount = 0)
+        public ResultDB ExcuteProcWithTableParam(string ProcName, string[] Parameter, string tableParam, string[] Value, DataTable table, DBAccessType type = DBAccessType.DB, int rfcTableCount = 0)
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
             try
@@ -230,7 +230,7 @@ namespace Wisol.DataAcess
 
                     dic.Add(Parameter[i], Value[i]);
                 }
-                return ExcuteProcWithTableParam(ProcName, dic,tableParam,table, type, rfcTableCount);
+                return ExcuteProcWithTableParam(ProcName, dic, tableParam, table, type, rfcTableCount);
             }
             catch (Exception ex)
             {
@@ -330,7 +330,7 @@ namespace Wisol.DataAcess
             }
         }
 
-        public ResultDB ExcuteProcWithBytes(string ProcName, Dictionary<string, string> Dictionary,string byteParam,byte[] bytes, DBAccessType dbAccesstype = DBAccessType.DB, int rfcTableCount = 0)
+        public ResultDB ExcuteProcWithBytes(string ProcName, Dictionary<string, string> Dictionary, string byteParam, byte[] bytes, DBAccessType dbAccesstype = DBAccessType.DB, int rfcTableCount = 0)
         {
             try
             {
@@ -385,7 +385,7 @@ namespace Wisol.DataAcess
             }
         }
 
-        public ResultDB ExcuteProcWithTableParam(string ProcName, Dictionary<string, string> Dictionary,string tableParam,DataTable table, DBAccessType dbAccesstype = DBAccessType.DB, int rfcTableCount = 0)
+        public ResultDB ExcuteProcWithTableParam(string ProcName, Dictionary<string, string> Dictionary, string tableParam, DataTable table, DBAccessType dbAccesstype = DBAccessType.DB, int rfcTableCount = 0)
         {
             try
             {
