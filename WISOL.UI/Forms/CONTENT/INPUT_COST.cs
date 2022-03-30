@@ -232,7 +232,7 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-                if (datePrice.EditValue.NullString() == "" || !DateTime.TryParse(datePrice.EditValue.NullString(), out _))
+                if (datePrice.EditValue.NullString() == "" || !DateTime.TryParseExact(datePrice.Text.NullString(),"yyyy-MM-dd", CultureInfo.InvariantCulture,DateTimeStyles.None, out DateTime datePrices))
                 {
                     MsgBox.Show("Hãy chọn thời gian áp dụng giá!", MsgType.Warning);
                     return;
@@ -265,7 +265,7 @@ namespace Wisol.MES.Forms.CONTENT
                                      isEdit,
                                      txtPriceVN.EditValue.NullString(),
                                      txtPriceUS.EditValue.NullString(),
-                                     datePrice.EditValue.NullString(),
+                                     datePrice.Text.NullString(),
                                      stlUnit.EditValue.NullString(),
                                      txtID.EditValue.NullString(),
                                      inputDefault});

@@ -41,6 +41,8 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtModels = new Wisol.XTextEdit();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
@@ -51,6 +53,8 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModels.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -65,6 +69,7 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             // 
             // xLayoutControl1
             // 
+            this.xLayoutControl1.Controls.Add(this.txtModels);
             this.xLayoutControl1.Controls.Add(this.btnSave);
             this.xLayoutControl1.Controls.Add(this.btnClose);
             this.xLayoutControl1.Controls.Add(this.gcList);
@@ -81,7 +86,7 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             this.btnSave.FormId = null;
             this.btnSave.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.ImageOptions.Image")));
             this.btnSave.isFormType = false;
-            this.btnSave.Location = new System.Drawing.Point(12, 12);
+            this.btnSave.Location = new System.Drawing.Point(751, 12);
             this.btnSave.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSave.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnSave.Name = "btnSave";
@@ -96,7 +101,7 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             this.btnClose.FormId = null;
             this.btnClose.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.ImageOptions.Image")));
             this.btnClose.isFormType = false;
-            this.btnClose.Location = new System.Drawing.Point(145, 12);
+            this.btnClose.Location = new System.Drawing.Point(884, 12);
             this.btnClose.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClose.MinimumSize = new System.Drawing.Size(129, 30);
             this.btnClose.Name = "btnClose";
@@ -132,7 +137,8 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem1,
             this.layoutControlItem2,
-            this.layoutControlItem3});
+            this.layoutControlItem3,
+            this.layoutControlItem4});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1025, 694);
             this.Root.TextVisible = false;
@@ -149,20 +155,42 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.btnClose;
-            this.layoutControlItem2.Location = new System.Drawing.Point(133, 0);
+            this.layoutControlItem2.Location = new System.Drawing.Point(872, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(872, 34);
+            this.layoutControlItem2.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnSave;
-            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(739, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(133, 34);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
+            // 
+            // txtModels
+            // 
+            this.txtModels.IsRequire = false;
+            this.txtModels.Location = new System.Drawing.Point(52, 12);
+            this.txtModels.Name = "txtModels";
+            this.txtModels.NullBackColor = System.Drawing.Color.Lime;
+            this.txtModels.NullValidation = false;
+            this.txtModels.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtModels.Properties.Appearance.Options.UseBackColor = true;
+            this.txtModels.Size = new System.Drawing.Size(695, 20);
+            this.txtModels.StyleController = this.xLayoutControl1;
+            this.txtModels.TabIndex = 7;
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.txtModels;
+            this.layoutControlItem4.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(739, 34);
+            this.layoutControlItem4.Text = "Model";
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(28, 13);
             // 
             // SPARE_PARTS
             // 
@@ -184,6 +212,8 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModels.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,5 +231,7 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private XSimpleButton btnSave;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private XTextEdit txtModels;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
     }
 }

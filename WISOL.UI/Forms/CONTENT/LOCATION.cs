@@ -461,7 +461,7 @@ namespace Wisol.MES.Forms.CONTENT
                 string DateExpired = "2199-01-01";
                 if (cheHasDateExpired.Checked)
                 {
-                    DateExpired = dateExpiredTime.EditValue.NullString();
+                    DateExpired = dateExpiredTime.Text.NullString();
                 }
 
                 //if (!(cheEditQuantity.Checked && txtQuantity.Enabled))
@@ -494,7 +494,7 @@ namespace Wisol.MES.Forms.CONTENT
                         barcode,
                         stlUnit.EditValue.NullString(),
                         DateExpired,
-                        dateInputTime.EditValue.NullString(),
+                        dateInputTime.Text.NullString(),
                         txtPoNo.EditValue.NullString()
                     });
 
@@ -507,7 +507,7 @@ namespace Wisol.MES.Forms.CONTENT
                         Print(stlPosition.EditValue.NullString(),
                             stlCondition.EditValue.NullString(),
                             stlSparepart.EditValue.NullString(),
-                            DateTime.Parse(dateInputTime.EditValue.NullString()).ToString("yyyy-MM-dd"),
+                            DateTime.Parse(dateInputTime.Text.NullString()).ToString("yyyy-MM-dd"),
                             DateTime.Parse(DateExpired).ToString("yyyy-MM-dd"),
                             quantity.NullString(), stlUnit.EditValue.NullString(),
                             int.Parse(txtLabelNumber.EditValue.NullString()), txtPoNo.EditValue.NullString());
@@ -594,7 +594,7 @@ namespace Wisol.MES.Forms.CONTENT
                     string DateExpired = "2199-01-01";
                     if (cheHasDateExpired.Checked)
                     {
-                        DateExpired = dateExpiredTime.EditValue.NullString();
+                        DateExpired = dateExpiredTime.Text.NullString();
                     }
 
                     string codeLocation = txtposition1.EditValue.NullString();// + "-" + txtPosition2.EditValue.NullString();
@@ -610,7 +610,7 @@ namespace Wisol.MES.Forms.CONTENT
                             stlCondition.EditValue.NullString(),
                             stlUnit.EditValue.NullString(),
                             DateExpired,
-                            dateInputTime.EditValue.NullString(),
+                            dateInputTime.Text.NullString(),
                             txtPoNo.EditValue.NullString(),
                             Consts.USER_INFO.Id
                         });
@@ -1358,7 +1358,7 @@ namespace Wisol.MES.Forms.CONTENT
                     string.IsNullOrEmpty(stlUnitMove.EditValue.NullString()) ||
                     string.IsNullOrEmpty(stlSparepartCode_Move.EditValue.NullString()) ||
                     string.IsNullOrEmpty(stlConditionMove.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(dateTimeIn_Move.EditValue.NullString()))
+                    string.IsNullOrEmpty(dateTimeIn_Move.Text.NullString()))
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
                     stlPosition.Focus();
@@ -1375,7 +1375,7 @@ namespace Wisol.MES.Forms.CONTENT
                 string DateExpired = "2199-01-01";
                 if (dateExpired_Move.EditValue.NullString() != string.Empty)
                 {
-                    DateExpired = dateExpired_Move.EditValue.NullString();
+                    DateExpired = dateExpired_Move.Text.NullString();
                 }
 
                 if(txtOld_Location.EditValue.NullString() == stlNew_Location.EditValue.NullString())
@@ -1402,7 +1402,7 @@ namespace Wisol.MES.Forms.CONTENT
                          barcode,
                          stlUnitMove.EditValue.NullString(),
                          DateExpired,
-                        dateTimeIn_Move.EditValue.NullString(),
+                        dateTimeIn_Move.Text.NullString(),
                         Consts.USER_INFO.Id,
                         txtPoNo_Move.EditValue.NullString()
                     });
@@ -1416,7 +1416,7 @@ namespace Wisol.MES.Forms.CONTENT
                         Print(stlNew_Location.EditValue.NullString(),
                             stlConditionMove.EditValue.NullString(),
                             stlSparepartCode_Move.EditValue.NullString(),
-                            DateTime.Parse(dateTimeIn_Move.EditValue.NullString()).ToString("yyyy-MM-dd"),
+                            DateTime.Parse(dateTimeIn_Move.Text.NullString()).ToString("yyyy-MM-dd"),
                             DateTime.Parse(DateExpired).ToString("yyyy-MM-dd"),
                             txtQuantityMove.EditValue.NullString(), stlUnitMove.EditValue.NullString(),
                             int.Parse(txtLabelNumber_Move.EditValue.NullString()), txtPoNo_Move.EditValue.NullString());

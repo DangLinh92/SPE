@@ -299,7 +299,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                     if (checkRow != null)
                     {
-                        checkRow["CREATE_DATE"] = dateInput.EditValue;
+                        checkRow["CREATE_DATE"] = dateInput.Text;
                         checkRow["STOCK_CODE"] = stlKho.EditValue.NullString();
                         checkRow["DEPT_CODE"] = Consts.DEPARTMENT;
                         checkRow["USER_CREATE"] = txtUserCreate.EditValue.NullString();
@@ -336,7 +336,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         DataRow row = Data.NewRow();
                         row["RECEIPT_ISSUE_CODE"] = Mode == Consts.MODE_NEW ? "N" : ReceiptCode;
                         row["INT_OUT"] = INOUT;
-                        row["CREATE_DATE"] = dateInput.EditValue;
+                        row["CREATE_DATE"] = dateInput.Text;
                         row["STOCK_CODE"] = stlKho.EditValue.NullString();
                         row["DEPT_CODE"] = Consts.DEPARTMENT;
                         row["USER_CREATE"] = txtUserCreate.EditValue.NullString();
@@ -492,7 +492,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                     if (checkRow != null)
                     {
-                        checkRow["CREATE_DATE"] = dateInput.EditValue;
+                        checkRow["CREATE_DATE"] = dateInput.Text;
                         checkRow["STOCK_CODE"] = stlKho.EditValue.NullString();
                         checkRow["DEPT_CODE"] = Consts.DEPARTMENT;
                         checkRow["USER_CREATE"] = txtUserCreate.EditValue.NullString();
@@ -524,7 +524,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         DataRow row = Data.NewRow();
                         row["RECEIPT_ISSUE_CODE"] = Mode == Consts.MODE_NEW ? "N" : ReceiptCode;
                         row["INT_OUT"] = INOUT;
-                        row["CREATE_DATE"] = dateInput.EditValue;
+                        row["CREATE_DATE"] = dateInput.Text;
                         row["STOCK_CODE"] = stlKho.EditValue.NullString();
                         row["DEPT_CODE"] = Consts.DEPARTMENT;
                         row["USER_CREATE"] = txtUserCreate.EditValue.NullString();
@@ -692,7 +692,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                         row["RECEIPT_ISSUE_CODE"] = Mode == Consts.MODE_NEW ? "N" : ReceiptCode;
                         row["INT_OUT"] = INOUT;
-                        row["CREATE_DATE"] = dateInput.EditValue;
+                        row["CREATE_DATE"] = dateInput.Text;
                         row["STOCK_CODE"] = stlKho.EditValue.NullString();
                         row["DEPT_CODE"] = Consts.DEPARTMENT;
                         row["USER_CREATE"] = txtUserCreate.EditValue.NullString() == string.Empty ? Consts.USER_INFO.Id : txtUserCreate.EditValue.NullString();
@@ -724,7 +724,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         DataRow row = Data.NewRow();
                         row["RECEIPT_ISSUE_CODE"] = Mode == Consts.MODE_NEW ? "N" : ReceiptCode;
                         row["INT_OUT"] = INOUT;
-                        row["CREATE_DATE"] = dateInput.EditValue;
+                        row["CREATE_DATE"] = dateInput.Text;
                         row["STOCK_CODE"] = stlKho.EditValue.NullString();
                         row["DEPT_CODE"] = Consts.DEPARTMENT;
                         row["USER_CREATE"] = txtUserCreate.EditValue.NullString() == string.Empty ? Consts.USER_INFO.Id : txtUserCreate.EditValue.NullString();
@@ -1079,7 +1079,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                 if (Data.Rows.Count == 0 ||
                     string.IsNullOrEmpty(stlKho.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(dateInput.EditValue.NullString()) ||
+                    string.IsNullOrEmpty(dateInput.Text.NullString()) ||
                     string.IsNullOrEmpty(cboStatus.EditValue.NullString()))
                 {
                     MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
@@ -1100,7 +1100,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     item["INT_OUT"] = INOUT;
                     item["ORDER_CODE"] = stlOrderCode.EditValue.NullString(); // PO_NO
                     item["USER_CREATE"] = txtUserCreate.EditValue.NullString() == string.Empty ? Consts.USER_INFO.Id : txtUserCreate.EditValue.NullString();
-                    item["CREATE_DATE"] = dateInput.EditValue.NullString();
+                    item["CREATE_DATE"] = dateInput.Text.NullString();
                     item["STATUS"] = cboStatus.EditValue.NullString();
                     item["USER_SYS"] = Consts.USER_INFO.Id;
                 }
@@ -1740,7 +1740,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
                 if (Data.Rows.Count == 0 ||
                     string.IsNullOrEmpty(stlKho.EditValue.NullString()) ||
-                    string.IsNullOrEmpty(dateInput.EditValue.NullString()) ||
+                    string.IsNullOrEmpty(dateInput.Text.NullString()) ||
                     string.IsNullOrEmpty(cboStatus.EditValue.NullString()) ||
                     Data.Rows.Count == 0)
                 {
@@ -1757,9 +1757,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
                     foreach (var item in locations.Split(','))
                     {
                         STOCK_OUT_REPORT reportModel = new STOCK_OUT_REPORT();
-                        reportModel.Day = DateTime.Parse(dateInput.EditValue.NullString()).Day.NullString();
-                        reportModel.Month = DateTime.Parse(dateInput.EditValue.NullString()).Month.NullString();
-                        reportModel.Year = DateTime.Parse(dateInput.EditValue.NullString()).Year.NullString();
+                        reportModel.Day = DateTime.Parse(dateInput.Text.NullString()).Day.NullString();
+                        reportModel.Month = DateTime.Parse(dateInput.Text.NullString()).Month.NullString();
+                        reportModel.Year = DateTime.Parse(dateInput.Text.NullString()).Year.NullString();
                         reportModel.UserReive = txtDelivererAndReceiver.EditValue.NullString();
                         reportModel.UserCreate = txtUserCreate.EditValue.NullString();
 

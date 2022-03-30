@@ -86,6 +86,7 @@ namespace Wisol.MES.Forms.MAINTAIN
         private void btnBomEq_Click(object sender, EventArgs e)
         {
             POP.SPARE_PARTS pop = new POP.SPARE_PARTS();
+            pop.Model = txtEQ_Model.EditValue.NullString();
             pop.DATA = DATA_SPARE_PART;
             pop.ShowDialog();
             DATA_SPARE_PART = pop.DATA;
@@ -210,13 +211,13 @@ namespace Wisol.MES.Forms.MAINTAIN
                 base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP_EQUIPMENT.PUT",
                     new string[] { "A_CODE", "A_EQ_NAME", "A_EQ_TYPE", "A_EQ_YEAR", "A_EQ_LOCATION", "A_EQ_SERIAL", "A_EQ_ORIGIN", "A_EQ_MODEL",
                                    "A_DETAIL_INFO", "A_IMAGE", "A_USER", "A_DEPARTMENT", "A_DATA_SPARE", "A_STATUS", "A_DATE_IN", "A_SUB_LOCATION", "A_MANUFACTURER" },
-                    new string[] 
-                    { 
+                    new string[]
+                    {
                                    txtEquipmentId.EditValue.NullString(),txtEquipmentName.EditValue.NullString(),stlEquipmentType.EditValue.NullString(),
                                    dateEQ_Year.EditValue.NullString(),stlLocationEQ.EditValue.NullString(),txtEQ_Serial.EditValue.NullString(),txtEQ_Origin.EditValue.NullString(),
                                    txtEQ_Model.EditValue.NullString(),memoEq.EditValue.NullString(),img,Consts.USER_INFO.Id,Consts.DEPARTMENT,
                                    sparepartList,cboStatus.EditValue.NullString(),dateIn.EditValue.NullString(),
-                                   txtSubLocation.EditValue.NullString(),txtManuFacturer.EditValue.NullString() 
+                                   txtSubLocation.EditValue.NullString(),txtManuFacturer.EditValue.NullString()
                     });
 
                 if (m_ResultDB.ReturnInt == 0)
@@ -562,6 +563,20 @@ namespace Wisol.MES.Forms.MAINTAIN
             catch (Exception ex)
             {
                 MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
+
+        private void btnFindPart_Click(object sender, EventArgs e)
+        {
+            base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.GET_MODEL_BOM", new string[] { "A_DEPT_CODE", "A_MODEL" }, new string[] { Consts.DEPARTMENT,txtEQ_Model.EditValue.NullString() });
+
+            if (m_ResultDB.ReturnInt == 0)
+            {
+                gcListBomEq.DataSource = m_ResultDB.ReturnDataSet.Tables[0];
+            }
+            else
+            {
+                MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
             }
         }
     }

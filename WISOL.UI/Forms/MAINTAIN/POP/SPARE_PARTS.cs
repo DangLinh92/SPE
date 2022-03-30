@@ -17,7 +17,9 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
 {
     public partial class SPARE_PARTS : FormType
     {
+        public string Model;
         public DataTable DATA;
+        public DataTable DATA_MODEL;
         public SPARE_PARTS()
         {
             InitializeComponent();
@@ -27,7 +29,7 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
         private void SPARE_PARTS_Load(object sender, EventArgs e)
         {
             Classes.Common.SetFormIdToButton(null, "SPARE_PARTS", this);
-
+            txtModels.EditValue = Model;
             try
             {
                 base.mResultDB = base.mDBaccess.ExcuteProc("PKG_BUSINESS_SP.GET",
@@ -77,6 +79,22 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
                     DATA.Columns.Add("CODE");
                     DATA.Columns.Add("NAME_VI");
                 }
+
+                if (txtModels.EditValue.NullString() != "")
+                {
+                    if (DATA_MODEL == null)
+                    {
+                        DATA_MODEL = new DataTable();
+                        DATA_MODEL.Columns.Add("SPARE_PART_CODE");
+                        DATA_MODEL.Columns.Add("MODEL");
+                        DATA_MODEL.Columns.Add("DEPT_CODE");
+                    }
+                    else
+                    {
+                        DATA_MODEL.Rows.Clear();
+                    }
+                }
+
                 //else
                 //{
                 //    DATA.Rows.Clear();
@@ -100,6 +118,32 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
                         {
                             gvList.SelectRow(i);
                         }
+                    }
+                }
+
+                if (txtModels.EditValue.NullString() != "")
+                {
+                    DataRow newRow;
+                    foreach (DataRow item in DATA.Rows)
+                    {
+                        newRow = DATA_MODEL.NewRow();
+                        newRow["SPARE_PART_CODE"] = item["CODE"].NullString();
+                        newRow["MODEL"] = txtModels.EditValue.NullString();
+                        newRow["DEPT_CODE"] = Consts.DEPARTMENT;
+                        DATA_MODEL.Rows.Add(newRow);
+                    }
+
+                    base.mResultDB = base.mDBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_SP.PUT_MODEL_BOM",
+                    new string[] { "MODEL", "DEPT_CODE" }, "A_DATA", new string[] { txtModels.EditValue.NullString(), Consts.DEPARTMENT }, DATA_MODEL);
+
+                    if (mResultDB.ReturnInt == 0)
+                    {
+                        MsgBox.Show(mResultDB.ReturnString.Translation(), MsgType.Information);
+                    }
+                    else
+                    {
+                        MsgBox.Show(mResultDB.ReturnString.Translation(), MsgType.Error);
+                        return;
                     }
                 }
 
