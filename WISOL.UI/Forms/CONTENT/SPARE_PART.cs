@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraEditors.Controls;
 using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
@@ -64,6 +65,13 @@ namespace Wisol.MES.Forms.CONTENT
                     base.m_BindData.BindGridLookEdit(sltUnit4, data[1], "CODE", "NAME");
 
                     base.m_BindData.BindGridLookEdit(stlStage, data[5], "OPERATION_ID", "OPERATION_NAME");
+
+                    cheCboEquipment.Properties.Items.Clear();
+                    foreach (DataRow row in data[6].Rows)
+                    {
+                        cheCboEquipment.Properties.Items.Add(row["MODEL"]);
+                    }
+                    
                 }
 
                 btnUpdate.Enabled = false;
@@ -309,6 +317,34 @@ namespace Wisol.MES.Forms.CONTENT
                         {
                             gvList.MakeRowVisible(i);
                             break;
+                        }
+                    }
+
+                    if(cheCboEquipment.Text.NullString() != "")
+                    {
+                        //cheCboEquipment.Text
+                        DataTable modelTable = new DataTable();
+                        modelTable.Columns.Add("SPARE_PART_CODE");
+                        modelTable.Columns.Add("MODEL");
+                        modelTable.Columns.Add("DEPT_CODE");
+
+                        DataRow row;
+                        foreach (var item in cheCboEquipment.Text.Split(','))
+                        {
+                            row = modelTable.NewRow();
+                            row["SPARE_PART_CODE"] = code;
+                            row["MODEL"] = item.Trim();
+                            row["DEPT_CODE"] = Consts.DEPARTMENT;
+                            modelTable.Rows.Add(row);
+                        }
+
+                        base.m_ResultDB = base.m_DBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_SP.PUT_SPAREPART_MODEL_BOM",
+                           new string[] { "DEPT_CODE" }, "A_DATA",
+                           new string[] { Consts.DEPARTMENT }, modelTable);
+
+                        if (m_ResultDB.ReturnInt != 0)
+                        {
+                            MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
                         }
                     }
 
@@ -621,11 +657,27 @@ namespace Wisol.MES.Forms.CONTENT
             {
                 if (base.m_ResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
                 {
+                    DataTableCollection tableCollection = base.m_ResultDB.ReturnDataSet.Tables;
                     txtCode.Enabled = false;
                     cbGenCode.Checked = false;
                     cbGenCode.Enabled = false;
 
-                    ShowASparepart(base.m_ResultDB.ReturnDataSet.Tables[0], base.m_ResultDB.ReturnDataSet.Tables[1]);
+                    ShowASparepart(tableCollection[0], tableCollection[1]);
+                    int i = -1;
+                    foreach (CheckedListBoxItem item in cheCboEquipment.Properties.Items)
+                    {
+                        item.CheckState = CheckState.Unchecked;
+                    }
+
+                    foreach (DataRow row in tableCollection[2].Rows)
+                    {
+                        i = cheCboEquipment.Properties.Items.IndexOf(row["MODEL"].NullString());
+                        if(i >= 0)
+                        {
+                            cheCboEquipment.Properties.Items[i].CheckState = CheckState.Checked;
+                            i = -1;
+                        }
+                    }
                 }
             }
         }
