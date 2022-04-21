@@ -71,7 +71,7 @@ namespace Wisol.MES.Forms.CONTENT
                     {
                         cheCboEquipment.Properties.Items.Add(row["MODEL"]);
                     }
-                    
+
                 }
 
                 btnUpdate.Enabled = false;
@@ -320,7 +320,7 @@ namespace Wisol.MES.Forms.CONTENT
                         }
                     }
 
-                    if(cheCboEquipment.Text.NullString() != "")
+                    if (cheCboEquipment.Text.NullString() != "")
                     {
                         //cheCboEquipment.Text
                         DataTable modelTable = new DataTable();
@@ -331,16 +331,19 @@ namespace Wisol.MES.Forms.CONTENT
                         DataRow row;
                         foreach (var item in cheCboEquipment.Text.Split(','))
                         {
-                            row = modelTable.NewRow();
-                            row["SPARE_PART_CODE"] = code;
-                            row["MODEL"] = item.Trim();
-                            row["DEPT_CODE"] = Consts.DEPARTMENT;
-                            modelTable.Rows.Add(row);
+                            if (item.NullString() != "")
+                            {
+                                row = modelTable.NewRow();
+                                row["SPARE_PART_CODE"] = code;
+                                row["MODEL"] = item.Trim();
+                                row["DEPT_CODE"] = Consts.DEPARTMENT;
+                                modelTable.Rows.Add(row);
+                            }
                         }
 
                         base.m_ResultDB = base.m_DBaccess.ExcuteProcWithTableParam("PKG_BUSINESS_SP.PUT_SPAREPART_MODEL_BOM",
-                           new string[] { "DEPT_CODE" }, "A_DATA",
-                           new string[] { Consts.DEPARTMENT }, modelTable);
+                           new string[] { "DEPT_CODE", "A_SPAREPART_CODE" }, "A_DATA",
+                           new string[] { Consts.DEPARTMENT, code }, modelTable);
 
                         if (m_ResultDB.ReturnInt != 0)
                         {
@@ -672,7 +675,7 @@ namespace Wisol.MES.Forms.CONTENT
                     foreach (DataRow row in tableCollection[2].Rows)
                     {
                         i = cheCboEquipment.Properties.Items.IndexOf(row["MODEL"].NullString());
-                        if(i >= 0)
+                        if (i >= 0)
                         {
                             cheCboEquipment.Properties.Items[i].CheckState = CheckState.Checked;
                             i = -1;
@@ -818,7 +821,7 @@ namespace Wisol.MES.Forms.CONTENT
 
         private void btnDocument_Click(object sender, EventArgs e)
         {
-            if(txtCode.EditValue.NullString() == "")
+            if (txtCode.EditValue.NullString() == "")
             {
                 MsgBox.Show("INPUT SPAREPART CODE !!!", MsgType.Warning);
                 return;

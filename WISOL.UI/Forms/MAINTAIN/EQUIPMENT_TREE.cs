@@ -48,14 +48,14 @@ namespace Wisol.MES.Forms.MAINTAIN
                         m_BindData.BindGridLookEdit(stlEquipment, datas[0], "EQUIPMENT_ID", "EQUIPMENT_NAME");
                     }
 
-                    if (datas[2].Rows.Count > 0)
+                    if (datas[1].Rows.Count > 0)
                     {
                         treeListEquipment.ClearNodes();
                         treeListEquipment.BeginUnboundLoad();
                         TreeListNode parentForRootNodes = null;
-                        TreeListNode rootNode = treeListEquipment.AppendNode(new object[] { datas[2].Rows[0]["EQUIPMENT_ID"].NullString(), datas[2].Rows[0]["EQUIPMENT_NAME"].NullString() }, parentForRootNodes);
+                        TreeListNode rootNode = treeListEquipment.AppendNode(new object[] { datas[1].Rows[0]["EQUIPMENT_ID"].NullString(), datas[1].Rows[0]["EQUIPMENT_NAME"].NullString() }, parentForRootNodes);
 
-                        foreach (DataRow row in datas[2].Rows)
+                        foreach (DataRow row in datas[1].Rows)
                         {
                             treeListEquipment.AppendNode(new object[] { row["CODE"].NullString(), row["NAME_VI"].NullString() }, rootNode);
                         }

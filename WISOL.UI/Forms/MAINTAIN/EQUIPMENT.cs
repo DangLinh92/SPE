@@ -357,7 +357,13 @@ namespace Wisol.MES.Forms.MAINTAIN
                 if (e.RowHandle < 0)
                     return;
 
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP_EQUIPMENT.GET", new string[] { "A_CODE", "A_DEPARTMENT" }, new string[] { gvList.GetRowCellValue(e.RowHandle, "EQUIPMENT_ID").NullString(), Consts.DEPARTMENT });
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP_EQUIPMENT.GET", new string[] { "A_CODE", "A_DEPARTMENT", "A_MODEL" }, 
+                    new string[] 
+                    { 
+                        gvList.GetRowCellValue(e.RowHandle, "EQUIPMENT_ID").NullString(),
+                        Consts.DEPARTMENT,
+                        gvList.GetRowCellValue(e.RowHandle, "EQ_MODEL").NullString() 
+                    });
 
                 if (m_ResultDB.ReturnInt == 0)
                 {
