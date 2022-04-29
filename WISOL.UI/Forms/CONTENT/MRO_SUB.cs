@@ -140,7 +140,7 @@ namespace Wisol.MES.Forms.CONTENT
                 DialogResult dialogResult = MsgBox.Show("MSG_COM_015".Translation(), MsgType.Warning, DialogType.OkCancel);
                 if (dialogResult == DialogResult.OK)
                 {
-                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_MRO_SUB@INIT", new string[] { "A_ID" }, new string[] { txtId.EditValue.NullString() });
+                    base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_MRO_SUB.DELETE", new string[] { "A_ID" }, new string[] { txtId.EditValue.NullString() });
                     if (m_ResultDB.ReturnInt == 0)
                     {
                         MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
