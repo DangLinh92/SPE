@@ -312,5 +312,37 @@ namespace Wisol.MES.Forms.CONTENT
                 MsgBox.Show(ex.Message, MsgType.Error);
             }
         }
+
+        private void btnSyncMonth_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(dateMonthYear.EditValue.NullString()))
+                {
+                    MsgBox.Show("MSG_ERR_044".Translation(), MsgType.Warning);
+                    return;
+                }
+
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_MRO_SUB.AUTO_UPDATE",
+                    new string[] { "A_DEPARTMENT", "A_TIME"},
+                    new string[] {
+                        Consts.DEPARTMENT,
+                        dateMonthYear.EditValue.NullString()
+                    });
+                if (m_ResultDB.ReturnInt == 0)
+                {
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Information);
+                    btnReloadData.PerformClick();
+                }
+                else
+                {
+                    MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(ex.Message, MsgType.Error);
+            }
+        }
     }
 }
