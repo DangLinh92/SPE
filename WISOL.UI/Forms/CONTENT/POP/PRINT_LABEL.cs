@@ -215,7 +215,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
                         string strDate = gvList.GetRowCellValue(i, "EXPIRED_DATE").NullString();
                         string timeIn = gvList.GetRowCellValue(i, "TIME_IN").NullString();
                         string quantity = gvList.GetRowCellValue(i, "QUANTITY_A_UNIT").NullString();
-                        string unit = gvList.GetRowCellValue(i, "UNIT").NullString();
+                        string unit = gvList.GetRowCellValue(i, "UNIT").NullString().ToUpper();
                         string poNo = gvList.GetRowCellValue(i, "PO_NO").NullString();
 
                         DateTime dTimeIn;

@@ -1293,6 +1293,11 @@ namespace Wisol.MES.Forms.CONTENT.POP
                                 string quantity = items[5];
                                 string unit = items[6];
 
+                                if(unit == "PCS")
+                                {
+                                    unit = "pcs";
+                                }
+
                                 string poNo = "";
                                 if (items.Length > 7)
                                 {

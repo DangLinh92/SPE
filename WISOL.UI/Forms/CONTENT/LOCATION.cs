@@ -509,7 +509,7 @@ namespace Wisol.MES.Forms.CONTENT
                             stlSparepart.EditValue.NullString(),
                             DateTime.Parse(dateInputTime.Text.NullString()).ToString("yyyy-MM-dd"),
                             DateTime.Parse(DateExpired).ToString("yyyy-MM-dd"),
-                            quantity.NullString(), stlUnit.EditValue.NullString(),
+                            quantity.NullString(), stlUnit.EditValue.NullString().ToUpper(),
                             int.Parse(txtLabelNumber.EditValue.NullString()), txtPoNo.EditValue.NullString());
                     }
 
@@ -1418,7 +1418,7 @@ namespace Wisol.MES.Forms.CONTENT
                             stlSparepartCode_Move.EditValue.NullString(),
                             DateTime.Parse(dateTimeIn_Move.Text.NullString()).ToString("yyyy-MM-dd"),
                             DateTime.Parse(DateExpired).ToString("yyyy-MM-dd"),
-                            txtQuantityMove.EditValue.NullString(), stlUnitMove.EditValue.NullString(),
+                            txtQuantityMove.EditValue.NullString(), stlUnitMove.EditValue.NullString().ToUpper(),
                             int.Parse(txtLabelNumber_Move.EditValue.NullString()), txtPoNo_Move.EditValue.NullString());
                     }
 
