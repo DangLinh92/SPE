@@ -33,12 +33,12 @@ namespace Wisol.MES.Forms.CONTENT
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SPARE_PART_EXPORT));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl1 = new Wisol.XLayoutControl();
+            this.btnExport = new Wisol.XSimpleButton(this.components);
             this.spreadsheetFormulaBar1 = new DevExpress.XtraSpreadsheet.SpreadsheetFormulaBar();
             this.speadSheetsControl = new DevExpress.XtraSpreadsheet.SpreadsheetControl();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnExport = new Wisol.XSimpleButton(this.components);
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -72,6 +72,21 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl1.Size = new System.Drawing.Size(1815, 832);
             this.xLayoutControl1.TabIndex = 0;
             this.xLayoutControl1.Text = "xLayoutControl1";
+            // 
+            // btnExport
+            // 
+            this.btnExport.FormId = null;
+            this.btnExport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageOptions.Image")));
+            this.btnExport.isFormType = false;
+            this.btnExport.Location = new System.Drawing.Point(1674, 12);
+            this.btnExport.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnExport.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(129, 30);
+            this.btnExport.StyleController = this.xLayoutControl1;
+            this.btnExport.TabIndex = 6;
+            this.btnExport.Text = "Download Excel File";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // spreadsheetFormulaBar1
             // 
@@ -118,21 +133,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem2.Size = new System.Drawing.Size(1795, 28);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
-            // 
-            // btnExport
-            // 
-            this.btnExport.FormId = null;
-            this.btnExport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageOptions.Image")));
-            this.btnExport.isFormType = false;
-            this.btnExport.Location = new System.Drawing.Point(1674, 12);
-            this.btnExport.MaximumSize = new System.Drawing.Size(129, 30);
-            this.btnExport.MinimumSize = new System.Drawing.Size(129, 30);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(129, 30);
-            this.btnExport.StyleController = this.xLayoutControl1;
-            this.btnExport.TabIndex = 6;
-            this.btnExport.Text = "Download Excel File";
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // layoutControlItem3
             // 

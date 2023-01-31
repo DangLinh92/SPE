@@ -86,6 +86,8 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_NEED_BUY1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DATE_NEED_FINISH1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DATE_END_ACTUAL1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_SUB_QTY_NEED_BUY1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_SUB_DATE_NEED_FINISH1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DEPT_CODE1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_USER1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_STATUS1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -135,8 +137,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.dateTimeChartRangeControlClient2 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
             this.dateTimeChartRangeControlClient3 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
             this.dateTimeChartRangeControlClient4 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
-            this.col_SUB_QTY_NEED_BUY1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.col_SUB_DATE_NEED_FINISH1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
@@ -851,6 +851,22 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_DATE_END_ACTUAL1.VisibleIndex = 8;
             this.col_DATE_END_ACTUAL1.Width = 63;
             // 
+            // col_SUB_QTY_NEED_BUY1
+            // 
+            this.col_SUB_QTY_NEED_BUY1.Caption = "Lượng mua gần nhất";
+            this.col_SUB_QTY_NEED_BUY1.FieldName = "SUB_QTY_NEED_BUY";
+            this.col_SUB_QTY_NEED_BUY1.Name = "col_SUB_QTY_NEED_BUY1";
+            this.col_SUB_QTY_NEED_BUY1.Visible = true;
+            this.col_SUB_QTY_NEED_BUY1.VisibleIndex = 9;
+            // 
+            // col_SUB_DATE_NEED_FINISH1
+            // 
+            this.col_SUB_DATE_NEED_FINISH1.Caption = "Ngày cần kết thúc";
+            this.col_SUB_DATE_NEED_FINISH1.FieldName = "SUB_DATE_NEED_FINISH";
+            this.col_SUB_DATE_NEED_FINISH1.Name = "col_SUB_DATE_NEED_FINISH1";
+            this.col_SUB_DATE_NEED_FINISH1.Visible = true;
+            this.col_SUB_DATE_NEED_FINISH1.VisibleIndex = 10;
+            // 
             // col_DEPT_CODE1
             // 
             this.col_DEPT_CODE1.Caption = "Bộ phận";
@@ -1316,22 +1332,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem6.Size = new System.Drawing.Size(427, 826);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
-            // 
-            // col_SUB_QTY_NEED_BUY1
-            // 
-            this.col_SUB_QTY_NEED_BUY1.Caption = "Lượng mua gần nhất";
-            this.col_SUB_QTY_NEED_BUY1.FieldName = "SUB_QTY_NEED_BUY";
-            this.col_SUB_QTY_NEED_BUY1.Name = "col_SUB_QTY_NEED_BUY1";
-            this.col_SUB_QTY_NEED_BUY1.Visible = true;
-            this.col_SUB_QTY_NEED_BUY1.VisibleIndex = 9;
-            // 
-            // col_SUB_DATE_NEED_FINISH1
-            // 
-            this.col_SUB_DATE_NEED_FINISH1.Caption = "Ngày cần kết thúc";
-            this.col_SUB_DATE_NEED_FINISH1.FieldName = "SUB_DATE_NEED_FINISH";
-            this.col_SUB_DATE_NEED_FINISH1.Name = "col_SUB_DATE_NEED_FINISH1";
-            this.col_SUB_DATE_NEED_FINISH1.Visible = true;
-            this.col_SUB_DATE_NEED_FINISH1.VisibleIndex = 10;
             // 
             // MRP
             // 

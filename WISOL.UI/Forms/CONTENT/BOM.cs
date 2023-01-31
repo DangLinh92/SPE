@@ -37,6 +37,9 @@ namespace Wisol.MES.Forms.CONTENT
             }
             base.InitializePage();
         }
+
+        string lineNumber = "7";
+
         private void Init_Control()
         {
             try
@@ -51,9 +54,22 @@ namespace Wisol.MES.Forms.CONTENT
                     m_BindData.BindGridLookEdit(stlUnit, table[1], "CODE", "NAME");
 
                     gvList.OptionsView.ColumnAutoWidth = true;
+
+                    if(table[3].Rows.Count > 0)
+                    {
+                        txtSanLuong.Text = table[3].Rows[0]["SANLUONG"].NullString();
+                        dateSanLuongFrom.EditValue = table[3].Rows[0]["FROM_TIME"].NullString();
+                        dateSanLuongTo.EditValue = table[3].Rows[0]["TO_TIME"].NullString();
+
+                        if (table[3].Rows[0]["LINE_NUMBER"].NullString() != "")
+                        {
+                            lineNumber = table[3].Rows[0]["LINE_NUMBER"].NullString();
+                            txtLine.EditValue = lineNumber;
+                        }
+                    }
                 }
 
-                txtLine.EditValue = 7;
+                txtLine.EditValue = lineNumber;
                 txtWorkingday.EditValue = 26;
             }
             catch (Exception ex)
@@ -94,12 +110,12 @@ namespace Wisol.MES.Forms.CONTENT
                             stlSparepart.EditValue = table[0].Rows[0]["CODE"].NullString();
                             txtQuantityInpack.EditValue = table[0].Rows[0]["QUANTITY_IN_PACK"].NullString();
                             txtWorkingday.EditValue = (table[0].Rows[0]["WORKING_DAY_NUMBER"].NullString() == "" ? "26" : table[0].Rows[0]["WORKING_DAY_NUMBER"].NullString());
-                            txtLine.EditValue = (table[0].Rows[0]["WORKING_LINE_NUMBER"].NullString() == "" ? "7" : table[0].Rows[0]["WORKING_LINE_NUMBER"].NullString());
+                            txtLine.EditValue = (table[0].Rows[0]["WORKING_LINE_NUMBER"].NullString() == "" ? lineNumber : table[0].Rows[0]["WORKING_LINE_NUMBER"].NullString());
                             txtAlineWithEa.EditValue = table[0].Rows[0]["WORKING_A_LINE"].NullString();
                             txtMonthlyUsing.EditValue = table[0].Rows[0]["WORKING_A_MONTH"].NullString();
                             txtAlineWithPack.EditValue = table[0].Rows[0]["WORKING_A_LINE_PACK"].NullString();
 
-                            if(table[0].Rows[0]["RATE"].NullString() != "")
+                            if (table[0].Rows[0]["RATE"].NullString() != "")
                             {
                                 txtRate.EditValue = table[0].Rows[0]["RATE"].NullString();
                             }
@@ -108,7 +124,7 @@ namespace Wisol.MES.Forms.CONTENT
                                 txtRate.EditValue = "1";
                             }
 
-                            if(table[0].Rows[0]["FROM_TIME"].NullString() != "")
+                            if (table[0].Rows[0]["FROM_TIME"].NullString() != "")
                             {
                                 dateFrom.EditValue = table[0].Rows[0]["FROM_TIME"].NullString();
                             }
@@ -116,7 +132,7 @@ namespace Wisol.MES.Forms.CONTENT
                             {
                                 dateFrom.EditValue = null;
                             }
-                           
+
                             if (table[0].Rows[0]["TO_TIME"].NullString() != "")
                             {
                                 dateTo.EditValue = table[0].Rows[0]["TO_TIME"].NullString();
@@ -157,7 +173,7 @@ namespace Wisol.MES.Forms.CONTENT
                     return;
                 }
 
-                if(txtRate.EditValue.NullString() == "")
+                if (txtRate.EditValue.NullString() == "")
                 {
                     txtRate.EditValue = 1;
                 }
@@ -284,7 +300,7 @@ namespace Wisol.MES.Forms.CONTENT
             txtQuantityInpack.EditValue = 0;
             stlUnit.EditValue = null;
             txtWorkingday.EditValue = 26;
-            txtLine.EditValue = 7;
+            txtLine.EditValue = lineNumber;
             txtAlineWithEa.EditValue = 0;
             txtAlineWithPack.EditValue = 0;
             txtMonthlyUsing.EditValue = 0;
@@ -314,7 +330,7 @@ namespace Wisol.MES.Forms.CONTENT
                             stlSparepart.EditValue = table[0].Rows[0]["CODE"].NullString();
                             txtQuantityInpack.EditValue = table[0].Rows[0]["QUANTITY_IN_PACK"].NullString();
                             txtWorkingday.EditValue = (table[0].Rows[0]["WORKING_DAY_NUMBER"].NullString() == "" ? "26" : table[0].Rows[0]["WORKING_DAY_NUMBER"].NullString());
-                            txtLine.EditValue = (table[0].Rows[0]["WORKING_LINE_NUMBER"].NullString() == "" ? "7" : table[0].Rows[0]["WORKING_LINE_NUMBER"].NullString());
+                            txtLine.EditValue = (table[0].Rows[0]["WORKING_LINE_NUMBER"].NullString() == "" ? lineNumber : table[0].Rows[0]["WORKING_LINE_NUMBER"].NullString());
                             txtAlineWithEa.EditValue = table[0].Rows[0]["WORKING_A_LINE"].NullString();
                             txtMonthlyUsing.EditValue = table[0].Rows[0]["WORKING_A_MONTH"].NullString();
                             txtAlineWithPack.EditValue = table[0].Rows[0]["WORKING_A_LINE_PACK"].NullString();
@@ -370,17 +386,47 @@ namespace Wisol.MES.Forms.CONTENT
             if (e.RowHandle < 0)
                 return;
 
-            if(e.Column.FieldName == "MIN_STOCK_PACK")
+            if (e.Column.FieldName == "MIN_STOCK_PACK")
             {
                 e.Appearance.BackColor = Color.FromArgb(212, 239, 223);
             }
-            else if(e.Column.FieldName == "WORKING_A_MONTH")
+            else if (e.Column.FieldName == "WORKING_A_MONTH")
             {
                 e.Appearance.BackColor = Color.FromArgb(253, 235, 208);
             }
             else if (e.Column.FieldName == "WORKING_A_LINE_PACK")
             {
                 e.Appearance.BackColor = Color.FromArgb(253, 242, 233);
+            }
+        }
+
+        private void btnSaveSanLuong_Click(object sender, EventArgs e)
+        {
+            if (txtSanLuong.EditValue.NullString() == "" || dateSanLuongFrom.EditValue.NullString() == "" || dateSanLuongTo.EditValue.NullString() == "")
+            {
+                MsgBox.Show("Nhập thông tin sản lượng, thời gian!", MsgType.Error);
+                return;
+            }
+
+            base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_BOM_SANLUONG.PUT",
+                new string[] { "A_DEPARTMENT", "A_SANLUONG", "A_DATE_FROM", "A_DATE_TO" },
+                new string[]
+                {
+                    Consts.DEPARTMENT,
+                    txtSanLuong.EditValue.NullString(),
+                    dateSanLuongFrom.EditValue.NullString(),
+                    dateSanLuongTo.EditValue.NullString()
+                });
+
+            if (m_ResultDB.ReturnInt == 0)
+            {
+                MsgBox.Show("Update Success!", MsgType.Information);
+                Init_Control();
+            }
+            else
+            {
+                MsgBox.Show(m_ResultDB.ReturnString.Translation(), MsgType.Error);
+                return;
             }
         }
     }

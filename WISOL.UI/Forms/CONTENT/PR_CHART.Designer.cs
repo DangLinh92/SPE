@@ -30,6 +30,7 @@ namespace Wisol.MES.Forms.CONTENT
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PR_CHART));
             DevExpress.XtraBars.Ribbon.GalleryItemGroup galleryItemGroup1 = new DevExpress.XtraBars.Ribbon.GalleryItemGroup();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem2 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
@@ -93,10 +94,10 @@ namespace Wisol.MES.Forms.CONTENT
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem53 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem54 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
             DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem spreadsheetCommandGalleryItem55 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetCommandGalleryItem();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PR_CHART));
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl1 = new Wisol.XLayoutControl();
+            this.btnExportExecel = new DevExpress.XtraEditors.SimpleButton();
             this.btnDrawChart = new DevExpress.XtraEditors.SimpleButton();
             this.cheCbSparepartCollection = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
@@ -308,11 +309,13 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dateTimeChartRangeControlClient1 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
             this.spreadsheetBarController1 = new DevExpress.XtraSpreadsheet.UI.SpreadsheetBarController(this.components);
-            this.btnExportExecel = new DevExpress.XtraEditors.SimpleButton();
-            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).BeginInit();
+            this.splitContainerControl1.Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -337,9 +340,9 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -347,8 +350,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
+            // 
+            // splitContainerControl1.Panel1
+            // 
             this.splitContainerControl1.Panel1.Controls.Add(this.groupControl1);
             this.splitContainerControl1.Panel1.Text = "Panel1";
+            // 
+            // splitContainerControl1.Panel2
+            // 
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.PanelVisibility = DevExpress.XtraEditors.SplitPanelVisibility.Panel1;
             this.splitContainerControl1.Size = new System.Drawing.Size(1758, 864);
@@ -383,6 +392,16 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl1.TabIndex = 0;
             this.xLayoutControl1.Text = "xLayoutControl1";
             // 
+            // btnExportExecel
+            // 
+            this.btnExportExecel.Location = new System.Drawing.Point(1642, 33);
+            this.btnExportExecel.Name = "btnExportExecel";
+            this.btnExportExecel.Size = new System.Drawing.Size(100, 22);
+            this.btnExportExecel.StyleController = this.xLayoutControl1;
+            this.btnExportExecel.TabIndex = 11;
+            this.btnExportExecel.Text = "Tạo file Excel";
+            this.btnExportExecel.Click += new System.EventHandler(this.btnExportExecel_Click);
+            // 
             // btnDrawChart
             // 
             this.btnDrawChart.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDrawChart.ImageOptions.Image")));
@@ -396,12 +415,12 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // cheCbSparepartCollection
             // 
-            this.cheCbSparepartCollection.Location = new System.Drawing.Point(134, 33);
+            this.cheCbSparepartCollection.Location = new System.Drawing.Point(143, 33);
             this.cheCbSparepartCollection.MenuManager = this.barManager1;
             this.cheCbSparepartCollection.Name = "cheCbSparepartCollection";
             this.cheCbSparepartCollection.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cheCbSparepartCollection.Size = new System.Drawing.Size(1389, 20);
+            this.cheCbSparepartCollection.Size = new System.Drawing.Size(1380, 20);
             this.cheCbSparepartCollection.StyleController = this.xLayoutControl1;
             this.cheCbSparepartCollection.TabIndex = 9;
             // 
@@ -2347,6 +2366,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.btnExportExecel;
+            this.layoutControlItem7.Location = new System.Drawing.Point(1630, 21);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(104, 26);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
+            // 
             // spreadsheetBarController1
             // 
             this.spreadsheetBarController1.BarItems.Add(this.spreadsheetCommandBarButtonItem1);
@@ -2534,26 +2562,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.spreadsheetBarController1.BarItems.Add(this.spreadsheetCommandBarButtonItem119);
             this.spreadsheetBarController1.Control = this.spreadsheetPR;
             // 
-            // btnExportExecel
-            // 
-            this.btnExportExecel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.btnExportExecel.Location = new System.Drawing.Point(1642, 33);
-            this.btnExportExecel.Name = "btnExportExecel";
-            this.btnExportExecel.Size = new System.Drawing.Size(100, 22);
-            this.btnExportExecel.StyleController = this.xLayoutControl1;
-            this.btnExportExecel.TabIndex = 11;
-            this.btnExportExecel.Text = "Tạo file Excel";
-            this.btnExportExecel.Click += new System.EventHandler(this.btnExportExecel_Click);
-            // 
-            // layoutControlItem7
-            // 
-            this.layoutControlItem7.Control = this.btnExportExecel;
-            this.layoutControlItem7.Location = new System.Drawing.Point(1630, 21);
-            this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(104, 26);
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem7.TextVisible = false;
-            // 
             // PR_CHART
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2570,6 +2578,9 @@ namespace Wisol.MES.Forms.CONTENT
             this.Controls.SetChildIndex(this.barDockControl4, 0);
             this.Controls.SetChildIndex(this.barDockControl3, 0);
             this.Controls.SetChildIndex(this.splitContainerControl1, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel1)).EndInit();
+            this.splitContainerControl1.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1.Panel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
@@ -2595,9 +2606,9 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateTimeChartRangeControlClient1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spreadsheetBarController1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

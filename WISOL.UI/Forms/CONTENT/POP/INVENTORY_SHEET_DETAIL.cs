@@ -371,13 +371,21 @@ namespace Wisol.MES.Forms.CONTENT.POP
 
         private void rdoGroupFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(rdoGroupFilter.EditValue.NullString() == "DIFF")
+            if (rdoGroupFilter.EditValue.NullString() == "DIFF")
             {
                 gvList.ActiveFilterString = "[DIFF] > 0";
             }
             else
             {
                 gvList.ClearColumnsFilter();
+            }
+        }
+
+        private void btnCopySys_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < gvList.RowCount; i++)
+            {
+                gvList.SetRowCellValue(i, "QUANTITY_REAL",gvList.GetRowCellValue(i, "QUANTITY").NullString());
             }
         }
     }

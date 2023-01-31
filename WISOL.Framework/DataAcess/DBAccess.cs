@@ -309,7 +309,7 @@ namespace Wisol.DataAcess
                 cmd.Parameters.Add(V_RETURN);
 
                 da = new SqlDataAdapter(cmd);
-                da.SelectCommand.CommandTimeout = 150;
+                da.SelectCommand.CommandTimeout = 600;
                 da.Fill(ds);
                 con.Close();
                 resultDb.ReturnDataSet = ds;
@@ -419,7 +419,7 @@ namespace Wisol.DataAcess
                 SqlParameter V_RETURN = new SqlParameter("@V_RETURN", SqlDbType.NVarChar, 100);
                 V_RETURN.Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(V_RETURN);
-
+                cmd.CommandTimeout = 300;
                 da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 con.Close();

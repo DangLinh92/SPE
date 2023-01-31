@@ -33,6 +33,7 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SPARE_PARTS));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl1 = new Wisol.XLayoutControl();
+            this.txtModels = new Wisol.XTextEdit();
             this.btnSave = new Wisol.XSimpleButton(this.components);
             this.btnClose = new Wisol.XSimpleButton(this.components);
             this.gcList = new Wisol.XGridControl();
@@ -41,19 +42,18 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtModels = new Wisol.XTextEdit();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModels.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtModels.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,6 +80,19 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             this.xLayoutControl1.Size = new System.Drawing.Size(1025, 694);
             this.xLayoutControl1.TabIndex = 0;
             this.xLayoutControl1.Text = "xLayoutControl1";
+            // 
+            // txtModels
+            // 
+            this.txtModels.IsRequire = false;
+            this.txtModels.Location = new System.Drawing.Point(52, 12);
+            this.txtModels.Name = "txtModels";
+            this.txtModels.NullBackColor = System.Drawing.Color.Lime;
+            this.txtModels.NullValidation = false;
+            this.txtModels.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtModels.Properties.Appearance.Options.UseBackColor = true;
+            this.txtModels.Size = new System.Drawing.Size(695, 20);
+            this.txtModels.StyleController = this.xLayoutControl1;
+            this.txtModels.TabIndex = 7;
             // 
             // btnSave
             // 
@@ -170,19 +183,6 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // txtModels
-            // 
-            this.txtModels.IsRequire = false;
-            this.txtModels.Location = new System.Drawing.Point(52, 12);
-            this.txtModels.Name = "txtModels";
-            this.txtModels.NullBackColor = System.Drawing.Color.Lime;
-            this.txtModels.NullValidation = false;
-            this.txtModels.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtModels.Properties.Appearance.Options.UseBackColor = true;
-            this.txtModels.Size = new System.Drawing.Size(695, 20);
-            this.txtModels.StyleController = this.xLayoutControl1;
-            this.txtModels.TabIndex = 7;
-            // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.txtModels;
@@ -206,13 +206,13 @@ namespace Wisol.MES.Forms.MAINTAIN.POP
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).EndInit();
             this.xLayoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtModels.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtModels.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

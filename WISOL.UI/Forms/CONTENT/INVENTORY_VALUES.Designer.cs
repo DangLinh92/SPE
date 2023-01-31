@@ -34,19 +34,19 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl1 = new Wisol.XLayoutControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.dateMonth = new DevExpress.XtraEditors.DateEdit();
+            this.btnSearch = new Wisol.XSimpleButton(this.components);
             this.gcList = new Wisol.XGridControl();
             this.gvList = new Wisol.XGridView();
             this.btnExport = new Wisol.XSimpleButton(this.components);
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnSearch = new Wisol.XSimpleButton(this.components);
-            this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.dateMonth = new DevExpress.XtraEditors.DateEdit();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Wisol.MES.FrmWaitForm), true, true, typeof(System.Windows.Forms.UserControl));
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
@@ -54,19 +54,19 @@ namespace Wisol.MES.Forms.CONTENT
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).BeginInit();
             this.xLayoutControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dateMonth.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateMonth.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateMonth.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateMonth.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xLayoutControl1
@@ -103,6 +103,47 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl2.TabIndex = 0;
             this.xLayoutControl2.Text = "xLayoutControl2";
             // 
+            // panelControl1
+            // 
+            this.panelControl1.Controls.Add(this.dateMonth);
+            this.panelControl1.Location = new System.Drawing.Point(278, 12);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(1061, 30);
+            this.panelControl1.TabIndex = 8;
+            // 
+            // dateMonth
+            // 
+            this.dateMonth.EditValue = null;
+            this.dateMonth.Location = new System.Drawing.Point(5, 5);
+            this.dateMonth.Name = "dateMonth";
+            this.dateMonth.Properties.BeepOnError = false;
+            this.dateMonth.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateMonth.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateMonth.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.ClassicNew;
+            this.dateMonth.Properties.MaskSettings.Set("mask", "Y");
+            this.dateMonth.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearView;
+            this.dateMonth.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView;
+            this.dateMonth.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
+            this.dateMonth.Size = new System.Drawing.Size(250, 20);
+            this.dateMonth.TabIndex = 0;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.FormId = null;
+            this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
+            this.btnSearch.isFormType = false;
+            this.btnSearch.Location = new System.Drawing.Point(145, 12);
+            this.btnSearch.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnSearch.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(129, 30);
+            this.btnSearch.StyleController = this.xLayoutControl2;
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "SEARCH";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // gcList
             // 
             this.gcList.Location = new System.Drawing.Point(12, 46);
@@ -121,7 +162,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnExport
             // 
+            this.btnExport.FormId = null;
             this.btnExport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnExport.ImageOptions.Image")));
+            this.btnExport.isFormType = false;
             this.btnExport.Location = new System.Drawing.Point(12, 12);
             this.btnExport.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnExport.MinimumSize = new System.Drawing.Size(129, 30);
@@ -163,6 +206,24 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
+            // layoutControlItem5
+            // 
+            this.layoutControlItem5.Control = this.btnSearch;
+            this.layoutControlItem5.Location = new System.Drawing.Point(133, 0);
+            this.layoutControlItem5.Name = "layoutControlItem5";
+            this.layoutControlItem5.Size = new System.Drawing.Size(133, 34);
+            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem5.TextVisible = false;
+            // 
+            // layoutControlItem4
+            // 
+            this.layoutControlItem4.Control = this.panelControl1;
+            this.layoutControlItem4.Location = new System.Drawing.Point(266, 0);
+            this.layoutControlItem4.Name = "layoutControlItem4";
+            this.layoutControlItem4.Size = new System.Drawing.Size(1065, 34);
+            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem4.TextVisible = false;
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -182,63 +243,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
-            // btnSearch
-            // 
-            this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(145, 12);
-            this.btnSearch.MaximumSize = new System.Drawing.Size(129, 30);
-            this.btnSearch.MinimumSize = new System.Drawing.Size(129, 30);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(129, 30);
-            this.btnSearch.StyleController = this.xLayoutControl2;
-            this.btnSearch.TabIndex = 7;
-            this.btnSearch.Text = "SEARCH";
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // layoutControlItem5
-            // 
-            this.layoutControlItem5.Control = this.btnSearch;
-            this.layoutControlItem5.Location = new System.Drawing.Point(133, 0);
-            this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(133, 34);
-            this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem5.TextVisible = false;
-            // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.dateMonth);
-            this.panelControl1.Location = new System.Drawing.Point(278, 12);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1061, 30);
-            this.panelControl1.TabIndex = 8;
-            // 
-            // layoutControlItem4
-            // 
-            this.layoutControlItem4.Control = this.panelControl1;
-            this.layoutControlItem4.Location = new System.Drawing.Point(266, 0);
-            this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(1065, 34);
-            this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem4.TextVisible = false;
-            // 
-            // dateMonth
-            // 
-            this.dateMonth.EditValue = null;
-            this.dateMonth.Location = new System.Drawing.Point(5, 5);
-            this.dateMonth.Name = "dateMonth";
-            this.dateMonth.Properties.BeepOnError = false;
-            this.dateMonth.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateMonth.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateMonth.Properties.CalendarView = DevExpress.XtraEditors.Repository.CalendarView.ClassicNew;
-            this.dateMonth.Properties.MaskSettings.Set("mask", "Y");
-            this.dateMonth.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearView;
-            this.dateMonth.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearView;
-            this.dateMonth.Properties.VistaDisplayMode = DevExpress.Utils.DefaultBoolean.False;
-            this.dateMonth.Size = new System.Drawing.Size(250, 20);
-            this.dateMonth.TabIndex = 0;
-            // 
             // splashScreenManager1
             // 
             this.splashScreenManager1.ClosingDelay = 500;
@@ -257,19 +261,19 @@ namespace Wisol.MES.Forms.CONTENT
             this.groupControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl2)).EndInit();
             this.xLayoutControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dateMonth.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateMonth.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateMonth.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateMonth.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

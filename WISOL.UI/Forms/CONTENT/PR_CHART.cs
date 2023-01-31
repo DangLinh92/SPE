@@ -111,19 +111,31 @@ namespace Wisol.MES.Forms.CONTENT
                     }
 
                     sheet.DataBindings.BindToDataSource(data, 12, 0);
+
+                    if(Consts.DEPARTMENT == "CSP")
+                    {
+                        sheet.Cells["A6"].Value = "1. 구입 목적 (Mục đích mua) : Đề nghị mua Spare Part  tháng.... năm 20.....";
+                    }
+
                     sheet.Cells["A3"].Value = "BỘ PHẬN: " + Consts.DEPARTMENT;
                     sheet.Cells["A4"].Value = "Ngày " + DateTime.Parse(createDate).Day + " Tháng " + DateTime.Parse(createDate).Month + " Năm " + DateTime.Parse(createDate).Year;
                     sheet.Cells["A8"].Value = "3. 구입 금액 (Giá trị đơn hàng) :" + (double.Parse(totalValue)).ToString("N3") + " VND /" + (double.Parse(totalValueUS)).ToString("N3") + "USD";
                     sheet.Cells["A9"].Value = "4.구매 요청(PR.NO) :" + prCode;
                     sheet.Cells["H11"].Value = "Tồn kho tháng " + (DateTime.Parse(createDate).AddMonths(-1).Month);
-                    sheet.Cells["J11"].Value = "SL dùng tháng " + (DateTime.Parse(createDate).Month);
-                    sheet.Cells["K11"].Value = "SL dùng tháng " + (DateTime.Parse(createDate).AddMonths(1).Month);
-                    sheet.Cells["L11"].Value = "SL dùng tháng " + (DateTime.Parse(createDate).AddMonths(2).Month);
+                    sheet.Cells["J11"].Value = "SL đã dùng tháng " + (DateTime.Parse(createDate).Month);
+                    sheet.Cells["K11"].Value = "SL dùng tháng " + (DateTime.Parse(createDate).Month);
+                    sheet.Cells["L11"].Value = "SL cần đặt tháng " + (DateTime.Parse(createDate).Month);
+                    sheet.Cells["M11"].Value = "SL dùng tháng " + (DateTime.Parse(createDate).AddMonths(1).Month);
+                    sheet.Cells["N11"].Value = "SL dùng tháng " + (DateTime.Parse(createDate).AddMonths(2).Month);
 
                     sheet.Cells["H12"].Value = (DateTime.Parse(createDate).AddMonths(-1).Month) + "월재고 ";
-                    sheet.Cells["J12"].Value = (DateTime.Parse(createDate).Month) + "월 필요";
-                    sheet.Cells["K12"].Value = (DateTime.Parse(createDate).AddMonths(1).Month) + "월 필요";
-                    sheet.Cells["L12"].Value = (DateTime.Parse(createDate).AddMonths(2).Month) + "월 필요";
+
+                    sheet.Cells["J12"].Value = (DateTime.Parse(createDate).Month) + "월 사용한 수량";
+                    sheet.Cells["K12"].Value = (DateTime.Parse(createDate).Month) + "월 사용할 수량";
+                    sheet.Cells["L12"].Value = (DateTime.Parse(createDate).Month)+  "월 발주 필요 수량";
+
+                    sheet.Cells["M12"].Value = (DateTime.Parse(createDate).AddMonths(1).Month) + "월 필요";
+                    sheet.Cells["N12"].Value = (DateTime.Parse(createDate).AddMonths(2).Month) + "월 필요";
                 }
                 else
                 {

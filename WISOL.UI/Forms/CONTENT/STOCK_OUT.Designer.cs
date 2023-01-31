@@ -73,9 +73,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // txtSparePart
             // 
-            this.txtSparePart.Location = new System.Drawing.Point(91, 45);
+            this.txtSparePart.Location = new System.Drawing.Point(100, 45);
             this.txtSparePart.Name = "txtSparePart";
-            this.txtSparePart.Size = new System.Drawing.Size(171, 20);
+            this.txtSparePart.Size = new System.Drawing.Size(162, 20);
             this.txtSparePart.StyleController = this.xLayoutControl1;
             this.txtSparePart.TabIndex = 8;
             this.txtSparePart.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSparePart_KeyPress);
@@ -97,7 +97,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnStockOut
             // 
+            this.btnStockOut.FormId = null;
             this.btnStockOut.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnStockOut.ImageOptions.Image")));
+            this.btnStockOut.isFormType = false;
             this.btnStockOut.Location = new System.Drawing.Point(840, 45);
             this.btnStockOut.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnStockOut.MinimumSize = new System.Drawing.Size(129, 30);

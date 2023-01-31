@@ -510,7 +510,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnClear_Move
             // 
+            this.btnClear_Move.FormId = null;
             this.btnClear_Move.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClear_Move.ImageOptions.Image")));
+            this.btnClear_Move.isFormType = false;
             this.btnClear_Move.Location = new System.Drawing.Point(1308, 941);
             this.btnClear_Move.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClear_Move.MinimumSize = new System.Drawing.Size(129, 30);
@@ -623,7 +625,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnSaveMoveLocation
             // 
+            this.btnSaveMoveLocation.FormId = null;
             this.btnSaveMoveLocation.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveMoveLocation.ImageOptions.Image")));
+            this.btnSaveMoveLocation.isFormType = false;
             this.btnSaveMoveLocation.Location = new System.Drawing.Point(1175, 941);
             this.btnSaveMoveLocation.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSaveMoveLocation.MinimumSize = new System.Drawing.Size(129, 30);
@@ -709,7 +713,9 @@ namespace Wisol.MES.Forms.CONTENT
             // btnPrintLabelExpiredDate
             // 
             this.btnPrintLabelExpiredDate.Enabled = false;
+            this.btnPrintLabelExpiredDate.FormId = null;
             this.btnPrintLabelExpiredDate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintLabelExpiredDate.ImageOptions.Image")));
+            this.btnPrintLabelExpiredDate.isFormType = false;
             this.btnPrintLabelExpiredDate.Location = new System.Drawing.Point(1175, 667);
             this.btnPrintLabelExpiredDate.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnPrintLabelExpiredDate.MinimumSize = new System.Drawing.Size(129, 30);
@@ -913,7 +919,9 @@ namespace Wisol.MES.Forms.CONTENT
             // btnSaveFileTemp
             // 
             this.btnSaveFileTemp.Enabled = false;
+            this.btnSaveFileTemp.FormId = null;
             this.btnSaveFileTemp.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveFileTemp.ImageOptions.Image")));
+            this.btnSaveFileTemp.isFormType = false;
             this.btnSaveFileTemp.Location = new System.Drawing.Point(1308, 667);
             this.btnSaveFileTemp.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSaveFileTemp.MinimumSize = new System.Drawing.Size(129, 30);
@@ -942,7 +950,9 @@ namespace Wisol.MES.Forms.CONTENT
             // btnImport
             // 
             this.btnImport.Enabled = false;
+            this.btnImport.FormId = null;
             this.btnImport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnImport.ImageOptions.Image")));
+            this.btnImport.isFormType = false;
             this.btnImport.Location = new System.Drawing.Point(1308, 633);
             this.btnImport.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnImport.MinimumSize = new System.Drawing.Size(129, 30);
@@ -956,7 +966,9 @@ namespace Wisol.MES.Forms.CONTENT
             // btnGetFileTemp
             // 
             this.btnGetFileTemp.Enabled = false;
+            this.btnGetFileTemp.FormId = null;
             this.btnGetFileTemp.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGetFileTemp.ImageOptions.Image")));
+            this.btnGetFileTemp.isFormType = false;
             this.btnGetFileTemp.Location = new System.Drawing.Point(1441, 633);
             this.btnGetFileTemp.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnGetFileTemp.MinimumSize = new System.Drawing.Size(129, 30);
@@ -969,7 +981,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnPrintLabel
             // 
+            this.btnPrintLabel.FormId = null;
             this.btnPrintLabel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrintLabel.ImageOptions.Image")));
+            this.btnPrintLabel.isFormType = false;
             this.btnPrintLabel.Location = new System.Drawing.Point(1175, 633);
             this.btnPrintLabel.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnPrintLabel.MinimumSize = new System.Drawing.Size(129, 30);
@@ -1055,7 +1069,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnDeleteLocation
             // 
+            this.btnDeleteLocation.FormId = null;
             this.btnDeleteLocation.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteLocation.ImageOptions.Image")));
+            this.btnDeleteLocation.isFormType = false;
             this.btnDeleteLocation.Location = new System.Drawing.Point(1308, 277);
             this.btnDeleteLocation.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnDeleteLocation.MinimumSize = new System.Drawing.Size(129, 30);
@@ -1112,7 +1128,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnClearLocationNew
             // 
+            this.btnClearLocationNew.FormId = null;
             this.btnClearLocationNew.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClearLocationNew.ImageOptions.Image")));
+            this.btnClearLocationNew.isFormType = false;
             this.btnClearLocationNew.Location = new System.Drawing.Point(1441, 277);
             this.btnClearLocationNew.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClearLocationNew.MinimumSize = new System.Drawing.Size(129, 30);
@@ -1125,7 +1143,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnSaveNewLocation
             // 
+            this.btnSaveNewLocation.FormId = null;
             this.btnSaveNewLocation.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveNewLocation.ImageOptions.Image")));
+            this.btnSaveNewLocation.isFormType = false;
             this.btnSaveNewLocation.Location = new System.Drawing.Point(1175, 277);
             this.btnSaveNewLocation.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSaveNewLocation.MinimumSize = new System.Drawing.Size(129, 30);
@@ -1138,7 +1158,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnDeleteLocation_Sparepart
             // 
+            this.btnDeleteLocation_Sparepart.FormId = null;
             this.btnDeleteLocation_Sparepart.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDeleteLocation_Sparepart.ImageOptions.Image")));
+            this.btnDeleteLocation_Sparepart.isFormType = false;
             this.btnDeleteLocation_Sparepart.Location = new System.Drawing.Point(1441, 599);
             this.btnDeleteLocation_Sparepart.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnDeleteLocation_Sparepart.MinimumSize = new System.Drawing.Size(129, 30);
@@ -1151,7 +1173,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnSaveLocation_Sparepart
             // 
+            this.btnSaveLocation_Sparepart.FormId = null;
             this.btnSaveLocation_Sparepart.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveLocation_Sparepart.ImageOptions.Image")));
+            this.btnSaveLocation_Sparepart.isFormType = false;
             this.btnSaveLocation_Sparepart.Location = new System.Drawing.Point(1175, 599);
             this.btnSaveLocation_Sparepart.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSaveLocation_Sparepart.MinimumSize = new System.Drawing.Size(129, 30);
@@ -1164,7 +1188,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnClearSparePartLocation
             // 
+            this.btnClearSparePartLocation.FormId = null;
             this.btnClearSparePartLocation.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnClearSparePartLocation.ImageOptions.Image")));
+            this.btnClearSparePartLocation.isFormType = false;
             this.btnClearSparePartLocation.Location = new System.Drawing.Point(1308, 599);
             this.btnClearSparePartLocation.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnClearSparePartLocation.MinimumSize = new System.Drawing.Size(129, 30);

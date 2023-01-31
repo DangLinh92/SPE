@@ -240,9 +240,20 @@ namespace Wisol.MES.Forms.CONTENT
                 b64 = image;
                 string code = cbGenCode.Checked ? GencodeAuto(sltSparePartType.EditValue.NullString()) : txtCode.EditValue.NullString().ToUpper();
 
-                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.PUT",
-                    new string[]
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.GET_BY_CODE", new string[] { "A_DEPARTMENT", "A_CODE" }, new string[] { Consts.DEPARTMENT, code });
+
+                if (base.m_ResultDB.ReturnInt == 0 && base.m_ResultDB.ReturnDataSet.Tables[0].Rows.Count > 0)
+                {
+                    DialogResult dialogResult = MsgBox.Show("Code đã tồn tại, bạn có muốn cập nhật thông tin?".Translation(), MsgType.Warning, DialogType.OkCancel);
+                    if (dialogResult != DialogResult.OK)
                     {
+                        return;
+                    }
+                }
+
+                base.m_ResultDB = base.m_DBaccess.ExcuteProc("PKG_BUSINESS_SP.PUT",
+                new string[]
+                {
                         "@A_CODE",
                         "@A_NAME_VI",
                         "@A_NAME_KR",
@@ -271,9 +282,9 @@ namespace Wisol.MES.Forms.CONTENT
                         "@A_RATE4",
                         "@A_MIN_ORDER",
                         "@A_LEAD_TIME"
-                    },
-                    new string[]
-                    {
+                },
+                new string[]
+                {
                         code,
                         txtNameVi.EditValue.NullString(),
                         txtNameKr.EditValue.NullString(),
@@ -303,7 +314,7 @@ namespace Wisol.MES.Forms.CONTENT
                         txtRate4.EditValue.NullString(),
                         txtMinOrder.EditValue.NullString(),
                         txtLeadTime.EditValue.NullString()
-                    }); ;
+                }); ;
                 if (base.m_ResultDB.ReturnInt == 0)
                 {
                     MsgBox.Show(base.m_ResultDB.ReturnString.Translation(), MsgType.Information);

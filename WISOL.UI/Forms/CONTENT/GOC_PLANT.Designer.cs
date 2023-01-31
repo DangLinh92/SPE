@@ -92,7 +92,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnSearch
             // 
+            this.btnSearch.FormId = null;
             this.btnSearch.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.ImageOptions.Image")));
+            this.btnSearch.isFormType = false;
             this.btnSearch.Location = new System.Drawing.Point(278, 12);
             this.btnSearch.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnSearch.MinimumSize = new System.Drawing.Size(129, 30);
@@ -135,7 +137,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnImport
             // 
+            this.btnImport.FormId = null;
             this.btnImport.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnImport.ImageOptions.Image")));
+            this.btnImport.isFormType = false;
             this.btnImport.Location = new System.Drawing.Point(12, 12);
             this.btnImport.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnImport.MinimumSize = new System.Drawing.Size(129, 30);
@@ -148,7 +152,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnGetFileTemp
             // 
+            this.btnGetFileTemp.FormId = null;
             this.btnGetFileTemp.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGetFileTemp.ImageOptions.Image")));
+            this.btnGetFileTemp.isFormType = false;
             this.btnGetFileTemp.Location = new System.Drawing.Point(145, 12);
             this.btnGetFileTemp.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnGetFileTemp.MinimumSize = new System.Drawing.Size(129, 30);

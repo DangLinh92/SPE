@@ -156,7 +156,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // stlMemoryData
             // 
             this.stlMemoryData.EditValue = "";
-            this.stlMemoryData.Location = new System.Drawing.Point(137, 46);
+            this.stlMemoryData.Location = new System.Drawing.Point(146, 46);
             this.stlMemoryData.Name = "stlMemoryData";
             this.stlMemoryData.Properties.Appearance.Options.UseTextOptions = true;
             this.stlMemoryData.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -165,7 +165,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.stlMemoryData.Properties.ImmediatePopup = true;
             this.stlMemoryData.Properties.NullText = "";
             this.stlMemoryData.Properties.PopupView = this.gridView1;
-            this.stlMemoryData.Size = new System.Drawing.Size(301, 20);
+            this.stlMemoryData.Size = new System.Drawing.Size(292, 20);
             this.stlMemoryData.StyleController = this.xLayoutControl1;
             this.stlMemoryData.TabIndex = 1;
             // 
@@ -180,14 +180,14 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // txtQuantityLabel
             // 
             this.txtQuantityLabel.IsRequire = false;
-            this.txtQuantityLabel.Location = new System.Drawing.Point(567, 12);
+            this.txtQuantityLabel.Location = new System.Drawing.Point(576, 12);
             this.txtQuantityLabel.Name = "txtQuantityLabel";
             this.txtQuantityLabel.NullBackColor = System.Drawing.Color.Lime;
             this.txtQuantityLabel.NullValidation = false;
             this.txtQuantityLabel.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtQuantityLabel.Properties.Appearance.Options.UseBackColor = true;
             this.txtQuantityLabel.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtQuantityLabel.Size = new System.Drawing.Size(86, 20);
+            this.txtQuantityLabel.Size = new System.Drawing.Size(77, 20);
             this.txtQuantityLabel.StyleController = this.xLayoutControl1;
             this.txtQuantityLabel.TabIndex = 8;
             // 
@@ -206,7 +206,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // btnUpdate
             // 
+            this.btnUpdate.FormId = null;
             this.btnUpdate.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdate.ImageOptions.Image")));
+            this.btnUpdate.isFormType = false;
             this.btnUpdate.Location = new System.Drawing.Point(729, 12);
             this.btnUpdate.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnUpdate.MinimumSize = new System.Drawing.Size(129, 30);
@@ -220,7 +222,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // txtQuantity
             // 
             this.txtQuantity.IsRequire = false;
-            this.txtQuantity.Location = new System.Drawing.Point(352, 12);
+            this.txtQuantity.Location = new System.Drawing.Point(361, 12);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.NullBackColor = System.Drawing.Color.Lime;
             this.txtQuantity.NullValidation = false;
@@ -228,14 +230,14 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.txtQuantity.Properties.Appearance.Options.UseBackColor = true;
             this.txtQuantity.Properties.Mask.EditMask = "n3";
             this.txtQuantity.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
-            this.txtQuantity.Size = new System.Drawing.Size(86, 20);
+            this.txtQuantity.Size = new System.Drawing.Size(77, 20);
             this.txtQuantity.StyleController = this.xLayoutControl1;
             this.txtQuantity.TabIndex = 5;
             // 
             // stlUnit
             // 
             this.stlUnit.EditValue = "";
-            this.stlUnit.Location = new System.Drawing.Point(137, 12);
+            this.stlUnit.Location = new System.Drawing.Point(146, 12);
             this.stlUnit.Name = "stlUnit";
             this.stlUnit.Properties.Appearance.Options.UseTextOptions = true;
             this.stlUnit.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -244,7 +246,7 @@ namespace Wisol.MES.Forms.CONTENT.POP
             this.stlUnit.Properties.ImmediatePopup = true;
             this.stlUnit.Properties.NullText = "";
             this.stlUnit.Properties.PopupView = this.aceGridLookUpEdit1View;
-            this.stlUnit.Size = new System.Drawing.Size(86, 20);
+            this.stlUnit.Size = new System.Drawing.Size(77, 20);
             this.stlUnit.StyleController = this.xLayoutControl1;
             this.stlUnit.TabIndex = 4;
             // 
@@ -258,7 +260,9 @@ namespace Wisol.MES.Forms.CONTENT.POP
             // 
             // btnPrint
             // 
+            this.btnPrint.FormId = null;
             this.btnPrint.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnPrint.ImageOptions.Image")));
+            this.btnPrint.isFormType = false;
             this.btnPrint.Location = new System.Drawing.Point(862, 12);
             this.btnPrint.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnPrint.MinimumSize = new System.Drawing.Size(129, 30);

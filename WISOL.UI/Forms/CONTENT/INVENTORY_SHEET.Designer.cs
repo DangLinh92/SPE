@@ -45,6 +45,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.gvList = new Wisol.XGridView();
             this.col_SHEET_ID = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_TITLE = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.col_INVENTORY_SHEET_MONTH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DATE_START = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_DATE_END = new DevExpress.XtraGrid.Columns.GridColumn();
             this.col_USER_CREATE = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -66,7 +67,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.dateTimeChartRangeControlClient1 = new DevExpress.XtraEditors.DateTimeChartRangeControlClient();
-            this.col_INVENTORY_SHEET_MONTH = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -170,33 +170,33 @@ namespace Wisol.MES.Forms.CONTENT
             // dateTo
             // 
             this.dateTo.EditValue = null;
-            this.dateTo.Location = new System.Drawing.Point(360, 12);
+            this.dateTo.Location = new System.Drawing.Point(369, 12);
             this.dateTo.Name = "dateTo";
             this.dateTo.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateTo.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateTo.Size = new System.Drawing.Size(237, 20);
+            this.dateTo.Size = new System.Drawing.Size(228, 20);
             this.dateTo.StyleController = this.xLayoutControl2;
             this.dateTo.TabIndex = 8;
             // 
             // dateFrom
             // 
             this.dateFrom.EditValue = null;
-            this.dateFrom.Location = new System.Drawing.Point(74, 12);
+            this.dateFrom.Location = new System.Drawing.Point(83, 12);
             this.dateFrom.Name = "dateFrom";
             this.dateFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateFrom.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dateFrom.Size = new System.Drawing.Size(220, 20);
+            this.dateFrom.Size = new System.Drawing.Size(211, 20);
             this.dateFrom.StyleController = this.xLayoutControl2;
             this.dateFrom.TabIndex = 7;
             // 
             // stlKho
             // 
             this.stlKho.EditValue = "";
-            this.stlKho.Location = new System.Drawing.Point(760, 12);
+            this.stlKho.Location = new System.Drawing.Point(769, 12);
             this.stlKho.Name = "stlKho";
             this.stlKho.Properties.Appearance.Options.UseTextOptions = true;
             this.stlKho.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -205,7 +205,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.stlKho.Properties.ImmediatePopup = true;
             this.stlKho.Properties.NullText = "";
             this.stlKho.Properties.PopupView = this.aceGridLookUpEdit1View;
-            this.stlKho.Size = new System.Drawing.Size(289, 20);
+            this.stlKho.Size = new System.Drawing.Size(280, 20);
             this.stlKho.StyleController = this.xLayoutControl2;
             this.stlKho.TabIndex = 6;
             // 
@@ -266,6 +266,14 @@ namespace Wisol.MES.Forms.CONTENT
             this.col_TITLE.Visible = true;
             this.col_TITLE.VisibleIndex = 1;
             this.col_TITLE.Width = 150;
+            // 
+            // col_INVENTORY_SHEET_MONTH
+            // 
+            this.col_INVENTORY_SHEET_MONTH.Caption = "Kiểm kê cho tháng";
+            this.col_INVENTORY_SHEET_MONTH.FieldName = "INVENTORY_SHEET_MONTH";
+            this.col_INVENTORY_SHEET_MONTH.Name = "col_INVENTORY_SHEET_MONTH";
+            this.col_INVENTORY_SHEET_MONTH.Visible = true;
+            this.col_INVENTORY_SHEET_MONTH.VisibleIndex = 2;
             // 
             // col_DATE_START
             // 
@@ -453,14 +461,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem1.Size = new System.Drawing.Size(1309, 774);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
-            // 
-            // col_INVENTORY_SHEET_MONTH
-            // 
-            this.col_INVENTORY_SHEET_MONTH.Caption = "Kiểm kê cho tháng";
-            this.col_INVENTORY_SHEET_MONTH.FieldName = "INVENTORY_SHEET_MONTH";
-            this.col_INVENTORY_SHEET_MONTH.Name = "col_INVENTORY_SHEET_MONTH";
-            this.col_INVENTORY_SHEET_MONTH.Visible = true;
-            this.col_INVENTORY_SHEET_MONTH.VisibleIndex = 2;
             // 
             // INVENTORY_SHEET
             // 

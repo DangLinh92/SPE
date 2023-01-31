@@ -82,13 +82,13 @@ namespace Wisol.MES.Forms.CONTENT
             // dtDate
             // 
             this.dtDate.EditValue = null;
-            this.dtDate.Location = new System.Drawing.Point(332, 45);
+            this.dtDate.Location = new System.Drawing.Point(341, 45);
             this.dtDate.Name = "dtDate";
             this.dtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtDate.Size = new System.Drawing.Size(146, 20);
+            this.dtDate.Size = new System.Drawing.Size(137, 20);
             this.dtDate.StyleController = this.xLayoutControl1;
             this.dtDate.TabIndex = 7;
             // 
@@ -111,7 +111,9 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             // btnCancel
             // 
+            this.btnCancel.FormId = null;
             this.btnCancel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.ImageOptions.Image")));
+            this.btnCancel.isFormType = false;
             this.btnCancel.Location = new System.Drawing.Point(808, 45);
             this.btnCancel.MaximumSize = new System.Drawing.Size(129, 30);
             this.btnCancel.MinimumSize = new System.Drawing.Size(129, 30);
@@ -125,7 +127,7 @@ namespace Wisol.MES.Forms.CONTENT
             // sltSparePart
             // 
             this.sltSparePart.EditValue = "";
-            this.sltSparePart.Location = new System.Drawing.Point(103, 45);
+            this.sltSparePart.Location = new System.Drawing.Point(112, 45);
             this.sltSparePart.Name = "sltSparePart";
             this.sltSparePart.Properties.Appearance.Options.UseTextOptions = true;
             this.sltSparePart.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -134,7 +136,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.sltSparePart.Properties.ImmediatePopup = true;
             this.sltSparePart.Properties.NullText = "";
             this.sltSparePart.Properties.PopupView = this.aceGridLookUpEdit1View;
-            this.sltSparePart.Size = new System.Drawing.Size(146, 20);
+            this.sltSparePart.Size = new System.Drawing.Size(137, 20);
             this.sltSparePart.StyleController = this.xLayoutControl1;
             this.sltSparePart.TabIndex = 4;
             // 
