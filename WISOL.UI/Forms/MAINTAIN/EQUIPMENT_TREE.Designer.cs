@@ -40,6 +40,8 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.tabControl = new DevExpress.XtraTab.XtraTabControl();
             this.InfoTab = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.txtManuafacturer = new Wisol.XTextEdit();
+            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.btnUpLoadFile = new Wisol.XSimpleButton(this.components);
             this.gcList = new Wisol.XGridControl();
             this.gvList = new Wisol.XGridView();
@@ -84,8 +86,6 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.DocumentTab = new DevExpress.XtraTab.XtraTabPage();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.treeListEquipment = new DevExpress.XtraTreeList.TreeList();
-            this.txtManuafacturer = new Wisol.XTextEdit();
-            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stlEquipment.Properties)).BeginInit();
@@ -95,6 +95,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.InfoTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtManuafacturer.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
@@ -122,7 +123,6 @@ namespace Wisol.MES.Forms.MAINTAIN
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeListEquipment)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtManuafacturer.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -217,6 +217,26 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(881, 784);
             this.panelControl3.TabIndex = 1;
+            // 
+            // txtManuafacturer
+            // 
+            this.txtManuafacturer.IsRequire = false;
+            this.txtManuafacturer.Location = new System.Drawing.Point(98, 14);
+            this.txtManuafacturer.Name = "txtManuafacturer";
+            this.txtManuafacturer.NullBackColor = System.Drawing.Color.Lime;
+            this.txtManuafacturer.NullValidation = false;
+            this.txtManuafacturer.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtManuafacturer.Properties.Appearance.Options.UseBackColor = true;
+            this.txtManuafacturer.Size = new System.Drawing.Size(312, 20);
+            this.txtManuafacturer.TabIndex = 23;
+            // 
+            // labelControl15
+            // 
+            this.labelControl15.Location = new System.Drawing.Point(10, 17);
+            this.labelControl15.Name = "labelControl15";
+            this.labelControl15.Size = new System.Drawing.Size(64, 13);
+            this.labelControl15.TabIndex = 22;
+            this.labelControl15.Text = "Nhà sản xuất";
             // 
             // btnUpLoadFile
             // 
@@ -655,26 +675,6 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.treeListEquipment.TabIndex = 0;
             this.treeListEquipment.FocusedNodeChanged += new DevExpress.XtraTreeList.FocusedNodeChangedEventHandler(this.treeListEquipment_FocusedNodeChanged);
             // 
-            // txtManuafacturer
-            // 
-            this.txtManuafacturer.IsRequire = false;
-            this.txtManuafacturer.Location = new System.Drawing.Point(98, 14);
-            this.txtManuafacturer.Name = "txtManuafacturer";
-            this.txtManuafacturer.NullBackColor = System.Drawing.Color.Lime;
-            this.txtManuafacturer.NullValidation = false;
-            this.txtManuafacturer.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtManuafacturer.Properties.Appearance.Options.UseBackColor = true;
-            this.txtManuafacturer.Size = new System.Drawing.Size(312, 20);
-            this.txtManuafacturer.TabIndex = 23;
-            // 
-            // labelControl15
-            // 
-            this.labelControl15.Location = new System.Drawing.Point(10, 17);
-            this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(64, 13);
-            this.labelControl15.TabIndex = 22;
-            this.labelControl15.Text = "Nhà sản xuất";
-            // 
             // EQUIPMENT_TREE
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -694,6 +694,7 @@ namespace Wisol.MES.Forms.MAINTAIN
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtManuafacturer.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
@@ -722,7 +723,6 @@ namespace Wisol.MES.Forms.MAINTAIN
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeListEquipment)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtManuafacturer.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

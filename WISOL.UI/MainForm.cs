@@ -71,10 +71,10 @@ namespace Wisol.MES
             UserLookAndFeel.Default.StyleChanged += new EventHandler(Default_StyleChanged);
             accordionControl1.Visible = false;
 
-            timer = new Timer();
-            timer.Interval = 30000; // 30 s
-            timer.Tick += Timer_Tick;
-            timer.Start();
+            //timer = new Timer();
+            //timer.Interval = 30000; // 30 s
+            //timer.Tick += Timer_Tick;
+            //timer.Start();
 
             //ExtractFromAssembly();
             //m_IconBar.Visible = false;

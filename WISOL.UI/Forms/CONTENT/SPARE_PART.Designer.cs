@@ -53,6 +53,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.btnClear = new Wisol.XSimpleButton(this.components);
             this.btnSave = new Wisol.XSimpleButton(this.components);
             this.xLayoutControl1 = new Wisol.XLayoutControl();
+            this.cheCboEquipment = new DevExpress.XtraEditors.CheckedComboBoxEdit();
             this.stlStage = new Wisol.AceGridLookUpEdit(this.components);
             this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnAddVendor = new DevExpress.XtraEditors.SimpleButton();
@@ -126,6 +127,7 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem40 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem42 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem43 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem46 = new DevExpress.XtraLayout.LayoutControlItem();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -146,8 +148,6 @@ namespace Wisol.MES.Forms.CONTENT
             this.memoExEdit1 = new DevExpress.XtraEditors.MemoExEdit();
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Wisol.MES.FrmWaitForm), true, true, typeof(System.Windows.Forms.UserControl));
-            this.cheCboEquipment = new DevExpress.XtraEditors.CheckedComboBoxEdit();
-            this.layoutControlItem46 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stlMemoryData.Properties)).BeginInit();
@@ -157,6 +157,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
             this.xLayoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cheCboEquipment.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stlStage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cheLeadTimeWeek.Properties)).BeginInit();
@@ -228,6 +229,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem42)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem43)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -247,8 +249,6 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem45)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoExEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cheCboEquipment.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -514,6 +514,16 @@ namespace Wisol.MES.Forms.CONTENT
             this.xLayoutControl1.Size = new System.Drawing.Size(504, 769);
             this.xLayoutControl1.TabIndex = 9;
             this.xLayoutControl1.Text = "xLayoutControl1";
+            // 
+            // cheCboEquipment
+            // 
+            this.cheCboEquipment.Location = new System.Drawing.Point(120, 350);
+            this.cheCboEquipment.Name = "cheCboEquipment";
+            this.cheCboEquipment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.cheCboEquipment.Size = new System.Drawing.Size(372, 20);
+            this.cheCboEquipment.StyleController = this.xLayoutControl1;
+            this.cheCboEquipment.TabIndex = 37;
             // 
             // stlStage
             // 
@@ -1398,6 +1408,15 @@ namespace Wisol.MES.Forms.CONTENT
             this.layoutControlItem43.Text = "STAGE";
             this.layoutControlItem43.TextSize = new System.Drawing.Size(96, 13);
             // 
+            // layoutControlItem46
+            // 
+            this.layoutControlItem46.Control = this.cheCboEquipment;
+            this.layoutControlItem46.Location = new System.Drawing.Point(0, 338);
+            this.layoutControlItem46.Name = "layoutControlItem46";
+            this.layoutControlItem46.Size = new System.Drawing.Size(484, 24);
+            this.layoutControlItem46.Text = "MODEL-EQUIPMENT";
+            this.layoutControlItem46.TextSize = new System.Drawing.Size(96, 13);
+            // 
             // Root
             // 
             this.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
@@ -1583,25 +1602,6 @@ namespace Wisol.MES.Forms.CONTENT
             // 
             this.splashScreenManager1.ClosingDelay = 500;
             // 
-            // cheCboEquipment
-            // 
-            this.cheCboEquipment.Location = new System.Drawing.Point(120, 350);
-            this.cheCboEquipment.Name = "cheCboEquipment";
-            this.cheCboEquipment.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cheCboEquipment.Size = new System.Drawing.Size(372, 20);
-            this.cheCboEquipment.StyleController = this.xLayoutControl1;
-            this.cheCboEquipment.TabIndex = 37;
-            // 
-            // layoutControlItem46
-            // 
-            this.layoutControlItem46.Control = this.cheCboEquipment;
-            this.layoutControlItem46.Location = new System.Drawing.Point(0, 338);
-            this.layoutControlItem46.Name = "layoutControlItem46";
-            this.layoutControlItem46.Size = new System.Drawing.Size(484, 24);
-            this.layoutControlItem46.Text = "MODEL-EQUIPMENT";
-            this.layoutControlItem46.TextSize = new System.Drawing.Size(96, 13);
-            // 
             // SPARE_PART
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1619,6 +1619,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).EndInit();
             this.xLayoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.cheCboEquipment.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stlStage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cheLeadTimeWeek.Properties)).EndInit();
@@ -1690,6 +1691,7 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem42)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem43)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -1709,8 +1711,6 @@ namespace Wisol.MES.Forms.CONTENT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem45)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoExEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cheCboEquipment.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem46)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

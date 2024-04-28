@@ -2,6 +2,7 @@
 using PROJ_B_DLL.Objects;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Net.Sockets;
@@ -280,10 +281,10 @@ namespace Wisol.DataAcess
         {
             try
             {
-                string connection = connectionString;
+                string connection = ConfigurationManager.ConnectionStrings["conString"].ToString();//connectionString;
                 if (connectionStringParam == 1)
                 {
-                    connection = connectionString1;
+                    connection = ConfigurationManager.ConnectionStrings["conString1"].ToString();//connectionString1;
                 }
 
                 ResultDB resultDb = new ResultDB();
@@ -307,9 +308,10 @@ namespace Wisol.DataAcess
                 SqlParameter V_RETURN = new SqlParameter("@V_RETURN", SqlDbType.NVarChar, 100);
                 V_RETURN.Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(V_RETURN);
+                cmd.CommandTimeout = 2400;
 
                 da = new SqlDataAdapter(cmd);
-                da.SelectCommand.CommandTimeout = 600;
+                //da.SelectCommand.CommandTimeout = 600;
                 da.Fill(ds);
                 con.Close();
                 resultDb.ReturnDataSet = ds;
@@ -334,10 +336,10 @@ namespace Wisol.DataAcess
         {
             try
             {
-                string connection = connectionString;
+                string connection = ConfigurationManager.ConnectionStrings["conString"].ToString();//connectionString;
                 if (connectionStringParam == 1)
                 {
-                    connection = connectionString1;
+                    connection = ConfigurationManager.ConnectionStrings["conString1"].ToString();//connectionString1;
                 }
 
                 ResultDB resultDb = new ResultDB();
@@ -389,10 +391,10 @@ namespace Wisol.DataAcess
         {
             try
             {
-                string connection = connectionString;
+                string connection = ConfigurationManager.ConnectionStrings["conString"].ToString();//connectionString;
                 if (connectionStringParam == 1)
                 {
-                    connection = connectionString1;
+                    connection = ConfigurationManager.ConnectionStrings["conString1"].ToString();//connectionString1;
                 }
 
                 ResultDB resultDb = new ResultDB();
@@ -419,7 +421,7 @@ namespace Wisol.DataAcess
                 SqlParameter V_RETURN = new SqlParameter("@V_RETURN", SqlDbType.NVarChar, 100);
                 V_RETURN.Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(V_RETURN);
-                cmd.CommandTimeout = 300;
+                cmd.CommandTimeout =2400;
                 da = new SqlDataAdapter(cmd);
                 da.Fill(ds);
                 con.Close();
@@ -445,10 +447,10 @@ namespace Wisol.DataAcess
         {
             try
             {
-                string connection = connectionString;
+                string connection = ConfigurationManager.ConnectionStrings["conString"].ToString();//connectionString;
                 if (connectionStringParam == 1)
                 {
-                    connection = connectionString1;
+                    connection = ConfigurationManager.ConnectionStrings["conString1"].ToString();//connectionString1;
                 }
 
                 ResultDB resultDb = new ResultDB();
@@ -467,6 +469,7 @@ namespace Wisol.DataAcess
                 SqlParameter V_RETURN = new SqlParameter("@V_RETURN", SqlDbType.NVarChar, 100);
                 V_RETURN.Direction = ParameterDirection.Output;
                 cmd.Parameters.Add(V_RETURN);
+                cmd.CommandTimeout = 2400;
 
                 da = new SqlDataAdapter(cmd);
                 da.Fill(ds);

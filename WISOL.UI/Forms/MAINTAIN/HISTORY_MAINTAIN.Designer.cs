@@ -41,10 +41,10 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.col_Delete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.btnReload = new Wisol.XSimpleButton(this.components);
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
             this.btnUpload = new Wisol.XSimpleButton(this.components);
+            this.btnReload = new Wisol.XSimpleButton(this.components);
             this.separatorControl4 = new DevExpress.XtraEditors.SeparatorControl();
             this.separatorControl3 = new DevExpress.XtraEditors.SeparatorControl();
             this.txtSegmentID = new Wisol.XTextEdit();
@@ -100,14 +100,14 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.gcList = new Wisol.XGridControl();
             this.gvList = new Wisol.XGridView();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Wisol.MES.FrmWaitForm), true, true, typeof(System.Windows.Forms.UserControl));
-            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Wisol.MES.FrmWaitForm), true, true, typeof(System.Windows.Forms.UserControl));
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
@@ -176,12 +176,12 @@ namespace Wisol.MES.Forms.MAINTAIN
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
             this.SuspendLayout();
             // 
@@ -282,21 +282,6 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.repositoryItemButtonEdit2.ContextImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit2.ContextImageOptions.Image")));
             this.repositoryItemButtonEdit2.Name = "repositoryItemButtonEdit2";
             // 
-            // btnReload
-            // 
-            this.btnReload.FormId = null;
-            this.btnReload.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.Image")));
-            this.btnReload.isFormType = false;
-            this.btnReload.Location = new System.Drawing.Point(145, 766);
-            this.btnReload.MaximumSize = new System.Drawing.Size(129, 30);
-            this.btnReload.MinimumSize = new System.Drawing.Size(129, 30);
-            this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(129, 30);
-            this.btnReload.StyleController = this.xLayoutControl2;
-            this.btnReload.TabIndex = 6;
-            this.btnReload.Text = "RELOAD DATA";
-            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
-            // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.xLayoutControl2);
@@ -356,6 +341,21 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.btnUpload.TabIndex = 30;
             this.btnUpload.Text = "Upload";
             this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
+            // btnReload
+            // 
+            this.btnReload.FormId = null;
+            this.btnReload.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.ImageOptions.Image")));
+            this.btnReload.isFormType = false;
+            this.btnReload.Location = new System.Drawing.Point(145, 766);
+            this.btnReload.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnReload.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(129, 30);
+            this.btnReload.StyleController = this.xLayoutControl2;
+            this.btnReload.TabIndex = 6;
+            this.btnReload.Text = "RELOAD DATA";
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // separatorControl4
             // 
@@ -963,6 +963,15 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem30.TextVisible = false;
             // 
+            // layoutControlItem24
+            // 
+            this.layoutControlItem24.Control = this.btnReload;
+            this.layoutControlItem24.Location = new System.Drawing.Point(133, 754);
+            this.layoutControlItem24.Name = "layoutControlItem24";
+            this.layoutControlItem24.Size = new System.Drawing.Size(277, 34);
+            this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem24.TextVisible = false;
+            // 
             // gcList
             // 
             this.gcList.Location = new System.Drawing.Point(12, 12);
@@ -1009,19 +1018,6 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
-            // splashScreenManager1
-            // 
-            this.splashScreenManager1.ClosingDelay = 500;
-            // 
-            // layoutControlItem24
-            // 
-            this.layoutControlItem24.Control = this.btnReload;
-            this.layoutControlItem24.Location = new System.Drawing.Point(133, 754);
-            this.layoutControlItem24.Name = "layoutControlItem24";
-            this.layoutControlItem24.Size = new System.Drawing.Size(277, 34);
-            this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem24.TextVisible = false;
-            // 
             // layoutControlItem29
             // 
             this.layoutControlItem29.Control = this.gcDocumentList;
@@ -1030,6 +1026,10 @@ namespace Wisol.MES.Forms.MAINTAIN
             this.layoutControlItem29.Size = new System.Drawing.Size(1363, 234);
             this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem29.TextVisible = false;
+            // 
+            // splashScreenManager1
+            // 
+            this.splashScreenManager1.ClosingDelay = 500;
             // 
             // HISTORY_MAINTAIN
             // 
@@ -1107,12 +1107,12 @@ namespace Wisol.MES.Forms.MAINTAIN
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

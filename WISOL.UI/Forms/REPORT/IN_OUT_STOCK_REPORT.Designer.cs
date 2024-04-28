@@ -40,6 +40,7 @@ namespace Wisol.MES.Forms.REPORT
             this.chartControlPieIntergrate = new DevExpress.XtraCharts.ChartControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.xLayoutControl2 = new Wisol.XLayoutControl();
+            this.btnSyncData = new Wisol.XSimpleButton(this.components);
             this.btnSearchSparepart = new DevExpress.XtraEditors.SimpleButton();
             this.cboChooseData = new DevExpress.XtraEditors.ComboBoxEdit();
             this.lstBoxSparepart = new DevExpress.XtraEditors.ListBoxControl();
@@ -99,6 +100,7 @@ namespace Wisol.MES.Forms.REPORT
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
             this.chartMain = new DevExpress.XtraCharts.ChartControl();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -107,8 +109,6 @@ namespace Wisol.MES.Forms.REPORT
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::Wisol.MES.FrmWaitForm), true, true, typeof(System.Windows.Forms.UserControl));
-            this.btnSyncData = new Wisol.XSimpleButton(this.components);
-            this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xLayoutControl1)).BeginInit();
@@ -181,6 +181,7 @@ namespace Wisol.MES.Forms.REPORT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartMain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -188,7 +189,6 @@ namespace Wisol.MES.Forms.REPORT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -287,6 +287,21 @@ namespace Wisol.MES.Forms.REPORT
             this.xLayoutControl2.Size = new System.Drawing.Size(304, 815);
             this.xLayoutControl2.TabIndex = 0;
             this.xLayoutControl2.Text = "xLayoutControl2";
+            // 
+            // btnSyncData
+            // 
+            this.btnSyncData.FormId = null;
+            this.btnSyncData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSyncData.ImageOptions.Image")));
+            this.btnSyncData.isFormType = false;
+            this.btnSyncData.Location = new System.Drawing.Point(145, 589);
+            this.btnSyncData.MaximumSize = new System.Drawing.Size(129, 30);
+            this.btnSyncData.MinimumSize = new System.Drawing.Size(129, 30);
+            this.btnSyncData.Name = "btnSyncData";
+            this.btnSyncData.Size = new System.Drawing.Size(129, 30);
+            this.btnSyncData.StyleController = this.xLayoutControl2;
+            this.btnSyncData.TabIndex = 35;
+            this.btnSyncData.Text = "SYNC DATA";
+            this.btnSyncData.Click += new System.EventHandler(this.btnSyncData_Click);
             // 
             // btnSearchSparepart
             // 
@@ -974,6 +989,15 @@ namespace Wisol.MES.Forms.REPORT
             this.layoutControlItem33.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem33.TextVisible = false;
             // 
+            // layoutControlItem34
+            // 
+            this.layoutControlItem34.Control = this.btnSyncData;
+            this.layoutControlItem34.Location = new System.Drawing.Point(133, 577);
+            this.layoutControlItem34.Name = "layoutControlItem34";
+            this.layoutControlItem34.Size = new System.Drawing.Size(151, 34);
+            this.layoutControlItem34.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem34.TextVisible = false;
+            // 
             // chartMain
             // 
             this.chartMain.Location = new System.Drawing.Point(12, 12);
@@ -1044,30 +1068,6 @@ namespace Wisol.MES.Forms.REPORT
             // splashScreenManager1
             // 
             this.splashScreenManager1.ClosingDelay = 500;
-            // 
-            // btnSyncData
-            // 
-            this.btnSyncData.FormId = null;
-            this.btnSyncData.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSyncData.ImageOptions.Image")));
-            this.btnSyncData.isFormType = false;
-            this.btnSyncData.Location = new System.Drawing.Point(145, 589);
-            this.btnSyncData.MaximumSize = new System.Drawing.Size(129, 30);
-            this.btnSyncData.MinimumSize = new System.Drawing.Size(129, 30);
-            this.btnSyncData.Name = "btnSyncData";
-            this.btnSyncData.Size = new System.Drawing.Size(129, 30);
-            this.btnSyncData.StyleController = this.xLayoutControl2;
-            this.btnSyncData.TabIndex = 35;
-            this.btnSyncData.Text = "SYNC DATA";
-            this.btnSyncData.Click += new System.EventHandler(this.btnSyncData_Click);
-            // 
-            // layoutControlItem34
-            // 
-            this.layoutControlItem34.Control = this.btnSyncData;
-            this.layoutControlItem34.Location = new System.Drawing.Point(133, 577);
-            this.layoutControlItem34.Name = "layoutControlItem34";
-            this.layoutControlItem34.Size = new System.Drawing.Size(151, 34);
-            this.layoutControlItem34.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem34.TextVisible = false;
             // 
             // IN_OUT_STOCK_REPORT
             // 
@@ -1149,6 +1149,7 @@ namespace Wisol.MES.Forms.REPORT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem32)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem33)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartMain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -1156,7 +1157,6 @@ namespace Wisol.MES.Forms.REPORT
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

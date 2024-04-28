@@ -231,9 +231,18 @@ namespace Wisol.MES.Forms.CONTENT
 
                         row["USER_UPDATE"] = gvListBelow.GetRowCellValue(i, "USER_UPDATE").NullString();
 
+                        if (row["USER_UPDATE"].IsNullOrEmpty())
+                        {
+                            row["USER_UPDATE"] = Consts.USER_INFO.Id;
+                        }
+
                         if (gvListBelow.GetRowCellValue(i, "DATE_UPDATE").NullString() != "")
                         {
                             row["DATE_UPDATE"] = gvListBelow.GetRowCellValue(i, "DATE_UPDATE").NullString();
+                        }
+                        else
+                        {
+                            row["DATE_UPDATE"] = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         }
 
                         row["OFF_NOTI]"] = gvListBelow.GetRowCellValue(i, "OFF_NOTI").NullString();
